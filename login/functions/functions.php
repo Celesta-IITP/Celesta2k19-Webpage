@@ -92,8 +92,8 @@ function send_email($email,$subject,$msg,$headers){
 	$mail->isSMTP();                                      // Set mailer to use SMTP
 	$mail->Host = 'tls://smtp.gmail.com';  // Specify main and backup SMTP servers
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = "";                 // SMTP username
-	$mail->Password = "";                           // SMTP password
+	$mail->Username = "hayyoulistentome@gmail.com";                 // SMTP username
+	$mail->Password = "*****";                           // SMTP password
 	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 	$mail->Port = 587;                                    // TCP port to connect to
 
@@ -149,63 +149,60 @@ function send_email($email,$subject,$msg,$headers){
  		$email=clean($_POST['email']);
  		$password=clean($_POST['password']);
  		$confirm_password=clean($_POST['confirm_password']);
- 	}
+ 	
 
- 	if(strlen($first_name)<$min){
- 		$errors[]="Your first name cannot be less than {$min}";
- 	}
+	 	if(strlen($first_name)<$min){
+	 		$errors[]="Your first name cannot be less than {$min}";
+	 	}
 
- 	 if(strlen($last_name)<$min){
- 		$errors[]="Your last name cannot be less than {$min}";
- 	}
+	 	 if(strlen($last_name)<$min){
+	 		$errors[]="Your last name cannot be less than {$min}";
+	 	}
 
- 	if(strlen($phone)<10){
- 		$errors[]="Your phone number cannot be less than 10 digits.";
- 	}
+	 	if(strlen($phone)<10){
+	 		$errors[]="Your phone number cannot be less than 10 digits.";
+	 	}
 
- 	if(strlen($last_name)>$max){
- 		$errors[]="Your last name cannot be more than {$max}";
- 	}
+	 	if(strlen($last_name)>$max){
+	 		$errors[]="Your last name cannot be more than {$max}";
+	 	}
 
- 	if(strlen($first_name)>$max){
- 		$errors[]="Your first name cannot be more than {$max}";
- 	}
+	 	if(strlen($first_name)>$max){
+	 		$errors[]="Your first name cannot be more than {$max}";
+	 	}
 
- 	if(strlen($phone)>$max){
- 		$errors[]="Your phone number cannot have more than 10 digits.";
- 	}
+	 	if(strlen($phone)>$max){
+	 		$errors[]="Your phone number cannot have more than 10 digits.";
+	 	}
 
- 	if(strlen($email)<$min){
- 		$errors[]="Your email cannot be less than {$min}";
- 	}
+	 	if(strlen($email)<$min){
+	 		$errors[]="Your email cannot be less than {$min}";
+	 	}
 
- 	if($password!==$confirm_password){
- 		$errors[]="Your password fields donot match";
- 	}
+	 	if($password!==$confirm_password){
+	 		$errors[]="Your password fields donot match";
+	 	}
 
- 	if(email_exists($email)){
- 		$errors[]="Email already taken";
- 	}
-
- 	// if(username_exists($username)){
- 	// 	$errors[]="Username already taken by another user";
- 	// }
+	 	if(email_exists($email)){
+	 		$errors[]="Email already taken";
+	 	}
 
 
- 	if(!empty($errors)){
- 		foreach($errors as $error){
- 			echo validation_errors($error);
- 		}
- 	}else{
- 		if(register_user($first_name,$last_name,$phone,$college,$email,$password)){
- 			set_message("<p class='bg-success text-center'>Please check your email or spam folder for activation link.</p>");
- 			redirect("index.php");
- 		}
- 		else{
- 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
- 			echo "User registration failed";
- 		}
- 		
+	 	if(!empty($errors)){
+	 		foreach($errors as $error){
+	 			echo validation_errors($error);
+	 		}
+	 	}else{
+	 		if(register_user($first_name,$last_name,$phone,$college,$email,$password)){
+	 			
+	 			redirect("index.php");
+	 		}
+	 		else{
+	 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
+	 			echo "User registration failed";
+	 		}
+	 		
+	 	}
  	}
 }
 
@@ -217,6 +214,13 @@ function getCelestaId(){
 		$exist=celestaid_exists($celestaid);
 	}
 	return $celestaid;
+}
+
+//Attaching the qr code generator
+function generateQRCode($celestaid,$first_name,$last_name){
+	include("qrCodeGenerator/qrlib.php");
+	QRcode::png($celestaid."/".$first_name."/".$last_name,"assets/qrcodes/".$celestaid.".png","H","10","10");
+	//echo"<img src='".$celestaid."'/>";
 }
 
 function register_user($first_name,$last_name,$phone,$college,$email,$password){
@@ -234,21 +238,31 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password){
 		$password=md5($password);
 		$celestaid=getCelestaId();
 		$validation_code=md5($celestaid+microtime());
+		generateQRCode($celestaid,$first_name,$last_name);
+		$qrcode="http://localhost:8888/login/assets/qrcodes/".$celestaid.".png";
+		echo"<img src='assets/qrcodes/".$celestaid.".png'/>";
 
 		//CONTENTS OF EMAIL
 		$subject="Activate Celesta Account";
 		$msg="<p>
 			Your Celesta Id is ".$celestaid.". <br/>
-		Please click the link below to activate you Account and login.<br/>
+			You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
+		Please click the link below to activate your Account and login.<br/>
 			http://localhost:8888/login/activate.php?email=$email&code=$validation_code
 			</p>
 		";
 		$header="From: noreply@yourwebsite.com";
 		//Added to database if mail is sent successfully
 		if(send_email($email,$subject,$msg,$header)){
-			$sql="INSERT INTO users(first_name,last_name,phone,college,email,password,validation_code,active,celestaid) ";
-			$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$validation_code','0','$celestaid')";
+			$sql="INSERT INTO users(first_name,last_name,phone,college,email,password,validation_code,active,celestaid,qrcode) ";
+			$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$validation_code','0','$celestaid','".$qrcode."')";
+			echo $sql;
 			$result=query($sql);
+			confirm($result);
+			echo "<br/>";
+			print_r($result);
+
+			set_message("<p class='bg-success text-center'>Please check your email or spam folder for activation link.<br><br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> </p>");
 			return true;
 		}else{
 			return false;
@@ -308,7 +322,7 @@ function validate_user_login(){
 			}
 		}else{
 			if(login_user($celestaid,$password,$remember)){
-				redirect("admin.php");
+				redirect("profile.php");
 			}else{
 				//echo "Inside credential wrong";
 				echo validation_errors("Your credentials are not correct");
@@ -322,21 +336,23 @@ function validate_user_login(){
 //Log in the user
 function login_user($celestaid, $password, $remember){
 
-	$sql = "SELECT password, id FROM users WHERE celestaid ='".escape($celestaid)."' AND active=1";
+	$sql = "SELECT password, id, qrcode FROM users WHERE celestaid ='".escape($celestaid)."' AND active=1";
 
 	$result=query($sql);
 	if(row_count($result)==1){
 
 		$row=fetch_array($result);
 		$db_password=$row['password'];
+		$qrcode=$row['qrcode'];
 
 		echo $db_password;
 		echo md5($password);
 		if(md5($password)==$db_password){
 			$_SESSION['celestaid']=$celestaid;	//Storing the cdlesta id in a session
-
+			$_SESSION['qrcode']=$qrcode;
 			if($remember=="on"){
-				 setcookie('celestaid',$celestaid, time() + 86400); 
+				 setcookie('celestaid',$celestaid, time() + 86400);
+				 setcookie('qrcode',$qrcode,time()+86400);
 			}
 			return true;
 		}else{

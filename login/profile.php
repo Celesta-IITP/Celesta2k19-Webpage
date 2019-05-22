@@ -11,8 +11,10 @@
     		echo "Logged In <br/>";
             if(isset($_SESSION['celestaid'])){
                 echo "Celesta id: ".$_SESSION['celestaid'];
+                echo "<img src='".$_SESSION['qrcode']."'/>";
             }else{
                 echo "Celesta id: ".$_COOKIE['celestaid'];
+                echo "<img src='".$_COOKIE['qrcode']."'/>";
             }
     		
     	}else{
