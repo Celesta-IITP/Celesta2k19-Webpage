@@ -5,6 +5,8 @@
 	</div>
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
+				<?php display_message() ; ?>
+				<?php reset_password() ; ?>
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">
@@ -24,7 +26,7 @@
 										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm_password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
+										<input type="password" name="confirm_password" id="confirm_password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
 									</div>
 									<div class="form-group">
 										<div class="row">

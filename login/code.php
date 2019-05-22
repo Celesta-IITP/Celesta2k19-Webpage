@@ -2,12 +2,13 @@
 
 	<div class="row">
 		<div class="col-lg-6 col-lg-offset-3">	
-		
+			<?php display_message() ; ?>
+			<?php validate_code();  ?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-				</button>We have a sent a security code to your email <span>@edwin@email.com</span>
-			</div>					
+				</button>We have a sent a security code to your email <span><?php echo $_GET['email'];?></span>
+			</div>		 			
 		</div>
 	</div>
 
@@ -21,7 +22,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="text-center"><h2><b> Enter Code</b></h2></div>
-									<form id="register-form"  method="post" role="form" autocomplete="off">
+									<form id="register-form"  method="POST" role="form" autocomplete="off">
 										<div class="form-group">
 											<input type="text" name="code" id="code" tabindex="1" class="form-control" placeholder="##########" value="" autocomplete="off" required/>
 										</div>

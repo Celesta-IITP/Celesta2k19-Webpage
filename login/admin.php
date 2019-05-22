@@ -9,7 +9,12 @@
     <h1 class="text-center"><?php 
     	if(logged_in()){
     		echo "Logged In <br/>";
-    		echo "Celesta id: ".$_SESSION['celestaid'];
+            if(isset($_SESSION['celestaid'])){
+                echo "Celesta id: ".$_SESSION['celestaid'];
+            }else{
+                echo "Celesta id: ".$_COOKIE['celestaid'];
+            }
+    		
     	}else{
     		redirect("index.php");
     	}
