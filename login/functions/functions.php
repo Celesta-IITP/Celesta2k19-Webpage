@@ -1,4 +1,5 @@
 <?php
+	include("utility.php");	//Mail function and qr code function
 	//Declaring variables
 	$first_name='';
 	$last_name='';
@@ -7,7 +8,6 @@
 	$email='';
 	$password='';
 	$confirm_password='';
-
 /*******************Useful Functions*****************/
 
 //Cleans the string from unwanted html symbols
@@ -67,61 +67,11 @@ function email_exists($email){
 	}
 }
 
-//To check if the given username already exists or not
-function celestaid_exists($celestaid){
-	$sql="SELECT id FROM users WHERE celestaid='$celestaid'";
-	$result=query($sql);
-	if(row_count($result)==1){
-		return true;
-	}
-	else{
-		return false;
-	}
+//Attaching the qr code generator
+function generateQRCode($celestaid,$first_name,$last_name){
+	include("qrCodeGenerator/qrlib.php");
+	QRcode::png($celestaid."/".$first_name."/".$last_name,"assets/qrcodes/".$celestaid.".png","H","10","10");
 }
-
-//Function that sends email
-function send_email($email,$subject,$msg,$headers){
-// 	return (mail($email,$subject,$msg,$headers));
-
-	require 'PHPMailerAutoload.php';
-
-	$mail = new PHPMailer;
-
-	//$mail->SMTPDebug = 4;                               // Enable verbose debug output
-
-	$mail->isSMTP();                                      // Set mailer to use SMTP
-	$mail->Host = 'tls://smtp.gmail.com';  // Specify main and backup SMTP servers
-	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = "hayyoulistentome@gmail.com";                 // SMTP username
-	$mail->Password = "*****";                           // SMTP password
-	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-	$mail->Port = 587;                                    // TCP port to connect to
-
-	$mail->setFrom('hayyoulistentome@gmail.com', 'Celesta2k19');
-	$mail->addAddress($email);     // Add a recipient
-	//$mail->addAddress('ellen@example.com');               // Name is optional
-	$mail->addReplyTo('hayyoulistentome@gmail.com', 'Information');
-	//$mail->addCC('cc@example.com');
-	//$mail->addBCC('bcc@example.com');
-
-	// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-	// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-	$mail->isHTML(true);                                  // Set email format to HTML
-
-	$mail->Subject = $subject;
-	$mail->Body    = $msg;
-	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-	if(!$mail->send()) {
-	   // echo 'Message could not be sent.';
-	   // echo 'Mailer Error: ' . $mail->ErrorInfo;
-	    return false;
-	} else {
-	  //  echo 'Message has been sent';
-	    return true;
-	}
-}
-
 
 
 /*************************Validating Functions**************************/
@@ -149,6 +99,7 @@ function send_email($email,$subject,$msg,$headers){
  		$email=clean($_POST['email']);
  		$password=clean($_POST['password']);
  		$confirm_password=clean($_POST['confirm_password']);
+ 		$gender=$_POST['gender'];
  	
 
 	 	if(strlen($first_name)<$min){
@@ -193,7 +144,7 @@ function send_email($email,$subject,$msg,$headers){
 	 			echo validation_errors($error);
 	 		}
 	 	}else{
-	 		if(register_user($first_name,$last_name,$phone,$college,$email,$password)){
+	 		if(register_user($first_name,$last_name,$phone,$college,$email,$password,$gender)){
 	 			
 	 			redirect("index.php");
 	 		}
@@ -206,24 +157,9 @@ function send_email($email,$subject,$msg,$headers){
  	}
 }
 
-//Function to generate random celestaID
-function getCelestaId(){
-	$exist=true;
-	while ($exist) {
-		$celestaid="CLST".mt_rand(1001,9999);
-		$exist=celestaid_exists($celestaid);
-	}
-	return $celestaid;
-}
 
-//Attaching the qr code generator
-function generateQRCode($celestaid,$first_name,$last_name){
-	include("qrCodeGenerator/qrlib.php");
-	QRcode::png($celestaid."/".$first_name."/".$last_name,"assets/qrcodes/".$celestaid.".png","H","10","10");
-	//echo"<img src='".$celestaid."'/>";
-}
 
-function register_user($first_name,$last_name,$phone,$college,$email,$password){
+function register_user($first_name,$last_name,$phone,$college,$email,$password,$gender){
 
 	$first_name=escape($first_name);
 	$last_name=escape($last_name);
@@ -254,13 +190,10 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password){
 		$header="From: noreply@yourwebsite.com";
 		//Added to database if mail is sent successfully
 		if(send_email($email,$subject,$msg,$header)){
-			$sql="INSERT INTO users(first_name,last_name,phone,college,email,password,validation_code,active,celestaid,qrcode) ";
-			$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$validation_code','0','$celestaid','".$qrcode."')";
-			echo $sql;
+			$sql="INSERT INTO users(first_name,last_name,phone,college,email,password,validation_code,active,celestaid,qrcode,gender) ";
+			$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$validation_code','0','$celestaid','".$qrcode."','$gender')";
 			$result=query($sql);
 			confirm($result);
-			echo "<br/>";
-			print_r($result);
 
 			set_message("<p class='bg-success text-center'>Please check your email or spam folder for activation link.<br><br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> </p>");
 			return true;
@@ -518,6 +451,15 @@ function reset_password(){
 						if(row_count($result)==1){
 							$sql1="UPDATE users SET password='".$password."' WHERE email='".escape($email)."' ";
 							$result1=query($sql1);
+
+							//Updating in present database also, if the email exists
+							$sql2="SELECT id FROM present_users WHERE email='".escape($email)."' ";
+							$result2=query($sql2);
+							if(row_count($result2)==1){
+								$sql3="UPDATE present_users SET password='".$password."' WHERE email='".escape($email)."' ";
+								$result3=query($sql3);
+							}
+							
 							set_message("<p class='bg-success text-center'> Your apassword has been resetted.</p>");
 							redirect("login.php");
 						}else{
