@@ -138,7 +138,7 @@ function registrar_register(){
 
 				if(row_count($result)==1 )
 				{
-					if(celestaid_exist_present_user($celestaid))
+					if((celestaid_exist_present_user($celestaid)) && (getPermit()==2))
 					{
 						$sql3="SELECT total_charge,registration_charge,tshirt_charge,bandpass_charge FROM present_users WHERE celestaid='".escape($celestaid)."' ";
 						$result3=query($sql3);
@@ -327,7 +327,10 @@ function registrar_register(){
 						</div>";
 
 						echo $to_show;	//Displays the form
-					}else{
+					}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()!=2)){
+						echo validation_errors("You donot have the permit to do the following changes.");
+
+					}elseif(!celestaid_exist_present_user($celestaid)){
 
 						$row=fetch_array($result);
 						$first_name=$row['first_name'];
@@ -545,7 +548,8 @@ function registrar_register(){
 					}else{
 						set_message("<p class='bg-danger text-center'>Sorry we failed to send the confirmation mail to the user.</p>");
 					}		 			
-		 		}else{
+		 		}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()==2))
+		 		{
 		 			//$sql2="UPDATE present_users SET "
 		 			$sql3="SELECT total_charge,registration_charge,tshirt_charge,bandpass_charge FROM present_users WHERE celestaid='".escape($celestaid)."' ";
 					$result3=query($sql3);
@@ -572,6 +576,8 @@ function registrar_register(){
 							You need to pay Rs $amount_to_pay<br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
 			 		redirect('display.php');
 		 		}
+			}else{
+				echo validation_errors("You donot have the permit to do the following changes.");
 			}
 		}
 	}
