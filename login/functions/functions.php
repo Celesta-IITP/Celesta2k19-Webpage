@@ -141,16 +141,19 @@ function generateQRCode($celestaid,$first_name,$last_name){
 
 	 	if(!empty($errors)){
 	 		foreach($errors as $error){
-	 			echo validation_errors($error);
+	 			echo validation_errors($error);	
 	 		}
+	 		return json_encode(array_merge(array("201"),$errors));
 	 	}else{
 	 		if(register_user($first_name,$last_name,$phone,$college,$email,$password,$gender)){
-	 			
+
 	 			redirect("index.php");
+	 			return json_encode("200");//Registration success
 	 		}
 	 		else{
 	 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
 	 			echo "User registration failed";
+	 			return json_encode("201");	//Registration failed
 	 		}
 	 		
 	 	}
@@ -221,9 +224,11 @@ function activate_user(){
 				confirm($result2);
 				set_message("<p class='bg-success'> Your account has been activated.</p>");
 				redirect("login.php");
+				return json_encode("400");//Siuccess
 			}
 			else{
 				set_message("<p class='bg-danger'> Your account could not be activated.</p>");
+				return json_encode("404");//Failed
 			}
 			
 		}
@@ -253,12 +258,15 @@ function validate_user_login(){
 			foreach ($errors as $error) {
 				echo validation_errors($error);
 			}
+			return json_encode(array_merge(array("404"),$errors));
 		}else{
 			if(login_user($celestaid,$password,$remember)){
 				redirect("profile.php");
+				return json_encode(array("400"));//User logged in
 			}else{
 				//echo "Inside credential wrong";
 				echo validation_errors("Your credentials are not correct");
+				return json_encode("404");//User login failed
 			}
 
 		}
@@ -415,7 +423,6 @@ function reset_password(){
 			if(!isset($_GET['email']) && !isset($_GET['code'])){
 				redirect("index.php");
 			}else if(empty($_GET['email']) || empty($_GET['code'])){
-				echo "2nd option";
 				redirect("index.php");
 			}else{
 				if(isset($_GET['code'])){
