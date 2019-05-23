@@ -53,6 +53,17 @@ function email_exists($email){
 	}
 }
 
+function celestaid_exist_present_user($celestaid){
+	$sql="SELECT id FROM present_users WHERE celestaid='$celestaid'";
+	$result=query($sql);
+	if(row_count($result)==1){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
 //Logging in the admin registrar
 function login_registrar(){
 	//echo "Succesfull";
@@ -125,108 +136,335 @@ function registrar_register(){
 				$result=query($sql);
 				confirm($result);
 
-				if(row_count($result)==1)
+				if(row_count($result)==1 )
 				{
-					$row=fetch_array($result);
-					$first_name=$row['first_name'];
-					$last_name=$row['last_name'];
-					$gender=$row['gender'];
-					$email=$row['email'];
-					$phone=$row['phone'];
-					$college=$row['college'];
-					$active=$row['active'];
+					if(celestaid_exist_present_user($celestaid))
+					{
+						$sql3="SELECT total_charge,registration_charge,tshirt_charge,bandpass_charge FROM present_users WHERE celestaid='".escape($celestaid)."' ";
+						$result3=query($sql3);
+						$row3=fetch_array($result3);
 
-					//Filling the form with details
-					//document.getElementById("celestaid").value = $celestaid;
-					$to_show="
+						$total_charge=$row3['total_charge'];
+						$tshirt_charge=$row3['tshirt_charge'];
+						$bandpass_charge=$row3['bandpass_charge'];
+						$registration_charge=$row3['registration_charge'];
 
-					<div class='register'>
-						    <div class='row'>
-						        <div class='col-md-3 register-left'>
-						            <img src='https://image.ibb.co/n7oTvU/logo_white.png' alt=''/>
-						            <h3>Welcome</h3>
-						            <h3>To Celesta2k19 !!</h3>
-						            <p>The Techno Cultural Fest of IIT Patna</p>
-						            <input type='submit' onclick='location.href=\"new_register.php\";'name='' value='New User'/><br/>
-						        </div>
-						        <div class='col-md-9 register-right'>
-						            <ul class='nav nav-tabs nav-justified' id='myTab' role='tablist'>
-						                <li class='nav-item'>
-						                    <a class='nav-link active' id='home-tab' data-toggle='tab' href='#' role='tab' aria-controls='home' aria-selected='true'>IIT Patna</a>
-						                </li>
-						                <li class='nav-item'>
-						                    <a class='nav-link' id='profile-tab' data-toggle='tab' href='#' role='tab' aria-controls='profile' aria-selected='false'>Celesta2k19</a>
-						                </li>
-						            </ul>
-						            <div class='tab-content' id='myTabContent'>
-						                <div class='tab-pane fade show active' id='home' role='tabpanel' aria-labelledby='home-tab'>
-						                    <h3 class='register-heading'>Validate Users</h3>
-						                    <form method='post' role='form' id='validate_user_form'>
-							                    <div class='row register-form' >
+						$row=fetch_array($result);
+						$first_name=$row['first_name'];
+						$last_name=$row['last_name'];
+						$gender=$row['gender'];
+						$email=$row['email'];
+						$phone=$row['phone'];
+						$college=$row['college'];
+						$active=$row['active'];
+
+						//Filling the form with details
+						//document.getElementById("celestaid").value = $celestaid;
+						$to_show="
+
+						<div class='register'>
+							    <div class='row'>
+							        <div class='col-md-3 register-left'>
+							            <img src='https://image.ibb.co/n7oTvU/logo_white.png' alt=''/>
+							            <h3>Welcome</h3>
+							            <h3>To Celesta2k19 !!</h3>
+							            <p>The Techno Cultural Fest of IIT Patna</p>
+							            <input type='submit' onclick='location.href=\"new_register.php\";'name='' value='New User'/><br/>
+							        </div>
+							        <div class='col-md-9 register-right'>
+							            <ul class='nav nav-tabs nav-justified' id='myTab' role='tablist'>
+							                <li class='nav-item'>
+							                    <a class='nav-link active' id='home-tab' data-toggle='tab' href='#' role='tab' aria-controls='home' aria-selected='true'>IIT Patna</a>
+							                </li>
+							                <li class='nav-item'>
+							                    <a class='nav-link' id='profile-tab' data-toggle='tab' href='#' role='tab' aria-controls='profile' aria-selected='false'>Celesta2k19</a>
+							                </li>
+							            </ul>
+							            <div class='tab-content' id='myTabContent'>
+							                <div class='tab-pane fade show active' id='home' role='tabpanel' aria-labelledby='home-tab'>
+							                    <h3 class='register-heading'>Validate Users</h3>
+							                    <form method='post' role='form' id='validate_user_form'>
+								                    <div class='row register-form' >
+								                        <div class='col-md-6'>
+								                            <div class='form-group'>
+								                                <input type='text' readonly class='form-control' id='first_name' name='first_name' placeholder='First Name' value='".$first_name."' required />
+								                            </div>
+								                            <div class='form-group'>
+								                                <input type='text' readonly class='form-control' id='last_name' name='last_name' placeholder='Last Name' value='".$last_name."' required />
+								                            </div>
+								                            <div class='form-group'>
+								                                <input type='text' readonly class='form-control' id='celestaid' name='celestaid' placeholder='Celesta ID' value='".$celestaid."' required />
+								                            </div>";
+		                if($gender=='m')
+		                {
+		                	$to_show.="<div class='form-group'>
+		                                <div class='maxl'>
+		                                    <label class='radio inline'> 
+		                                        <input type='radio' name='gender' readonly value='m' id='male' checked>
+		                                        <span> Male </span> 
+		                                    </label>
+		                                    <label class='radio inline'> 
+		                                        <input type='radio' name='gender' readonly id='female' value='f'>
+		                                        <span>Female </span> 
+		                                    </label>
+		                                </div>
+		                            </div>";
+		                }else
+		                {
+		                	$to_show.="<div class='form-group'>
+		                                <div class='maxl'>
+		                                    <label class='radio inline'> 
+		                                        <input type='radio' name='gender' readonly value='m' id='male'>
+		                                        <span> Male </span> 
+		                                    </label>
+		                                    <label class='radio inline'> 
+		                                        <input type='radio' name='gender' readonly id='female' value='f' checked>
+		                                        <span>Female </span> 
+		                                    </label>
+		                                </div>
+		                            </div>";	                	
+		                }            
+		                            
+
+		                $to_show.=" 			</div>
 							                        <div class='col-md-6'>
 							                            <div class='form-group'>
-							                                <input type='text' class='form-control' id='first_name' name='first_name' placeholder='First Name' value='".$first_name."' required />
+							                                <input type='email' class='form-control' readonly id='email' readonly name='email' placeholder='Your Email' value='".$email."' required/>
 							                            </div>
 							                            <div class='form-group'>
-							                                <input type='text' class='form-control' id='last_name' name='last_name' placeholder='Last Name' value='".$last_name."' required />
+							                                <input type='text' minlength='10' maxlength='10' readonly name='phone' id='phone' class='form-control' placeholder='Your Phone' value='".$phone."' required/>
 							                            </div>
 							                            <div class='form-group'>
-							                                <input type='text' readonly class='form-control' id='celestaid' name='celestaid' placeholder='Celesta ID' value='".$celestaid."' required />
+							                                <input type='text' class='form-control' id='college' readonly name='college' placeholder='Enter Your School/College' value='".$college."' required/>
 							                            </div>";
-	                if($gender=='m')
-	                {
-	                	$to_show.="<div class='form-group'>
-	                                <div class='maxl'>
-	                                    <label class='radio inline'> 
-	                                        <input type='radio' name='gender' value='m' id='male' checked>
-	                                        <span> Male </span> 
-	                                    </label>
-	                                    <label class='radio inline'> 
-	                                        <input type='radio' name='gender' id='female' value='f'>
-	                                        <span>Female </span> 
-	                                    </label>
-	                                </div>
-	                            </div>";
-	                }else
-	                {
-	                	$to_show.="<div class='form-group'>
-	                                <div class='maxl'>
-	                                    <label class='radio inline'> 
-	                                        <input type='radio' name='gender' value='m' id='male'>
-	                                        <span> Male </span> 
-	                                    </label>
-	                                    <label class='radio inline'> 
-	                                        <input type='radio' name='gender' id='female' value='f' checked>
-	                                        <span>Female </span> 
-	                                    </label>
-	                                </div>
-	                            </div>";	                	
-	                }            
-	                            
 
-	                $to_show.=" 			</div>
-						                        <div class='col-md-6'>
-						                            <div class='form-group'>
-						                                <input type='email' class='form-control' id='email' readonly name='email' placeholder='Your Email' value='".$email."' required/>
-						                            </div>
-						                            <div class='form-group'>
-						                                <input type='text' minlength='10' maxlength='10' name='phone' id='phone' class='form-control' placeholder='Your Phone' value='".$phone."' required/>
-						                            </div>
-						                            <div class='form-group'>
-						                                <input type='text' class='form-control' id='college' name='college' placeholder='Enter Your School/College' value='".$college."' required/>
-						                            </div>
+						//For registration charge
+						if($registration_charge!=0){
+							$to_show.="	<div class='form-group row'>
+			                                <div class='col-sm-10'>
+			                                    <div class='form-check'>
+			                                        <input class='form-check-input' type='checkbox' id='registration_charge' name='registration_charge' readonly checked>
+			                                        <label class='form-check-label' for='registration_charge'>
+			                                            Registration 
+			                                        </label>
+			                                    </div>
+			                                </div>
+			                            </div>";
+						}else{
+							$to_show.="	<div class='form-group row'>
+			                                <div class='col-sm-10'>
+			                                    <div class='form-check'>
+			                                        <input class='form-check-input' type='checkbox' id='registration_charge' name='registration_charge'>
+			                                        <label class='form-check-label' for='registration_charge'>
+			                                            Registration 
+			                                        </label>
+			                                    </div>
+			                                </div>
+			                            </div>";	
+						}
 
-						                            <input type='submit' class='btnRegister' id='valid_user' name='valid_user' value='Register'/>
-						                        </div>
-						                    </div>
-						                </form>
-						                </div>
-						            </div>
-						        </div>
-						    </div>
-					</div>";
 
-					echo $to_show;	//Displays the form
+						//For tshirt
+						if($tshirt_charge!=0){
+							$to_show.="	<div class='form-group row'>
+			                                <div class='col-sm-10'>
+			                                    <div class='form-check'>
+			                                        <input class='form-check-input' type='checkbox' id='tshirt_charge' name='tshirt_charge' checked>
+			                                        <label class='form-check-label' for='rtshirt_charge'>
+			                                            Tshirt
+			                                        </label>
+			                                    </div>
+			                                </div>
+			                            </div>";
+						}else{
+							$to_show.="	<div class='form-group row'>
+			                                <div class='col-sm-10'>
+			                                    <div class='form-check'>
+			                                        <input class='form-check-input' type='checkbox' id='tshirt_charge' name='tshirt_charge'>
+			                                        <label class='form-check-label' for='tshirt_charge'>
+			                                            Tshirt
+			                                        </label>
+			                                    </div>
+			                                </div>
+			                            </div>";	
+						}
+
+						//For bandpass
+						if($bandpass_charge!=0){
+							$to_show.="	<div class='form-group row'>
+			                                <div class='col-sm-10'>
+			                                    <div class='form-check'>
+			                                        <input class='form-check-input' type='checkbox' id='bandpass_charge' name='bandpass_charge' checked>
+			                                        <label class='form-check-label' for='bandpass_charge'>
+			                                            Bandpass
+			                                        </label>
+			                                    </div>
+			                                </div>
+			                            </div>";
+						}else{
+							$to_show.="	<div class='form-group row'>
+			                                <div class='col-sm-10'>
+			                                    <div class='form-check'>
+			                                        <input class='form-check-input' type='checkbox' id='bandpass_charge' name='bandpass_charge'>
+			                                        <label class='form-check-label' for='bandpass_charge'>
+			                                            Bandpass 
+			                                        </label>
+			                                    </div>
+			                                </div>
+			                            </div>";	
+						}						
+
+
+
+						$to_show.="<input type='submit' class='btnRegister' id='valid_user' name='valid_user' value='Register'/>
+							                        </div>
+							                    </div>
+							                </form>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+						</div>";
+
+						echo $to_show;	//Displays the form
+					}else{
+
+						$row=fetch_array($result);
+						$first_name=$row['first_name'];
+						$last_name=$row['last_name'];
+						$gender=$row['gender'];
+						$email=$row['email'];
+						$phone=$row['phone'];
+						$college=$row['college'];
+						$active=$row['active'];
+
+						//Filling the form with details
+						//document.getElementById("celestaid").value = $celestaid;
+						$to_show="
+
+						<div class='register'>
+							    <div class='row'>
+							        <div class='col-md-3 register-left'>
+							            <img src='https://image.ibb.co/n7oTvU/logo_white.png' alt=''/>
+							            <h3>Welcome</h3>
+							            <h3>To Celesta2k19 !!</h3>
+							            <p>The Techno Cultural Fest of IIT Patna</p>
+							            <input type='submit' onclick='location.href=\"new_register.php\";'name='' value='New User'/><br/>
+							        </div>
+							        <div class='col-md-9 register-right'>
+							            <ul class='nav nav-tabs nav-justified' id='myTab' role='tablist'>
+							                <li class='nav-item'>
+							                    <a class='nav-link active' id='home-tab' data-toggle='tab' href='#' role='tab' aria-controls='home' aria-selected='true'>IIT Patna</a>
+							                </li>
+							                <li class='nav-item'>
+							                    <a class='nav-link' id='profile-tab' data-toggle='tab' href='#' role='tab' aria-controls='profile' aria-selected='false'>Celesta2k19</a>
+							                </li>
+							            </ul>
+							            <div class='tab-content' id='myTabContent'>
+							                <div class='tab-pane fade show active' id='home' role='tabpanel' aria-labelledby='home-tab'>
+							                    <h3 class='register-heading'>Validate Users</h3>
+							                    <form method='post' role='form' id='validate_user_form'>
+								                    <div class='row register-form' >
+								                        <div class='col-md-6'>
+								                            <div class='form-group'>
+								                                <input type='text' class='form-control' id='first_name' name='first_name' placeholder='First Name' value='".$first_name."' required />
+								                            </div>
+								                            <div class='form-group'>
+								                                <input type='text' class='form-control' id='last_name' name='last_name' placeholder='Last Name' value='".$last_name."' required />
+								                            </div>
+								                            <div class='form-group'>
+								                                <input type='text' readonly class='form-control' id='celestaid' name='celestaid' placeholder='Celesta ID' value='".$celestaid."' required />
+								                            </div>";
+		                if($gender=='m')
+		                {
+		                	$to_show.="<div class='form-group'>
+		                                <div class='maxl'>
+		                                    <label class='radio inline'> 
+		                                        <input type='radio' name='gender' value='m' id='male' checked>
+		                                        <span> Male </span> 
+		                                    </label>
+		                                    <label class='radio inline'> 
+		                                        <input type='radio' name='gender' id='female' value='f'>
+		                                        <span>Female </span> 
+		                                    </label>
+		                                </div>
+		                            </div>";
+		                }else
+		                {
+		                	$to_show.="<div class='form-group'>
+		                                <div class='maxl'>
+		                                    <label class='radio inline'> 
+		                                        <input type='radio' name='gender' value='m' id='male'>
+		                                        <span> Male </span> 
+		                                    </label>
+		                                    <label class='radio inline'> 
+		                                        <input type='radio' name='gender' id='female' value='f' checked>
+		                                        <span>Female </span> 
+		                                    </label>
+		                                </div>
+		                            </div>";	                	
+		                }            
+		                            
+
+		                $to_show.=" 			</div>
+							                        <div class='col-md-6'>
+							                            <div class='form-group'>
+							                                <input type='email' class='form-control' id='email' readonly name='email' placeholder='Your Email' value='".$email."' required/>
+							                            </div>
+							                            <div class='form-group'>
+							                                <input type='text' minlength='10' maxlength='10' name='phone' id='phone' class='form-control' placeholder='Your Phone' value='".$phone."' required/>
+							                            </div>
+							                            <div class='form-group'>
+							                                <input type='text' class='form-control' id='college' name='college' placeholder='Enter Your School/College' value='".$college."' required/>
+							                            </div>
+							                            <div class='form-group row'>
+							                                <div class='col-sm-10'>
+							                                    <div class='form-check'>
+							                                        <input class='form-check-input' type='checkbox' id='registration_charge' name='registration_charge' checked>
+							                                        <label class='form-check-label' for='registration_charge'>
+							                                            Registration 
+							                                        </label>
+							                                    </div>
+							                                </div>
+							                            </div>
+
+							                            <div class='form-group row'>
+							                                <div class='col-sm-10'>
+							                                    <div class='form-check'>
+							                                        <input class='form-check-input' type='checkbox' id='tshirt_charge' name='tshirt_charge'>
+							                                        <label class='form-check-label' for='tshirt_charge'>
+							                                            T-Shirt (Rs 300)
+							                                        </label>
+							                                    </div>
+							                                </div>
+							                            </div>
+
+							                            <div class='form-group row'>
+							                                <div class='col-sm-10'>
+							                                    <div class='form-check'>
+							                                        <input class='form-check-input' type='checkbox' id='bandpass_charge' name='bandpass_charge'>
+							                                        <label class='form-check-label' for='bandpass_charge'>
+							                                            Band Pass
+							                                        </label>
+							                                    </div>
+							                                </div>
+							                            </div>                    
+
+							                            <input type='submit' class='btnRegister' id='valid_user' name='valid_user' value='Register'/>
+							                        </div>
+							                    </div>
+							                </form>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+						</div>";
+
+						echo $to_show;	//Displays the form
+
+
+
+					}
 
 				}else
 				{
@@ -235,6 +473,35 @@ function registrar_register(){
 				}
 			}elseif(isset($_POST['valid_user']))
 			{//Function that will add the user in present_user database
+
+				//Default values
+				$price_tshirt=300;
+				$price_reg=100;
+				$price_bandass=200;
+				$price_both=400;
+				
+				//Setting price
+				$total_charge=0;
+				$registration_charge=0;
+				$bandpass_charge=0;
+				$tshirt_charge=0;
+
+				if(isset($_POST['registration_charge'])){
+					$total_charge=$total_charge+$price_reg;
+					$registration_charge=$price_reg;
+				}
+				if(isset($_POST['bandpass_charge'])){
+					$total_charge=$total_charge+$price_bandass;
+					$bandpass_charge=$price_bandass;
+				}
+				if(isset($_POST['tshirt_charge'])){
+					$total_charge=$total_charge+$price_tshirt;
+					$tshirt_charge=$price_tshirt;
+				}
+
+				if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
+					$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
+				}
 
 				//Gathering updated information from the form
 				$first_name=clean($_POST['first_name']);
@@ -257,27 +524,58 @@ function registrar_register(){
 		 		$qrcode=$row['qrcode'];
 		 		$active=$row['active'];
 
-		 		$sql1="INSERT INTO present_users(first_name,last_name,phone,college,gender,celestaid,email,password,added_by,events_registered,events_participated,qrcode,active) VALUES('$first_name','$last_name','$phone','$college','$gender','$celestaid','$email','$password','$added_by','$events_registered','$events_participated','$qrcode','1')";
+		 		if(!celestaid_exist_present_user($celestaid)){
 
-		 		$result1=query($sql1);
+			 		$sql1="INSERT INTO present_users(first_name,last_name,phone,college,gender,celestaid,email,password,added_by, events_registered, events_participated , qrcode,active,registration_charge, tshirt_charge, bandpass_charge, total_charge) VALUES('$first_name', '$last_name', '$phone', '$college','$gender','$celestaid','$email','$password','$added_by','$events_registered','$events_participated','$qrcode','1', $registration_charge,$tshirt_charge,$bandpass_charge,$total_charge)";
 
-		 		$subject="Activate Celesta Account";
-				$msg="<p><h1> Welcome to Celesta2k19</h1><br>
-					Your Celesta Id is ".$celestaid.". You have been verified as a participant present in the fest.<br/>
-					You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
-					</p>
-				";
-				$header="From: hayyoulistentome@gmail.com";
+			 		$result1=query($sql1);
 
-				if(send_email($email,$subject,$msg,$header)){
-					set_message("<p class='bg-success text-center'>Thank you $first_name $last_name for participating in Celetsa2k19.<br> You can login with the celesta id and the password to stay updated.<br><br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
-		 		redirect('display.php');
-				}else{
-					set_message("<p class='bg-danger text-center'>Sorry we failed to send the confirmation mail to the user.</p>");
-				}
+			 		$subject="Celesta2k19 Billing";
+					$msg="<p><h1> Welcome to Celesta2k19</h1><br>
+						Your Celesta Id is ".$celestaid.". You have been verified as a participant present in the fest.<br/>
+						You need to pay Rs. $total_charge to complete registration desk.<br>
+						You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
+						</p>
+					";
+					$header="From: hayyoulistentome@gmail.com";
+
+					if(send_email($email,$subject,$msg,$header)){
+						set_message("<p class='bg-success text-center'>Thank you $first_name $last_name for participating in Celetsa2k19.<br> You can login with the celesta id and the password to stay updated.<br><br><br>Your Celesta id is $celestaid<br>Total amount to pay is: Rs. $total_charge<br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
+			 			redirect('display.php');
+					}else{
+						set_message("<p class='bg-danger text-center'>Sorry we failed to send the confirmation mail to the user.</p>");
+					}		 			
+		 		}else{
+		 			//$sql2="UPDATE present_users SET "
+		 			$sql3="SELECT total_charge,registration_charge,tshirt_charge,bandpass_charge FROM present_users WHERE celestaid='".escape($celestaid)."' ";
+					$result3=query($sql3);
+					$row3=fetch_array($result3);
+
+					$initial_total_charge=$row3['total_charge'];
+					$amount_to_pay=$total_charge-$initial_total_charge;
+
+		 			$subject="Celesta2k19 Rebilling";
+					$msg="<p><h1> Billing has been updated for Celesta Id: ".$celestaid.".</h1><br> New total bill amount is: Rs. $total_charge.<br/>
+						You need to pay Rs $amount_to_pay<br>
+						You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
+						</p>
+					";
+					$header="From: hayyoulistentome@gmail.com";
+
+					if(send_email($email,$subject,$msg,$header)){
+
+						$sql4="UPDATE present_users SET total_charge=$total_charge, tshirt_charge=$tshirt_charge, bandpass_charge=$bandpass_charge, registration_charge=$registration_charge WHERE celestaid='$celestaid'";
+						$result4=query($sql4);
+						confirm($result4);
+
+						set_message("<p class='bg-success text-center'>Thank you $first_name $last_name for participating in Celetsa2k19.<br> Your updated bill has been sent to your email.<br>New total bill amount is: Rs. $total_charge.<br/>
+							You need to pay Rs $amount_to_pay<br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
+			 		redirect('display.php');
+		 		}
 			}
 		}
 	}
+}
 }
 
 //Function that handles total_register.php
@@ -341,6 +639,9 @@ function new_register(){
 	 		$password=clean($_POST['password']);
 	 		$confirm_password=clean($_POST['confirm_password']);
 	 		$gender=($_POST['gender']);
+	 		$reg=$_POST['registration_charge'];
+	 		$tshirt=$_POST['tshirt_charge'];
+	 		$bandpass=$_POST['bandpass_charge'];
 
 	 		if($password!=$confirm_password){
 	 			$errors[]="Both the password fields are not equal.";
@@ -379,6 +680,37 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$email=escape($email);
 	$password=escape($password);
 
+	//Default values
+	$price_tshirt=300;
+	$price_reg=100;
+	$price_bandass=200;
+	$price_both=400;
+	
+
+	//Setting price
+	$total_charge=0;
+	$registration_charge=0;
+	$bandpass_charge=0;
+	$tshirt_charge=0;
+
+	if(isset($_POST['registration_charge'])){
+		$total_charge=$total_charge+$price_reg;
+		$registration_charge=$price_reg;
+	}
+	if(isset($_POST['bandpass_charge'])){
+		$total_charge=$total_charge+$price_bandass;
+		$bandpass_charge=$price_bandass;
+	}
+	if(isset($_POST['tshirt_charge'])){
+		$total_charge=$total_charge+$price_tshirt;
+		$tshirt_charge=$price_tshirt;
+	}
+
+	if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
+		$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
+	}
+
+
 	$registrar_name=$_COOKIE['registrar'];
 
 	$password=md5($password);
@@ -390,6 +722,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$subject="Activate Celesta Account";
 	$msg="<p>
 		Your Celesta Id is ".$celestaid.". Your account has been auto activated.<br/>
+		Total Amount to pay is: Rs. $total_charge<br>
 		You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
 		
 		</p>
@@ -397,9 +730,10 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$header="From: hayyoulistentome@gmail.com";
 	//Added to database if mail is sent successfully
 	if(send_email($email,$subject,$msg,$header)){
+
 		//Inserting into present_users table. Users present in fest
-		$sql="INSERT INTO present_users(first_name,last_name,phone,college,email,password,celestaid,qrcode,gender,added_by,active) ";
-		$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1)";
+		$sql="INSERT INTO present_users(first_name ,last_name, phone,college,email,password, celestaid,qrcode,gender,added_by,active, registration_charge, tshirt_charge, bandpass_charge, total_charge) ";
+		$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,$registration_charge,$tshirt_charge,$bandpass_charge,$total_charge)";
 		$result=query($sql);
 		confirm($result);
 
@@ -409,7 +743,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		$result1=query($sql1);
 		confirm($result1);
 
-		set_message("<p class='bg-success text-center'>Please check your email oto get your qrcode and celesta id. You can login now with the celesta id and the password.<br><br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
+		set_message("<p class='bg-success text-center'>Please check your email oto get your qrcode and celesta id. You can login now with the celesta id and the password.<br><br><br>Your Celesta id is $celestaid<br>Amount to pay is Rs. $total_charge<br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
 		return true;
 	}else{
 		return false;

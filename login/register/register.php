@@ -29,7 +29,7 @@
 		  </div>
 		  <div class="form-group mx-sm-3 mb-2">
 		    <label for="celestaid" class="sr-only">Celesta ID</label>
-		    <input type="text" class="form-control" name='celestaid' id="celestaid" placeholder="CLST1504">
+		    <input type="text" class="form-control" name='celestaid' id="celestaid" placeholder="CLST1504" value="CLST">
 		  </div>
 		  <button type="submit" name="get_details" class="btn btn-primary mb-2">Search Details</button>
 		</form>
