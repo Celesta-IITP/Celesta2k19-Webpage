@@ -79,6 +79,39 @@
                                 <input type="text" class="form-control" id="college" name="college" placeholder="Enter Your School/College *" value="" required/>
                             </div>
 
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="registration_charge" name='registration_charge' checked>
+                                        <label class="form-check-label" for="registration_charge">
+                                            Registration 
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="tshirt_charge" name='tshirt_charge'>
+                                        <label class="form-check-label" for="tshirt_charge">
+                                            T-Shirt (Rs 300)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="bandpass_charge" name='bandpass_charge'>
+                                        <label class="form-check-label" for="bandpass_charge">
+                                            Band Pass
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>                            
+
                             <input type="submit" class="btnRegister"  value="Register"/>
                         </div>
                     </div>
