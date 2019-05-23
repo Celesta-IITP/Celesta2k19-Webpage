@@ -48,6 +48,13 @@
 										<input type="password" name="confirm_password" id="confirm_password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
 									</div>
 									<div class="form-group">
+	                                    <input type="radio" name="gender" value="m" checked>
+	                                    <span> Male </span> 	                                
+	                                    <input type="radio" name="gender" value="f">
+	                                    <span>Female </span> 
+		                                    
+		                            </div> 
+									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
 												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
