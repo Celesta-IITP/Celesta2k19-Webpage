@@ -262,7 +262,7 @@ function validate_user_login(){
 		}else{
 			if(login_user($celestaid,$password,$remember)){
 				redirect("profile.php");
-				return json_encode(array("400");//User logged in
+				return json_encode(array("400"));//User logged in
 			}else{
 				//echo "Inside credential wrong";
 				echo validation_errors("Your credentials are not correct");
