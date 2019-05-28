@@ -73,7 +73,6 @@ function generateQRCode($celestaid,$first_name,$last_name){
 	QRcode::png($celestaid."/".$first_name."/".$last_name,"assets/qrcodes/".$celestaid.".png","H","10","10");
 }
 
-
 /*************************Validating Functions**************************/
 
  function validate_user_registration(){
@@ -178,7 +177,7 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password,$
 		$celestaid=getCelestaId();
 		$validation_code=md5($celestaid+microtime());
 		generateQRCode($celestaid,$first_name,$last_name);
-		$qrcode="http://localhost:8888/login/assets/qrcodes/".$celestaid.".png";
+		$qrcode="http://192.168.0.100:8888/login/assets/qrcodes/".$celestaid.".png";
 		echo"<img src='assets/qrcodes/".$celestaid.".png'/>";
 
 		//CONTENTS OF EMAIL
