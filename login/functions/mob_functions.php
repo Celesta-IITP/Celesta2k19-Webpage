@@ -20,9 +20,11 @@ include('utility.php');
  *  401: Registration failed because of failing to send email
  *  402: Account activation failed
  *  403: Login failed
+ *  404: Cannot be checked in or checked out
  *  200: Registration succesfull
  *  201: Activated the celesta id
  *  202: Logged in succefully
+ *  203: Succesfully checked in
  */
 
 /** Pass a parameter with f and set value to it
@@ -36,6 +38,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             activate_user();
         }elseif($_POST['f']=='login_user'){
             login_user();
+        }elseif($_POST['f']=='checkin_checkout'){
+            checkin_checkout();
         }
     }
 }
@@ -282,3 +286,77 @@ function login_user(){
         }
     }
 }
+
+//CheckinCheckout
+function checkin_checkout(){
+        $response=array();
+        $message=array();
+        $toadd=array();
+        $last_row=array();
+        $checkin_checkout=array();
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        $celestaid=clean($_POST['celestaid']);
+        $date_time=clean($_POST['date_time']);
+
+        $sql="SELECT checkin_checkout,active FROM present_users WHERE celestaid='$celestaid'";
+        $result=query($sql);
+
+        if(row_count($result)==1){
+            $row=fetch_array($result);
+            $active=$row['active'];
+            if($active!=1){
+                $response['status']='404';
+                $message[]="Account is not yet active. You have not yet registered in the registration desk.";
+            }else{
+                $checkin_checkout=json_decode($row['checkin_checkout']);
+                if(!empty($checkin_checkout)){
+                    $reverse_data=$checkin_checkout;
+                    $last_row=end($reverse_data);
+
+                    //If user have just checked in, he needs to be checked out
+                    if($last_row[0]=="checkin"){
+                        $toadd[]="checkout";
+                        $toadd[]=$date_time;
+                        $checkin_checkout[]=$toadd;
+                        
+                        $checkin_checkout=json_encode($checkin_checkout);
+                        $sql2="UPDATE present_users SET checkin_checkout='$checkin_checkout' WHERE celestaid='$celestaid'";
+                        $result2=query($sql2);
+                       // $response['status']='203';
+                        $message[]="Succesfully checked out.";
+                        
+                    }//Check in user if his last state is checked in
+                    else{
+                        $toadd[]="checkin";
+                        $toadd[]=$date_time;
+                        $checkin_checkout[]=$toadd;
+                        $checkin_checkout=json_encode($checkin_checkout);
+                        $sql3="UPDATE present_users SET checkin_checkout='$checkin_checkout' WHERE celestaid='$celestaid'";
+                        $result3=query($sql3);
+                       // confirm($result1);
+                      //  $response['status']='203';
+                        $message[]="Succesfully checked in.";
+                    }
+
+                }else{
+                    $toadd=array();
+                    $toadd[]="checkin";
+                    $toadd[]=$date_time;
+                    $checkin_checkout[]=$toadd;
+                    $checkin_checkout=json_encode($checkin_checkout);
+                    $sql1="UPDATE present_users SET checkin_checkout='$checkin_checkout' WHERE celestaid='$celestaid'";
+                    $result1=query($sql1);
+                   // $response['status']='203';
+                    $message[]="Succesfully checked in.";
+                }
+                $message[]=$last_row;
+            }//End of main working part
+
+        }else{
+            //$response['status']='404';
+            $message[]="Following celestaid have not registered in the registration desk.";
+        }
+        //$response['message']=$message;
+        echo json_encode($message);
+    }//Ending of if part of post method
+}//Ending of checkin_checkout function

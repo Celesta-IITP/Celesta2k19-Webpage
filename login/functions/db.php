@@ -28,6 +28,12 @@ function fetch_array($result){
 	return mysqli_fetch_array($result);
 }
 
+function debug_query($result){
+	if(!result){
+		return mysqli_error($con);
+	}
+}
+
 //To check if query was succesfull or not
 function confirm($result){
 	global $con;
