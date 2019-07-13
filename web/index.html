@@ -1,26 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Expert &mdash; Onepage Website Template by Free-Template.co</title>
+    <title>Celesta 2k19</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="Free-Template.co" />
-
-    <!-- 
-    //////////////////////////////////////////////////////
-
-    FREE TEMPLATE 
-    DESIGNED & DEVELOPED by free-template.co
-      
-    Website:    https://free-template.co
-    Facebook:   https://www.facebook.com/FreeDashTemplate.co
-    Twitter:    https://twitter.com/Free_Templateco
-
-    //////////////////////////////////////////////////////
-    -->
 
     <link rel="shortcut icon" href="ftco-32x32.png">
     
@@ -44,6 +27,8 @@
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/celesta-intro/styles.css">
     
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -73,7 +58,7 @@
       
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo"><a href="index.html" class="text-uppercase">Expert</a></div>
+          <div class="site-logo"><a href="index.html" class="text-uppercase">Celesta19</a></div>
           <div>
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-xl-block">
@@ -99,6 +84,32 @@
       </div>
       
     </header>
+
+    <!-- Celesta Intro -->
+    <div class="celesta-intro">
+      <div id="circular">
+          <div class="img1">
+              <img src="images/bg/circular1.png" alt="">
+          </div>  
+        <div class="img2">
+            <img src="images/bg/circular2.png" alt="">
+        </div>
+      </div>
+      <div class="parallax-container1">
+        <ul id="scene1">
+          <li class="layer" data-depth=".5"><img src="images/bg/planet1.png"></li>
+          <li class="layer" data-depth="-.3"><img src="images/bg/planet2.png"></li>
+          <li class="layer" data-depth="-.1"><img src="images/bg/meteor2.png" style="transform: scale(.5)"></li>
+        </ul>
+      </div>
+      <div class="parallax-container2">
+        <ul id="scene2">
+          <li class="layer" data-depth=".2"><img src="images/bg/astronaut.png"></li>
+          <li class="layer" data-depth="-0.1"><img src="images/bg/rocket.png"></li>
+          <li class="layer" data-depth="-0.3"><img src="images/bg/meteor1.png" style="transform: scale(.3)"></li>
+        </ul>
+      </div>
+    </div>
 
     <div class="intro-section custom-owl-carousel" id="home-section">
       <div class="container">
@@ -278,14 +289,6 @@
               <span class="category">Web Development</span>
             </div>
             <img src="images/img_4.jpg" alt="Image" class="img-fluid">
-          </a>
-
-          <a class="work-thumb" href="images/img_1.jpg" data-fancybox="gallery">
-            <div class="work-text">
-              <h3>Project Name Here</h3>
-              <span class="category">Design</span>
-            </div>
-            <img src="images/img_1.jpg" alt="Image" class="img-fluid">
           </a>
       </div>
     
@@ -660,5 +663,14 @@
   <script src="js/jquery.animateNumber.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
   <script src="js/main.js"></script>
+
+  <script src="js/celesta-intro/parallax.js"></script>
+  <script>
+    var scene1 = document.getElementById('scene1');
+    var parallax = new Parallax(scene1);
+    var scene2 = document.getElementById('scene2');
+    parallax = new Parallax(scene2);
+  </script>
+
   </body>
 </html>
