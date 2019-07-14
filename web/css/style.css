@@ -7,7 +7,6 @@
 /* Base */
 body {
   line-height: 1.7;
-  color: gray;
   font-weight: 300;
   font-size: 1.1rem; }
 
@@ -750,7 +749,7 @@ h1, h2, h3, h4, h5,
 
 .section-title {
   font-size: 3rem;
-  color: #352961;
+  color: #fff;
   margin-bottom: 1.8rem;
   font-weight: 900;
   max-width: 450px; }
@@ -941,9 +940,9 @@ h1, h2, h3, h4, h5,
   .footer-section .footer-links li {
     margin-bottom: 10px; }
 
-.process, .service {
+.service {
   position: relative; }
-  .process .number, .service .number {
+  .service .number {
     position: absolute;
     top: 50px;
     left: -30px;
@@ -952,16 +951,11 @@ h1, h2, h3, h4, h5,
     font-size: 10rem;
     color: whitesmoke;
     font-weight: 900; }
-  .process h3, .service h3 {
+  .service h3 {
     font-size: 1.5rem;
     color: #352961;
     font-weight: 700;
     margin-bottom: 1.5rem; }
-
-.process {
-  text-align: center;
-  padding: 30px;
-  border: 1px solid #d9d9d9; }
 
 .service {
   padding: 4rem;
@@ -1091,66 +1085,6 @@ h1, h2, h3, h4, h5,
   .slide-one-item-alt-text {
     text-align: center; } }
 
-.pricing-wrap {
-  padding-bottom: 20rem;
-  padding-top: 7rem; }
-  @media (max-width: 1199.98px) {
-    .pricing-wrap {
-      padding-bottom: 7em; } }
-  .pricing-wrap .section-desc {
-    color: rgba(255, 255, 255, 0.7); }
-
-.pricing {
-  margin-top: -70%;
-  background: #fff;
-  padding: 30px;
-  -webkit-box-shadow: 0 5px 30px -5px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 30px -5px rgba(0, 0, 0, 0.2);
-  border-radius: 7px;
-  text-align: center;
-  z-index: 1;
-  position: relative; }
-  .pricing em {
-    font-style: normal; }
-  @media (max-width: 1199.98px) {
-    .pricing {
-      margin-top: 0;
-      margin-bottom: 7rem; }
-      .pricing:first-child {
-        margin-top: -70px; } }
-  .pricing.pricing-popular {
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05);
-    z-index: 2; }
-    @media (max-width: 1199.98px) {
-      .pricing.pricing-popular {
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1); } }
-  .pricing h3 {
-    color: #352961;
-    font-weight: 300;
-    margin-bottom: 1.5rem; }
-  .pricing .description, .pricing .description-2 {
-    font-size: 15px; }
-  .pricing .price {
-    margin: 30px 0; }
-    .pricing .price span {
-      display: block;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: #352961; }
-    .pricing .price strong {
-      font-weight: 300;
-      font-family: "Oswald", sans-serif;
-      color: #352961;
-      font-size: 4rem; }
-  .pricing .btn {
-    border-width: 2px; }
-
 .video-img-bg {
   display: block;
   position: relative; }
@@ -1202,3 +1136,25 @@ h1, h2, h3, h4, h5,
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
+
+
+
+  /* custom styles */
+  .site-section.section-1{
+    background: url(../images/parallax-bg/bg2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .section-counter{
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+
+  #work-section{
+    background: url(../images/parallax-bg/bg4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
