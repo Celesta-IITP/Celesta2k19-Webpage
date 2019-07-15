@@ -1070,17 +1070,6 @@ h1, h2, h3, h4, h5,
       -webkit-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.4);
       box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.4); }
 
-.testimonial-wrap blockquote p {
-  font-size: 1.8rem;
-  color: #000; }
-  .testimonial-wrap blockquote p.author {
-    font-size: 1.2rem;
-    font-family: "Oswald", sans-serif; }
-
-.testimonial-wrap blockquote span {
-  display: inline-block;
-  font-family: "Oswald", sans-serif; }
-
 @media (max-width: 991.98px) {
   .slide-one-item-alt-text {
     text-align: center; } }
