@@ -28,7 +28,8 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="css/celesta-intro/styles.css">
+    <!-- parallax -->
+    <!-- <link rel="stylesheet" href="css/celesta-intro/styles.css"> -->
 
     <!-- 3d carousel -->
     <link rel="stylesheet" href="3d-carousel/css/styles.css">
@@ -78,7 +79,7 @@
           <div class="ml-auto">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-xl-block">
-                <li><a href="#pricing-section" class="nav-link">Pricing</a></li>
+                <li><a href="#link-section" class="nav-link">Link</a></li>
                 <li class="cta"><a href="#contact-section" class="nav-link"><span class="border bg-danger rounded text-white border-danger">Contact</span></a></li>
               </ul>
             </nav>
@@ -89,30 +90,21 @@
       
     </header>
 
+
     <!-- Celesta Intro -->
-    <div class="celesta-intro">
-      <div id="circular">
-          <div class="img1">
-              <img src="images/bg/circular1.png" alt="">
-          </div>  
-        <div class="img2">
-            <img src="images/bg/circular2.png" alt="">
-        </div>
-      </div>
-      <div class="parallax-container1">
-        <ul id="scene1">
-          <li class="layer" data-depth=".5"><img src="images/bg/planet1.png"></li>
-          <li class="layer" data-depth="-.3"><img src="images/bg/planet2.png"></li>
-          <li class="layer" data-depth="-.1"><img src="images/bg/meteor2.png" style="transform: scale(.5)"></li>
-        </ul>
-      </div>
-      <div class="parallax-container2">
-        <ul id="scene2">
-          <li class="layer" data-depth=".2"><img src="images/bg/astronaut.png"></li>
-          <li class="layer" data-depth="-0.1"><img src="images/bg/rocket.png"></li>
-          <li class="layer" data-depth="-0.3"><img src="images/bg/meteor1.png" style="transform: scale(.3)"></li>
-        </ul>
-      </div>
+    <style>
+        .landing-page {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            color: #333;
+            background: #01374b;
+        }
+    </style>
+    <div class="landing-page">
+        <div id="container"></div>
     </div>
     <!--  -->
 
@@ -298,7 +290,7 @@
 
     <!-- 3d carousel -->
     <section id="events-section" style="padding: 50px 20px"  data-stellar-background-ratio="0.3">
-      <h3 class="text-center" style="color: #fff">Celesta <span style="color: #f00">Events</span></h3>
+      <h1 class="text-center" style="color: #fff; font-weight: 900">Celesta <span style="color: #f00; font-weight: 900">Events</span></h1>
       <div class="container-wrapper">
           <div class="wrapper">
   
@@ -308,6 +300,9 @@
                       <div class="sb-description">
                           <h3>Events</h3>
                       </div>
+                      <!-- <span class="sb-details">
+                          <hp>Descripsddfuff</p>
+                      </span> -->
                   </li>
                   <li>
                       <a href="#" target="_blank"><img src="3d-carousel/images/img2.jpg" alt="image2" /></a>
@@ -426,17 +421,22 @@
   <script src="js/jquery.sticky.js"></script>
   <script src="js/main.js"></script>
 
-  <script src="js/celesta-intro/parallax.js"></script>
+  <!-- <script src="js/celesta-intro/parallax.js"></script>
   <script>
     var scene1 = document.getElementById('scene1');
     var parallax = new Parallax(scene1);
     var scene2 = document.getElementById('scene2');
     parallax = new Parallax(scene2);
-  </script>
+  </script> -->
 
     <!-- 3d carousel -->
     <script src="3d-carousel/js/jquery.slicebox.js"></script>
     <script src="3d-carousel/js/script.js"></script>
 
+    <!-- landing page -->
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r89/build/three.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r89/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.1.1/Tween.min.js"></script>
+    <script type="text/javascript" src="js/celesta-intro/landing-page.js"></script>
   </body>
 </html>
