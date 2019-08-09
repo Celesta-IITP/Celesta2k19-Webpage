@@ -28,8 +28,13 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- parallax -->
-    <!-- <link rel="stylesheet" href="css/celesta-intro/styles.css"> -->
+    <!-- landing page -->
+    <link rel="stylesheet" href="css/landing-page/styles.css">
+    
+    <!-- circular nav -->
+    <link rel="stylesheet" type="text/css" href="circularnav/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="circularnav/css/component1.css" />
+    <script src="circularnav/js/modernizr-2.6.2.min.js"></script>
 
     <!-- 3d carousel -->
     <link rel="stylesheet" href="3d-carousel/css/styles.css">
@@ -92,78 +97,7 @@
     </header>
 
 
-    <!-- Celesta Intro -->
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Markazi+Text|Raleway');
-        .landing-page-container{
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          position: relative;
-        }
-        .landing-page {
-          position: relative;
-          margin: 0;
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-        }
-        .astronaut{
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          z-index: 10;
-          width: 30%;
-          height: 30%;
-          transform: translate(-50%, -70%);
-          animation: astroanimate 5s linear infinite;
-        }
-        @keyframes astroanimate {
-          0%{
-            transform: translate(-50%, -70%);
-          }
-          50%{
-            transform: translate(-50%, -60%);
-          }
-          100%{
-            transform: translate(-50%, -70%);
-          }
-        }
-        .parallax-container {
-          display: block;
-          height: 750px;
-          width: 100%;
-          overflow: hidden;
-        }
-        .parallax-container div {
-          position: fixed;
-          top: 0;
-          background-position: center !important;
-          transform: translateY(0px);
-          height: 750px;
-          width: 100%;
-        }
-        @media(max-width: 500px){
-          #top-circle{
-            display: none;
-          }
-        }
-        #content {
-          position: relative;
-          background-color: #030f33;
-          color: #ffffff;
-          padding: 100px;
-        }
-        #content h1 {
-          font-size: 100px;
-          text-align: center;
-          font-family: 'Markazi Text', serif;
-        }
-        #content p {
-          font-size: 18px;
-          font-family: 'Raleway', sans-serif;
-        }
-    </style>
+    <!-- Celesta Intro (landing page)-->
     <div class="landing-page-container">
       <img src="images/astronaut.png" alt="" class="astronaut">
       <div class="landing-page">
@@ -177,8 +111,8 @@
         </div>
         <div id="content">
           <h1>Celesta 19</h1>
-            <p>The parallax code is from Collin Delphia's CodePen <a href="https://codepen.io/Kikoku/pen/PWyyVg">here</a>.</p>
-            <p>I created the artwork in Adobe Illustrator based on the Animal Silhouette Moonlight Vector Illustration - Illustrator Tutorial by tutvid <a href="https://www.youtube.com/watch?v=RtnCn65MdN0">here</a>.</p>
+            <p>The parallax code is from Collin Delphia's CodePen </p>
+            <p>I created the artwork in Adobe Illustrator based on the Animal Silhouette Moonlight Vector Illustration.</p>
         </div>          
       </div>
     </div>
@@ -187,7 +121,7 @@
     <div class="main-wrap" style="position: relative">
 
       <!-- about celesta -->
-      <div class="site-section section-1" id="about-section" style="height: 100vh">
+      <div class="site-section section-1" id="about-section">
 
           <div class="container">
             <div class="row">
@@ -458,24 +392,29 @@
             </div>
 
           </div>
-
-          <div class="row pt-5 mt-5 text-center">
-            <div class="col-md-12">
-              <div class="border-top pt-5">
-                <p>
-            <small class="block">&copy; <script>document.write(new Date().getFullYear());</script> <strong>Expert</strong> One Page Free Template. All Rights Reserved. <br> Designed &amp; Developed by <a href="https://free-template.co/" target="_blank">Free-Template.co</a></small> 
-            </p>
-              
-              </div>
-            </div>
-            
-          </div>
         </div>
       </footer>
 
     </div> <!-- .main-wrap -->
   
   </div> <!-- .site-wrap -->
+
+  <!-- circular nav -->
+  <button class="cn-button" id="cn-button">+</button>
+  <div class="cn-wrapper" id="cn-wrapper">
+    <ul>
+      <li><a href="#"><span class="icon-picture"></span></a></li>
+      <li><a href="#"><span class="icon-headphones"></span></a></li>
+      <li><a href="#"><span class="icon-home"></span></a></li>
+      <li><a href="#"><span class="icon-facetime-video"></span></a></li>
+      <li><a href="#"><span class="icon-envelope-alt"></span></a></li>
+    </ul>
+  </div>
+  <div id="cn-overlay" class="cn-overlay"></div>
+
+  <!-- circular nav -->
+  <script src="circularnav/js/polyfills.js"></script>
+	<script src="circularnav/js/demo1.js"></script>
 
   <!-- Stellar js -->
   <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
