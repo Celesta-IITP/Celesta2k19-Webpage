@@ -804,9 +804,6 @@ h1, h2, h3, h4, h5,
     .image-absolute-box .box p {
       color: rgba(255, 255, 255, 0.55); }
 
-.section-1 {
-  margin-top: 10rem; }
-
 .work-thumb {
   position: relative;
   display: block;
