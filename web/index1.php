@@ -1,6 +1,8 @@
+<?php
+    $var=rand();
+?>
 <!DOCTYPE html>
 <html lang="en" class="is-loading">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -125,7 +127,7 @@
     </div>
 
     <span class="logo-wrapper js-logo">
-      <a href="./" class="c-logo">
+      <a href="/" class="c-logo">
         <svg class="c-logo__svg" width="48" height="41" viewbox="0 0 48 41" fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <path id="line-15" d="M1.0144 27.0139L23.5144 40.3094" stroke="currentColor" stroke-width="1.37143"
@@ -179,12 +181,17 @@
       </a>
 
       <div class="loading-content">
-        <h3>Get TechXited</h3>  
+        <h3>Get TechXited</h3>
       </div>
     </span>
 
-    <a href="./projects" class="projects-btn o-media__icon tx--gray-light">
-      <span class="tx--caption">Register</span>
+    <a href="./projects.php" class="projects-btn o-media__icon tx--gray-light">
+      
+      <?php if($var%2==0){?>
+        <span class="tx--caption">View Projects</span>
+      <?php }else{ ?>
+        <span class="tx--caption">View</span>
+      <?php } ?>
       <svg class="icon icon-projects" width="19" height="18" fill="none">
         <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" transform="translate(0 6)" />
         <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" transform="translate(16 6)" />
@@ -200,8 +207,8 @@
     <div class="nav-container">
       <nav class="main-nav">
         <ul>
-          <li><a class="main-nav__link tx--title-3 active first" href="./" title="Home">Home</a></li>
-          <li><a class="main-nav__link tx--title-3" href="./projects.php"  title="Projects" target="_blank">Projects</a></li>
+          <li><a class="main-nav__link tx--title-3 active first" href="https://mcbridedesign.com/" title="Home">Home</a></li>
+          <li><a class="main-nav__link tx--title-3" href="./projects.php" title="Projects" target="_blank">Projects</a></li>
           <li><a class="main-nav__link tx--title-3" href="https://mcbridedesign.com/company" title="Who We Are">Who WeAre</a></li>
           <li><a class="main-nav__link tx--title-3" href="/news" title="News &amp; Press">News &amp; Press</a></li>
           <li><a class="main-nav__link tx--title-3" href="./connect" title="Connect">Connect</a></li>
@@ -214,15 +221,37 @@
 
         <ul class="more-nav__list">
           <span>
-            <li><a class="no-barba tx--caption first" href="https://www.facebook.com/themcbridecompany/" title="Facebook" target="_blank">Facebook</a></li>
-            <li><a class="no-barba tx--caption" href="https://twitter.com/TheMcBrideCo" title="Twitter" target="_blank">Twitter</a></li>
-            <li><a class="no-barba tx--caption" href="https://www.instagram.com/themcbrideco/" title="Instagram" target="_blank">Instagram</a></li>
-            <li><a class="no-barba tx--caption" href="https://www.linkedin.com/company/the-mcbride-company" title="Linkedin" target="_blank">Linkedin</a></li>
+            <li>
+              <a class="no-barba tx--caption first" href="https://www.facebook.com/themcbridecompany/" title="Facebook"
+                target="_blank">Facebook</a>
+            </li>
+
+            <li>
+              <a class="no-barba tx--caption" href="https://twitter.com/TheMcBrideCo" title="Twitter"
+                target="_blank">Twitter</a>
+            </li>
+
+            <li>
+              <a class="no-barba tx--caption" href="https://www.instagram.com/themcbrideco/" title="Instagram"
+                target="_blank">Instagram</a>
+            </li>
+
+            <li>
+              <a class="no-barba tx--caption" href="https://www.linkedin.com/company/the-mcbride-company"
+                title="Linkedin" target="_blank">Linkedin</a>
+            </li>
           </span>
 
           <span>
-            <li><a class="no-barba tx--caption first" href="https://mcbridedesign.com/sound-design" title="Sound Design" target="_blank">Sound Design</a></li>
-            <li><a class="no-barba tx--caption" href="https://www.papertiger.com/" title="Site Credits" target="_blank">Site Credits</a></li>
+            <li>
+              <a class="no-barba tx--caption first" href="https://mcbridedesign.com/sound-design" title="Sound Design"
+                target="_blank">Sound Design</a>
+            </li>
+
+            <li>
+              <a class="no-barba tx--caption" href="https://www.papertiger.com/" title="Site Credits"
+                target="_blank">Site Credits</a>
+            </li>
           </span>
         </ul>
       </nav>
@@ -234,9 +263,9 @@
       <div class="home-wrapper">
         <div class="landing-brands js-brands">
           <div class="brand brand-1" data-brand="Think" data-js-item="1"
-            data-bg="./assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-1.jpg"
-            data-bg-md="./assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-1.jpg"
-            data-bg-lg="./assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-1.jpg">
+            data-bg="/assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-1.jpg"
+            data-bg-md="/assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-1.jpg"
+            data-bg-lg="/assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-1.jpg">
             <h2 class="word-wrapper">
               <span class="word tx--title-1">About</span>
               <span class="icon x is--inactive"></span>
@@ -253,9 +282,9 @@
           </div>
 
           <div class="brand brand-2" data-brand="Design" data-js-item="2"
-            data-bg="./assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-2.jpg"
-            data-bg-md="./assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-2.jpg"
-            data-bg-lg="./assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-2.jpg">
+            data-bg="/assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-2.jpg"
+            data-bg-md="/assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-2.jpg"
+            data-bg-lg="/assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-2.jpg">
             <h2 class="word-wrapper">
               <span class="word tx--title-1">Design</span>
               <span class="icon x is--inactive"></span>
@@ -274,9 +303,9 @@
           </div>
 
           <div class="brand brand-3" data-brand="Brand" data-js-item="3"
-            data-bg="./assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-3.jpg"
-            data-bg-md="./assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-3.jpg"
-            data-bg-lg="./assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-3.jpg">
+            data-bg="/assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-3.jpg"
+            data-bg-md="/assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-3.jpg"
+            data-bg-lg="/assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-3.jpg">
             <h2 class="word-wrapper">
               <span class="word tx--title-1">Brand</span>
               <span class="icon x is--inactive"></span>
