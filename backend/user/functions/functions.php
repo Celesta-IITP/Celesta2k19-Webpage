@@ -177,7 +177,7 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password,$
 		$celestaid=getCelestaId();
 		$validation_code=md5($celestaid+microtime());
 		generateQRCode($celestaid,$first_name,$last_name);
-		$qrcode="http://192.168.0.100:8888/login/assets/qrcodes/".$celestaid.".png";
+		$qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
 		echo"<img src='assets/qrcodes/".$celestaid.".png'/>";
 
 		//CONTENTS OF EMAIL
@@ -264,7 +264,7 @@ function validate_user_login(){
 				return json_encode(array("400"));//User logged in
 			}else{
 				//echo "Inside credential wrong";
-				echo validation_errors("Your credentials are not correct");
+				echo validation_errors("Your credentials are not correct or your account might not been activated yet.");
 				return json_encode("404");//User login failed
 			}
 
@@ -276,7 +276,7 @@ function validate_user_login(){
 //Log in the user
 function login_user($celestaid, $password, $remember){
 
-	$sql = "SELECT password, id, qrcode FROM users WHERE celestaid ='".escape($celestaid)."' AND active=1";
+	$sql = "SELECT password, id, qrcode, active FROM users WHERE celestaid ='".escape($celestaid)."' AND active=1";
 
 	$result=query($sql);
 	if(row_count($result)==1){
@@ -284,9 +284,6 @@ function login_user($celestaid, $password, $remember){
 		$row=fetch_array($result);
 		$db_password=$row['password'];
 		$qrcode=$row['qrcode'];
-
-		echo $db_password;
-		echo md5($password);
 		if(md5($password)==$db_password){
 			$_SESSION['celestaid']=$celestaid;	//Storing the cdlesta id in a session
 			$_SESSION['qrcode']=$qrcode;
