@@ -1,6 +1,8 @@
 <?php
 /*******************Useful Functions*****************/
-include("../functions/utility.php");
+include('utility.php');
+
+//require "../../utility.php";
 
 //Cleans the string from unwanted html symbols
 function clean($string){

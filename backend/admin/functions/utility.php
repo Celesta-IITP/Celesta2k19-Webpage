@@ -3,7 +3,7 @@
 function send_email($email,$subject,$msg,$headers){
 // 	return (mail($email,$subject,$msg,$headers));
 
-	require 'PHPMailerAutoload.php';
+	require "PHPMailerAutoload.php";
 
 	$mail = new PHPMailer;
 
@@ -12,15 +12,15 @@ function send_email($email,$subject,$msg,$headers){
 	$mail->isSMTP();                                      // Set mailer to use SMTP
 	$mail->Host = 'tls://smtp.gmail.com';  // Specify main and backup SMTP servers
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = "hayyoulistentome@gmail.com";                 // SMTP username
-	$mail->Password = "password";                           // SMTP password
+	$mail->Username = "dscappsocietyiitp@gmail.com";                 // SMTP username
+	$mail->Password = "appified@1504";                           // SMTP password
 	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 	$mail->Port = 587;                                    // TCP port to connect to
 
-	$mail->setFrom('hayyoulistentome@gmail.com', 'Celesta2k19');
+	$mail->setFrom('dscappsocietyiitp@gmail.com', 'Celesta2k19');
 	$mail->addAddress($email);     // Add a recipient
 	//$mail->addAddress('ellen@example.com');               // Name is optional
-	$mail->addReplyTo('hayyoulistentome@gmail.com', 'Information');
+	$mail->addReplyTo('dscappsocietyiitp@gmail.com', 'Information');
 	//$mail->addCC('cc@example.com');
 	//$mail->addBCC('bcc@example.com');
 
