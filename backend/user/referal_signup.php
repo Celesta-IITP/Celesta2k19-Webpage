@@ -1,71 +1,65 @@
-<?php include('includes/header.php') ?>
-<?php include('includes/nav.php') ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Campus Ambassador Registration</title>
 
-	<div class="row">
-		<div class="col-lg-6 col-lg-offset-3">
-			<?php validate_user_registration() ?>
-								
-		</div>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
-	</div>
-    	<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="panel panel-login">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-6">
-								<a href="login.php">Login</a>
-							</div>
-							<div class="col-xs-6">
-								<a href="register.php" class="active" id="">CA Register</a>
-							</div>
-						</div>
-						<hr>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<form id="register-form" method="post" role="form" >
-									<div class="form-group">
-										<input type="text" name="first_name" id="first_name" tabindex="1" class="form-control" placeholder="First Name" value="" required >
-									</div>
-									<div class="form-group">
-										<input type="text" name="last_name" id="Lastname" tabindex="1" class="form-control" placeholder="Last Name" value="" required >
-									</div>									
-									<div class="form-group">
-										<input type="text" name="phone" id="phone" tabindex="1" class="form-control" placeholder="Phone Number" value="" required >
-									</div>
-									<div class="form-group">
-										<input type="text" name="college" id="college" tabindex="1" class="form-control" placeholder="School/College" value="" required >
-									</div>
-									<div class="form-group">
-										<input type="email" name="email" id="register_email" tabindex="1" class="form-control" placeholder="Email Address" value="" required >
-									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
-									</div>
-									<div class="form-group">
-										<input type="password" name="confirm_password" id="confirm_password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
-									</div>
-									<div class="form-group">
-	                                    <input type="radio" name="gender" value="m" checked>
-	                                    <span> Male </span> 	                                
-	                                    <input type="radio" name="gender" value="f">
-	                                    <span>Female </span> 
-		                                    
-		                            </div> 
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-<?php include('includes/footer.php') ?>
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/ca_register_style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="signup-content">
+                <form method="POST" id="signup-form" class="signup-form">
+                    <h2>Register for Campus Ambassador </h2>
+                    <p class="desc">Enroll more candidates to <span>“Top the List”</span></p>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="first_name" id="first_name" placeholder="First Name"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="last_name" id="last_name" placeholder="Last Name"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="phone" id="phone" placeholder="Phone"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="college" id="college" placeholder="School/College"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" name="email" id="email" placeholder="Email"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="password" id="password" placeholder="Password"/>
+                        <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="confirm_password" id="confirm_password" placeholder="Confirm Password"/>
+                        <span toggle="#confirm_password" class="zmdi zmdi-eye field-icon toggle-confirm-password"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" id="submit" class="form-submit submit" value="Sign up"/>
+                        <a href="#" class="submit-link submit">Sign in</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/ca_register.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
