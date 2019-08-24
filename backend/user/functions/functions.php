@@ -137,7 +137,6 @@ function generateQRCode($celestaid,$first_name,$last_name){
 	 		$errors[]="Email already taken";
 	 	}
 
-
 	 	if(!empty($errors)){
 	 		foreach($errors as $error){
 	 			echo validation_errors($error);	
@@ -154,12 +153,124 @@ function generateQRCode($celestaid,$first_name,$last_name){
 	 			echo "User registration failed";
 	 			return json_encode("201");	//Registration failed
 	 		}
-	 		
 	 	}
  	}
 }
 
+/* Registration of campus ambassador*/
 
+function validate_ca_registration(){
+	$min=3;
+	$max=20;
+	if($_SERVER['REQUEST_METHOD']=="POST"){
+		$first_name=clean($_POST['first_name']);
+ 		$last_name=clean($_POST['last_name']);
+ 		$phone=clean($_POST['phone']);
+ 		$college=clean($_POST['college']);
+ 		$email=clean($_POST['email']);
+ 		$password=clean($_POST['password']);
+ 		$confirm_password=clean($_POST['confirm_password']);
+ 		$gender=$_POST['gender'];
+
+	 	if(strlen($first_name)<$min){
+	 		$errors[]="Your first name cannot be less than {$min}";
+	 	}
+
+	 	if(strlen($phone)<10){
+	 		$errors[]="Your phone number cannot be less than 10 digits.";
+	 	}
+
+	 	if(strlen($last_name)>$max){
+	 		$errors[]="Your last name cannot be more than {$max}";
+	 	}
+
+	 	if(strlen($phone)>$max){
+	 		$errors[]="Your phone number cannot have more than 10 digits.";
+	 	}
+
+	 	if(strlen($email)<$min){
+	 		$errors[]="Your email cannot be less than {$min}";
+	 	}
+
+	 	if($password!==$confirm_password){
+	 		$errors[]="Your password fields donot match";
+	 	}
+
+	 	if(email_exists($email)){
+	 		$errors[]="Email already taken";
+		 }
+		 
+		if(!empty($errors)){
+	 		foreach($errors as $error){
+	 			echo validation_errors($error);	
+	 		}
+	 		return json_encode(array_merge(array("201"),$errors));
+	 	}else{
+	 		if(ca_register($first_name,$last_name,$phone,$college,$email,$password,$gender)){
+
+	 			redirect("index.php");
+	 			return json_encode("200");//Registration success
+			 }else{
+	 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
+	 			echo "User registration failed";
+	 			return json_encode("201");	//Registration failed
+	 		}
+		}
+	}
+}
+
+function ca_register($first_name, $last_name, $phone, $college, $email, $password, $gender){
+	$first_name=escape($first_name);
+	$last_name=escape($last_name);
+	$phone=escape($phone);
+	$college=escape($college);
+	$email=escape($email);
+	$password=escape($password);
+
+	if(email_exists($email)==true){
+		echo "Testing -3";
+		return false;
+	}else{
+		$password=md5($password);
+		$celestaid=getCelestaId();
+		$validation_code=md5($celestaid+microtime());
+		generateQRCode($celestaid,$first_name,$last_name);
+		$qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
+		echo"<img src='assets/qrcodes/".$celestaid.".png'/>";
+
+		//CONTENTS OF EMAIL
+		$subject="Activate Celesta Account";
+		$msg="<p>
+			Your Celesta Id is ".$celestaid.". <br/>
+			You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
+		Please click the link below to activate your Account and login.<br/>
+			http://localhost:8888/Celesta2k19-Webpage/backend/user/activate.php?email=$email&code=$validation_code&ca=campus_ambassador_celesta2k19
+			</p>
+		";
+		$header="From: noreply@yourwebsite.com";
+		//Added to database if mail is sent successfully
+		if(send_email($email,$subject,$msg,$header)){
+			$sql="INSERT INTO users(first_name,last_name,phone,college,email,password,validation_code,active,celestaid,qrcode,gender) ";
+			$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$validation_code','0','$celestaid','".$qrcode."','$gender')";
+			$result=query($sql);
+			confirm($result);
+
+			$sql="INSERT INTO ca_users(first_name,last_name,phone,college,email,password,validation_code,active,celestaid,qrcode,gender) ";
+			$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$validation_code','0','$celestaid','".$qrcode."','$gender')";
+			$result=query($sql);
+			confirm($result);
+
+			set_message("<p class='bg-success text-center'>Please check your email or spam folder for activation link.<br><br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> </p>");
+			return true;
+		}else{
+			echo "Testing -1";
+			return false;
+		}
+	}
+}
+
+
+/* */
 
 function register_user($first_name,$last_name,$phone,$college,$email,$password,$gender){
 
@@ -221,15 +332,30 @@ function activate_user(){
 				$sql2="UPDATE users SET active = 1, validation_code = 0 WHERE email='".escape($email)."' AND validation_code='".escape($validation_code)."' ";
 				$result2=query($sql2);
 				confirm($result2);
+				
+				// To activate ca register table
+				if(isset($_GET['ca'])){
+					$ca =clean($_GET['ca']);
+					if($ca =="campus_ambassador_celesta2k19"){
+						$sql1="SELECT id FROM ca_users WHERE email='".escape($_GET['email'])."' AND validation_code='".escape($_GET['code'])."' ";
+						$result1=query($sql1);
+						confirm($result1);
+
+						if(row_count($result1)==1){
+							$sql3="UPDATE ca_users SET active = 1, validation_code = 0 WHERE email='".escape($email)."' AND validation_code='".escape($validation_code)."' ";
+							$result3=query($sql3);
+							confirm($result3);
+						}
+					}
+				}
 				set_message("<p class='bg-success'> Your account has been activated.</p>");
 				redirect("login.php");
-				return json_encode("400");//Siuccess
+				return json_encode("400");//Success
 			}
 			else{
 				set_message("<p class='bg-danger'> Your account could not be activated.</p>");
 				return json_encode("404");//Failed
 			}
-			
 		}
 
 	}
@@ -267,9 +393,7 @@ function validate_user_login(){
 				echo validation_errors("Your credentials are not correct or your account might not been activated yet.");
 				return json_encode("404");//User login failed
 			}
-
 		}
-
 	}
 }
 
