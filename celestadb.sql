@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Aug 24, 2019 at 07:10 AM
+-- Generation Time: Aug 24, 2019 at 01:50 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.7
 
@@ -69,7 +69,7 @@ CREATE TABLE `ca_users` (
 --
 
 INSERT INTO `ca_users` (`id`, `email`, `first_name`, `last_name`, `password`, `validation_code`, `active`, `phone`, `college`, `celestaid`, `qrcode`, `date`, `gender`, `points`, `candidates`) VALUES
-(1, 'hayyoulistentome@gmail.com', 'Amartya', 'Mondal', '21b8acfc474802e2e0bd25a85f5e924e', '0', 1, '8967570983', 'IIT Patna', 'CLST4249', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST4249.png', '2019-08-24 06:24:40', 'm', 0, NULL);
+(2, 'hayyoulistentome@gmail.com', 'Amartya', 'Mondal', '21b8acfc474802e2e0bd25a85f5e924e', '6378e0140437eae0cea61070f8b9303d', 0, '8967570983', 'IIT Patna', 'CLST5652', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5652.png', '2019-08-24 13:06:35', 'm', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -141,13 +141,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `validation_code`, `active`, `phone`, `college`, `celestaid`, `qrcode`, `added_by`, `ca_referral`, `date`, `events_registered`, `events_participated`, `gender`, `referral_id`) VALUES
-(109, 'Amartya', 'Mondal', 'hayyoulistentome@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', '0', 1, '8967570983', 'IIT Patna', 'CLST4249', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST4249.png', 'admin', NULL, '2019-08-24 06:24:40', NULL, NULL, 'm', 'CLST1504');
-
---
 -- Indexes for dumped tables
 --
 
@@ -197,16 +190,16 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `ca_users`
 --
 ALTER TABLE `ca_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `present_users`
 --
 ALTER TABLE `present_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
