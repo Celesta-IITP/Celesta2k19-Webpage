@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 12, 2019 at 12:14 PM
--- Server version: 5.7.25
--- PHP Version: 7.3.1
+-- Generation Time: Aug 24, 2019 at 07:10 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -36,9 +36,40 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`email`, `first_name`, `second_name`, `permit`, `id`, `position`, `phone`, `password`) VALUES
-('hayyoulistentome@gmail.com', 'Amartya', 'Mondal', 2, 3, 'Registration Coordinator', '8967570983', '7f6ffaa6bb0b408017b62254211691b5'),
-('me@atm1504.in', 'Atreyee', 'Mukherjee', 1, 1, 'Registration-Sub Coordinator', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e'),
+('hayyoulistentome@gmail.com', 'Amartya', 'Mondal', 2, 3, 'Registration Coordinator', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e'),
+('me@atm1504.in', 'Atreyee', 'Mukherjee', 2, 1, 'Registration-Sub Coordinator', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e'),
 ('you@atm1504.in', 'Amartya', 'Mondal', 1, 2, 'Registration-Sub Coordinator', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ca_users`
+--
+
+CREATE TABLE `ca_users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `password` text NOT NULL,
+  `validation_code` text NOT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT '0',
+  `phone` varchar(15) NOT NULL,
+  `college` varchar(100) NOT NULL,
+  `celestaid` varchar(8) NOT NULL,
+  `qrcode` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `gender` varchar(1) NOT NULL,
+  `points` bigint(20) NOT NULL DEFAULT '0',
+  `candidates` json DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ca_users`
+--
+
+INSERT INTO `ca_users` (`id`, `email`, `first_name`, `last_name`, `password`, `validation_code`, `active`, `phone`, `college`, `celestaid`, `qrcode`, `date`, `gender`, `points`, `candidates`) VALUES
+(1, 'hayyoulistentome@gmail.com', 'Amartya', 'Mondal', '21b8acfc474802e2e0bd25a85f5e924e', '0', 1, '8967570983', 'IIT Patna', 'CLST4249', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST4249.png', '2019-08-24 06:24:40', 'm', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,22 +132,20 @@ CREATE TABLE `users` (
   `celestaid` varchar(8) NOT NULL,
   `qrcode` varchar(255) NOT NULL,
   `added_by` varchar(255) NOT NULL DEFAULT 'admin',
+  `ca_referral` varchar(8) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `events_registered` varchar(255) DEFAULT NULL,
   `events_participated` varchar(255) DEFAULT NULL,
-  `gender` varchar(1) NOT NULL
+  `gender` varchar(1) NOT NULL,
+  `referral_id` varchar(8) DEFAULT 'CLST1504'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `validation_code`, `active`, `phone`, `college`, `celestaid`, `qrcode`, `added_by`, `date`, `events_registered`, `events_participated`, `gender`) VALUES
-(80, 'Amartya', 'Mondal', 'hayyoulistentome@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', '0', 1, '9475266283', 'IIT Patna', 'CLST1504', 'http://localhost:8888/login/assets/qrcodes/CLST1504.png', 'admin', '2019-05-22 21:37:14', NULL, NULL, 'm'),
-(90, 'Atreyee', 'Mukherjee', 'dscappsocietyiitp@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, '8967570983', 'CMC, Kolkata', 'CLST2124', 'http://localhost:8888/login/assets/qrcodes/CLST2124.png', '', '2019-05-23 14:48:06', NULL, NULL, 'm'),
-(100, 'atm', 'mondal', 'hayyoulistentome1@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '84598', 0, '8967570983', 'cmc', 'CLST3055', 'http://192.168.0.100:8888/login/assets/qrcodes/CLST3055.png', 'admin', '2019-05-28 09:53:09', NULL, NULL, 'f'),
-(101, 'atm', 'mondal', 'hayyoulistentome2@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '52123', 0, '8967570983', 'cmc', 'CLST2737', 'http://192.168.0.100:8888/login/assets/qrcodes/CLST2737.png', 'admin', '2019-05-28 09:55:46', NULL, NULL, 'f'),
-(102, 'atm', 'mondal', 'hayyoulistentome34@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '58981', 0, '8967570983', 'cmc', 'CLST3177', 'http://192.168.0.100:8888/login/assets/qrcodes/CLST3177.png', 'admin', '2019-05-28 09:56:18', NULL, NULL, 'f');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `validation_code`, `active`, `phone`, `college`, `celestaid`, `qrcode`, `added_by`, `ca_referral`, `date`, `events_registered`, `events_participated`, `gender`, `referral_id`) VALUES
+(109, 'Amartya', 'Mondal', 'hayyoulistentome@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', '0', 1, '8967570983', 'IIT Patna', 'CLST4249', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST4249.png', 'admin', NULL, '2019-08-24 06:24:40', NULL, NULL, 'm', 'CLST1504');
 
 --
 -- Indexes for dumped tables
@@ -128,6 +157,13 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `vali
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`email`,`id`),
   ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `ca_users`
+--
+ALTER TABLE `ca_users`
+  ADD PRIMARY KEY (`id`,`email`),
+  ADD UNIQUE KEY `celestaid` (`celestaid`);
 
 --
 -- Indexes for table `present_users`
@@ -158,13 +194,19 @@ ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `ca_users`
+--
+ALTER TABLE `ca_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `present_users`
 --
 ALTER TABLE `present_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;

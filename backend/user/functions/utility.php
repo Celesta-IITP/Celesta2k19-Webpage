@@ -42,7 +42,6 @@ function send_email($email,$subject,$msg,$headers){
 	}
 }
 
-
 //Function to generate random celestaID
 function getCelestaId(){
 	$exist=true;

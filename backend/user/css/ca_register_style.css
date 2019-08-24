@@ -213,14 +213,15 @@ body {
   -webkit-background-size: cover;
   -o-background-size: cover;
   -ms-background-size: cover;
-  background-position: center center; }
+  background-position: center center; 
+}
 
 .main {
   position: relative; }
 
 .container {
   margin-top: 10px;
-  margin-bottom: 70px;
+  margin-bottom: 10px;
   width: 1123px;
   padding-top: 135px;
   padding-bottom: 115px;
@@ -237,7 +238,7 @@ body {
 .signup-content {
   width: 562px;
   margin-right: 0px;
-  background: rgba(177, 135, 77, 0.75);
+  background: rgba(56, 56, 56, 0.75);
   float: right; }
 
 .signup-form {
