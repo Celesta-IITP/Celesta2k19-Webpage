@@ -208,6 +208,7 @@ body {
   margin: 0px;
   background-image: url("../images/body-bg.jpg");
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
@@ -225,7 +226,9 @@ body {
   width: 1123px;
   padding-top: 135px;
   padding-bottom: 115px;
+  padding-left: 10%;
   background-image: url("../images/container-bg.png");
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   -moz-background-size: cover;
