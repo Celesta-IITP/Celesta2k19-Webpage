@@ -21,11 +21,10 @@
             <?php display_message() ?>
             <?php login_signup() ?>
                 <div class="col s12 m7 signup">
-                
                     <div class="signupForm">
                         <h4 class="center">Sign up</h4>
                         <br>
-                        <form id="signup_form" name="signup_form" method="post" autocomplete="off">
+                        <form id="signup_form" name="signup_form" method="post">
                             <!-- Name -->
                             <div class="row">
                                 <div class="input-field col s12 m6">
@@ -61,14 +60,19 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="input-field email">
-                                    <div class="col s12">
-                                        <input type="text" id="email" name="email" class="validate" required="required"
-                                            placeholder="Enter your email">
-                                        <label for="email">
-                                            <i class="material-icons">mail</i>
-                                        </label>
-                                    </div>
+                                <div class="input-field col s12 m6">
+                                    <input type="text" id="email" name="email" class="validate" required="required"
+                                        placeholder="Enter your email">
+                                    <label for="email">
+                                        <i class="material-icons">mail</i>
+                                    </label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <input type="text" id="referral_id" name="referral_id" class="validate"
+                                        placeholder="Referral ID" value="CLST1504">
+                                    <label for="referral_id">
+                                        <i class="material-icons">user_error</i>
+                                    </label>
                                 </div>
                             </div>
                             <div class="row">
@@ -112,7 +116,7 @@
                 <div class="col s12 m5 login">
                     <h4 class="center">Log in</h4>
                     <br>
-                    <form id="login_form" name="login_form" method="post" autocomplete="off">
+                    <form id="login_form" name="login_form" method="post">
                         <div class="row">
                             <div class="input-field">
                                 <input type="text" id="celestaid" name="celestaid" class="validate" required="required"

@@ -52,7 +52,7 @@ $error = <<<DELIMITER
 			</button><strong>Warning!</strong> $$error_message
 			</div>
 DELIMITER;
-return $error;			
+return $error;
 }
 
 //To check if the given email address already exists or not
@@ -63,6 +63,22 @@ function email_exists($email){
 		return true;
 	}
 	else{
+		return false;
+	}
+}
+
+// To check if the user exists or not
+function refrral_id_exist($referral_id){
+	$sql = "SELECT id, active FROM ca_users WHERE celestaid ='".$referral_id."'";
+	$result = query($sql);
+	if(row_count($result)==1){
+		$row=fetch_array($result);
+		if($row['active']==1){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
 		return false;
 	}
 }
@@ -115,8 +131,8 @@ function login_signup(){
  		$email=clean($_POST['email']);
  		$password=clean($_POST['password']);
  		$confirm_password=clean($_POST['confirm_password']);
- 		$gender=$_POST['gender'];
- 	
+		$gender=$_POST['gender'];
+		$referral_id = trim(clean($_POST['referral_id']));
 
 	 	if(strlen($first_name)<$min){
 	 		$errors[]="Your first name cannot be less than {$min}";
@@ -148,7 +164,11 @@ function login_signup(){
 
 	 	if($password!==$confirm_password){
 	 		$errors[]="Your password fields donot match";
-	 	}
+		 }
+		 
+		 if(strlen($referral_id)!=8){
+			 $referral_id ="CLST1504";
+		 }
 
 	 	if(email_exists($email)){
 	 		$errors[]="Email already taken";
@@ -156,11 +176,11 @@ function login_signup(){
 
 	 	if(!empty($errors)){
 	 		foreach($errors as $error){
-	 			echo validation_errors($error);	
+	 			echo validation_errors($error);
 	 		}
 	 		return json_encode(array_merge(array("201"),$errors));
 	 	}else{
-	 		if(register_user($first_name,$last_name,$phone,$college,$email,$password,$gender)){
+	 		if(register_user($first_name,$last_name,$phone,$college,$email,$password,$gender, $referral_id)){
 
 	 			redirect("index.php");
 	 			return json_encode("200");//Registration success
@@ -289,7 +309,7 @@ function ca_register($first_name, $last_name, $phone, $college, $email, $passwor
 
 /* */
 
-function register_user($first_name,$last_name,$phone,$college,$email,$password,$gender){
+function register_user($first_name,$last_name,$phone,$college,$email,$password,$gender, $referral_id){
 
 	$first_name=escape($first_name);
 	$last_name=escape($last_name);
@@ -320,8 +340,13 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password,$
 		$header="From: noreply@yourwebsite.com";
 		//Added to database if mail is sent successfully
 		if(send_email($email,$subject,$msg,$header)){
-			$sql="INSERT INTO users(first_name,last_name,phone,college,email,password,validation_code,active,celestaid,qrcode,gender) ";
-			$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$validation_code','0','$celestaid','".$qrcode."','$gender')";
+			if(!refrral_id_exist($referral_id)){
+				$referral_id="CLST1504";
+			}
+			update_referral_points($referral_id);
+
+			$sql="INSERT INTO users(first_name,last_name,phone,college,email,password,validation_code,active,celestaid,qrcode,gender, ca_referral) ";
+			$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$validation_code','0','$celestaid','".$qrcode."','$gender','$referral_id')";
 			$result=query($sql);
 			confirm($result);
 
@@ -330,7 +355,21 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password,$
 		}else{
 			return false;
 		}
-		
+	}
+}
+
+// Add referral points
+function update_referral_points($referral_id){
+	$sql = "SELECT points FROM ca_users WHERE celestaid='$referral_id'";
+	$result = query($sql);
+	if(row_count($result)==1){
+		$row=fetch_array($result);
+		$points=$row['points'];
+		$points = $points + 5;
+
+		$sql1 = "UPDATE ca_users SET points=$points WHERE celestaid='$referral_id'";
+		$result1 = query($sql1);
+		confirm($result1);
 	}
 }
 
@@ -436,7 +475,6 @@ function login_user($celestaid, $password, $remember){
 		}else{
 			return false;
 		}
-
 		return true;
 	}
 	else{
