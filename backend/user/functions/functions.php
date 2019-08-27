@@ -73,8 +73,25 @@ function generateQRCode($celestaid,$first_name,$last_name){
 	QRcode::png($celestaid."/".$first_name."/".$last_name,"assets/qrcodes/".$celestaid.".png","H","10","10");
 }
 
-/*************************Validating Functions**************************/
+/*************************Calling API Functions**************************/
+// Calling login and signup functions
+function login_signup(){
+	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		echo "executed";
+		if(isset($_POST['login'])){
+			if($_POST['login']='miss_u_a_lot_atreyee'){
+				validate_user_login();
+			}
+		}elseif(isset($_POST['signup'])){
+			if($_POST['signup']=="love_u_atreyee"){
+				validate_user_registration();
+			}
+		}
+	}
+}
 
+
+/*************************** API Functions *****************************/
  function validate_user_registration(){
 
  	//Declaring the variables
