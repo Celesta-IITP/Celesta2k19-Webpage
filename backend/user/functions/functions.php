@@ -67,6 +67,7 @@ function email_exists($email){
 	}
 }
 
+// To check if the user exists or not
 function refrral_id_exist($referral_id){
 	$sql = "SELECT id, active FROM ca_users WHERE celestaid ='".$referral_id."'";
 	$result = query($sql);
