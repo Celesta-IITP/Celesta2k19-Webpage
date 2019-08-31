@@ -57,175 +57,175 @@
         {
             "filter": "buildit",
             "name": "Aqua Soccer",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/aquasoccer.jpeg"
         },
         {
             "filter": "buildit",
             "name": "Robo Wars",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/robowars.jpeg"
         },
         {
             "filter": "buildit",
             "name": "Chem-E-Switch",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/chemes.jpeg"
         },
         {
             "filter": "treasurehunt",
             "name": "NJATH",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/njath.jpeg"
         },
         {
             "filter": "treasurehunt",
             "name": "Static Rush",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/staticrush.jpeg"
         },
         {
             "filter": "nontech",
             "name": "Lock N Load",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/locknload.jpeg"
         },
         {
             "filter": "nontech",
             "name": "Tech Photography",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/techphoto.jpeg"
         },
         {
             "filter": "nontech",
             "name": "Tech Sketching",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/techsketch.jpeg"
         },
         {
             "filter": "nontech",
             "name": "Graffiti",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/graffitti.jpeg"
         },
         {
             "filter": "nontech",
             "name": "Hero No Battle Royale",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/heronobattle.jpg"
         },
         {
             "filter": "nontech",
             "name": "Parliamentary Debate",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/parliamentary.jpeg"
         },
         {
             "filter": "codinganddesign",
             "name": "Byterace",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/byterace.jpg"
         },
         {
             "filter": "codinganddesign",
             "name": "Cad Maestro",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/cad.jpeg"
         },
         {
             "filter": "management",
             "name": "IPL Auction",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/ipl.jpeg"
         },
         {
             "filter": "management",
             "name": "Stockmart",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/stockmart.jpeg"
         },
         {
             "filter": "management",
             "name": "Pitch Your Idea",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/pitchyouridea.jpeg"
         },
         {
             "filter": "management",
             "name": "Six Thinking Hats",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/6thinking.jpg"
         },
         {
             "filter": "quiz",
             "name": "Astroparticle Voyage",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/astro.jpeg"
         },
         {
             "filter": "quiz",
             "name": "Electroexquizite",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/electroex.jpeg"
         },
         {
             "filter": "robotics",
             "name": "Drone Tussle",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/drone.jpeg"
         },
         {
             "filter": "robotics",
             "name": "Flight To Future",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/flight.jpeg"
         },
         {
             "filter": "robotics",
             "name": "Robo Race",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/roborace.jpeg"
         },
         {
             "filter": "robotics",
             "name": "Line Follower",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/linefollower.jpeg"
         },
         {
             "filter": "robotics",
             "name": "Robowars (school)",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/roboschool.jpeg"
         },
         {
             "filter": "robotics",
             "name": "Robo Soccer",
-            "image": "./img/c1.jpg"
+            "image": "./img/events/robosoccer.jpeg"
         }
     ],
     "workshops": [
         {
             "filter": "roboticsandiot",
             "name": "Robotics And IOT",
-            "image": "./img/c1.jpg"
+            "image": "./img/workshops/robotics1.jpg"
         },
         {
             "filter": "automobiles",
             "name": "Automobiles And IC Engines",
-            "image": "./img/c1.jpg"
+            "image": "./img/workshops/robotics1.jpg"
         }
     ],
     "exhibitions": [
         {
             "filter": "exhibitions",
             "name": "Jigyasa",
-            "image": "./img/c1.jpg"
+            "image": "./img/exhibitions/jigyasa.jpg"
         },
         {
             "filter": "conclave",
             "name": "Engineers Conclave",
-            "image": "./img/c1.jpg"
+            "image": "./img/exhibitions/conclave1.jpg"
         }
     ],
     "guesttalks": [
         {
             "filter": "",
             "name": "Rahul Singh",
-            "image": "./img/c1.jpg"
+            "image": "./img/guesttalks/rahul.jpeg"
         },
         {
             "filter": "",
             "name": "Ashish Jain",
-            "image": "./img/c1.jpg"
+            "image": "./img/guesttalks/ashishjain.jpeg"
         },
         {
             "filter": "",
             "name": "Hitesh Choudhary",
-            "image": "./img/c1.jpg"
+            "image": "./img/guesttalks/hitesh.jpeg"
         }
     ],
     "pronites": [
         {
             "filter": "",
             "name": "Jaspreet Singh",
-            "image": "./img/c1.jpg"
+            "image": "./img/pronites/pronite1.jpeg"
         }
     ]
 
