@@ -205,14 +205,14 @@ function user_registration(){
 
 // Add referral points
 function update_referral_points($referral_id){
-	$sql = "SELECT points FROM ca_users WHERE celestaid='$referral_id'";
+	$sql = "SELECT excitons FROM ca_users WHERE celestaid='$referral_id'";
 	$result = query($sql);
 	if(row_count($result)==1){
 		$row=fetch_array($result);
 		$points=$row['points'];
-		$points = $points + 5;
+		$points = $points + 10;
 
-		$sql1 = "UPDATE ca_users SET points=$points WHERE celestaid='$referral_id'";
+		$sql1 = "UPDATE ca_users SET excitons=$points WHERE celestaid='$referral_id'";
 		$result1 = query($sql1);
 		confirm($result1);
 	}
