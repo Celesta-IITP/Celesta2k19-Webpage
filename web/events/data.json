@@ -1,0 +1,232 @@
+{
+    "filter": {
+        "events": [
+            {
+                "data-filter": "buildit",
+                "name": "Build It!"
+            },
+            {
+                "data-filter": "treasurehunt",
+                "name": "Treasure Hunt"
+            },
+            {
+                "data-filter": "nontech",
+                "name": "Non Tech"
+            },
+            {
+                "data-filter": "codinganddesign",
+                "name": "Coding And Design"
+            },
+            {
+                "data-filter": "management",
+                "name": "Management"
+            },
+            {
+                "data-filter": "quiz",
+                "name": "Quiz"
+            },
+            {
+                "data-filter": "robotics",
+                "name": "Robotics"
+            }
+        ],
+        "workshops": [
+            {
+                "data-filter": "roboticsandiot",
+                "name": "Robotics And IOT"
+            },
+            {
+                "data-filter": "automobiles",
+                "name": "Automobiles and IC Engines"
+            }
+        ],
+        "exhibitions": [
+            {
+                "data-filter": "exhibitions",
+                "name": "Exhibitions"
+            },
+            {
+                "data-filter": "conclave",
+                "name": "Conclave"
+            }
+        ],
+        "guesttalks": [],
+        "pronites": []
+    },
+    "events": [
+        {
+            "filter": "buildit",
+            "name": "Aqua Soccer",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "buildit",
+            "name": "Robo Wars",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "buildit",
+            "name": "Chem-E-Switch",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "treasurehunt",
+            "name": "NJATH",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "treasurehunt",
+            "name": "Static Rush",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "nontech",
+            "name": "Lock N Load",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "nontech",
+            "name": "Tech Photography",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "nontech",
+            "name": "Tech Sketching",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "nontech",
+            "name": "Graffiti",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "nontech",
+            "name": "Hero No Battle Royale",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "nontech",
+            "name": "Parliamentary Debate",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "codinganddesign",
+            "name": "Byterace",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "codinganddesign",
+            "name": "Cad Maestro",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "management",
+            "name": "IPL Auction",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "management",
+            "name": "Stockmart",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "management",
+            "name": "Pitch Your Idea",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "management",
+            "name": "Six Thinking Hats",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "quiz",
+            "name": "Astroparticle Voyage",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "quiz",
+            "name": "Electroexquizite",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "robotics",
+            "name": "Drone Tussle",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "robotics",
+            "name": "Flight To Future",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "robotics",
+            "name": "Robo Race",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "robotics",
+            "name": "Line Follower",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "robotics",
+            "name": "Robowars (school)",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "robotics",
+            "name": "Robo Soccer",
+            "image": "./img/c1.jpg"
+        }
+    ],
+    "workshops": [
+        {
+            "filter": "roboticsandiot",
+            "name": "Robotics And IOT",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "automobiles",
+            "name": "Automobiles And IC Engines",
+            "image": "./img/c1.jpg"
+        }
+    ],
+    "exhibitions": [
+        {
+            "filter": "exhibitions",
+            "name": "Jigyasa",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "conclave",
+            "name": "Engineers Conclave",
+            "image": "./img/c1.jpg"
+        }
+    ],
+    "guesttalks": [
+        {
+            "filter": "",
+            "name": "Rahul Singh",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "",
+            "name": "Ashish Jain",
+            "image": "./img/c1.jpg"
+        },
+        {
+            "filter": "",
+            "name": "Hitesh Choudhary",
+            "image": "./img/c1.jpg"
+        }
+    ],
+    "pronites": [
+        {
+            "filter": "",
+            "name": "Jaspreet Singh",
+            "image": "./img/c1.jpg"
+        }
+    ]
+
+}
