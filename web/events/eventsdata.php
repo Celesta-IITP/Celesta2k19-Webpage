@@ -83,7 +83,7 @@
                 <div class="gallery-wrap">
                   <figure>
                     <img src="<?php echo $d['image'] ?>" class="img-fluid" alt="" />
-                    <a href="./img/c1.jpg" data-lightbox="gallery" data-title="<?php echo $d['name'] ?>" class="link-preview" title="Preview"><i
+                    <a href="<?php echo $d['image'] ?>" data-lightbox="gallery" data-title="<?php echo $d['name'] ?>" class="link-preview" title="Preview"><i
                         class="ion ion-eye"></i></a>
                   </figure>
 
