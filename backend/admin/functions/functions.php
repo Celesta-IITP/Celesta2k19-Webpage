@@ -76,13 +76,11 @@ function login_registrar(){
 
  		$password=md5($password);
 
- 		$sql="SELECT id FROM admins WHERE email='".$registrar."' AND password='".$password."' AND (permit=1 OR permit=2)";
+ 		$sql="SELECT id, permit FROM admins WHERE email='".$registrar."' AND password='".$password."'";
  		$result=query($sql);
 
  		if(row_count($result)==1){
- 			$sql1="SELECT permit FROM admins WHERE email='".$registrar."' ";
- 			$result1=query($sql1);
- 			$row=fetch_array($result1);
+ 			$row=fetch_array($result);
  			$permit=$row['permit'];
 
  			$_SESSION['registrar']=$registrar;
@@ -91,14 +89,20 @@ function login_registrar(){
  				setcookie('registrar',$registrar,time()+86400);
  				setcookie('rpermit',$permit,time()+86400);
  			}
- 			set_message("<p class='bg-success text-center'>Logged in succesfully.<br>Email: $registrar <br> Permit: $permit</p>");
- 			redirect("total_register.php");
+			 set_message("<p class='bg-success text-center'>Logged in succesfully.<br>Email: $registrar <br> Permit: $permit</p>");
+
+			 if($permit==1 || $permit ==2){
+				redirect("total_register.php");
+			 }elseif($permit==3){
+				 redirect("cas.php");
+			 }
+			 else{
+				 echo "Logged in - ".$permit;
+			 }
+ 			
  		}else{
  			echo validation_errors("Failed to login.");
  		}
-
-		echo $registrar;
-		echo $password;
 	}
 }
 
@@ -756,6 +760,72 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	}else{
 		return false;
 	}
-
 }
 
+// Show the list of campus ambassador to the MPR people
+
+function show_ca_users(){
+	if(!registrar_logged_in()){
+		redirect("login.php");
+	}else{
+		//echo "Will shortly display the result";
+		$sql="SELECT first_name, last_name, college, celestaid, phone, excitons, gravitons FROM ca_users WHERE active=1";
+		$result=query($sql);
+		$permit=getPermit();
+		$count=0;
+
+		// For sorting of arrays
+		// $users = [];
+		// while($rs = $result->fetch_assoc()){
+		// 	$users[]=$rs;
+		// 	$count=$count+1;
+		// }
+
+		// print_r($users[0]);
+
+		while ($row = $result->fetch_assoc()) {
+			$count=$count+1;
+    		if($permit==3){
+				$total = $row['excitons'] + $row['gravitons']*1.5;
+    			echo "<tr>
+						<th scope='row'>".$count."</th>
+	      				<td>".$row['celestaid']."</td>
+	      				<td>".$row['first_name']." ".$row['last_name']."</td>
+	      				<td>".$row['college']."</td>
+	      				<td>".$row['phone']."</td>
+						<td>".$row['excitons']."</td>
+						<td>".$row['gravitons']."</td>
+						<td>".$total."</td>
+	    			</tr>";
+    		}
+		}
+	}
+}
+
+function ca_calls(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		if(isset($_POST["search_ca"])){
+			search_ca();
+		}
+	}
+}
+
+// Function to search ca
+function search_ca(){
+	$celestaid = clean($_POST["celestaid"]);
+
+	$sql = "SELECT * FROM ca_users WHERE celestaid='$celestaid' AND active=1";
+	$result=query($sql);
+	if(row_count($result)==1){
+		$_SESSION["searched_ca"]=$celestaid;
+		redirect("ca.php");
+	}else{
+		echo validation_errors("Record not found");
+	}
+}
+// Function to show details of searched ca
+function searched_ca(){
+	if(isset($_SESSION["searched_ca"])){
+		echo "ok";
+	}
+}
