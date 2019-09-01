@@ -54,7 +54,7 @@ body :-ms-input-placeholder {
   max-width: 600px;
   margin: 0 auto;
   padding: 80px 0;
-  /* height: 400px; */
+  height: 1000px;
   text-align: center;
 }
 .container h1 {
@@ -76,11 +76,11 @@ form {
   border-radius: 3px;
 }
 form input {
-          appearance: none;
+  appearance: none;
   outline: 0;
   border: 1px solid rgba(255, 255, 255, 0.4);
   background-color: rgba(255, 255, 255, 0.2);
-  width: 350px;
+  width: calc(100% - 30px);
   border-radius: 3px;
   padding: 10px 15px;
   margin: 0 auto 10px auto;
@@ -89,7 +89,7 @@ form input {
   font-size: 18px;
   color: white;
   -webkit-transition-duration: 0.25s;
-          transition-duration: 0.25s;
+  transition-duration: 0.25s;
   font-weight: 300;
 }
 form input:hover {
@@ -97,11 +97,11 @@ form input:hover {
 }
 form input:focus {
   background-color: white;
-  width: 400px;
+  width: 100%;
   color: #53e3a6;
 }
 form button {
-          appearance: none;
+  appearance: none;
   outline: 0;
   background-color: white;
   border: 0;
@@ -146,15 +146,15 @@ form button:hover {
     border-bottom: 100px solid rgba(255, 255, 255, 0.2);
 }
 .bg-bubbles li:nth-child(1)::after {
-      width: 0;
-      height: 0;
-      border-left: 50px solid transparent;
-      border-right: 50px solid transparent;
-      border-top: 100px solid rgba(255, 255, 255, 0.2);
-      position: absolute;
-      content: "";
-           top: 30px;
-      left: -50px;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid rgba(255, 255, 255, 0.2);
+    position: absolute;
+    content: "";
+    top: 30px;
+    left: -50px;
 }
 .bg-bubbles li:nth-child(2) {
   left: 20%;
