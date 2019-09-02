@@ -810,22 +810,86 @@ function ca_calls(){
 	}
 }
 
-// Function to search ca
-function search_ca(){
-	$celestaid = clean($_POST["celestaid"]);
-
+// Function to check if a ca is present or not. If present do it exists or not
+function is_ca_exist($celestaid){
 	$sql = "SELECT * FROM ca_users WHERE celestaid='$celestaid' AND active=1";
 	$result=query($sql);
 	if(row_count($result)==1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+// Function to search ca
+function search_ca(){
+	$celestaid = clean($_POST["celestaid"]);
+	if(is_ca_exist($celestaid)){
 		$_SESSION["searched_ca"]=$celestaid;
 		redirect("ca.php");
 	}else{
 		echo validation_errors("Record not found");
 	}
 }
+
 // Function to show details of searched ca
 function searched_ca(){
 	if(isset($_SESSION["searched_ca"])){
-		echo "ok";
+		if(is_ca_exist($_SESSION["searched_ca"])){
+			$celestaid = $_SESSION["searched_ca"];
+			$sql="SELECT first_name, last_name, college, celestaid, phone, excitons, gravitons FROM ca_users WHERE celestaid='$celestaid'";
+			$result=query($sql);
+            $row = fetch_array($result);
+            $first_name = $row['first_name'];
+            $last_name - $row['last_name'];
+            $email = $row['email'];
+            $phone = $row['phone'];
+            $excitons = $row['excitons'];
+            $gravitons = $row['gravitons'];
+			$college = $row['college'];
+			
+
+
+			echo "	<div class='row justify-content-md-center'>
+					<br><br> <br><br>
+						<div id='registrar-login-form' style='display: block;'>
+						<br><br>
+							<div class='form-group' style='width:300px'>
+								<label for='email' id='celestaid_field'>CelestaID: $celestaid</label>
+							</div>
+							<div class='form-group'>
+								<label for='email' id='name_field'>Name: $first_name $last_name</label>
+							</div>
+							<div class='form-group'>
+								<label for='email' id='phone_field'>Phone: $phone</label>
+							</div>
+							<div class='form-group'>
+								<label for='email' id='college_field'>College: $college</label>
+							</div>
+
+							<div class='form-group'>
+								<label for='email' >Excitons</label>
+								<input type='text' readonly class='form-control' id='excitons' name='excitons' required value='$excitons'>
+							</div>
+							<div class='form-group'>
+								<label for='email'>Gravitons</label>
+								<input type='text' readonly class='form-control' id='gravitons' name='gravitons' required value='$gravitons'>
+							</div>
+							<button id='10_exc' name='10_exc' style='background:green; color:white'>10 Excitons</button>
+							<button id='10_grav' name='10_grav' style='background:green; color:white'>10 Gravitons</button>
+							<button id='neg_10_exc' name='neg_10_exc' style='background:red; color:white'>-10 Excitons</button>
+							<button id='neg_10_grav' name='neg_10_grav' style='background:red; color:white'> -10 Gravitons</button><br><br><br>
+							<button type='submit' class='btn btn-primary'>Save</button>
+							<button type='submit' class='btn btn-primary'>Cancel</button>
+						</div>
+						
+					</div>";
+
+
+			
+		}else{
+			redirect("cas.php");
+		}
 	}
 }
+?>
