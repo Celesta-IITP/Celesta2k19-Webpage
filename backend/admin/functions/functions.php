@@ -119,8 +119,6 @@ function registrar_logged_in(){
 function getPermit(){
 	if(isset($_SESSION['permit'])){
 		return $_SESSION['permit'];
-	}else{
-		return $_COOKIE['permit'];
 	}
 }
 
@@ -786,7 +784,7 @@ function show_ca_users(){
 		while ($row = $result->fetch_assoc()) {
 			$count=$count+1;
     		if($permit==3){
-				$total = $row['excitons'] + $row['gravitons']*1.5;
+				$total = $row['excitons']*1.5 + $row['gravitons'];
     			echo "<tr>
 						<th scope='row'>".$count."</th>
 	      				<td>".$row['celestaid']."</td>
@@ -849,8 +847,7 @@ function searched_ca(){
 			$result=query($sql);
             $row = fetch_array($result);
             $first_name = $row['first_name'];
-            $last_name - $row['last_name'];
-            $email = $row['email'];
+            $last_name = $row['last_name'];
             $phone = $row['phone'];
             $excitons = $row['excitons'];
             $gravitons = $row['gravitons'];
