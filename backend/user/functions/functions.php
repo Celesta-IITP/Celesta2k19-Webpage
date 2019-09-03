@@ -442,7 +442,7 @@ function validate_user_login(){
 			return json_encode(array_merge(array("404"),$errors));
 		}else{
 			if(login_user($celestaid,$password,$remember)){
-				redirect("profile.php");
+				redirect("user_profile.php");
 				return json_encode(array("400"));//User logged in
 			}else{
 				//echo "Inside credential wrong";
@@ -670,6 +670,22 @@ function ca_leaderboard(){
     while($row = fetch_array($result))
     {
         $data[] = $row;
+	}
+	return $data;
+}
+
+function user_details($celestaid){
+	$sql="SELECT * FROM users WHERE celestaid='".escape($celestaid)."' ";
+	$result=query($sql);
+	$data = fetch_array($result);
+	$sql2="SELECT * FROM ca_users WHERE celestaid='".escape($celestaid)."' ";
+	$result2=query($sql2);
+	if(row_count($result2)==1){
+		$data['isCA']=true;
+		$ca=fetch_array($result2);
+		$data['ca']=$ca;
+	} else {
+		$data['isCA']=false;
 	}
 	return $data;
 }
