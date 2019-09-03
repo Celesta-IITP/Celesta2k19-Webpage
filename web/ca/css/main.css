@@ -2563,7 +2563,7 @@
 		position: relative;
 		text-align: center;*/
 		background-attachment: scroll,	scroll,	fixed;
-		background-image: url("images/top-3200.svg"),url(""),url(../images/ca_back.png);
+		background-image: url("images/top-3200.svg"),url(""),url(../images/ca_back.jpg);
 		background-repeat: no-repeat;
 		background-position: bottom center,	top left,	top left;
 		/* background-repeat: repeat-x,	repeat,	no-repeat; */
@@ -3073,7 +3073,7 @@
 		/* Header */
 
 			#header {
-				background-image: url(../images/xyz.png);
+				background-image: url(../images/xyz.jpg);
 				background-position: bottom center,	top left, top left;
 				/* background-repeat: repeat-x,	repeat,	no-repeat; */
 				

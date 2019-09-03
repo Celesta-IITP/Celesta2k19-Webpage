@@ -22,8 +22,8 @@
             <!-- IIT Patna's -->
         </h6>
         
-				<h1 style="color: rgba(0,0,0,.75)">Celesta'19</h1><br>
-				<h1 style="color: rgba(0,0,0,.75)">Campus Ambassador Programme</h1><br>
+				<h1 style="color: #fff">Celesta'19</h1><br>
+				<h1 style="color: #fff">Campus Ambassador Programme</h1><br>
 				
         <br><br><br><br><br>
         <center>
@@ -33,10 +33,8 @@
         </center>
         <div class="imgClass type1 img1"><img src="./images/img/1.png"></div>
         <div class="imgClass type1 img2"><img src="./images/img/2.png"></div>
-        <div class="imgClass type1 img3"><img src="./images/img/3.png"></div>
         <div class="imgcontainer type1 imgClass">
         </div>
-        <div class="imgClass type2 img5 "><a href="/" style="border-color:rgb(0,0,0,0)"><img src="./images/img/CA.png"></a></div>
     </div>
 
     <!-- Main -->
@@ -80,26 +78,6 @@
                 <blockquote>As you mentioned Anwesha the biggest techno-cultural fest of north-east India being a campus ambassador for it was an amazing experience.You'll organised the whole function perfectly.I not only enjoyed being working as the campus ambassador but also enjoyed your fest.The participants from my college were also very happy by your organisation.Hope to continue to work with you all more as i gained a good experience. Thank you for selecting me as the campus ambassador of my college. <br>-<b>Kamal Kant</b> </blockquote>
             </section>
 
-            <section id="leader">
-                <header>
-                    <h2>Leaderboard</h2>
-                </header>
-                <div class="table-wrapper">
-                    <table class="default">
-                        <thead>
-                            <tr>
-                                <th>Rank</th>
-                                <th>Name</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody id="leaderTable">
-
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
         </div>
     </div>
 
@@ -117,78 +95,6 @@
                 </center>
             </header>
             <div id="message"></div><br>
-            <form id="signUp" style="display:none" action="javascript:" method="post">
-                <input type="hidden" name="fbID" />
-                <h2>Step 2</h2><br>
-                <div class="row">
-                    <div class="6u 12u(mobilep)">
-                        <input type="text" name="name" placeholder="Name" required />
-                    </div>
-                    <div class="6u 12u(mobilep)">
-                        <input type="email" name="email" placeholder="Email" required />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="6u 12u(mobilep)">
-                        <input type="text" name="college" placeholder="College" required />
-                    </div>
-                    <div class="6u 12u(mobilep)">
-                        <input type="text" name="degree" placeholder="Degree" required />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="6u 12u(mobilep)">
-                        <input type="text" name="graduation" pattern="20[0-9][0-9]" placeholder="Year of Graduation(20XX)" required />
-                    </div>
-                    <div class="6u 12u(mobilep)">
-                        <input type="text" name="city" placeholder="City" required />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="6u 12u(mobilep)">
-                        <input type="text" name="mobile" placeholder="Mobile(10 digit)" pattern="(7|8|9)\d{9}" required />
-                    </div>
-                    <div class="6u 12u(mobilep)">
-                        <input type="text" name="DOB" placeholder="Date of Birth(yyyy-mm-dd)" required />
-                    </div>
-                </div>
-                <!-- gender -->
-                <div class="12u">Gender:
-                    <input type="radio" name="gender" value="M">Male
-                    <input type="radio" name="gender" value="F">Female<br>
-                </div>
-
-                <div class="row">
-                    <div class="12u">
-                        <textarea name="address" placeholder="Address" required rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="12u">
-                        <textarea name="threethings" placeholder="Tell us 3 things you would do as a Campus Ambassador of Anwesha '19." rows="4" required></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="12u">
-                        <textarea name="responsibility" placeholder="Have you held any position of responsibility in your college? If yes, please explain." required rows="4"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="12u">
-                        <textarea name="involvement" placeholder="Have you been a part of one or more previous editions of Anwesha? If yes, please explain." required rows="4"></textarea>
-                    </div>
-                </div>
-                <div id="message2"></div>
-                <div class="row">
-                    <div class="12u">
-                        <ul class="actions">
-                            <img src="./images/loader.gif" alt="" id="myloader" style="display:none"><br>
-                            <li><input type="submit" id="submit" value="Submit" /></li>
-                        </ul>
-                    </div>
-                </div>
-            </form>
-
             <ul class="icons">
                 <li><a href="https://www.facebook.com/anwesha.iitpatna/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
                 <li><a href="https://www.instagram.com/anwesha.iitp/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
@@ -197,7 +103,7 @@
             </ul>
 
             <ul class="copyright">
-                <li>Anwesha IIT Patna</li>
+                <li>Celesta IIT Patna</li>
             </ul>
 
         </div>
