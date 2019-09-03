@@ -442,7 +442,7 @@ function validate_user_login(){
 			return json_encode(array_merge(array("404"),$errors));
 		}else{
 			if(login_user($celestaid,$password,$remember)){
-				redirect("user_profile.php");
+				redirect("profile.php");
 				return json_encode(array("400"));//User logged in
 			}else{
 				//echo "Inside credential wrong";
