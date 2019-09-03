@@ -2,6 +2,7 @@
 <?php include('includes/nav.php') ?>
 
 <?php searched_ca()?>
+<?php ca_calls()?>
 
 <script>
   $(document).ready(function(){
