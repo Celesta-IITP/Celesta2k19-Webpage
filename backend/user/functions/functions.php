@@ -661,3 +661,16 @@ function reset_password(){
 	}
 }
 
+
+// CA Leaderboard
+function ca_leaderboard(){
+	$sql="SELECT * FROM ca_users WHERE active=1";
+	$result=query($sql);
+	$data = array();
+    while($row = fetch_array($result))
+    {
+        $data[] = $row;
+	}
+	return $data;
+}
+
