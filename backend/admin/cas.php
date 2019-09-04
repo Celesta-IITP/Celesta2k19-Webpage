@@ -1,8 +1,11 @@
 <?php include('includes/header.php') ?>
-
 <?php include('includes/nav.php') ?>
 
-<?php ca_calls()?>
+<?php 
+	$cas=show_ca_users();
+	ca_calls();
+?>
+
 	<div class='row justify-content-md-center'>
 		<div class="col-md-auto">
 		<form class="form-inline" method="post" role="form" id="show_data">
@@ -22,7 +25,6 @@
 
 	<div class="jumbotron">
 		<?php display_message() ;?>
-		
 		<h1 class="text-center">List of Campus Ambassadors</h1>
 	</div>
 
@@ -40,7 +42,18 @@
 			</tr>
 		</thead>
 		<tbody>
-	<?php show_ca_users(); ?>
+			<?php $count=1; foreach($cas as $ca) { ?>
+				<tr>
+					<th scope='row'><?php echo $count++; ?></th>
+					<td><?php echo $ca['celestaid']; ?></td>
+					<td><?php echo $ca['first_name'] ." ". $ca['last_name']; ?></td>
+					<td><?php echo $ca['college']; ?></td>
+					<td><?php echo $ca['phone']; ?></td>
+					<td><?php echo $ca['excitons']; ?></td>
+					<td><?php echo $ca['gravitons']; ?></td>
+					<td><?php echo $ca['excitons']*1.5 + $ca['gravitons']; ?></td>
+				</tr>
+			<?php } ?>
 		</tbody>
 	</table>	
 
