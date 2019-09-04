@@ -766,37 +766,17 @@ function show_ca_users(){
 	if(!registrar_logged_in()){
 		redirect("login.php");
 	}else{
-		//echo "Will shortly display the result";
 		$sql="SELECT first_name, last_name, college, celestaid, phone, excitons, gravitons FROM ca_users WHERE active=1";
 		$result=query($sql);
 		$permit=getPermit();
-		$count=0;
 
-		// For sorting of arrays
-		// $users = [];
-		// while($rs = $result->fetch_assoc()){
-		// 	$users[]=$rs;
-		// 	$count=$count+1;
-		// }
-
-		// print_r($users[0]);
-
+		$data=array();
 		while ($row = $result->fetch_assoc()) {
-			$count=$count+1;
     		if($permit==3){
-				$total = $row['excitons']*1.5 + $row['gravitons'];
-    			echo "<tr>
-						<th scope='row'>".$count."</th>
-	      				<td>".$row['celestaid']."</td>
-	      				<td>".$row['first_name']." ".$row['last_name']."</td>
-	      				<td>".$row['college']."</td>
-	      				<td>".$row['phone']."</td>
-						<td>".$row['excitons']."</td>
-						<td>".$row['gravitons']."</td>
-						<td>".$total."</td>
-	    			</tr>";
+				$data[]=$row;
     		}
 		}
+		return $data;
 	}
 }
 
@@ -846,53 +826,7 @@ function searched_ca(){
 			$sql="SELECT first_name, last_name, college, celestaid, phone, excitons, gravitons FROM ca_users WHERE celestaid='$celestaid'";
 			$result=query($sql);
             $row = fetch_array($result);
-            $first_name = $row['first_name'];
-            $last_name = $row['last_name'];
-            $phone = $row['phone'];
-            $excitons = $row['excitons'];
-            $gravitons = $row['gravitons'];
-			$college = $row['college'];
-			
-
-
-			echo "	<div class='row justify-content-md-center'>
-					<br><br> <br><br>
-						<form id='registrar-login-form' style='display: block;' method='post'>
-						<br><br>
-							<div class='form-group' style='width:300px'>
-								<label for='email' id='celestaid_field' name='celestaid_field' value='$celestaid'>CelestaID: $celestaid</label>
-							</div>
-							<div class='form-group'>
-								<label for='email' id='name_field'>Name: $first_name $last_name</label>
-							</div>
-							<div class='form-group'>
-								<label for='email' id='phone_field'>Phone: $phone</label>
-							</div>
-							<div class='form-group'>
-								<label for='email' id='college_field'>College: $college</label>
-							</div>
-
-							<div class='form-group'>
-								<label for='email' >Excitons</label>
-								<input type='text' readonly class='form-control' id='excitons' name='excitons' required value='$excitons'>
-							</div>
-							<div class='form-group' style='margin-bottom:20px'>
-								<label for='email'>Gravitons</label>
-								<input type='text' readonly class='form-control' style='margin-bottom:20px' id='gravitons' name='gravitons' required value='$gravitons'>
-							</div>
-							<input type='hidden' name='celestaid' id='celestaid' value='$celestaid'>
-							<span id='10_exc' name='10_exc' style='background:green; color:white; padding:15px'>+ 10 Excitons</span>
-							<span id='10_grav' name='10_grav' style='background:green; color:white; padding:15px'> + 10 Gravitons</span>
-							<span id='neg_10_exc' name='neg_10_exc' style='background:red; color:white; padding:15px'>-10 Excitons</span>
-							<span id='neg_10_grav' name='neg_10_grav' style='background:red; color:white; padding:15px'> -10 Gravitons</span><br><br><br>
-							<button type='submit' id='save_ca' name='save_ca' value='save_ca' class='btn btn-primary'>Save</button>
-							<button type='submit' id='cancel_ca' name='cancel_ca' value='cancel_ca' class='btn btn-primary'>Cancel</button>
-						</form>
-						
-					</div>";
-
-
-			
+			return $row;
 		}else{
 			redirect("cas.php");
 		}
@@ -916,6 +850,6 @@ function update_ca(){
 function cancel_ca(){
 	redirect('./cas.php');
 	unset($_SESSION['searched_ca']);
-	}
+}
 
 ?>
