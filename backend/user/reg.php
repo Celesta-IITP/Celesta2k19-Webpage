@@ -25,7 +25,6 @@
                         <h4 class="center">Sign up</h4>
                         <br>
                         <form id="signup_form" name="signup_form" method="post">
-                            <!-- Name -->
                             <div class="row">
                                 <div class="input-field col s12 m6">
                                     <input type="text" id="first_name" name="first_name" class="validate"
@@ -42,7 +41,6 @@
                                     </label>
                                 </div>
                             </div>
-                            <!-- Name -->
                             <div class="row">
                                 <div class="input-field col s12 m6">
                                     <input type="text" id="phone" name="phone" class="validate"
@@ -69,12 +67,12 @@
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <input type="text" id="referral_id" name="referral_id" class="validate"
-                                        placeholder="Referral ID" value="CLST1504">
+                                        placeholder="Referral ID">
                                     <label for="referral_id">
-                                        <i class="material-icons">user_error</i>
+                                        <i class="material-icons">person</i>
                                     </label>
                                 </div>
-                            </div>
+                            </div>                            
                             <div class="row">
                                 <div class="input-field col s12 m6">
                                     <input type="password" id="password" name="password" class="validate"
@@ -172,13 +170,13 @@
         </div>
         <div class="fixed-action-btn toolbar">
             <a class="btn-floating btn-large amber black-text">
-                Login
+                Menu
             </a>
-            <!-- <ul>
-                <li><a class="indigo center" href="#!">Login with FB</a></li>
-                <li><a class="blue center" href="#!">Login with Twitter</a></li>
-                <li><a class="red center" href="#!">Login with Google +</a></li>
-            </ul> -->
+            <ul>
+                <li><a class="indigo center" href="../../">Home</a></li>
+                <li><a class="blue center" href="../../events.html">Events</a></li>
+                <li><a class="red center" href="../../sponsors.html">Sponsors</a></li>
+            </ul>
         </div>
     </section>
 

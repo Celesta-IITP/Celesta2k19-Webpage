@@ -93,7 +93,6 @@ function generateQRCode($celestaid,$first_name,$last_name){
 // Calling login and signup functions
 function login_signup(){
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		echo "executed";
 		if(isset($_POST['login'])){
 			if($_POST['login']='miss_u_a_lot_atreyee'){
 				validate_user_login();
