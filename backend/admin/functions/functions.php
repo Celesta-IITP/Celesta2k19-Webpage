@@ -95,6 +95,8 @@ function login_registrar(){
 				redirect("total_register.php");
 			 }elseif($permit==3){
 				 redirect("cas.php");
+			 }elseif($permit==0){ //Super Admin has access to everything
+				 redirect("total_register.php");
 			 }
 			 else{
 				 echo "Logged in - ".$permit;
@@ -142,7 +144,7 @@ function registrar_register(){
 
 				if(row_count($result)==1 )
 				{
-					if((celestaid_exist_present_user($celestaid)) && (getPermit()==2))
+					if((celestaid_exist_present_user($celestaid)) && (getPermit()==2 || getPermit()==0))
 					{
 						$sql3="SELECT total_charge,registration_charge,tshirt_charge,bandpass_charge FROM present_users WHERE celestaid='".escape($celestaid)."' ";
 						$result3=query($sql3);
@@ -331,7 +333,7 @@ function registrar_register(){
 						</div>";
 
 						echo $to_show;	//Displays the form
-					}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()!=2)){
+					}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()!=2 || getPermit()!=0)){
 						echo validation_errors("You donot have the permit to do the following changes.");
 
 					}elseif(!celestaid_exist_present_user($celestaid)){
@@ -552,7 +554,7 @@ function registrar_register(){
 					}else{
 						set_message("<p class='bg-danger text-center'>Sorry we failed to send the confirmation mail to the user.</p>");
 					}		 			
-		 		}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()==2))
+		 		}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()==2 || getPermit()==0))
 		 		{
 		 			//$sql2="UPDATE present_users SET "
 		 			$sql3="SELECT total_charge,registration_charge,tshirt_charge,bandpass_charge FROM present_users WHERE celestaid='".escape($celestaid)."' ";
@@ -611,7 +613,7 @@ function total_register(){
 	      				<td> Not Authorized</td>
 	      				<td>".$row['qrcode']."</td>
 	    			</tr>";
-    		}elseif($permit==2){
+    		}elseif($permit==2 || $permit==0){
     			echo "<tr>
 						<th scope='row'>".$count."</th>
 	      				<td>".$row['celestaid']."</td>
@@ -772,7 +774,7 @@ function show_ca_users(){
 
 		$data=array();
 		while ($row = $result->fetch_assoc()) {
-    		if($permit==3){
+    		if($permit==3 || $permit==0){
 				$data[]=$row;
     		}
 		}

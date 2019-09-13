@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
-      <?php if($permit==1 || $permit==2) { ?>
+      <?php if($permit==1 || $permit==2 || $permit==0) { ?>
       <li class="nav-item">
         <a class="nav-link" href="new_register.php">New Registration<span class="sr-only">(current)</span></a>
       </li>
@@ -22,7 +22,7 @@
       <?php }?>
     
     
-    <?php if($permit==3) { ?>
+    <?php if($permit==3 || $permit==0) { ?>
       <li class="nav-item">
         <a class="nav-link" href="cas.php">CA Users</a>
       </li>
