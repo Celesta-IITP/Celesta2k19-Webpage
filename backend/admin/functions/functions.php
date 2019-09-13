@@ -684,7 +684,6 @@ function new_register(){
 
 //Register the new user into both the database
 function new_register_user($first_name,$last_name,$phone,$college,$email,$password,$gender){
-	echo "Testing 1";
 	$first_name=escape($first_name);
 	$last_name=escape($last_name);
 	$phone=escape($phone);
@@ -704,7 +703,6 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$registration_charge=0;
 	$bandpass_charge=0;
 	$tshirt_charge=0;
-	echo "Testing 2";
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge=$price_reg;
@@ -722,14 +720,11 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
 	}
 
-	echo "Testing 3";
 	$registrar_name=$_COOKIE['registrar'];
-	echo "Testing 4";
 	$password=md5($password);
 	$celestaid=getCelestaId();
 	generateQRCode($celestaid,$first_name,$last_name);
 	$qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
-	echo "Testing 5";
 
 	//CONTENTS OF EMAIL
 	$subject="Activate Celesta Account";
