@@ -7,7 +7,6 @@
     if($permit==0 || $permit==4){
         $cas=show_ca_users();
         ca_calls();
-        echo "fasle";
     }else{
         redirect("./logout.php");
     }
