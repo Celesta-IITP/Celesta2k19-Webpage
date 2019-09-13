@@ -1,14 +1,16 @@
 <?php include('includes/header.php') ?>
 <?php include('includes/nav.php') ?>
 
-<?php 
-	if(getPermit()==0 || getPermit()==3){
-		$cas=show_ca_users();
-		ca_calls();
-	}else{
-		redirect("./logout.php");
-	}
-
+<?php 	
+    $permit = getPermit();
+    echo $permit;
+    if($permit==0 || $permit==4){
+        $cas=show_ca_users();
+        ca_calls();
+        echo "fasle";
+    }else{
+        redirect("./logout.php");
+    }
 ?>
 
 	<div class='row justify-content-md-center'>
