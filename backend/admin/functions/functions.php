@@ -95,6 +95,8 @@ function login_registrar(){
 				redirect("total_register.php");
 			 }elseif($permit==3){
 				 redirect("cas.php");
+			 }elseif($permit==0){ //Super Admin has access to everything
+				 redirect("total_register.php");
 			 }
 			 else{
 				 echo "Logged in - ".$permit;
@@ -142,7 +144,7 @@ function registrar_register(){
 
 				if(row_count($result)==1 )
 				{
-					if((celestaid_exist_present_user($celestaid)) && (getPermit()==2))
+					if((celestaid_exist_present_user($celestaid)) && (getPermit()==2 || getPermit()==0))
 					{
 						$sql3="SELECT total_charge,registration_charge,tshirt_charge,bandpass_charge FROM present_users WHERE celestaid='".escape($celestaid)."' ";
 						$result3=query($sql3);
@@ -331,7 +333,7 @@ function registrar_register(){
 						</div>";
 
 						echo $to_show;	//Displays the form
-					}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()!=2)){
+					}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()!=2 || getPermit()!=0)){
 						echo validation_errors("You donot have the permit to do the following changes.");
 
 					}elseif(!celestaid_exist_present_user($celestaid)){
@@ -552,7 +554,7 @@ function registrar_register(){
 					}else{
 						set_message("<p class='bg-danger text-center'>Sorry we failed to send the confirmation mail to the user.</p>");
 					}		 			
-		 		}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()==2))
+		 		}elseif((celestaid_exist_present_user($celestaid)) && (getPermit()==2 || getPermit()==0))
 		 		{
 		 			//$sql2="UPDATE present_users SET "
 		 			$sql3="SELECT total_charge,registration_charge,tshirt_charge,bandpass_charge FROM present_users WHERE celestaid='".escape($celestaid)."' ";
@@ -611,7 +613,7 @@ function total_register(){
 	      				<td> Not Authorized</td>
 	      				<td>".$row['qrcode']."</td>
 	    			</tr>";
-    		}elseif($permit==2){
+    		}elseif($permit==2 || $permit==0){
     			echo "<tr>
 						<th scope='row'>".$count."</th>
 	      				<td>".$row['celestaid']."</td>
@@ -630,8 +632,8 @@ function total_register(){
 
 //Attaching the qr code generator
 function generateQRCode($celestaid,$first_name,$last_name){
-	include("../functions/qrCodeGenerator/qrlib.php");
-	QRcode::png($celestaid."/".$first_name."/".$last_name,"../assets/qrcodes/".$celestaid.".png","H","10","10");
+	include("./../user/functions/qrCodeGenerator/qrlib.php");
+	QRcode::png($celestaid."/".$first_name."/".$last_name,"./../user/assets/qrcodes/".$celestaid.".png","H","10","10");
 }
 
 //Registers users who donot have celestaid
@@ -651,7 +653,7 @@ function new_register(){
 	 		$gender=($_POST['gender']);
 	 		$reg=$_POST['registration_charge'];
 	 		$tshirt=$_POST['tshirt_charge'];
-	 		$bandpass=$_POST['bandpass_charge'];
+			 $bandpass=$_POST['bandpass_charge'];
 
 	 		if($password!=$confirm_password){
 	 			$errors[]="Both the password fields are not equal.";
@@ -682,7 +684,6 @@ function new_register(){
 
 //Register the new user into both the database
 function new_register_user($first_name,$last_name,$phone,$college,$email,$password,$gender){
-	
 	$first_name=escape($first_name);
 	$last_name=escape($last_name);
 	$phone=escape($phone);
@@ -702,7 +703,6 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$registration_charge=0;
 	$bandpass_charge=0;
 	$tshirt_charge=0;
-
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge=$price_reg;
@@ -720,13 +720,11 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
 	}
 
-
 	$registrar_name=$_COOKIE['registrar'];
-
 	$password=md5($password);
 	$celestaid=getCelestaId();
 	generateQRCode($celestaid,$first_name,$last_name);
-	$qrcode="http://localhost:8888/login/assets/qrcodes/".$celestaid.".png";
+	$qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
 
 	//CONTENTS OF EMAIL
 	$subject="Activate Celesta Account";
@@ -738,6 +736,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		</p>
 	";
 	$header="From: hayyoulistentome@gmail.com";
+	
 	//Added to database if mail is sent successfully
 	if(send_email($email,$subject,$msg,$header)){
 
@@ -772,7 +771,7 @@ function show_ca_users(){
 
 		$data=array();
 		while ($row = $result->fetch_assoc()) {
-    		if($permit==3){
+    		if($permit==3 || $permit==0){
 				$data[]=$row;
     		}
 		}

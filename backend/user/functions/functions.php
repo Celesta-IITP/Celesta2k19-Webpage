@@ -137,10 +137,6 @@ function login_signup(){
 	 		$errors[]="Your first name cannot be less than {$min}";
 	 	}
 
-	 	 if(strlen($last_name)<$min){
-	 		$errors[]="Your last name cannot be less than {$min}";
-	 	}
-
 	 	if(strlen($phone)<10){
 	 		$errors[]="Your phone number cannot be less than 10 digits.";
 	 	}
@@ -162,7 +158,7 @@ function login_signup(){
 	 	}
 
 	 	if($password!==$confirm_password){
-	 		$errors[]="Your password fields donot match";
+	 		$errors[]="Your password fields didn't match";
 		 }
 		 
 		 if(strlen($referral_id)!=8){
@@ -181,7 +177,7 @@ function login_signup(){
 	 	}else{
 	 		if(register_user($first_name,$last_name,$phone,$college,$email,$password,$gender, $referral_id)){
 
-	 			redirect("index.php");
+	 			redirect("../index.php");
 	 			return json_encode("200");//Registration success
 	 		}
 	 		else{
@@ -244,7 +240,7 @@ function validate_ca_registration(){
 	 	}else{
 	 		if(ca_register($first_name,$last_name,$phone,$college,$email,$password,$gender)){
 
-	 			redirect("index.php");
+	 			//redirect("index.php");
 	 			return json_encode("200");//Registration success
 			 }else{
 	 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
@@ -333,7 +329,7 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password,$
 			Your Celesta Id is ".$celestaid.". <br/>
 			You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
 		Please click the link below to activate your Account and login.<br/>
-			http://localhost:8888/login/activate.php?email=$email&code=$validation_code
+			http://localhost:8888/Celesta2k19-Webpage/backend/user/activate.php?email=$email&code=$validation_code
 			</p>
 		";
 		$header="From: noreply@yourwebsite.com";

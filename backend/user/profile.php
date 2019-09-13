@@ -34,9 +34,9 @@
             <i class="menu_close fa fa-times fa-lg"></i>
         </span>
         <ul class="menu_items">
-            <li><a href="../index.html"><i class="icon fa fa-home fa-2x"></i> Home</a></li>
-            <li><a href="../events.html"><i class="icon fa fa-heart fa-2x"></i> Events</a></li>
-            <li><a href="../team.html"><i class="icon fa fa-users fa-2x"></i> Team</a></li>
+            <li><a href="./../../index.html"><i class="icon fa fa-home fa-2x"></i> Home</a></li>
+            <li><a href="./../../events.html"><i class="icon fa fa-heart fa-2x"></i> Events</a></li>
+            <li><a href="./../../team.html"><i class="icon fa fa-users fa-2x"></i> Team</a></li>
         </ul>
         <main class="content">
             <div class="content_inner">
@@ -59,11 +59,7 @@
                                 <div class="inner-box">
                                     <div class="image-box">
                                         <figure class="image">
-                                            <?php if($profile['gender']=="f") { ?>
-                                                <img src="./profile/images/female.png" alt="">
-                                            <?php } else { ?>
-                                                <img src="./profile/images/male.jpg" alt="">
-                                            <?php } ?>
+                                            <img src="<?php echo $imgsrc ?>">
                                             <div class="social-links">
                                                 <h5 class="text-center" style="color: #fff"><?php echo $profile['first_name'] ." ". $profile['last_name'] ?></h5>
                                             </div>
