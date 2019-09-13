@@ -632,8 +632,8 @@ function total_register(){
 
 //Attaching the qr code generator
 function generateQRCode($celestaid,$first_name,$last_name){
-	include("../functions/qrCodeGenerator/qrlib.php");
-	QRcode::png($celestaid."/".$first_name."/".$last_name,"../assets/qrcodes/".$celestaid.".png","H","10","10");
+	include("./../user/functions/qrCodeGenerator/qrlib.php");
+	QRcode::png($celestaid."/".$first_name."/".$last_name,"../../assets/qrcodes/".$celestaid.".png","H","10","10");
 }
 
 //Registers users who donot have celestaid
@@ -653,7 +653,7 @@ function new_register(){
 	 		$gender=($_POST['gender']);
 	 		$reg=$_POST['registration_charge'];
 	 		$tshirt=$_POST['tshirt_charge'];
-	 		$bandpass=$_POST['bandpass_charge'];
+			 $bandpass=$_POST['bandpass_charge'];
 
 	 		if($password!=$confirm_password){
 	 			$errors[]="Both the password fields are not equal.";
@@ -684,7 +684,7 @@ function new_register(){
 
 //Register the new user into both the database
 function new_register_user($first_name,$last_name,$phone,$college,$email,$password,$gender){
-	
+	echo "Testing 1";
 	$first_name=escape($first_name);
 	$last_name=escape($last_name);
 	$phone=escape($phone);
@@ -704,7 +704,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$registration_charge=0;
 	$bandpass_charge=0;
 	$tshirt_charge=0;
-
+	echo "Testing 2";
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge=$price_reg;
@@ -722,13 +722,14 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
 	}
 
-
+	echo "Testing 3";
 	$registrar_name=$_COOKIE['registrar'];
-
+	echo "Testing 4";
 	$password=md5($password);
 	$celestaid=getCelestaId();
 	generateQRCode($celestaid,$first_name,$last_name);
-	$qrcode="http://localhost:8888/login/assets/qrcodes/".$celestaid.".png";
+	$qrcode="http://localhost:8888/Celesta2k19-Webpage/assets/qrcodes/".$celestaid.".png";
+	echo "Testing 5";
 
 	//CONTENTS OF EMAIL
 	$subject="Activate Celesta Account";
@@ -740,6 +741,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		</p>
 	";
 	$header="From: hayyoulistentome@gmail.com";
+	
 	//Added to database if mail is sent successfully
 	if(send_email($email,$subject,$msg,$header)){
 
