@@ -93,6 +93,17 @@
                             <div class="form-group row">
                                 <div class="col-sm-10">
                                     <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="college_stud" name='college_stud'>
+                                        <label class="form-check-label" for="college_stud">
+                                            IIT Patna Student
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="tshirt_charge" name='tshirt_charge'>
                                         <label class="form-check-label" for="tshirt_charge">
                                             T-Shirt (Rs 300)
