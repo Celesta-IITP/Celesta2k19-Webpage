@@ -633,7 +633,7 @@ function total_register(){
 //Attaching the qr code generator
 function generateQRCode($celestaid,$first_name,$last_name){
 	include("./../user/functions/qrCodeGenerator/qrlib.php");
-	QRcode::png($celestaid."/".$first_name."/".$last_name,"../../assets/qrcodes/".$celestaid.".png","H","10","10");
+	QRcode::png($celestaid."/".$first_name."/".$last_name,"./../user/assets/qrcodes/".$celestaid.".png","H","10","10");
 }
 
 //Registers users who donot have celestaid
@@ -728,7 +728,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$password=md5($password);
 	$celestaid=getCelestaId();
 	generateQRCode($celestaid,$first_name,$last_name);
-	$qrcode="http://localhost:8888/Celesta2k19-Webpage/assets/qrcodes/".$celestaid.".png";
+	$qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
 	echo "Testing 5";
 
 	//CONTENTS OF EMAIL
