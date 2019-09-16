@@ -726,7 +726,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$password=md5($password);
 	$celestaid=getCelestaId();
 	generateQRCode($celestaid,$first_name,$last_name);
-	$qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
+	$qrcode="https://celesta.org.in//backend/user/assets/qrcodes/".$celestaid.".png";
 
 	//CONTENTS OF EMAIL
 	$subject="Activate Celesta Account";
