@@ -177,7 +177,7 @@ function login_signup(){
 	 	}else{
 	 		if(register_user($first_name,$last_name,$phone,$college,$email,$password,$gender, $referral_id)){
 
-	 			redirect("reg.php");
+	 			redirect("display.php");
 	 			return json_encode("200");//Registration success
 	 		}
 	 		else{
