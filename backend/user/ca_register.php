@@ -18,6 +18,7 @@
 	<div class="wrapper">
 		<div class="container">
 			<h1>Register for Campus Ambassador</h1>
+			<?php display_message() ?>
 			<?php validate_ca_registration() ?>
 			<form class="form" method="POST" id="signup-form">
 				<input type="text" class="form-input" name="first_name" id="first_name" placeholder="First Name" />
