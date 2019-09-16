@@ -177,7 +177,7 @@ function login_signup(){
 	 	}else{
 	 		if(register_user($first_name,$last_name,$phone,$college,$email,$password,$gender, $referral_id)){
 
-	 			redirect("../index.php");
+	 			redirect("display.php");
 	 			return json_encode("200");//Registration success
 	 		}
 	 		else{
@@ -240,7 +240,7 @@ function validate_ca_registration(){
 	 	}else{
 	 		if(ca_register($first_name,$last_name,$phone,$college,$email,$password,$gender)){
 
-	 			//redirect("index.php");
+	 			redirect("ca_register.php");
 	 			return json_encode("200");//Registration success
 			 }else{
 	 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
@@ -267,8 +267,7 @@ function ca_register($first_name, $last_name, $phone, $college, $email, $passwor
 		$celestaid=getCelestaId();
 		$validation_code=md5($celestaid+microtime());
 		generateQRCode($celestaid,$first_name,$last_name);
-		$qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
-		echo"<img src='assets/qrcodes/".$celestaid.".png'/>";
+		$qrcode="https://celesta.org.in/backend/user/assets/qrcodes/".$celestaid.".png";
 
 		//CONTENTS OF EMAIL
 		$subject="Activate Celesta Account";
@@ -276,7 +275,7 @@ function ca_register($first_name, $last_name, $phone, $college, $email, $passwor
 			Your Celesta Id is ".$celestaid.". <br/>
 			You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
 		Please click the link below to activate your Account and login.<br/>
-			http://localhost:8888/Celesta2k19-Webpage/backend/user/activate.php?email=$email&code=$validation_code&ca=campus_ambassador_celesta2k19
+			<a href='https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code&ca=campus_ambassador_celesta2k19'>https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code&ca=campus_ambassador_celesta2k19</a>
 			</p>
 		";
 		$header="From: noreply@yourwebsite.com";
@@ -320,8 +319,9 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password,$
 		$celestaid=getCelestaId();
 		$validation_code=md5($celestaid+microtime());
 		generateQRCode($celestaid,$first_name,$last_name);
-		$qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
-		echo"<img src='assets/qrcodes/".$celestaid.".png'/>";
+		// $qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
+		$qrcode="https://celesta.org.in/backend/user/assets/qrcodes/".$celestaid.".png";
+		// echo"<img src='assets/qrcodes/".$celestaid.".png'/>";
 
 		//CONTENTS OF EMAIL
 		$subject="Activate Celesta Account";
@@ -329,7 +329,7 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password,$
 			Your Celesta Id is ".$celestaid.". <br/>
 			You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
 		Please click the link below to activate your Account and login.<br/>
-			http://localhost:8888/Celesta2k19-Webpage/backend/user/activate.php?email=$email&code=$validation_code
+			<a href='https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code'>https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code</a>
 			</p>
 		";
 		$header="From: noreply@yourwebsite.com";
@@ -400,7 +400,7 @@ function activate_user(){
 					}
 				}
 				set_message("<p class='bg-success'> Your account has been activated.</p>");
-				redirect("login.php");
+				redirect("reg.php");
 				return json_encode("400");//Success
 			}
 			else{
@@ -513,7 +513,7 @@ function recover_password(){
 				$subject = "Please reset your Celesta ID password.";
 				$message = "<p>Your celesta id is: {$celestaid}.<br/>
 					Your password reset code is {$validation_code} <br/>
-					Click here to reset your password http://localhost:8888/login/code.php?email=$email&code=$validation_code </p>";
+					Click here to reset your password https://celesta.org.in/backend/user/code.php?email=$email&code=$validation_code </p>";
 				$header="From: noreply@yourwebsite.com";
 				if (send_email($email,$subject,$message,$header)){
 					echo "Email sent";
@@ -637,8 +637,8 @@ function reset_password(){
 								$result3=query($sql3);
 							}
 							
-							set_message("<p class='bg-success text-center'> Your apassword has been resetted.</p>");
-							redirect("login.php");
+							set_message("<p class='bg-success text-center'> Your password has been resetted.</p>");
+							redirect("reg.php");
 						}else{
 							echo validation_errors("Failed to reset password. Try again later.");
 						}

@@ -68,20 +68,17 @@ function celestaid_exist_present_user($celestaid){
 
 //Logging in the admin registrar
 function login_registrar(){
-	//echo "Succesfull";
 	if($_SERVER['REQUEST_METHOD']=='POST'){
 		$registrar=clean($_POST['email']);
  		$password=clean($_POST['password']);
  		$remember=isset($_POST['remember']);
-
  		$password=md5($password);
-
  		$sql="SELECT id, permit FROM admins WHERE email='".$registrar."' AND password='".$password."'";
  		$result=query($sql);
 
  		if(row_count($result)==1){
  			$row=fetch_array($result);
- 			$permit=$row['permit'];
+			 $permit=$row['permit'];
 
  			$_SESSION['registrar']=$registrar;
  			$_SESSION['permit']=$permit;
@@ -97,6 +94,8 @@ function login_registrar(){
 				 redirect("cas.php");
 			 }elseif($permit==0){ //Super Admin has access to everything
 				 redirect("total_register.php");
+			 }elseif($permit==4){
+				 return redirect("./events.php");
 			 }
 			 else{
 				 echo "Logged in - ".$permit;
@@ -121,6 +120,9 @@ function registrar_logged_in(){
 function getPermit(){
 	if(isset($_SESSION['permit'])){
 		return $_SESSION['permit'];
+	}
+	if(isset($_COOKIE['permit'])){
+		return $_COOKIE['permit'];
 	}
 }
 
@@ -724,7 +726,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$password=md5($password);
 	$celestaid=getCelestaId();
 	generateQRCode($celestaid,$first_name,$last_name);
-	$qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
+	$qrcode="https://celesta.org.in//backend/user/assets/qrcodes/".$celestaid.".png";
 
 	//CONTENTS OF EMAIL
 	$subject="Activate Celesta Account";
@@ -759,12 +761,14 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	}
 }
 
+
+/******************************************* MPR Section **************************************************/
 // Show the list of campus ambassador to the MPR people
 
 function show_ca_users(){
 	if(!registrar_logged_in()){
 		redirect("login.php");
-	}else{
+	}elseif(getPermit()==0 || getPermit()==3){
 		$sql="SELECT first_name, last_name, college, celestaid, phone, excitons, gravitons FROM ca_users WHERE active=1";
 		$result=query($sql);
 		$permit=getPermit();
@@ -850,5 +854,14 @@ function cancel_ca(){
 	redirect('./cas.php');
 	unset($_SESSION['searched_ca']);
 }
+/******************************************* MPR Section Ends**************************************************/
+
+
+
+
+/******************************************* Events Section **************************************************/
+/** This section of the page contains the backend functions to add and modify events.
+ * Meri jaan Atreyee, tere bina kuch idea nahi ata yaar. Ab maan bhi jao. Paas aa jao. Kitne din aur dur rakhoge.
+ */
 
 ?>

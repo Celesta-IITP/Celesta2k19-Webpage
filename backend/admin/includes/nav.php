@@ -28,6 +28,12 @@
       </li>
        <?php }?>
 
+    <?php if($permit==4 || $permit==0){?>
+      <li class="nav-item">
+        <a class="nav-link" href="events.php">Events</a>
+      </li>
+     <?php }?>
+
       <?php
         if(registrar_logged_in()){
           echo "<li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>";
