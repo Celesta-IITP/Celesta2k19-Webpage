@@ -1,232 +1,308 @@
 {
-    "filter": {
-        "events": [
-            {
-                "data-filter": "buildit",
-                "name": "Build It!"
-            },
-            {
-                "data-filter": "treasurehunt",
-                "name": "Treasure Hunt"
-            },
-            {
-                "data-filter": "nontech",
-                "name": "Non Tech"
-            },
-            {
-                "data-filter": "codinganddesign",
-                "name": "Coding And Design"
-            },
-            {
-                "data-filter": "management",
-                "name": "Management"
-            },
-            {
-                "data-filter": "quiz",
-                "name": "Quiz"
-            },
-            {
-                "data-filter": "robotics",
-                "name": "Robotics"
-            }
-        ],
-        "workshops": [
-            {
-                "data-filter": "roboticsandiot",
-                "name": "Robotics And IOT"
-            },
-            {
-                "data-filter": "automobiles",
-                "name": "Automobiles and IC Engines"
-            }
-        ],
-        "exhibitions": [
-            {
-                "data-filter": "exhibitions",
-                "name": "Exhibitions"
-            },
-            {
-                "data-filter": "conclave",
-                "name": "Conclave"
-            }
-        ],
-        "guesttalks": [],
-        "pronites": []
-    },
-    "events": [
-        {
-            "filter": "buildit",
-            "name": "Aqua Soccer",
-            "image": "./img/events/aquasoccer.jpeg"
-        },
-        {
-            "filter": "buildit",
-            "name": "Robo Wars",
-            "image": "./img/events/robowars.jpeg"
-        },
-        {
-            "filter": "buildit",
-            "name": "Chem-E-Switch",
-            "image": "./img/events/chemes.jpeg"
-        },
-        {
-            "filter": "treasurehunt",
-            "name": "NJATH",
-            "image": "./img/events/njath.jpeg"
-        },
-        {
-            "filter": "treasurehunt",
-            "name": "Static Rush",
-            "image": "./img/events/staticrush.jpeg"
-        },
-        {
-            "filter": "nontech",
-            "name": "Lock N Load",
-            "image": "./img/events/locknload.jpeg"
-        },
-        {
-            "filter": "nontech",
-            "name": "Tech Photography",
-            "image": "./img/events/techphoto.jpeg"
-        },
-        {
-            "filter": "nontech",
-            "name": "Tech Sketching",
-            "image": "./img/events/techsketch.jpeg"
-        },
-        {
-            "filter": "nontech",
-            "name": "Graffiti",
-            "image": "./img/events/graffitti.jpeg"
-        },
-        {
-            "filter": "nontech",
-            "name": "Hero No Battle Royale",
-            "image": "./img/events/heronobattle.jpg"
-        },
-        {
-            "filter": "nontech",
-            "name": "Parliamentary Debate",
-            "image": "./img/events/parliamentary.jpeg"
-        },
-        {
-            "filter": "codinganddesign",
-            "name": "Byterace",
-            "image": "./img/events/byterace.jpg"
-        },
-        {
-            "filter": "codinganddesign",
-            "name": "Cad Maestro",
-            "image": "./img/events/cad.jpeg"
-        },
-        {
-            "filter": "management",
-            "name": "IPL Auction",
-            "image": "./img/events/ipl.jpeg"
-        },
-        {
-            "filter": "management",
-            "name": "Stockmart",
-            "image": "./img/events/stockmart.jpeg"
-        },
-        {
-            "filter": "management",
-            "name": "Pitch Your Idea",
-            "image": "./img/events/pitchyouridea.jpeg"
-        },
-        {
-            "filter": "management",
-            "name": "Six Thinking Hats",
-            "image": "./img/events/6thinking.jpg"
-        },
-        {
-            "filter": "quiz",
-            "name": "Astroparticle Voyage",
-            "image": "./img/events/astro.jpeg"
-        },
-        {
-            "filter": "quiz",
-            "name": "Electroexquizite",
-            "image": "./img/events/electroex.jpeg"
-        },
-        {
-            "filter": "robotics",
-            "name": "Drone Tussle",
-            "image": "./img/events/drone.jpeg"
-        },
-        {
-            "filter": "robotics",
-            "name": "Flight To Future",
-            "image": "./img/events/flight.jpeg"
-        },
-        {
-            "filter": "robotics",
-            "name": "Robo Race",
-            "image": "./img/events/roborace.jpeg"
-        },
-        {
-            "filter": "robotics",
-            "name": "Line Follower",
-            "image": "./img/events/linefollower.jpeg"
-        },
-        {
-            "filter": "robotics",
-            "name": "Robowars (school)",
-            "image": "./img/events/roboschool.jpeg"
-        },
-        {
-            "filter": "robotics",
-            "name": "Robo Soccer",
-            "image": "./img/events/robosoccer.jpeg"
-        }
-    ],
-    "workshops": [
-        {
-            "filter": "roboticsandiot",
-            "name": "Robotics And IOT",
-            "image": "./img/workshops/robotics1.jpg"
-        },
-        {
-            "filter": "automobiles",
-            "name": "Automobiles And IC Engines",
-            "image": "./img/workshops/robotics1.jpg"
-        }
-    ],
-    "exhibitions": [
-        {
-            "filter": "exhibitions",
-            "name": "Jigyasa",
-            "image": "./img/exhibitions/jigyasa.jpg"
-        },
-        {
-            "filter": "conclave",
-            "name": "Engineers Conclave",
-            "image": "./img/exhibitions/conclave1.jpg"
-        }
-    ],
-    "guesttalks": [
-        {
-            "filter": "",
-            "name": "Rahul Singh",
-            "image": "./img/guesttalks/rahul.jpeg"
-        },
-        {
-            "filter": "",
-            "name": "Ashish Jain",
-            "image": "./img/guesttalks/ashishjain.jpeg"
-        },
-        {
-            "filter": "",
-            "name": "Hitesh Choudhary",
-            "image": "./img/guesttalks/hitesh.jpeg"
-        }
-    ],
-    "pronites": [
-        {
-            "filter": "",
-            "name": "Jaspreet Singh",
-            "image": "./img/pronites/pronite1.jpeg"
-        }
-    ]
+	"filter": {
+		"events": [{
+				"data-filter": "scme",
+				"name": "SCME"
+			},
+			{
+				"data-filter": "njack",
+				"name": "NJACK"
+			},
+			{
+				"data-filter": "sparkonics",
+				"name": "SPARKONICS"
+			},
+			{
+				"data-filter": "chessx",
+				"name": "CHESSX"
+			},
+			{
+				"data-filter": "ace",
+				"name": "ACE"
+			},
+			{
+				"data-filter": "eclub",
+				"name": "E-CLUB"
+			},
+			{
+				"data-filter": "locknload",
+				"name": "LOCK-N-LOAD"
+			},
+			{
+				"data-filter": "anonymous",
+				"name": "ANONYMOUS"
+			},
+			{
+				"data-filter": "robotics",
+				"name": "ROBOTICS"
+			},
+			{
+				"data-filter": "mainstage",
+				"name": "MAIN STAGE"
+			},
+			{
+				"data-filter": "funevents",
+				"name": "FUN EVENTS"
+			},
+			{
+				"data-filter": "tinkererlab",
+				"name": "TINKERER LAB"
+			}
+		],
+		"workshops": [{
+				"data-filter": "roboticsandiot",
+				"name": "Robotics And IOT"
+			},
+			{
+				"data-filter": "automobiles",
+				"name": "Automobiles and IC Engines"
+			}
+		],
+		"exhibitions": [{
+				"data-filter": "exhibitions",
+				"name": "Exhibitions"
+			},
+			{
+				"data-filter": "conclave",
+				"name": "Conclave"
+			}
+		],
+		"guesttalks": [],
+		"pronites": []
+	},
+	"events": [{
+			"id": "scme1",
+			"filter": "scme",
+			"name": "Robowars",
+			"image": "./img/eve.png",
+			"organizers": ["Rishi", "Shubham"],
+			"rulebook": "",
+			"prize": "5"
+		},
+		{
+			"id": "njack1",
+			"filter": "njack",
+			"name": "Byte Race",
+			"image": "./img/eve.png",
+			"organizers": ["Abhishek Chopra"],
+			"rulebook": "",
+			"prize": "4"
+		},
+		{
+			"id": "njack2",
+			"filter": "njack",
+			"name": "NJATH",
+			"image": "./img/eve.png",
+			"organizers": ["Arohan PAnda", "Sahebjeet Singh"],
+			"rulebook": "",
+			"prize": "7"
+		},
+		{
+			"id": "sparkonics1",
+			"filter": "sparkonics",
+			"name": "Static Rush",
+			"image": "./img/eve.png",
+			"organizers": ["Satyam Kumar"],
+			"rulebook": "",
+			"prize": "6"
+		},
+		{
+			"id": "chessx1",
+			"filter": "chessx",
+			"name": "Metallurgy Quiz",
+			"image": "./img/eve.png",
+			"organizers": ["Rishi", "Shubham"],
+			"rulebook": "",
+			"prize": "2"
+		},
+		{
+			"id": "ace1",
+			"filter": "ace",
+			"name": "City of Smart Clans",
+			"image": "./img/eve.png",
+			"organizers": ["Maurya Bhatt"],
+			"rulebook": "",
+			"prize": "6"
+		},
+		{
+			"id": "eclub1",
+			"filter": "eclub",
+			"name": "IPL Auction",
+			"image": "./img/eve.png",
+			"organizers": ["Rama Krishan", "Niranjan"],
+			"rulebook": "",
+			"prize": "6"
+		},
+		{
+			"id": "locknload1",
+			"filter": "locknload",
+			"name": "PUBG",
+			"image": "./img/eve.png",
+			"organizers": ["Aviral Agarwal"],
+			"rulebook": "",
+			"prize": "5"
+		},
+		{
+			"id": "locknload2",
+			"filter": "locknload",
+			"name": "FIFA",
+			"image": "./img/eve.png",
+			"organizers": ["Kamal Kaushik", "Pranshu Kapri", "Shashwat Mahajan"],
+			"rulebook": "",
+			"prize": "5"
+		},
+		{
+			"id": "locknload3",
+			"filter": "locknload",
+			"name": "CS-GO",
+			"image": "./img/eve.png",
+			"organizers": ["Ayush Shah", "Aman Gupta"],
+			"rulebook": "",
+			"prize": "5"
+		},
+		{
+			"id": "anonymous1",
+			"filter": "anonymous",
+			"name": "Tech Photography",
+			"image": "./img/eve.png",
+			"organizers": ["Durgesh Singh"],
+			"rulebook": "",
+			"prize": "5"
+		},
+		{
+			"id": "anonymous2",
+			"filter": "anonymous",
+			"name": "Parliamentary Debate",
+			"image": "./img/eve.png",
+			"organizers": ["Omkar Anustoop", "Shivani Dixit"],
+			"rulebook": "",
+			"prize": "3"
+		},
+		{
+			"id": "robotics1",
+			"filter": "robotics",
+			"name": "Drone Tussle",
+			"image": "./img/eve.png",
+			"organizers": ["Aviral Agarwal"],
+			"rulebook": "",
+			"prize": "50"
+		},
+		{
+			"id": "robotics2",
+			"filter": "robotics",
+			"name": "RC Plane",
+			"image": "./img/eve.png",
+			"organizers": ["Bhumika Shivani"],
+			"rulebook": "",
+			"prize": "20"
+		},
+		{
+			"id": "robotics3",
+			"filter": "robotics",
+			"name": "Robo Race",
+			"image": "./img/eve.png",
+			"organizers": ["Maurya Bhatt"],
+			"rulebook": "",
+			"prize": "4"
+		},
+		{
+			"id": "robotics4",
+			"filter": "robotics",
+			"name": "Robo Soccer",
+			"image": "./img/eve.png",
+			"organizers": ["Durgesh Singh"],
+			"rulebook": "",
+			"prize": "4"
+		},
+		{
+			"id": "nss1",
+			"filter": "nss",
+			"name": "Ashraya",
+			"image": "./img/eve.png",
+			"organizers": ["Kishan Kumar"],
+			"rulebook": "",
+			"prize": "5"
+		},
+		{
+			"id": "mainstage1",
+			"filter": "mainstage",
+			"name": "Exhibition",
+			"image": "./img/eve.png",
+			"organizers": ["Supra", "Robocon", "Air Force", "Bionic Arm"],
+			"rulebook": "",
+			"prize": "8"
+		},
+		{
+			"id": "mainstage2",
+			"filter": "mainstage",
+			"name": "Research Conclave",
+			"image": "./img/eve.png",
+			"organizers": ["Piyush Chauhan"],
+			"rulebook": "",
+			"prize": "3"
+		},
+		{
+			"id": "funevents1",
+			"filter": "funevents",
+			"name": "Ozone",
+			"image": "./img/eve.png",
+			"organizers": [""],
+			"rulebook": "",
+			"prize": ""
+		},
+		{
+			"id": "tinkererlab1",
+			"filter": "tinkererlab",
+			"name": "Summit",
+			"image": "./img/eve.png",
+			"organizers": [""],
+			"rulebook": "",
+			"prize": ""
+		}
+	],
+	"workshops": [{
+			"id": "roboticsandiot1",
+			"filter": "roboticsandiot",
+			"name": "Robotics And IOT",
+			"image": "./img/eve.png",
+			"organizers": [],
+			"rulebook": "",
+			"prize": "1"
+		},
+		{
+			"id": "roboticsandiot2",
+			"filter": "automobiles",
+			"name": "Automobiles And IC Engines",
+			"image": "./img/eve.png",
+			"organizers": [],
+			"rulebook": "",
+			"prize": "1"
+		}
+	],
+	"exhibitions": [{
+			"id": "exhibitions1",
+			"filter": "exhibitions",
+			"name": "Jigyasa",
+			"image": "./img/eve.png",
+			"organizers": [],
+			"rulebook": "",
+			"prize": "1"
+		},
+		{
+			"id": "exhibitions2",
+			"filter": "conclave",
+			"name": "Engineers Conclave",
+			"image": "./img/eve.png",
+			"organizers": [],
+			"rulebook": "",
+			"prize": "1"
+		}
+	],
+	"guesttalks": [
+
+	],
+	"pronites": [
+
+	]
 
 }

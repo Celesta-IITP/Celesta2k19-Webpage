@@ -1,13 +1,17 @@
 <?php
+    $id=$_GET['id'];
     $param=$_GET['data'];
     $strJsonFileContents = file_get_contents("data.json");
     $dataz = json_decode($strJsonFileContents, true);
     $data= $dataz[$param];
-    $filter=$dataz['filter'][$param];
-    // foreach($filter as $d){
-    //     echo $d['name'];
-    // }
+    $event;
+    foreach($data as $d){ 
+      if($d["id"]==$id){
+        $event=$d;
+      }
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,39 +66,20 @@
         <section id="gallery" class="section-bg">
           <div class="container">
             <header class="section-header">
-              <h3 class="section-title"><?php echo $param ?></h3>
+              <h3 class="section-title"><?php echo $event["name"] ?></h3>
             </header>
-
             <div class="row">
-              <div class="col-lg-12">
-                <ul id="gallery-flters">
-                  <li data-filter="*" class="filter-active">All</li>
-                  <?php foreach($filter as $f){ ?>
-                    <li data-filter=".filter-<?php echo $f['data-filter'] ?>"><?php echo $f['name'] ?></li>
-                  <?php } ?>
-                </ul>
+              <!-- <div class="col-lg-6 col-md-6">
+                <img src="<?php echo $event["image"] ?>" style="display: block; margin: auto">
+              </div> -->
+              <br><br>
+              <div class="col-lg-6 col-md-6">
+                <ul style="color: #fff">Organizers:</ul>
+                <?php foreach($event["organizers"] as $orgi) { ?>
+                  <li style="color: #fff"><?php echo $orgi ?></li>
+                <?php } ?>
               </div>
-            </div>
-
-            <div class="row gallery-container">
-
-            <?php foreach($data as $d){ ?>
-              <div class="col-lg-4 col-md-6 gallery-item filter-<?php echo $d['filter'] ?>">
-                <div class="gallery-wrap">
-                  <figure>
-                    <img src="<?php echo $d['image'] ?>" class="img-fluid" alt="" />
-                    <a href="<?php echo $d['image'] ?>" data-lightbox="gallery" data-title="<?php echo $d['name'] ?>" class="link-preview" title="Preview"><i
-                        class="ion ion-eye"></i></a>
-                  </figure>
-
-                  <div class="gallery-info">
-                    <h4><?php echo $d['name'] ?></h4>
-                    <a href="./eventsdetails.php?data=<?php echo $param ?>&id=<?php echo $d["id"] ?>">More details</a>
-                  </div>
-                </div>
               </div>
-            <?php } ?>
-
             </div>
           </div>
         </section>
