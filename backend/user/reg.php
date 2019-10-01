@@ -160,12 +160,12 @@
                     <div class="legal center">
                         <div class="col s12 m7 right">
                             <p class="grey-text policy center">By signing up, you agree on our <a href="#!">Privacy
-                                    Policy</a> and <a href="#!">Terms of Use</a> including <a href="#!">Cookie Use</a>.
+                                    Policy</a> and <a href="#!">Terms of Use</a>.
                             </p>
                         </div>
                         <div class="col s12 m5">
-                            <p class="center grey-text" style="font-size: 14px;">Coding : <a
-                                    href="http://fb.com/celyes01" class="main-title red-text" target="_blank">Celyes</a>
+                            <p class="center grey-text" style="font-size: 14px;">Get TechXiceted : <a
+                                    href="https://celesta.org.in" class="main-title red-text" target="_blank">Celesta'19</a>
                             </p>
                         </div>
                     </div>
