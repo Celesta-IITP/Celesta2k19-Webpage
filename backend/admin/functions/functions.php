@@ -864,4 +864,66 @@ function cancel_ca(){
  * Meri jaan Atreyee, tere bina kuch idea nahi ata yaar. Ab maan bhi jao. Paas aa jao. Kitne din aur dur rakhoge.
  */
 
+ // To get an event id
+function getEventId(){
+	$exist=true;
+	while ($exist) {
+		$eventid="ATM".mt_rand(1001,9999);
+		$exist=eventid_exists($eventid);
+	}
+	return $eventid;
+}
+
+//To check if the given event id already exists or not
+function eventid_exists($eventid){
+	$sql="SELECT id FROM events WHERE ev_id='$eventid'";
+	$result=query($sql);
+	if(row_count($result)==1){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+// Function to add events
+function addEvent(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+
+		$event_name=clean($_POST["event_name"]);
+		$event_category=clean($_POST["event_category"]);
+		$event_organizer = clean($_POST["event_organizer"]);
+		$ev_club = clean($_POST["ev_club"]);
+		$event_desc = clean($_POST["event_desc"]);
+		$event_date = clean($_POST["event_date"]);
+		$event_start_time = clean($_POST["event_start_time"]);
+		$event_end_time = clean($_POST["event_end_time"]);
+		$event_org_phone = clean($_POST["event_org_phone"]);
+
+		$event_id =getEventId();
+
+		$target_poster = "/img/";
+		$target_rulebook = "./../events/rulebook/";
+		
+		$target_poster_file=$target_poster.$_FILES['event_poster']['name'];
+		$target_rulebook_file=$target_rulebook.$_FILES['event_rulebook']['name'];
+
+		if(move_uploaded_file($_FILES["event_poster"]["name"],$target_poster_file)){
+			echo "Success";
+		}else{
+			echo "Failed";
+		}
+
+		// if ((move_uploaded_file($_FILES['event_poster']['tmp_name'], $target_poster)) && (move_uploaded_file($_FILES['event_rulebook']['tmp_name'], $target_rulebook)) ) {
+		// 	echo "SUccess";
+  		// }else{
+		// 	  echo "Failed";
+		//   }
+
+	}
+
+}
+
+
+
 ?>
