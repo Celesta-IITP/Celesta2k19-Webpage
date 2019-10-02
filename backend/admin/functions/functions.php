@@ -864,4 +864,91 @@ function cancel_ca(){
  * Meri jaan Atreyee, tere bina kuch idea nahi ata yaar. Ab maan bhi jao. Paas aa jao. Kitne din aur dur rakhoge.
  */
 
+ // To get an event id
+function getEventId(){
+	$exist=true;
+	while ($exist) {
+		$eventid="ATM".mt_rand(1001,9999);
+		$exist=eventid_exists($eventid);
+	}
+	return $eventid;
+}
+
+//To check if the given event id already exists or not
+function eventid_exists($eventid){
+	$sql="SELECT id FROM events WHERE ev_id='$eventid'";
+	$result=query($sql);
+	if(row_count($result)==1){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+// Function to add events
+function addEvent(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+
+		$event_name=clean($_POST["event_name"]);
+		$event_category=clean($_POST["event_category"]);
+		$event_organizer = clean($_POST["event_organizer"]);
+		$ev_club = clean($_POST["ev_club"]);
+		$event_desc = clean($_POST["event_desc"]);
+		$event_date = clean($_POST["event_date"]);
+		$event_start_time = clean($_POST["event_start_time"]);
+		$event_end_time = clean($_POST["event_end_time"]);
+		$event_org_phone = clean($_POST["event_org_phone"]);
+
+		$event_id =getEventId();
+
+		$target_poster = "./events/posters/";
+		$target_rulebook = "./events/rulebook/";
+		
+		$target_poster_file=$target_poster."$event_id"."_"."$event_name".".jpg";
+		$target_rulebook_file=$target_rulebook."$event_id"."_"."$event_name".".jpg";
+
+		if(!isset($_FILES["event_poster"]["tmp_name"]) && !isset($_FILES["event_rulebook"]["tmp_name"])){
+			echo "Please add files";
+		}
+
+		// Upload the file
+		if((move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_poster_file)) && (move_uploaded_file($_FILES["event_rulebook"]["tmp_name"],$target_rulebook_file))){
+			
+			$poster_url ="https://celesta.org.in/backend/admin".$target_poster_file;
+			$rulebook_url = "https://celesta.org.in/backend/admin".$target_rulebook_file;
+
+			$sql = "INSERT INTO events(ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time)";
+			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time')";
+			
+			$result = query($sql);
+			set_message("<p class='bg-success text-center'>Successfully added the event.<br> Event ID: $event_id</p>");
+			redirect("./events.php");
+
+		}else{
+			echo "Failed";
+		}
+	}
+}
+/********************************************** Addition of Events ends here *****************************************************/
+
+// Show the events created to the events people
+function show_events(){
+	if(!registrar_logged_in()){
+		redirect("login.php");
+	}elseif(getPermit()==0 || getPermit()==4){
+		$sql="SELECT ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time FROM events";
+		$result=query($sql);
+		$permit=getPermit();
+
+		$data=array();
+		while ($row = $result->fetch_assoc()) {
+    		if($permit==4 || $permit==0){
+				$data[]=$row;
+    		}
+		}
+		return $data;
+	}
+}
+
 ?>
