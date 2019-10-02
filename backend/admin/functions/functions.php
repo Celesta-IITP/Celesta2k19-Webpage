@@ -951,4 +951,47 @@ function show_events(){
 	}
 }
 
+/********************************************** Update of Events starts here *****************************************************/
+
+// Function that gathers details of the event by using the eventid.
+function getEvent($eventid){
+	if(!registrar_logged_in()){
+		redirect("login.php");
+		return false;
+	}
+	if(!eventExists($eventid)){
+		redirect("events.php");
+		return false;
+	}
+
+	$sql="SELECT ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time FROM events WHERE ev_id='$eventid'";
+	$result=query($sql);
+
+
+	$permit=getPermit();
+	$data=array();
+	if($permit==4 || $permit==0){
+		$data=fetch_array($result);
+	}
+	return $data;
+}
+
+// Function to handle update and cancel button accordingly
+function updateEventCalls(){
+
+}
+
+function eventExists($eventid){
+	$sql="SELECT id FROM events WHERE ev_id='$eventid'";
+	$result = query($sql);
+	if(row_count($result)==1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
+/**********************************************Update of Events ends here *********************************************************/
+
 ?>

@@ -26,7 +26,9 @@
 				<th scope="col">Event Category</th>
 			 	<th scope="col">Organizer</th>
 				<th scope="col">Organizer' Phone</th>
-                <th scope="col">Event Date</th>
+				<th scope="col">Event Date</th>
+				<th scope="col">Edit</th>
+				<th scope="col">Delete</th>
                 
 			</tr>
 		</thead>
@@ -34,13 +36,15 @@
 			<?php $count=1; foreach($events as $event) { ?>
 				<tr>
 					<th scope='row'><?php echo $count++; ?></th>
-					<td><?php echo $event['ev_id']; ?></td>
+					<td><?php echo $event['ev_id']; ?></a></td>
 					<td><?php echo $event['ev_name']; ?></td>
 					<td><?php echo $event['ev_club']; ?></td>
 					<td><?php echo $event['ev_category']; ?></td>
 					<td><?php echo $event['ev_organiser']; ?></td>
 					<td><?php echo $event['ev_org_phone']; ?></td>
 					<td><?php echo $event['ev_date']; ?></td>
+					<td><a href="./update_event.php?eventid=<?php echo $event['ev_id']; ?>"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
+					<td><a href="./update_event.php?eventid=<?php echo $event['ev_id']; ?>"><i class="material-icons" style="font-size:24px">delete</i></a></td>
 				</tr>
 			<?php } ?>
 		</tbody>
