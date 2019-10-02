@@ -951,4 +951,112 @@ function show_events(){
 	}
 }
 
+/********************************************** Update of Events starts here *****************************************************/
+
+// Function that gathers details of the event by using the eventid.
+function getEvent($eventid){
+	if(!registrar_logged_in()){
+		redirect("login.php");
+		return false;
+	}
+	if(!eventExists($eventid)){
+		redirect("events.php");
+		return false;
+	}
+
+	$sql="SELECT ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time FROM events WHERE ev_id='$eventid'";
+	$result=query($sql);
+
+
+	$permit=getPermit();
+	$data=array();
+	if($permit==4 || $permit==0){
+		$data=fetch_array($result);
+	}
+	return $data;
+}
+
+// Function to handle update and cancel button accordingly
+function updateEventCalls(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		if(isset($_POST["update_event"])){
+			updateEvent();
+		}elseif(isset($_POST["cancel_event"])){
+			redirect("events.php");
+		}elseif(isset($_POST["delete_event"])){
+			deleteEvent();
+		}
+	}
+
+}
+
+// Function to update event details
+function updateEvent(){
+
+		$event_name=clean($_POST["event_name"]);
+		$event_category=clean($_POST["event_category"]);
+		$event_organizer = clean($_POST["event_organizer"]);
+		$ev_club = clean($_POST["ev_club"]);
+		$event_desc = clean($_POST["event_desc"]);
+		$event_date = clean($_POST["event_date"]);
+		$event_start_time = clean($_POST["event_start_time"]);
+		$event_end_time = clean($_POST["event_end_time"]);
+		$event_org_phone = clean($_POST["event_org_phone"]);
+		$eventid=clean($_POST["eventid"]);
+
+		$sql = "UPDATE events SET ev_name='$event_name', ev_category='$event_category', ev_description='$event_desc', ev_organiser='$event_organizer', ev_club='$ev_club', ev_org_phone='$event_org_phone', ev_date='$event_date', ev_start_time='$event_start_time', ev_end_time='$event_end_time' WHERE ev_id='$eventid'";
+		$result = query($sql);
+		confirm($result);
+
+		if(isset($_FILES["event_poster"])){
+			$target_poster = "./events/posters/";
+			
+			$target_poster_file=$target_poster."$eventid"."_"."$event_name".".jpg";
+			if(move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_poster_file)){
+				$poster_url ="https://celesta.org.in/backend/admin".$target_poster_file;
+				$sql1= "UPDATE events SET ev_poster_url='$poster_url'  WHERE ev_id='$eventid'";
+				$result1=query($sql1);
+			}
+		}
+
+		if(isset($_FILES["event_rulebook"])){
+			$target_rulebook = "./events/rulebook/";
+			
+			$target_rulebook_file=$target_rulebook."$eventid"."_"."$event_name".".pdf";
+			if(move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_rulebook_file)){
+				$rulebook_url ="https://celesta.org.in/backend/admin".$target_rulebook_file;
+				$sql1= "UPDATE events SET ev_rule_book_url='$rulebook_url'  WHERE ev_id='$eventid'";
+				$result1=query($sql1);
+			}
+		}
+		set_message("<p class='bg-success text-center'>Successfully updated the event.<br> Event ID: $eventid</p>");
+		redirect("./events.php");
+
+
+}
+
+// Function to delete event
+function deleteEvent(){
+	$eventid=clean($_POST["eventid"]);
+	$sql= "DELETE FROM events where ev_id='$eventid'";
+	$result=query($sql);
+	confirm($result);
+	set_message("<p class='bg-danger text-center'>Successfully deleted the event.<br> Event ID: $eventid</p>");
+	redirect("./events.php");
+}
+
+//Function  to check existence of the event
+function eventExists($eventid){
+	$sql="SELECT id FROM events WHERE ev_id='$eventid'";
+	$result = query($sql);
+	if(row_count($result)==1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
+/**********************************************Update of Events ends here *********************************************************/
+
 ?>
