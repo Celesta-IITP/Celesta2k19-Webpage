@@ -240,7 +240,7 @@ function validate_ca_registration(){
 	 	}else{
 	 		if(ca_register($first_name,$last_name,$phone,$college,$email,$password,$gender)){
 
-	 			redirect("ca_register.php");
+	 			redirect("display.php");
 	 			return json_encode("200");//Registration success
 			 }else{
 	 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
@@ -273,6 +273,7 @@ function ca_register($first_name, $last_name, $phone, $college, $email, $passwor
 		$subject="Activate Celesta Account";
 		$msg="<p>
 			Your Celesta Id is ".$celestaid.". <br/>
+			Your Referral ID is $celestaid<br/>
 			You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
 		Please click the link below to activate your Account and login.<br/>
 			<a href='https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code&ca=campus_ambassador_celesta2k19'>https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code&ca=campus_ambassador_celesta2k19</a>

@@ -1,11 +1,6 @@
 <?php include("functions/init.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php     
-    if(!logged_in()){
-        redirect("reg.php");
-    }
-?>
 
 <head>
     <meta charset="UTF-8">
