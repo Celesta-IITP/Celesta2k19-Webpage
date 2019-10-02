@@ -978,6 +978,56 @@ function getEvent($eventid){
 
 // Function to handle update and cancel button accordingly
 function updateEventCalls(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		if(isset($_POST["update_event"])){
+			updateEvent();
+		}
+	}
+
+}
+
+// Function to update event details
+function updateEvent(){
+
+		$event_name=clean($_POST["event_name"]);
+		$event_category=clean($_POST["event_category"]);
+		$event_organizer = clean($_POST["event_organizer"]);
+		$ev_club = clean($_POST["ev_club"]);
+		$event_desc = clean($_POST["event_desc"]);
+		$event_date = clean($_POST["event_date"]);
+		$event_start_time = clean($_POST["event_start_time"]);
+		$event_end_time = clean($_POST["event_end_time"]);
+		$event_org_phone = clean($_POST["event_org_phone"]);
+		$eventid=clean($_POST["eventid"]);
+
+		$sql = "UPDATE events SET ev_name='$event_name', ev_category='$event_category', ev_description='$event_desc', ev_organiser='$event_organizer', ev_club='$ev_club', ev_org_phone='$event_org_phone', ev_date='$event_date', ev_start_time='$event_start_time', ev_end_time='$event_end_time' WHERE ev_id='$eventid'";
+		$result = query($sql);
+		confirm($result);
+
+		if(isset($_FILES["event_poster"])){
+			$target_poster = "./events/posters/";
+			
+			$target_poster_file=$target_poster."$eventid"."_"."$event_name".".jpg";
+			if(move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_poster_file)){
+				$poster_url ="https://celesta.org.in/backend/admin".$target_poster_file;
+				$sql1= "UPDATE events SET ev_poster_url='$poster_url'  WHERE ev_id='$eventid'";
+				$result1=query($sql1);
+			}
+		}
+
+		if(isset($_FILES["event_rulebook"])){
+			$target_rulebook = "./events/rulebook/";
+			
+			$target_rulebook_file=$target_rulebook."$eventid"."_"."$event_name".".pdf";
+			if(move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_rulebook_file)){
+				$rulebook_url ="https://celesta.org.in/backend/admin".$target_rulebook_file;
+				$sql1= "UPDATE events SET ev_rule_book_url='$rulebook_url'  WHERE ev_id='$eventid'";
+				$result1=query($sql1);
+			}
+		}
+		set_message("<p class='bg-success text-center'>Successfully updated the event.<br> Event ID: $eventid</p>");
+		redirect("./events.php");
+
 
 }
 

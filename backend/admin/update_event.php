@@ -3,7 +3,9 @@
 <?php include('includes/nav.php') ?>
 
 	<div class="jumbotron">
-        <?php display_message() ;?>
+        <?php display_message() ;
+            updateEventCalls();
+        ?>
         <?php 
             if(!isset($_GET['eventid'])){
                 redirect("events.php");
@@ -20,6 +22,8 @@
         <label for="event_name">Event/Workshop Name</label>
         <input type="text" class="form-control" id="event_name" name="event_name" placeholder="Type the event name" required value="<?php echo $event['ev_name']?>">
     </div>
+
+    <input type="hidden" name="eventid" id="eventid" value="<?php echo $eventid ?>" />
 
     <div class="form-group">
         <label for="exampleFormControlSelect1">Category</label>
