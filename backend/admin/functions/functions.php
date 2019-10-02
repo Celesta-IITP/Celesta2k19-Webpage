@@ -981,6 +981,8 @@ function updateEventCalls(){
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		if(isset($_POST["update_event"])){
 			updateEvent();
+		}elseif(isset($_POST["cancel_event"])){
+			redirect("events.php");
 		}
 	}
 
