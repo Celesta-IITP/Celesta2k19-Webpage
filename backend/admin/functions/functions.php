@@ -922,13 +922,9 @@ function addEvent(){
 			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time')";
 			
 			$result = query($sql);
-			
+			set_message("<p class='bg-success text-center'>Successfully added the event.<br> Event ID: $event_id</p>");
 			redirect("./events.php");
-?>
-			<script>
-				alert("Successfully added the event.")
-			</script>
-<?php
+
 		}else{
 			echo "Failed";
 		}
@@ -936,6 +932,23 @@ function addEvent(){
 }
 /********************************************** Addition of Events ends here *****************************************************/
 
+// Show the events created to the events people
+function show_events(){
+	if(!registrar_logged_in()){
+		redirect("login.php");
+	}elseif(getPermit()==0 || getPermit()==4){
+		$sql="SELECT ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time FROM events";
+		$result=query($sql);
+		$permit=getPermit();
 
+		$data=array();
+		while ($row = $result->fetch_assoc()) {
+    		if($permit==4 || $permit==0){
+				$data[]=$row;
+    		}
+		}
+		return $data;
+	}
+}
 
 ?>
