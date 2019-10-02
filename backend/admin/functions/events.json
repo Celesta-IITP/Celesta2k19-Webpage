@@ -1,0 +1,47 @@
+[
+  {
+    "id": "2",
+    "ev_id": "ATM3771",
+    "ev_category": "Events",
+    "ev_name": "testingwewe",
+    "ev_description": "ewqew rwew ",
+    "ev_organiser": "atm",
+    "ev_club": "NJACK",
+    "ev_org_phone": "413234567",
+    "ev_poster_url": "https://celesta.org.in/backend/admin./events/posters/ATM3771_testingwewe.jpg",
+    "ev_rule_book_url": "https://celesta.org.in/backend/admin./events/rulebook/ATM3771_testing.jpg",
+    "ev_date": "12/09/2018",
+    "ev_start_time": "5:00pm",
+    "ev_end_time": "7:00pm"
+  },
+  {
+    "id": "3",
+    "ev_id": "ATM5151",
+    "ev_category": "Events",
+    "ev_name": "Abcd",
+    "ev_description": "this event is for testing",
+    "ev_organiser": "ds",
+    "ev_club": "NJACK",
+    "ev_org_phone": "sd",
+    "ev_poster_url": "https://celesta.org.in/backend/admin./events/posters/ATM5151_Abcd.jpg",
+    "ev_rule_book_url": "https://celesta.org.in/backend/admin./events/rulebook/ATM5151_Abcd.jpg",
+    "ev_date": "12/09/2018",
+    "ev_start_time": "5:00pm",
+    "ev_end_time": "7:00pm"
+  },
+  {
+    "id": "4",
+    "ev_id": "ATM4670",
+    "ev_category": "Workshops",
+    "ev_name": "Testing atm",
+    "ev_description": "Just do it",
+    "ev_organiser": "atm",
+    "ev_club": "LOCK-N-LOAD",
+    "ev_org_phone": "8967570983",
+    "ev_poster_url": "https://celesta.org.in/backend/admin./events/posters/ATM4670_Testing atm.jpg",
+    "ev_rule_book_url": "https://celesta.org.in/backend/admin./events/rulebook/ATM4670_Testing atm.pdf",
+    "ev_date": "12/09/2018",
+    "ev_start_time": "5:00pm",
+    "ev_end_time": "7:00pm"
+  }
+]
