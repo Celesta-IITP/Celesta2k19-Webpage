@@ -902,27 +902,39 @@ function addEvent(){
 
 		$event_id =getEventId();
 
-		$target_poster = "/img/";
-		$target_rulebook = "./../events/rulebook/";
+		$target_poster = "./events/posters/";
+		$target_rulebook = "./events/rulebook/";
 		
-		$target_poster_file=$target_poster.$_FILES['event_poster']['name'];
-		$target_rulebook_file=$target_rulebook.$_FILES['event_rulebook']['name'];
+		$target_poster_file=$target_poster."$event_id"."_"."$event_name".".jpg";
+		$target_rulebook_file=$target_rulebook."$event_id"."_"."$event_name".".jpg";
 
-		if(move_uploaded_file($_FILES["event_poster"]["name"],$target_poster_file)){
-			echo "Success";
+		if(!isset($_FILES["event_poster"]["tmp_name"]) && !isset($_FILES["event_rulebook"]["tmp_name"])){
+			echo "Please add files";
+		}
+
+		// Upload the file
+		if((move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_poster_file)) && (move_uploaded_file($_FILES["event_rulebook"]["tmp_name"],$target_rulebook_file))){
+			
+			$poster_url ="https://celesta.org.in/backend/admin".$target_poster_file;
+			$rulebook_url = "https://celesta.org.in/backend/admin".$target_rulebook_file;
+
+			$sql = "INSERT INTO events(ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time)";
+			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time')";
+			
+			$result = query($sql);
+			
+			redirect("./events.php");
+?>
+			<script>
+				alert("Successfully added the event.")
+			</script>
+<?php
 		}else{
 			echo "Failed";
 		}
-
-		// if ((move_uploaded_file($_FILES['event_poster']['tmp_name'], $target_poster)) && (move_uploaded_file($_FILES['event_rulebook']['tmp_name'], $target_rulebook)) ) {
-		// 	echo "SUccess";
-  		// }else{
-		// 	  echo "Failed";
-		//   }
-
 	}
-
 }
+/********************************************** Addition of Events ends here *****************************************************/
 
 
 
