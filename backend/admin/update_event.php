@@ -103,6 +103,7 @@
 
    <button type="submit" name="update_event" id="update_event" class="btn btn-primary">Update Event</button>
    <button type="submit" name="cancel_event" id="cancel_event" class="btn btn-primary">Cancel</button>
+   <button type="submit" name="delete_event" id="delete_event" class="btn btn-danger pull-right">Delete Event</button>
 </form>
 
 

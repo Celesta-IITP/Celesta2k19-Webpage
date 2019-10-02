@@ -983,6 +983,8 @@ function updateEventCalls(){
 			updateEvent();
 		}elseif(isset($_POST["cancel_event"])){
 			redirect("events.php");
+		}elseif(isset($_POST["delete_event"])){
+			deleteEvent();
 		}
 	}
 
@@ -1033,6 +1035,17 @@ function updateEvent(){
 
 }
 
+// Function to delete event
+function deleteEvent(){
+	$eventid=clean($_POST["eventid"]);
+	$sql= "DELETE FROM events where ev_id='$eventid'";
+	$result=query($sql);
+	confirm($result);
+	set_message("<p class='bg-danger text-center'>Successfully deleted the event.<br> Event ID: $eventid</p>");
+	redirect("./events.php");
+}
+
+//Function  to check existence of the event
 function eventExists($eventid){
 	$sql="SELECT id FROM events WHERE ev_id='$eventid'";
 	$result = query($sql);
