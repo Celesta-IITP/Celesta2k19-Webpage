@@ -906,7 +906,7 @@ function addEvent(){
 		$target_rulebook = "./events/rulebook/";
 		
 		$target_poster_file=$target_poster."$event_id"."_"."$event_name".".jpg";
-		$target_rulebook_file=$target_rulebook."$event_id"."_"."$event_name".".jpg";
+		$target_rulebook_file=$target_rulebook."$event_id"."_"."$event_name".".pdf";
 
 		if(!isset($_FILES["event_poster"]["tmp_name"]) && !isset($_FILES["event_rulebook"]["tmp_name"])){
 			echo "Please add files";
