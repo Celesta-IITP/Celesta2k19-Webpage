@@ -293,6 +293,12 @@ function login_user(){
                 $response['message']=$errors;
                 echo json_encode($response);
             }else{
+                $access_token=$celestaid.$password;
+                $access_token=md5($access_token);
+
+                $sql1="UPDATE users SET access_token='$access_token' WHERE celestaid='$celestaid'";
+                $result1 = query($sql1);
+
                 $first_name=$row['first_name'];
                 $last_name=$row['last_name'];
                 $email=$row['email'];
@@ -311,6 +317,7 @@ function login_user(){
                 $message['qrcode']=$qrcode;
                 $message['events_registered']=$events_registered;
                 $message['events_participated']=$events_participated;
+                $message['access_token']=$access_token;
                 $response['message']=$message;
                 echo json_encode($response);
             }//Else part of active
