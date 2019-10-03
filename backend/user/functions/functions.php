@@ -49,7 +49,7 @@ function validation_errors($error_message){
 $error = <<<DELIMITER
 <div class="alert alert-warning alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-			</button><strong>Warning!</strong> $$error_message
+			</button><strong> $error_message</strong> 
 			</div>
 DELIMITER;
 return $error;
@@ -181,8 +181,8 @@ function login_signup(){
 	 			return json_encode("200");//Registration success
 	 		}
 	 		else{
-	 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
-	 			echo "User registration failed";
+	 			// set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
+	 			echo validation_errors("Sorry we couldn't register the user.");
 	 			return json_encode("201");	//Registration failed
 	 		}
 	 	}
@@ -243,8 +243,8 @@ function validate_ca_registration(){
 	 			redirect("display.php");
 	 			return json_encode("200");//Registration success
 			 }else{
-	 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
-	 			echo "User registration failed";
+				//  set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
+				 echo validation_errors("Sorry we couldn't register the user.");
 	 			return json_encode("201");	//Registration failed
 	 		}
 		}
@@ -260,7 +260,6 @@ function ca_register($first_name, $last_name, $phone, $college, $email, $passwor
 	$password=escape($password);
 
 	if(email_exists($email)==true){
-		echo "Testing -3";
 		return false;
 	}else{
 		$password=md5($password);
@@ -295,7 +294,6 @@ function ca_register($first_name, $last_name, $phone, $college, $email, $passwor
 			set_message("<p class='bg-success text-center'>Please check your email or spam folder for activation link.<br><br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> </p>");
 			return true;
 		}else{
-			echo "Testing -1";
 			return false;
 		}
 	}
