@@ -1,7 +1,7 @@
 <?php include("functions/init.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php     
+<?php
     if(logged_in()){
         redirect("profile.php");
     }
