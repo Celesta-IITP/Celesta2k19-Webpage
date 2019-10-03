@@ -108,10 +108,6 @@ function user_registration(){
             $errors[]="Your first name cannot be less than {$min}";
         }
 
-         if(strlen($last_name)<$min){
-            $errors[]="Your last name cannot be less than {$min}";
-        }
-
         if(strlen($phone)<10){
             $errors[]="Your phone number cannot be less than 10 digits.";
         }
@@ -133,7 +129,7 @@ function user_registration(){
         }
 
         if($password!==$confirm_password){
-            $errors[]="Your password fields donot match";
+            $errors[]="Your password fields didn't match";
         }
 
         if(strlen($referral_id)!=8){
@@ -161,7 +157,7 @@ function user_registration(){
             $celestaid=getCelestaId();
             $validation_code=mt_rand(10001,99999);
             generateQRCode($celestaid,$first_name,$last_name);
-            $qrcode="http://192.168.0.100:8888/login/assets/qrcodes/".$celestaid.".png";
+            $qrcode="https://celesta.org.in/backend/user/assets/qrcodes/".$celestaid.".png";
 
             //Composing the email
             $subject="Activate Celesta Account";
@@ -189,7 +185,7 @@ function user_registration(){
                 //Setting the JSON ready for sending the response
                 $message['celestaid']=$celestaid;
                 $message['qrcode']=$qrcode;
-                $message['validation_code']=$validation_code;
+                // $message['validation_code']=$validation_code;
 
                 $response['status']='200';
                 $response['message']=$message;
