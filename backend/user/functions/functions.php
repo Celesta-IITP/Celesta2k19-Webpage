@@ -461,11 +461,19 @@ function login_user($celestaid, $password, $remember){
 		$db_password=$row['password'];
 		$qrcode=$row['qrcode'];
 		if(md5($password)==$db_password){
-			$_SESSION['celestaid']=$celestaid;	//Storing the cdlesta id in a session
+			$access_token=$celestaid.$password;
+			$access_token=md5($access_token);
+
+			$sql1="UPDATE users SET access_token='$access_token' WHERE celestaid='$celestaid'";
+			$result1 = query($sql1);
+			$_SESSION['celestaid']=$celestaid;	//Storing the celesta id in a session
 			$_SESSION['qrcode']=$qrcode;
+			$_SESSION['access_token']=$access_token;
+
 			if($remember=="on"){
 				 setcookie('celestaid',$celestaid, time() + 86400);
 				 setcookie('qrcode',$qrcode,time()+86400);
+				 setcookie('access_token',$celestaid, time()+86400);
 			}
 			return true;
 		}else{
