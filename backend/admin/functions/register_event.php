@@ -29,44 +29,53 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
             $row=fetch_array($result);
 
-            /**  Things to be implemented
-             * 1. Enter the data into the ev_registrations column of events table.
-             * 2. Update the event registration in the user table corresponding to that user
-             * 3. Update the data in the present users table events_registered column
-             */
+            // Check if user has already registered or not
+            if(alreadyRegistered($celestaid, $regis)){
+                $response['status']=302;
+                $errors[]="Already registered.";
+            }else{
 
-            // Updating the data into the events table.
-            $reg=array();
-            $reg["celestaid"]=$celestaid;
-            $reg["name"]=$row["first_name"]." ".$row["last_name"];
-            $reg["phone"]=$row["phone"];
-            $reg["time"]=date('Y-m-d H:i:s');
-            $regis[]=$reg;
-            $regis=json_encode($regis);
-            $sql2="UPDATE events SET ev_registrations='$regis' WHERE ev_id='$eventid'";
-            $result2=query($sql2);
+                /**  Things to be implemented
+                 * 1. Enter the data into the ev_registrations column of events table.
+                 * 2. Update the event registration in the user table corresponding to that user
+                 * 3. Update the data in the present users table events_registered column
+                 */
 
-            // Updating the data into the user table.
-            $ev_registered=json_decode($row["events_registered"]);
-            $add_event=array();
-            $add_event["ev_name"]=$ev_name;
-            $add_event["ev_id"]=$eventid;
-            $ev_registered[]=$add_event;
-            $ev_registered=json_encode($ev_registered);
-            $sql3="UPDATE users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
-            $result3=query($sql3);
+                // Updating the data into the events table.
+                $reg=array();
+                $reg["celestaid"]=$celestaid;
+                $reg["name"]=$row["first_name"]." ".$row["last_name"];
+                $reg["phone"]=$row["phone"];
+                $reg["time"]=date('Y-m-d H:i:s');
+                $regis[]=$reg;
+                $regis=json_encode($regis);
+                $sql2="UPDATE events SET ev_registrations='$regis' WHERE ev_id='$eventid'";
+                $result2=query($sql2);
 
-            // Check if user is present in the present user table or not
-            $sql4="SELECT * FROM present_users WHERE celestaid='$celestaid'";
-            $result4=query($sql4);
-            if(row_count($result4)==1){
-                // Update the data in the present users table events_registered column
-                $sql5="UPDATE present_users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
-                $result5=query($sql5);
+                // Updating the data into the user table.
+                $ev_registered=json_decode($row["events_registered"]);
+                $add_event=array();
+                $add_event["ev_name"]=$ev_name;
+                $add_event["ev_id"]=$eventid;
+                $ev_registered[]=$add_event;
+                $ev_registered=json_encode($ev_registered);
+                $sql3="UPDATE users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
+                $result3=query($sql3);
+
+                // Check if user is present in the present user table or not
+                $sql4="SELECT * FROM present_users WHERE celestaid='$celestaid'";
+                $result4=query($sql4);
+                if(row_count($result4)==1){
+                    // Update the data in the present users table events_registered columnr
+                    $sql5="UPDATE present_users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
+                    $result5=query($sql5);
+                }
+
+                $response['status']=202;
+                $errors[]="Successfully registered the user.";
+
             }
 
-            $response['status']=202;
-            $errors[]="Successfully registered the user.";
         }else{
             $response['status']=401;
             $errors[]="Unauthorized access. Celesta ID or access token doesn't match.";
@@ -78,4 +87,17 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
     $response['message']=$errors;
     echo json_encode($response);
+}
+
+// To check if a person has already registered or not
+function alreadyRegistered($celestaid,$regis){
+    foreach($regis as $reg){
+        $value[]=$reg ->celestaid;
+    }
+    foreach($value as $id){
+        if($id==$celestaid){
+            return true;
+        }
+    }
+    return false;
 }
