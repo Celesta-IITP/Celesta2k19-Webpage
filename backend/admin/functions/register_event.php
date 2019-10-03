@@ -60,7 +60,9 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
             $sql4="SELECT * FROM present_users WHERE celestaid='$celestaid'";
             $result4=query($sql4);
             if(row_count($result4)==1){
-
+                // Update the data in the present users table events_registered column
+                $sql5="UPDATE present_users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
+                $result5=query($sql5);
             }
 
             $response['status']=202;
