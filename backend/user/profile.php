@@ -7,6 +7,7 @@
     if(isset($_SESSION['celestaid'])){
         $celestaid = $_SESSION['celestaid'];
         $imgsrc = $_SESSION['qrcode'];
+        $access_token=$_SESSION['access_token'];
     }
     $data = ca_leaderboard();
     $profile = user_details($celestaid);
