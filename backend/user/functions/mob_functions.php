@@ -40,6 +40,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             login_user();
         }elseif($_POST['f']=='checkin_checkout'){
             checkin_checkout();
+        }elseif($_POST['f']=='user_profile'){
+            profile();
         }
     }
 }
@@ -108,10 +110,6 @@ function user_registration(){
             $errors[]="Your first name cannot be less than {$min}";
         }
 
-         if(strlen($last_name)<$min){
-            $errors[]="Your last name cannot be less than {$min}";
-        }
-
         if(strlen($phone)<10){
             $errors[]="Your phone number cannot be less than 10 digits.";
         }
@@ -133,7 +131,7 @@ function user_registration(){
         }
 
         if($password!==$confirm_password){
-            $errors[]="Your password fields donot match";
+            $errors[]="Your password fields didn't match";
         }
 
         if(strlen($referral_id)!=8){
@@ -161,7 +159,7 @@ function user_registration(){
             $celestaid=getCelestaId();
             $validation_code=mt_rand(10001,99999);
             generateQRCode($celestaid,$first_name,$last_name);
-            $qrcode="http://192.168.0.100:8888/login/assets/qrcodes/".$celestaid.".png";
+            $qrcode="https://celesta.org.in/backend/user/assets/qrcodes/".$celestaid.".png";
 
             //Composing the email
             $subject="Activate Celesta Account";
@@ -189,7 +187,7 @@ function user_registration(){
                 //Setting the JSON ready for sending the response
                 $message['celestaid']=$celestaid;
                 $message['qrcode']=$qrcode;
-                $message['validation_code']=$validation_code;
+                // $message['validation_code']=$validation_code;
 
                 $response['status']='200';
                 $response['message']=$message;
@@ -297,6 +295,12 @@ function login_user(){
                 $response['message']=$errors;
                 echo json_encode($response);
             }else{
+                $access_token=$celestaid.$password;
+                $access_token=md5($access_token);
+
+                $sql1="UPDATE users SET access_token='$access_token' WHERE celestaid='$celestaid'";
+                $result1 = query($sql1);
+
                 $first_name=$row['first_name'];
                 $last_name=$row['last_name'];
                 $email=$row['email'];
@@ -315,6 +319,7 @@ function login_user(){
                 $message['qrcode']=$qrcode;
                 $message['events_registered']=$events_registered;
                 $message['events_participated']=$events_participated;
+                $message['access_token']=$access_token;
                 $response['message']=$message;
                 echo json_encode($response);
             }//Else part of active
@@ -327,6 +332,60 @@ function login_user(){
         }
     }
 }
+
+
+// Function to get profile details
+function profile(){
+
+    $response=array();
+    $errors=array();
+    $message=array();
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        $celestaid=$_POST['celestaid'];
+        $access_token= $_POST['access_token'];
+
+        $sql="SELECT * FROM users WHERE celestaid='$celestaid' AND access_token='$access_token'";
+        $result=query($sql);
+
+        if(row_count($result)==1){
+            $row=fetch_array($result);
+
+                $first_name=$row['first_name'];
+                $last_name=$row['last_name'];
+                $email=$row['email'];
+                $qrcode=$row['qrcode'];
+                $celestaid=$row['celestaid'];
+                $events_registered=$row['events_registered'];
+                $events_participated=$row['events_participated'];
+                $phone=$row['phone'];
+    
+                $response['status']='202';// Profile access validated
+                $message['celestaid']=$celestaid;
+                $message['first_name']=$first_name;
+                $message['last_name']=$last_name;
+                $message['email']=$email;
+                $message['phone']=$phone;
+                $message['qrcode']=$qrcode;
+                $message['events_registered']=$events_registered;
+                $message['events_participated']=$events_participated;
+                $message['access_token']=$access_token;
+                $response['message']=$message;
+                echo json_encode($response);
+            
+        }else{
+            $errors[]="Invalid access token. Unauthorized to access the data.";
+            $response['status']='403';// Unauthorized access
+            $response['message']=$errors;
+            echo json_encode($response);
+        }
+    }
+
+}
+
+
+
+
+/************************************************** Admin App starts *********************************************************/
 
 //CheckinCheckout
 function checkin_checkout(){
