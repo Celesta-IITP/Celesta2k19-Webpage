@@ -30,10 +30,10 @@
                <input type='text' readonly class='form-control' style='margin-bottom:20px' id='gravitons' name='gravitons' required value='<?php echo $ca['gravitons'] ?>'>
             </div>
             <input type='hidden' name='celestaid' id='celestaid' value='<?php echo $ca['celestaid'] ?>'>
-            <span id='10_exc' name='10_exc' style='background:green; color:white; padding:15px'>+ 10 Excitons</span>
-            <span id='neg_10_exc' name='neg_10_exc' style='background:red; color:white; padding:15px'>-10 Excitons</span>
-            <span id='10_grav' name='10_grav' style='background:green; color:white; padding:15px'> + 10 Gravitons</span>
-            <span id='neg_10_grav' name='neg_10_grav' style='background:red; color:white; padding:15px'> -10 Gravitons</span><br><br><br>
+            <span id='10_exc' name='10_exc' style='background:green; color:white; padding:15px; cursor: pointer'>+ 10 Excitons</span>
+            <span id='neg_10_exc' name='neg_10_exc' style='background:red; color:white; padding:15px; cursor: pointer'>-10 Excitons</span>
+            <span id='10_grav' name='10_grav' style='background:green; color:white; padding:15px; cursor: pointer'> + 10 Gravitons</span>
+            <span id='neg_10_grav' name='neg_10_grav' style='background:red; color:white; padding:15px; cursor: pointer'> -10 Gravitons</span><br><br><br>
             <button type='submit' id='save_ca' name='save_ca' value='save_ca' class='btn btn-primary'>Save</button>
             <button type='submit' id='cancel_ca' name='cancel_ca' value='cancel_ca' class='btn btn-primary'>Cancel</button>
          </form>
