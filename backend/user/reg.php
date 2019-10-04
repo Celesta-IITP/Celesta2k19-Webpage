@@ -1,10 +1,10 @@
 <?php include("functions/init.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php     
-    if(logged_in()){
-        redirect("profile.php");
-    }
+<?php
+if (logged_in()) {
+    redirect("profile.php");
+}
 ?>
 
 <head>
@@ -23,8 +23,8 @@
     <section class="login-body">
         <div class="row">
             <div class="input-cart col s12 m10 push-m1 z-depth-2">
-            <?php display_message() ?>
-            <?php login_signup() ?>
+                <?php display_message() ?>
+                <?php login_signup() ?>
                 <div class="col s12 m7 signup">
                     <div class="signupForm">
                         <h4 class="center">Sign up</h4>
@@ -32,15 +32,13 @@
                         <form id="signup_form" name="signup_form" method="post">
                             <div class="row">
                                 <div class="input-field col s12 m6">
-                                    <input type="text" id="first_name" name="first_name" class="validate"
-                                        required="required" placeholder="First Name">
+                                    <input type="text" id="first_name" name="first_name" class="validate" required="required" placeholder="First Name">
                                     <label for="name-picked">
                                         <i class="material-icons">person_add</i>
                                     </label>
                                 </div>
                                 <div class="input-field col s12 m6">
-                                    <input type="text" id="last_name" name="last_name" class="validate"
-                                        placeholder="Last Name">
+                                    <input type="text" id="last_name" name="last_name" class="validate" placeholder="Last Name">
                                     <label for="name-picked">
                                         <i class="material-icons">person_add</i>
                                     </label>
@@ -48,15 +46,13 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 m6">
-                                    <input type="text" id="phone" name="phone" class="validate"
-                                        required="required" placeholder="Phone Number">
+                                    <input type="text" id="phone" name="phone" class="validate" required="required" placeholder="Phone Number">
                                     <label for="phone-picked">
                                         <i class="material-icons">phone</i>
                                     </label>
                                 </div>
                                 <div class="input-field col s12 m6">
-                                    <input type="text" id="college" name="college" class="validate"
-                                        required="required" placeholder="School/College">
+                                    <input type="text" id="college" name="college" class="validate" required="required" placeholder="School/College">
                                     <label for="phone-picked">
                                         <i class="material-icons">school</i>
                                     </label>
@@ -64,30 +60,26 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 m6">
-                                    <input type="text" id="email" name="email" class="validate" required="required"
-                                        placeholder="Enter your email">
+                                    <input type="text" id="email" name="email" class="validate" required="required" placeholder="Enter your email">
                                     <label for="email">
                                         <i class="material-icons">mail</i>
                                     </label>
                                 </div>
                                 <div class="input-field col s12 m6">
-                                    <input type="text" id="referral_id" name="referral_id" class="validate"
-                                        placeholder="Referral ID">
+                                    <input type="text" id="referral_id" name="referral_id" class="validate" placeholder="Referral ID">
                                     <label for="referral_id">
                                         <i class="material-icons">person</i>
                                     </label>
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="row">
                                 <div class="input-field col s12 m6">
-                                    <input type="password" id="password" name="password" class="validate"
-                                        required="required" placeholder="Password">
+                                    <input type="password" id="password" name="password" class="validate" required="required" placeholder="Password">
                                     <label for="pass-picked">
                                         <i class="material-icons">lock</i> </label>
                                 </div>
                                 <div class="input-field col s12 m6">
-                                    <input type="password" id="confirm_password" name="confirm_password" class="validate"
-                                        required="required" placeholder="Confirm Password">
+                                    <input type="password" id="confirm_password" name="confirm_password" class="validate" required="required" placeholder="Confirm Password">
                                     <label for="pass-picked">
                                         <i class="material-icons">lock</i> </label>
                                 </div>
@@ -95,18 +87,20 @@
                             <div class="row">
                                 <div class="switch col s6">
                                     <label>
-                                        <input type="checkbox" name="gender" id="gender" value="m">
+                                        <input type="checkbox" name="gender" id="male" value="m" checked>
                                         <span class="lever"></span>
                                         Male
                                     </label>
                                     <label>
-                                        <input type="checkbox" name="gender" id="gender" value="f">
+                                        <input type="checkbox" name="gender" id="female" value="f">
                                         <span class="lever"></span>
                                         Female
                                     </label>
                                 </div>
                             </div>
-                            <input type="hidden" id="signup" name="signup" value="love_u_atreyee" >
+
+
+                            <input type="hidden" id="signup" name="signup" value="love_u_atreyee">
                             <div class="row">
                                 <button type="submit" name="btn-signup" class="btn blue right waves-effect waves-light">Sign Up</button>
                             </div>
@@ -122,16 +116,14 @@
                     <form id="login_form" name="login_form" method="post">
                         <div class="row">
                             <div class="input-field">
-                                <input type="text" id="celestaid" name="celestaid" class="validate" required="required"
-                                    placeholder="Celesta ID">
+                                <input type="text" id="celestaid" name="celestaid" class="validate" required="required" placeholder="Celesta ID">
                                 <label for="user">
                                     <i class="material-icons">person</i> </label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field">
-                                <input type="password" id="password" name="password" class="validate" required="required"
-                                    placeholder="Password">
+                                <input type="password" id="password" name="password" class="validate" required="required" placeholder="Password">
                                 <label for="pass">
                                     <i class="material-icons">lock</i>
                                 </label>
@@ -164,8 +156,7 @@
                             </p>
                         </div>
                         <div class="col s12 m5">
-                            <p class="center grey-text" style="font-size: 14px;">Get TechXiceted : <a
-                                    href="https://celesta.org.in" class="main-title red-text" target="_blank">Celesta'19</a>
+                            <p class="center grey-text" style="font-size: 14px;">Get TechXiceted : <a href="https://celesta.org.in" class="main-title red-text" target="_blank">Celesta'19</a>
                             </p>
                         </div>
                     </div>
@@ -192,6 +183,21 @@
     <script src="./canvas/canvas.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script>
+        var male=document.querySelector('#male');
+        var female=document.querySelector('#female');
+        male.addEventListener('click', () => {
+            if( male.checked) {
+                female.checked=false;
+            }
+        })
+        female.addEventListener('click', () => {
+            if( female.checked) {
+                male.checked=false;
+            }
+        })
+    </script>
 </body>
 
 </html>

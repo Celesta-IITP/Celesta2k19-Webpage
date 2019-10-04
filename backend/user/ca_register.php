@@ -19,7 +19,9 @@
 		<div class="container">
 			<h1>Register for Campus Ambassador</h1>
 			<?php display_message() ?>
-			<?php validate_ca_registration() ?>
+			<div style="position: relative; z-index: 9">
+				<?php validate_ca_registration() ?>
+			</div>
 			<form class="form" method="POST" id="signup-form">
 				<input type="text" class="form-input" name="first_name" id="first_name" placeholder="First Name" />
 				<input type="text" class="form-input" name="last_name" id="last_name" placeholder="Last Name" />
@@ -51,7 +53,10 @@
 		</ul>
 	</div>
 
-		
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 
 </html>
