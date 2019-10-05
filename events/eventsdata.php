@@ -1,12 +1,44 @@
 <?php
-    $param=$_GET['data'];
-    $strJsonFileContents = file_get_contents("data.json");
-    $dataz = json_decode($strJsonFileContents, true);
-    $data= $dataz[$param];
-    $filter=$dataz['filter'][$param];
-    // foreach($filter as $d){
-    //     echo $d['name'];
-    // }
+  $param=$_GET['data'];
+
+  $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
+  // $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
+  $curl = curl_init($service_url);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  $curl_response = curl_exec($curl);
+  if ($curl_response === false) {
+      $info = curl_getinfo($curl);
+      curl_close($curl);
+      die('error occured during curl exec. Additioanl info: ' . var_export($info));
+  }
+  curl_close($curl);
+  $data = json_decode($curl_response, true);
+
+  $events=array();
+  foreach($data as $d){
+    if($d['ev_category']==ucfirst($param)){
+      array_push($events, $d);
+    }
+  }
+  $filters="";
+  if($param=="events"){
+    $filters='
+      <li data-filter=".filter-NJACK">NJACK</li>
+      <li data-filter=".filter-SPARKONICS">SPARKONICS</li>
+    ';
+  }
+  if($param=="workshops"){
+    $filters='
+      <li data-filter=".filter-NJACK">NJACK</li>
+      <li data-filter=".filter-SPARKONICS">SPARKONICS</li>
+    ';
+  }
+  if($param=="pronites"){
+    $filters='
+      <li data-filter=".filter-NJACK">NJACK</li>
+      <li data-filter=".filter-SPARKONICS">SPARKONICS</li>
+    ';
+  }
 ?>
 
 <!DOCTYPE html>
@@ -62,38 +94,36 @@
         <section id="gallery" class="section-bg">
           <div class="container">
             <header class="section-header">
-              <h3 class="section-title"><?php echo $param ?></h3>
+              <h3 class="section-title">Celesta Events</h3>
             </header>
 
             <div class="row">
               <div class="col-lg-12">
                 <ul id="gallery-flters">
                   <li data-filter="*" class="filter-active">All</li>
-                  <?php foreach($filter as $f){ ?>
-                    <li data-filter=".filter-<?php echo $f['data-filter'] ?>"><?php echo $f['name'] ?></li>
-                  <?php } ?>
+                  <?php echo $filters ?>
                 </ul>
               </div>
             </div>
 
             <div class="row gallery-container">
 
-            <?php foreach($data as $d){ ?>
-              <div class="col-lg-4 col-md-6 gallery-item filter-<?php echo $d['filter'] ?>">
-                <div class="gallery-wrap">
-                  <figure>
-                    <img src="<?php echo $d['image'] ?>" class="img-fluid" alt="" />
-                    <a href="<?php echo $d['image'] ?>" data-lightbox="gallery" data-title="<?php echo $d['name'] ?>" class="link-preview" title="Preview"><i
-                        class="ion ion-eye"></i></a>
-                  </figure>
+              <?php foreach($events as $e) { ?>
+                <div class="col-lg-4 col-md-6 gallery-item filter-<?php echo $e['ev_club']?>">
+                  <div class="gallery-wrap">
+                    <figure>
+                      <img src="<?php echo $e['ev_poster_url']?>" class="img-fluid" alt="" />
+                      <a href="<?php echo $e['ev_poster_url']?>" data-lightbox="gallery" data-title="Club 1" class="link-preview" title="Preview"><i
+                          class="ion ion-eye"></i></a>
+                    </figure>
 
-                  <div class="gallery-info">
-                    <h4><?php echo $d['name'] ?></h4>
-                    <a href="./eventsdetails.php?data=<?php echo $param ?>&id=<?php echo $d["id"] ?>">More details</a>
+                    <div class="gallery-info">
+                      <h4><?php echo $e['ev_name']?></h4>
+                      <p><button class="btn" style="background: rgb(148,0,211,.8)"><a style="color: #fff" href="http://localhost/celesta2k19-webpage/events/eventsdetails.php?id=<?php echo $e['ev_id']?>">More Details</a></button> <button class="btn" style="background: 	rgb(139,0,139,.8)"><a style="color: #fff" href="http://localhost/celesta2k19-webpage/events/eventsdetails.php?id=<?php echo $e['ev_id']?>">Register Event</a></button></p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            <?php } ?>
+              <?php } ?>
 
             </div>
           </div>

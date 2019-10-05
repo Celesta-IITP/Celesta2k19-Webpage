@@ -3,7 +3,7 @@
 
 <?php 	
     $permit = getPermit();
-    echo $permit;
+    // echo $permit;
     if($permit==0 || $permit==4){
 		$events=show_events();
         // ca_calls();

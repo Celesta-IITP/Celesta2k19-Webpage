@@ -915,8 +915,8 @@ function addEvent(){
 		// Upload the file
 		if((move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_poster_file)) && (move_uploaded_file($_FILES["event_rulebook"]["tmp_name"],$target_rulebook_file))){
 			
-			$poster_url ="https://celesta.org.in/backend/admin".$target_poster_file;
-			$rulebook_url = "https://celesta.org.in/backend/admin".$target_rulebook_file;
+			$poster_url ="https://celesta.org.in/backend/admin".substr($target_poster_file, 1);
+			$rulebook_url = "https://celesta.org.in/backend/admin".substr($target_rulebook_file, 1);
 
 			$sql = "INSERT INTO events(ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time)";
 			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time')";
