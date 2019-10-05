@@ -3,7 +3,7 @@
 
 <?php 	
     $permit = getPermit();
-    echo $permit;
+    // echo $permit;
     if($permit==0 || $permit==4){?>
     	<div class="jumbotron">
             <?php 
