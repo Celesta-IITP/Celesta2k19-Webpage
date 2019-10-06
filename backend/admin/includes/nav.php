@@ -20,6 +20,12 @@
         <a class="nav-link" href="total_register.php">Total Registered</a>
       </li>
       <?php }?>
+
+      <?php if($permit==0){ ?>
+        <li class="nav-item">
+          <a class="nav-link" href="users.php">All Users</a>
+        </li>
+      <?php }?>
     
     
     <?php if($permit==3 || $permit==0) { ?>
@@ -44,7 +50,7 @@
         else{
           echo "<li class='nav-item'><a class='nav-link' href='login.php'>Login</a></li>";
         }
-        ?> 
+        ?>
 
     </ul>
   </div>
