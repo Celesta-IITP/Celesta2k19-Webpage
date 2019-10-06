@@ -81,7 +81,7 @@
             <br>
             <div class="row">
               <div class="col-lg-6 col-md-6">
-                <img src="https://celesta.org.in/backend/admin/events/posters/ATM5042_Robowars.jpg" width="100%">
+                <img src="<?php echo $event['ev_poster_url']?>" width="100%">
               </div>
               <div class="col-lg-6 col-md-6">
                 <h3 style="color: #219999">Name: <span style="color: #fff"><?php echo $event['ev_name']?></span></h3>
