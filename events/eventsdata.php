@@ -123,8 +123,8 @@
                     <div class="gallery-info">
                       <h4><?php echo $e['ev_name']?></h4>
                       <p>
-                        <a class="btn" style="color: #fff; background: rgb(148,0,211,.8)" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">More Details</a> 
-                        <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8)" href="../backend/admin/functions/register_events.php?eventid=<?php echo $e['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
+                        <a class="btn" style="color: #fff; background: rgb(148,0,211,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">More Details</a> 
+                        <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="../backend/admin/functions/register_events.php?eventid=<?php echo $e['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
                       </p>
                     </div>
                   </div>
