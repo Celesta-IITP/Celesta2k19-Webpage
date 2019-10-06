@@ -191,10 +191,16 @@ if (logged_in()) {
             if( male.checked) {
                 female.checked=false;
             }
+            if( !male.checked) {
+                female.checked=true;
+            }
         })
         female.addEventListener('click', () => {
             if( female.checked) {
                 male.checked=false;
+            }
+            if( !female.checked) {
+                male.checked=true;
             }
         })
     </script>
