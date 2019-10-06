@@ -1,8 +1,8 @@
 <?php
   $id=$_GET['id'];
 
-  // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
-  $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
+  $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
+  // $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
   $curl = curl_init($service_url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   $curl_response = curl_exec($curl);
@@ -92,8 +92,8 @@
                 <h5 style="color: #219999">Date: <span style="color: #fff"><?php echo $event['ev_date']?></span></h5>
                 <h5 style="color: #219999">Start Time: <span style="color: #fff"><?php echo $event['ev_start_time']?></span></h5>
                 <h5 style="color: #219999">End Time: <span style="color: #fff"><?php echo $event['ev_end_time']?></span></h5>
-                <button class="btn btn-success"><a style="color: #fff" href="<?php echo $event['ev_rule_book_url']?>">Rulebook</a></button>
-                <button class="btn btn-success"><a style="color: #fff" href="<?php echo $event['ev_rule_book_url']?>">Register</a></button>
+                <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url']?>">Rulebook</a>
+                <a class="btn btn-success" style="color: #fff" href="../backend/admin/functions/register_events.php?eventid=<?php echo $e['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
               </div>
             </div>
             </div>

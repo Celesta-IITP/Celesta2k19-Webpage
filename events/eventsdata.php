@@ -1,8 +1,18 @@
+<?php 
+    include("../backend/user/functions/init.php"); 
+    $loggedIn = logged_in();
+    $celestaid=""; $access_token="";
+    if(logged_in()){
+        $celestaid = $_SESSION['celestaid'];
+        $access_token=$_SESSION['access_token'];
+    }
+?>
+
 <?php
   $param=$_GET['data'];
 
-  // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
-  $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
+  $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
+  // $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
   $curl = curl_init($service_url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   $curl_response = curl_exec($curl);
@@ -23,20 +33,13 @@
   $filters="";
   if($param=="events"){
     $filters='
-      <li data-filter=".filter-NJACK">NJACK</li>
-      <li data-filter=".filter-SPARKONICS">SPARKONICS</li>
-    ';
-  }
-  if($param=="workshops"){
-    $filters='
-      <li data-filter=".filter-NJACK">NJACK</li>
-      <li data-filter=".filter-SPARKONICS">SPARKONICS</li>
-    ';
-  }
-  if($param=="pronites"){
-    $filters='
-      <li data-filter=".filter-NJACK">NJACK</li>
-      <li data-filter=".filter-SPARKONICS">SPARKONICS</li>
+      <li data-filter=".filter-TECH">TECH</li>
+      <li data-filter=".filter-NON-TECH">NON-TECH</li>
+      <li data-filter=".filter-CODING">CODING</li>
+      <li data-filter=".filter-MANAGEMENT">MANAGEMENT</li>
+      <li data-filter=".filter-ROBOTICS">ROBOTICS</li>
+      <li data-filter=".filter-QUIZ">QUIZ</li>
+      <li data-filter=".filter-TREASURE-HUNT">TREASURE-HUNT</li>
     ';
   }
 ?>
@@ -119,7 +122,10 @@
 
                     <div class="gallery-info">
                       <h4><?php echo $e['ev_name']?></h4>
-                      <p><button class="btn" style="background: rgb(148,0,211,.8)"><a style="color: #fff" href="http://localhost/celesta2k19-webpage/events/eventsdetails.php?id=<?php echo $e['ev_id']?>">More Details</a></button> <button class="btn" style="background: 	rgb(139,0,139,.8)"><a style="color: #fff" href="http://localhost/celesta2k19-webpage/events/eventsdetails.php?id=<?php echo $e['ev_id']?>">Register Event</a></button></p>
+                      <p>
+                        <a class="btn" style="color: #fff; background: rgb(148,0,211,.8)" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">More Details</a> 
+                        <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8)" href="../backend/admin/functions/register_events.php?eventid=<?php echo $e['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
+                      </p>
                     </div>
                   </div>
                 </div>
