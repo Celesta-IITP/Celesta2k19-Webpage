@@ -487,7 +487,7 @@ function login_user($celestaid, $password, $remember){
 
 //Logged in functions
 function logged_in(){
-	if(isset($_SESSION['celestaid']) || isset($_COOKIE['celestaid'])){
+	if(isset($_SESSION['celestaid'])){
 		return true;
 	}
 	else{
