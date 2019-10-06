@@ -50,6 +50,19 @@ Response:
 * events_participated: Events user have participated
 * access_token: (Store it safely. It will be required to hit the profile API)
 
+## Logout User
+Method: POST
+Parameters:
+* f: "logout_user" (This parameter must be supplied to determine logout api.)
+* celestaid
+* access_token
+
+Response:
+* status: 202/401
+  - 202: Successfully logged out
+  - 401: Invalid authentication
+* message: Array of messages
+
 ## Profile API
 Method: POST
 Parameters:
