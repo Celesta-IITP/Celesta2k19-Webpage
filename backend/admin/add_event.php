@@ -21,11 +21,6 @@
 <form method="POST" enctype="multipart/form-data">
 
     <div class="form-group">
-        <label for="event_name">Event/Workshop Name</label>
-        <input type="text" class="form-control" id="event_name" name="event_name" placeholder="Type the event name" required>
-    </div>
-
-    <div class="form-group">
         <label for="exampleFormControlSelect1">Category</label>
         <select class="form-control" id="event_category" name="event_category" required>
         <option>Events</option>
@@ -37,6 +32,24 @@
     </div>
 
     <div class="form-group">
+        <label for="exampleFormControlSelect1">Choose The organizing Club</label></label>
+        <select class="form-control" id="ev_club" name="ev_club" required>
+        <option>TECH</option>
+        <option>NON-TECH</option>
+        <option>CODING</option>
+        <option>MANAGEMENT</option>
+        <option>ROBOTICS</option>
+        <option>QUIZ</option>
+        <option>TREASURE-HUNT</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="event_name">Event/Workshop Name</label>
+        <input type="text" class="form-control" id="event_name" name="event_name" placeholder="Type the event name" required>
+    </div>
+
+    <div class="form-group">
         <label for="event_organizer">Organizers Name</label>
         <input type="text" class="form-control" id="event_organizer" name="event_organizer" placeholder="Enter the name of event organizer" required>
     </div>
@@ -44,28 +57,6 @@
     <div class="form-group">
         <label for="event_organizer">Organizers Phone Number</label>
         <input type="text" class="form-control" id="event_org_phone" name="event_org_phone" placeholder="Enter the phone numbers of event organizers" required>
-    </div>
-
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">Choose The organizing Club</label></label>
-        <select class="form-control" id="ev_club" name="ev_club" required>
-        <option>SCME</option>
-        <option>NJACK</option>
-        <option>SPARKONICS</option>
-        <option>CHESSX</option>
-        <option>ACE</option>
-        <option>E-CLUB</option>
-        <option>LOCK-N-LOAD</option>
-        <option>ANONYMOUS</option>
-        <option>ROBOTICS</option>
-        <option>MAIN STAGE</option>
-        <option>FUN EVENTS</option>
-        <option>TINKERER LAB</option>
-        <option>ROBOTICS AND IOT</option>
-        <option>AUTOMOBILES AND IC ENGINES</option>
-        <option>EXHIBITIONS</option>
-        <option>CONCLAVE</option>
-        </select>
     </div>
 
     <div class="form-group">
