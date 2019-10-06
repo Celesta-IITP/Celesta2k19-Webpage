@@ -902,8 +902,8 @@ function addEvent(){
 
 		$event_id =getEventId();
 
-		$target_poster = "/events/posters/";
-		$target_rulebook = "/events/rulebook/";
+		$target_poster = "./events/posters/";
+		$target_rulebook = "./events/rulebook/";
 		
 		$target_poster_file=$target_poster."$event_id"."_"."$event_name".".jpg";
 		$target_rulebook_file=$target_rulebook."$event_id"."_"."$event_name".".pdf";
