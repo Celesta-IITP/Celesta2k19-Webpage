@@ -195,10 +195,10 @@ function registrar_register(){
 								                    <div class='row register-form' >
 								                        <div class='col-md-6'>
 								                            <div class='form-group'>
-								                                <input type='text' readonly class='form-control' id='first_name' name='first_name' placeholder='First Name' value='".$first_name."' required />
+								                                <input type='text'  class='form-control' id='first_name' name='first_name' placeholder='First Name' value='".$first_name."' required />
 								                            </div>
 								                            <div class='form-group'>
-								                                <input type='text' readonly class='form-control' id='last_name' name='last_name' placeholder='Last Name' value='".$last_name."' required />
+								                                <input type='text'  class='form-control' id='last_name' name='last_name' placeholder='Last Name' value='".$last_name."' required />
 								                            </div>
 								                            <div class='form-group'>
 								                                <input type='text' readonly class='form-control' id='celestaid' name='celestaid' placeholder='Celesta ID' value='".$celestaid."' required />
@@ -208,11 +208,11 @@ function registrar_register(){
 		                	$to_show.="<div class='form-group'>
 		                                <div class='maxl'>
 		                                    <label class='radio inline'> 
-		                                        <input type='radio' name='gender' readonly value='m' id='male' checked>
+		                                        <input type='radio' name='gender' value='m' id='male' checked>
 		                                        <span> Male </span> 
 		                                    </label>
 		                                    <label class='radio inline'> 
-		                                        <input type='radio' name='gender' readonly id='female' value='f'>
+		                                        <input type='radio' name='gender' id='female' value='f'>
 		                                        <span>Female </span> 
 		                                    </label>
 		                                </div>
@@ -222,11 +222,11 @@ function registrar_register(){
 		                	$to_show.="<div class='form-group'>
 		                                <div class='maxl'>
 		                                    <label class='radio inline'> 
-		                                        <input type='radio' name='gender' readonly value='m' id='male'>
+		                                        <input type='radio' name='gender' value='m' id='male'>
 		                                        <span> Male </span> 
 		                                    </label>
 		                                    <label class='radio inline'> 
-		                                        <input type='radio' name='gender' readonly id='female' value='f' checked>
+		                                        <input type='radio' name='gender'  id='female' value='f' checked>
 		                                        <span>Female </span> 
 		                                    </label>
 		                                </div>
@@ -240,10 +240,10 @@ function registrar_register(){
 							                                <input type='email' class='form-control' readonly id='email' readonly name='email' placeholder='Your Email' value='".$email."' required/>
 							                            </div>
 							                            <div class='form-group'>
-							                                <input type='text' minlength='10' maxlength='10' readonly name='phone' id='phone' class='form-control' placeholder='Your Phone' value='".$phone."' required/>
+							                                <input type='text' minlength='10' maxlength='10'  name='phone' id='phone' class='form-control' placeholder='Your Phone' value='".$phone."' required/>
 							                            </div>
 							                            <div class='form-group'>
-							                                <input type='text' class='form-control' id='college' readonly name='college' placeholder='Enter Your School/College' value='".$college."' required/>
+							                                <input type='text' class='form-control' id='college' name='college' placeholder='Enter Your School/College' value='".$college."' required/>
 							                            </div>";
 
 						//For registration charge
@@ -251,7 +251,7 @@ function registrar_register(){
 							$to_show.="	<div class='form-group row'>
 			                                <div class='col-sm-10'>
 			                                    <div class='form-check'>
-			                                        <input class='form-check-input' type='checkbox' id='registration_charge' name='registration_charge' readonly checked>
+			                                        <input class='form-check-input' type='checkbox' id='registration_charge' name='registration_charge' checked>
 			                                        <label class='form-check-label' for='registration_charge'>
 			                                            Registration 
 			                                        </label>
@@ -902,8 +902,8 @@ function addEvent(){
 
 		$event_id =getEventId();
 
-		$target_poster = "./events/posters/";
-		$target_rulebook = "./events/rulebook/";
+		$target_poster = "/events/posters/";
+		$target_rulebook = "/events/rulebook/";
 		
 		$target_poster_file=$target_poster."$event_id"."_"."$event_name".".jpg";
 		$target_rulebook_file=$target_rulebook."$event_id"."_"."$event_name".".pdf";
@@ -915,8 +915,8 @@ function addEvent(){
 		// Upload the file
 		if((move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_poster_file)) && (move_uploaded_file($_FILES["event_rulebook"]["tmp_name"],$target_rulebook_file))){
 			
-			$poster_url ="https://celesta.org.in/backend/admin".$target_poster_file;
-			$rulebook_url = "https://celesta.org.in/backend/admin".$target_rulebook_file;
+			$poster_url ="https://celesta.org.in/backend/admin".substr($target_poster_file, 1);
+			$rulebook_url = "https://celesta.org.in/backend/admin".substr($target_rulebook_file, 1);
 
 			$sql = "INSERT INTO events(ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time)";
 			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time')";

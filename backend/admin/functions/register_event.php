@@ -1,12 +1,11 @@
 <?php
 include('./init.php');
 
-
 if($_SERVER['REQUEST_METHOD']=="GET"){
     
     $errors=array();
     $response=array();
-
+    
     // Execute 
     $eventid=clean($_GET["eventid"]);
     $celestaid=clean($_GET["celestaid"]);

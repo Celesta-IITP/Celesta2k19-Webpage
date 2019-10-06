@@ -1,17 +1,26 @@
 <?php
-    $id=$_GET['id'];
-    $param=$_GET['data'];
-    $strJsonFileContents = file_get_contents("data.json");
-    $dataz = json_decode($strJsonFileContents, true);
-    $data= $dataz[$param];
-    $event;
-    foreach($data as $d){ 
-      if($d["id"]==$id){
-        $event=$d;
-      }
-    }
-?>
+  $id=$_GET['id'];
 
+  // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
+  $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
+  $curl = curl_init($service_url);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  $curl_response = curl_exec($curl);
+  if ($curl_response === false) {
+      $info = curl_getinfo($curl);
+      curl_close($curl);
+      die('error occured during curl exec. Additioanl info: ' . var_export($info));
+  }
+  curl_close($curl);
+  $data = json_decode($curl_response, true);
+
+  $event;
+  foreach($data as $d){
+    if($d['ev_id']==$id){
+      $event=$d;
+    }
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,23 +73,31 @@
     <main class="content">
       <div class="content_inner">
         <section id="gallery" class="section-bg">
+
           <div class="container">
             <header class="section-header">
-              <h3 class="section-title"><?php echo $event["name"] ?></h3>
+              <h3 class="section-title"><?php echo $event["ev_category"] ?>: <?php echo $event["ev_name"] ?></h3>
             </header>
+            <br>
             <div class="row">
-              <!-- <div class="col-lg-6 col-md-6">
-                <img src="<?php echo $event["image"] ?>" style="display: block; margin: auto">
-              </div> -->
-              <br><br>
               <div class="col-lg-6 col-md-6">
-                <ul style="color: #fff">Organizers:</ul>
-                <?php foreach($event["organizers"] as $orgi) { ?>
-                  <li style="color: #fff"><?php echo $orgi ?></li>
-                <?php } ?>
+                <img src="https://celesta.org.in/backend/admin/events/posters/ATM5042_Robowars.jpg" width="100%">
               </div>
+              <div class="col-lg-6 col-md-6">
+                <h3 style="color: #219999">Name: <span style="color: #fff"><?php echo $event['ev_name']?></span></h3>
+                <h5 style="color: #219999">Description: <span style="color: #fff"><?php echo $event['ev_description']?></span></h5>
+                <h5 style="color: #219999">Organiser: <span style="color: #fff"><?php echo $event['ev_organiser']?></span></h5>
+                <h5 style="color: #219999">Club: <span style="color: #fff"><?php echo $event['ev_club']?></span></h5>
+                <h5 style="color: #219999">Organizer's Phone: <span style="color: #fff"><?php echo $event['ev_org_phone']?></span></h5>
+                <h5 style="color: #219999">Date: <span style="color: #fff"><?php echo $event['ev_date']?></span></h5>
+                <h5 style="color: #219999">Start Time: <span style="color: #fff"><?php echo $event['ev_start_time']?></span></h5>
+                <h5 style="color: #219999">End Time: <span style="color: #fff"><?php echo $event['ev_end_time']?></span></h5>
+                <button class="btn btn-success"><a style="color: #fff" href="<?php echo $event['ev_rule_book_url']?>">Rulebook</a></button>
+                <button class="btn btn-success"><a style="color: #fff" href="<?php echo $event['ev_rule_book_url']?>">Register</a></button>
               </div>
             </div>
+            </div>
+
           </div>
         </section>
       </div>
