@@ -459,7 +459,7 @@ function login_user($celestaid, $password, $remember){
 		$db_password=$row['password'];
 		$qrcode=$row['qrcode'];
 		if(md5($password)==$db_password){
-			$access_token=$celestaid.$password;
+			$access_token=$celestaid.$password.microtime();
 			$access_token=md5($access_token);
 
 			$sql1="UPDATE users SET access_token='$access_token' WHERE celestaid='$celestaid'";
