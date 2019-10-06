@@ -1,17 +1,50 @@
+<?php
+    include('../backend/user/functions/init.php');
+    $loggedIn=false;
+    if(logged_in()){
+        
+    }
+?>
 <!DOCTYPE HTML>
 <html>
-
 <head>
     <title>Campus Ambassador</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/ca-styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </head>
 
 <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+  `      <a class="navbar-brand" href="../">CELESTA'19</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../backend/user/ca_register.php">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../backend/user/reg.php">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../backend/user/profile.php">Profile</a>
+                </li>
+            </ul>
+        </div>`
+        </div>
+    </nav>
 
     <!-- Header -->
     <div id="header">

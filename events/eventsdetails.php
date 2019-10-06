@@ -107,6 +107,7 @@
                 <?php }else{ ?>
                 <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php">Login to Register</a>
                 <?php }?>
+
               </div>
             </div>
             </div>
