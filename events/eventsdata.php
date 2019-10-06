@@ -11,7 +11,7 @@
 <?php
   $param=$_GET['data'];
 
-  // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
+  // $service_url = 'http://localhost:8888/celesta2k19-webpage/backend/admin/functions/events_api.php';
   $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
   $curl = curl_init($service_url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -124,7 +124,11 @@
                       <h4><?php echo $e['ev_name']?></h4>
                       <p>
                         <a class="btn" style="color: #fff; background: rgb(148,0,211,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">More Details</a> 
-                        <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="../backend/admin/functions/register_events.php?eventid=<?php echo $e['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
+                        <?php if($loggedIn){?>
+                        <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="../backend/admin/functions/register_event.php?eventid=<?php echo $e['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
+                        <?php }else{?>
+                        <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php">Login to Register</a>
+                        <?php }?>
                       </p>
                     </div>
                   </div>
