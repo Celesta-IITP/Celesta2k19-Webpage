@@ -102,7 +102,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
     $response['message']=$errors;
     echo json_encode($response);
-    redirect("../../../events/success.php");
+    redirect("./../success.php");
 }
 
 // To check if a person has already registered or not

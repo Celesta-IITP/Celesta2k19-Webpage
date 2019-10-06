@@ -2,7 +2,7 @@
     include('../backend/user/functions/init.php');
     $loggedIn=false;
     if(logged_in()){
-        $loggedIn = true;
+        
     }
 ?>
 <!DOCTYPE HTML>
@@ -21,7 +21,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- <div class="container"> -->
+        <div class="container">
   `      <a class="navbar-brand" href="../">CELESTA'19</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,24 +32,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="../">Home</a>
                 </li>
-                <?php if($loggedIn) {?>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../backend/user/profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../backend/user/ca_logout.php">Logout</a>
-                    </li>
-                <?php } else { ?>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../backend/user/ca_register.php">Register</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../backend/user/reg.php">Login</a>
-                    </li>
-                <?php } ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../backend/user/ca_register.php">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../backend/user/reg.php">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../backend/user/profile.php">Profile</a>
+                </li>
             </ul>
+        </div>`
         </div>
-        <!-- </div> -->
     </nav>
 
     <!-- Header -->
@@ -64,29 +58,13 @@
 
         <br><br><br><br><br>
         <center>
-            <a href="https://drive.google.com/file/d/10-NSUM3Y7D2gg1Eg7lkRsH7IbK8zJ7Nl/view" target="_blank">
+            <a href="../backend/user/ca_register.php">
                 <div id="FB-Oauth">
                     <div class="fb-text">
-                        <h3>Rulebook</h3>
+                        <h3>Sign-Up</h3>
                     </div>
                 </div>
             </a>
-            <?php if($loggedIn) {?>
-                <a href="../backend/user/ca_register.php">
-                    <div id="FB-Oauth">
-                        <div class="fb-text">
-                            <h3>Profile</h3>
-                        </div>
-                    </div>
-                </a>
-            <?php } else { ?>
-                <a href="../backend/user/ca_register.php">
-                    <button class="btn btn-success" style="padding: 10px; font-size: 18px">Register</button>
-                </a>
-                <a href="../backend/user/reg.php">
-                    <button class="btn btn-success" style="padding: 10px; font-size: 18px">Login</button>
-                </a>
-            <?php } ?>
         </center>
         <div class="imgClass type1 img1"><img src="./images/img/1.png"></div>
         <div class="imgClass type1 img2"><img src="./images/img/2.png"></div>
@@ -165,9 +143,6 @@
 
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
   $id=$_GET['id'];
-  // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
+  // $service_url = 'http://localhost:8888/celesta2k19-webpage/backend/admin/functions/events_api.php';
   $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
   $curl = curl_init($service_url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -8,7 +8,7 @@
   if ($curl_response === false) {
       $info = curl_getinfo($curl);
       curl_close($curl);
-      die('Error occured during curl exec. Additioanl info: ' . var_export($info));
+      die('error occured during curl exec. Additioanl info: ' . var_export($info));
   }
   curl_close($curl);
   $data = json_decode($curl_response, true);
@@ -22,7 +22,7 @@
 ?>
 
 <?php 
-    include("../backend/user/functions/init.php");
+    include("../backend/user/functions/init.php"); 
     $loggedIn = logged_in();
     $celestaid=""; $access_token="";
     if(logged_in()){
@@ -102,11 +102,11 @@
                 <h5 style="color: #219999">Start Time: <span style="color: #fff"><?php echo $event['ev_start_time']?></span></h5>
                 <h5 style="color: #219999">End Time: <span style="color: #fff"><?php echo $event['ev_end_time']?></span></h5>
                 <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url']?>">Rulebook</a>
-                <!-- <?php if($loggedIn){?>
-                  <a class="btn btn-success" style="color: #fff" href="../backend/admin/functions/register_event.php?eventid=<?php echo $event['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
+                <?php if($loggedIn){?>
+                <a class="btn btn-success" style="color: #fff" href="../backend/admin/functions/register_event.php?eventid=<?php echo $event['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
                 <?php }else{ ?>
-                  <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php">Login to Register</a>
-                <?php }?> -->
+                <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php">Login to Register</a>
+                <?php }?>
 
               </div>
             </div>
