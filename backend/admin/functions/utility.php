@@ -12,15 +12,15 @@ function send_email($email,$subject,$msg,$headers){
 	$mail->isSMTP();                                      // Set mailer to use SMTP
 	$mail->Host = 'tls://smtp.gmail.com';  // Specify main and backup SMTP servers
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = "dscappsocietyiitp@gmail.com";                 // SMTP username
-	$mail->Password = "appified@1504";                           // SMTP password
+	$mail->Username = "celesta19iitp@gmail.com";                 // SMTP username
+	$mail->Password = "celesta19@iitp.ac.in";  
 	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 	$mail->Port = 587;                                    // TCP port to connect to
 
-	$mail->setFrom('dscappsocietyiitp@gmail.com', 'Celesta2k19');
+	$mail->setFrom('celesta19iitp@gmail.com', 'Celesta2k19');
 	$mail->addAddress($email);     // Add a recipient
 	//$mail->addAddress('ellen@example.com');               // Name is optional
-	$mail->addReplyTo('dscappsocietyiitp@gmail.com', 'Information');
+	$mail->addReplyTo('celesta19iitp@gmail.com', 'Information');
 	//$mail->addCC('cc@example.com');
 	//$mail->addBCC('bcc@example.com');
 
@@ -33,8 +33,8 @@ function send_email($email,$subject,$msg,$headers){
 	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 	if(!$mail->send()) {
-	   // echo 'Message could not be sent.';
-	   // echo 'Mailer Error: ' . $mail->ErrorInfo;
+	    // echo 'Message could not be sent.';
+		// echo 'Mailer Error: ' . $mail->ErrorInfo;
 	    return false;
 	} else {
 	  //  echo 'Message has been sent';
