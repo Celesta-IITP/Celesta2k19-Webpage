@@ -68,6 +68,16 @@
         <label for="event_organizer">Event Date</label>
         <input type="text" class="form-control" id="event_date" name="event_date" placeholder="Date of the event" required>
     </div>
+    
+    <div class="form-group">
+        <label for="event_organizer">Event Venue</label>
+        <input type="text" class="form-control" id="event_venue" name="event_venue" placeholder="Venue of the event" required>
+    </div>
+
+    <div class="form-group">
+        <label for="event_organizer">Event registration fee</label>
+        <input type="text" class="form-control" id="event_amount" name="event_amount" placeholder="Registration fee for the event" required>
+    </div>
 
     <div class="form-group">
         <label for="event_organizer">Event Start Time</label>

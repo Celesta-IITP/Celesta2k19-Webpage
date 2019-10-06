@@ -42,6 +42,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             checkin_checkout();
         }elseif($_POST['f']=='user_profile'){
             profile();
+        }elseif($_POST['f']=='logout_user'){
+            logout_user();
         }
     }
 }
@@ -295,7 +297,7 @@ function login_user(){
                 $response['message']=$errors;
                 echo json_encode($response);
             }else{
-                $access_token=$celestaid.$password;
+                $access_token=$celestaid.$password.microtime();
                 $access_token=md5($access_token);
 
                 $sql1="UPDATE users SET access_token='$access_token' WHERE celestaid='$celestaid'";
@@ -333,6 +335,29 @@ function login_user(){
     }
 }
 
+// Function to logout
+function logout_user(){
+    $celestaid=$_POST['celestaid'];
+    $access_token=$_POST['access_token'];
+    $response=array();
+    $errors=array();
+
+    $sql="SELECT id, access_token FROM users WHERE celestaid='$celestaid' AND access_token='$access_token'";
+    $result=query($sql);
+
+    if(row_count($result)==1){
+        $sql1= "UPDATE users SET access_token='' WHERE celestaid='$celestaid'";
+        $result1=query($sql1);
+
+        $response['status']=202;
+        $errors[]="Successfully logged out.";
+    }else{
+        $response['status']=401;
+        $errors[]="Invalid authentication.";
+    }
+    $response['message']=$errors;
+    echo json_encode($response);
+}
 
 // Function to get profile details
 function profile(){

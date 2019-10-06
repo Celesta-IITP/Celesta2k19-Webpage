@@ -38,6 +38,20 @@
     </div>
 
     <div class="form-group">
+        <label for="exampleFormControlSelect1">Choose The organizing Club</label></label>
+        <select class="form-control" id="ev_club" name="ev_club" required>
+        <option selected="selected"><?php echo $event['ev_club']?></option>
+        <option>TECH</option>
+        <option>NON-TECH</option>
+        <option>CODING</option>
+        <option>MANAGEMENT</option>
+        <option>ROBOTICS</option>
+        <option>QUIZ</option>
+        <option>TREASURE-HUNT</option>
+        </select>
+    </div>
+
+    <div class="form-group">
         <label for="event_organizer">Organizers Name</label>
         <input type="text" class="form-control" id="event_organizer" name="event_organizer" placeholder="Enter the name of event organizer" required value="<?php echo $event['ev_organiser']?>">
     </div>
@@ -48,29 +62,6 @@
     </div>
 
     <div class="form-group">
-        <label for="exampleFormControlSelect1">Choose The organizing Club</label></label>
-        <select class="form-control" id="ev_club" name="ev_club" required>
-        <option selected="selected"><?php echo $event['ev_club']?></option>
-        <option>SCME</option>
-        <option>NJACK</option>
-        <option>SPARKONICS</option>
-        <option>CHESSX</option>
-        <option>ACE</option>
-        <option>E-CLUB</option>
-        <option>LOCK-N-LOAD</option>
-        <option>ANONYMOUS</option>
-        <option>ROBOTICS</option>
-        <option>MAIN STAGE</option>
-        <option>FUN EVENTS</option>
-        <option>TINKERER LAB</option>
-        <option>ROBOTICS AND IOT</option>
-        <option>AUTOMOBILES AND IC ENGINES</option>
-        <option>EXHIBITIONS</option>
-        <option>CONCLAVE</option>
-        </select>
-    </div>
-
-    <div class="form-group">
         <label for="event_organizer">Event Description</label>
         <textarea type="text" class="form-control" id="event_desc" name="event_desc" placeholder="Write about the event"rows="3" required ><?php echo $event['ev_description']?></textarea>
     </div>
@@ -78,6 +69,16 @@
     <div class="form-group">
         <label for="event_organizer">Event Date</label>
         <input type="text" class="form-control" id="event_date" name="event_date" placeholder="Date of the event" required value="<?php echo $event['ev_date']?>">
+    </div>
+        
+    <div class="form-group">
+        <label for="event_organizer">Event Venue</label>
+        <input type="text" class="form-control" id="event_venue" name="event_venue" placeholder="Venue of the event" required value="<?php echo $event['ev_venue']?>" >
+    </div>
+
+    <div class="form-group">
+        <label for="event_organizer">Event registration fee</label>
+        <input type="text" class="form-control" id="event_amount" name="event_amount" placeholder="Registration fee for the event" required value="<?php echo $event['ev_amount']?>" >
     </div>
 
     <div class="form-group">
