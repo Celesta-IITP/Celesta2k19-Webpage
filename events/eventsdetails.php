@@ -1,3 +1,12 @@
+<?php 
+    include("../backend/user/functions/init.php"); 
+    $loggedIn = logged_in();
+    $celestaid=""; $access_token="";
+    if(logged_in()){
+        $celestaid = $_SESSION['celestaid'];
+        $access_token=$_SESSION['access_token'];
+    }
+?>
 <?php
   $id=$_GET['id'];
   // $service_url = 'http://localhost:8888/celesta2k19-webpage/backend/admin/functions/events_api.php';
@@ -19,16 +28,6 @@
       $event=$d;
     }
   }
-?>
-
-<?php 
-    include("../backend/user/functions/init.php"); 
-    $loggedIn = logged_in();
-    $celestaid=""; $access_token="";
-    if(logged_in()){
-        $celestaid = $_SESSION['celestaid'];
-        $access_token=$_SESSION['access_token'];
-    }
 ?>
 
 <!DOCTYPE html>
@@ -103,8 +102,8 @@
                 <h5 style="color: #219999">End Time: <span style="color: #fff"><?php echo $event['ev_end_time']?></span></h5>
                 <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url']?>">Rulebook</a>
                 <?php if($loggedIn){?>
-                <a class="btn btn-success" style="color: #fff" href="../backend/admin/functions/register_event.php?eventid=<?php echo $event['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
-                <?php }else{ ?>
+                <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="../backend/admin/functions/register_event.php?eventid=<?php echo $e['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
+                <?php }else{?>
                 <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php">Login to Register</a>
                 <?php }?>
 
