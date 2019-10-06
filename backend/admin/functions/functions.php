@@ -1038,7 +1038,7 @@ function updateEvent(){
 			
 			$target_poster_file=$target_poster."$eventid"."_"."$event_name".".jpg";
 			if(move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_poster_file)){
-				$poster_url ="https://celesta.org.in/backend/admin".$target_poster_file;
+				$poster_url ="https://celesta.org.in/backend/admin".substr($target_poster_file, 1);
 				$sql1= "UPDATE events SET ev_poster_url='$poster_url'  WHERE ev_id='$eventid'";
 				$result1=query($sql1);
 			}
@@ -1049,7 +1049,7 @@ function updateEvent(){
 			
 			$target_rulebook_file=$target_rulebook."$eventid"."_"."$event_name".".pdf";
 			if(move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_rulebook_file)){
-				$rulebook_url ="https://celesta.org.in/backend/admin".$target_rulebook_file;
+				$rulebook_url ="https://celesta.org.in/backend/admin".substr($target_rulebook_file, 1);
 				$sql1= "UPDATE events SET ev_rule_book_url='$rulebook_url'  WHERE ev_id='$eventid'";
 				$result1=query($sql1);
 			}
