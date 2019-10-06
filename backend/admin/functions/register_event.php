@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
     if(eventExists($eventid)){ // Checking for existence of event. Declared in functions.php
 
-        $sql = "SELECT first_name,last_name, phone, events_registered FROM users WHERE celestaid='$celestaid' and access_token='$access_token'";
+        $sql = "SELECT first_name,last_name, phone, events_registered, email FROM users WHERE celestaid='$celestaid' and access_token='$access_token'";
         $result=query($sql);
         confirm($result);
         // Checking if user is valid or not
@@ -27,6 +27,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
             $ev_name=$row1["ev_name"];
 
             $row=fetch_array($result);
+            $email=$row['email'];
 
             // Check if user has already registered or not
             if(alreadyRegistered($celestaid, $regis)){
@@ -45,6 +46,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $reg["celestaid"]=$celestaid;
                 $reg["name"]=$row["first_name"]." ".$row["last_name"];
                 $reg["phone"]=$row["phone"];
+                $reg['amount']=0;
                 $reg["time"]=date('Y-m-d H:i:s');
                 $regis[]=$reg;
                 $regis=json_encode($regis);
@@ -56,6 +58,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $add_event=array();
                 $add_event["ev_name"]=$ev_name;
                 $add_event["ev_id"]=$eventid;
+                $add_event["amount"]=0;
                 $ev_registered[]=$add_event;
                 $ev_registered=json_encode($ev_registered);
                 $sql3="UPDATE users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
@@ -69,6 +72,15 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                     $sql5="UPDATE present_users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
                     $result5=query($sql5);
                 }
+
+                $subject="Celesta2k19 Events Registration";
+                $msg="<p>
+                Hi ".$row['first_name']." ".$row['last_name']." you have successfully registered for $ev_name. <br/>
+                    Your Celesta Id is ".$celestaid.". <br/>
+                    You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/> </p>
+                ";
+                $header="From: noreply@yourwebsite.com";
+                send_email($email,$subject,$msg,$header);
 
                 $response['status']=202;
                 $errors[]="Successfully registered the user.";
