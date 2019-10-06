@@ -92,7 +92,7 @@
                 <h5 style="color: #219999">Date: <span style="color: #fff"><?php echo $event['ev_date']?></span></h5>
                 <h5 style="color: #219999">Start Time: <span style="color: #fff"><?php echo $event['ev_start_time']?></span></h5>
                 <h5 style="color: #219999">End Time: <span style="color: #fff"><?php echo $event['ev_end_time']?></span></h5>
-                <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url']?>">Rulebook</a>
+                <!-- <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url']?>">Rulebook</a> -->
                 <a class="btn btn-success" style="color: #fff" href="../backend/admin/functions/register_events.php?eventid=<?php echo $e['ev_id']?>&celestaid=<?php echo $celestaid ?>&access_token=<?php echo $access_token?>">Register Event</a>
               </div>
             </div>
