@@ -33,6 +33,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
             if(alreadyRegistered($celestaid, $regis)){
                 $response['status']=302;
                 $errors[]="Already registered.";
+                set_message("<p class='bg-danger text-center'>You have already registered this event.</p>");
             }else{
 
                 /**  Things to be implemented
@@ -84,20 +85,24 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
                 $response['status']=202;
                 $errors[]="Successfully registered the user.";
+                set_message("<p class='bg-success text-center'>Successfully registered the user for the event $ev_name</p>");
 
             }
 
         }else{
             $response['status']=401;
             $errors[]="Unauthorized access. Celesta ID or access token doesn't match.";
+            set_message("<p class='bg-danger text-center'>Unauthorized access. Celesta ID or access token doesn't match.</p>");
         } // End of else part of user authentication.
     }else{
         $response['status']=404;
         $errors[]="Event not found.";
+        set_message("<p class='bg-danger text-center'>Event not found.</p>");
     } // End of checking if event exists or not
 
     $response['message']=$errors;
     echo json_encode($response);
+    redirect("./../success.php");
 }
 
 // To check if a person has already registered or not
