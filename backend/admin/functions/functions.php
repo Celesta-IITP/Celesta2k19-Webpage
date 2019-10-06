@@ -126,6 +126,29 @@ function getPermit(){
 	}
 }
 
+/********************************************** For naughty Admins only **************************************************/
+
+function show_users(){
+	if(!registrar_logged_in()){
+		redirect("login.php");
+	}elseif(getPermit()==0){
+		$sql="SELECT first_name, last_name, college, celestaid, phone, email, gender FROM users";
+		$result=query($sql);
+		$permit=getPermit();
+
+		$data=array();
+		while ($row = $result->fetch_assoc()) {
+    		if($permit==3 || $permit==0){
+				$data[]=$row;
+    		}
+		}
+		return $data;
+	}
+}
+
+
+
+/**************************************************** Registration Section *************************************************/
 //Function that handles register.php
 function registrar_register(){
 	if(!registrar_logged_in())
