@@ -29,6 +29,7 @@
                 <li><a class="indigo center" href="../../">Home</a></li>
                 <li><a class="blue center" href="../../events.html">Events</a></li>
                 <li><a class="red center" href="../../sponsors.html">Sponsors</a></li>
+                <li><a class="red center" href="./reg.php">Login/Signup</a></li>
             </ul>
         </div>
     </section>
