@@ -911,6 +911,9 @@ function eventid_exists($eventid){
 
 // Function to add events
 function addEvent(){
+	if(!registrar_logged_in()){
+		redirect("login.php");
+	}
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 
 		$event_name=clean($_POST["event_name"]);
