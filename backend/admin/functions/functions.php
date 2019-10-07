@@ -700,10 +700,8 @@ function new_register(){
 		 			set_message("<p class='bg-danger text-center'>Sorry we couldn't register the user.</p>");
 		 			echo "User registration failed";
 	 			}
-	 		
-	 		}		 		
+	 		}
 		}
-		
 	}
 }
 
