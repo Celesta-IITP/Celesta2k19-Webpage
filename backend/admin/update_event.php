@@ -60,6 +60,19 @@
         <label for="event_organizer">Organizers Phone Number</label>
         <input type="text" class="form-control" id="event_org_phone" name="event_org_phone" placeholder="Enter the phone numbers of event organizers" required value="<?php echo $event['ev_org_phone']?>">
     </div>
+    
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Is it a Team Event?</label>
+        <select class="form-control" id="team_event" name="team_event" required>
+        <?php if($event['is_team_event']==0){ ?>
+            <option>True</option>
+            <option selected="selected">False</option>
+        <?php }else{?>
+            <option selected="selected">True</option>
+            <option>False</option>
+        <?php }?>
+        </select>
+    </div>
 
     <div class="form-group">
         <label for="event_organizer">Event Description</label>
