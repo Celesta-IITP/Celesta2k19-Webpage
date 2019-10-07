@@ -911,6 +911,9 @@ function eventid_exists($eventid){
 
 // Function to add events
 function addEvent(){
+	if(!registrar_logged_in()){
+		redirect("login.php");
+	}
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 
 		$event_name=clean($_POST["event_name"]);
@@ -924,6 +927,13 @@ function addEvent(){
 		$event_org_phone = clean($_POST["event_org_phone"]);
 		$ev_amount= clean($_POST['event_amount']);
 		$ev_venue=clean($_POST['event_venue']);
+		$team_event=clean($_POST["team_event"]);
+
+		if($team_event=="False"){
+			$team_event=0;
+		}else{
+			$team_event=1;
+		}
 
 		$event_id =getEventId();
 
@@ -943,8 +953,8 @@ function addEvent(){
 			$poster_url ="https://celesta.org.in/backend/admin".substr($target_poster_file, 1);
 			$rulebook_url = "https://celesta.org.in/backend/admin".substr($target_rulebook_file, 1);
 
-			$sql = "INSERT INTO events(ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time,ev_venue, ev_amount)";
-			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time', '$ev_venue',$ev_amount)";
+			$sql = "INSERT INTO events(ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time,ev_venue, ev_amount,is_team_event)";
+			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time', '$ev_venue',$ev_amount,$team_event)";
 			
 			$result = query($sql);
 			set_message("<p class='bg-success text-center'>Successfully added the event.<br> Event ID: $event_id</p>");
@@ -989,7 +999,7 @@ function getEvent($eventid){
 		return false;
 	}
 
-	$sql="SELECT ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time, ev_venue, ev_amount FROM events WHERE ev_id='$eventid'";
+	$sql="SELECT ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time, ev_venue, ev_amount,is_team_event FROM events WHERE ev_id='$eventid'";
 	$result=query($sql);
 
 
@@ -1028,8 +1038,15 @@ function updateEvent(){
 		$event_end_time = clean($_POST["event_end_time"]);
 		$event_org_phone = clean($_POST["event_org_phone"]);
 		$eventid=clean($_POST["eventid"]);
+		$team_event=clean($_POST["team_event"]);
 
-		$sql = "UPDATE events SET ev_name='$event_name', ev_category='$event_category', ev_description='$event_desc', ev_organiser='$event_organizer', ev_club='$ev_club', ev_org_phone='$event_org_phone', ev_date='$event_date', ev_start_time='$event_start_time', ev_end_time='$event_end_time' WHERE ev_id='$eventid'";
+		if($team_event=="False"){
+			$team_event=0;
+		}else{
+			$team_event=1;
+		}
+
+		$sql = "UPDATE events SET ev_name='$event_name', ev_category='$event_category', ev_description='$event_desc', ev_organiser='$event_organizer', ev_club='$ev_club', ev_org_phone='$event_org_phone', ev_date='$event_date', ev_start_time='$event_start_time', ev_end_time='$event_end_time', is_team_event=$team_event WHERE ev_id='$eventid'";
 		$result = query($sql);
 		confirm($result);
 
