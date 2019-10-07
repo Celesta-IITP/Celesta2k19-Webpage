@@ -36,7 +36,7 @@ Response:
 
 * status:
 -302 - Some members of the team is already Registered
--202- Succesfully registered the team
+-202- Successfully registered the team
 -401- Unauthorized access. Celesta ID or access token doesn't match.
 -404 - Event or member not found
 * message - Array of Messages
