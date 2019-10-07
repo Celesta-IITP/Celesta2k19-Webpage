@@ -413,6 +413,7 @@ function activate_user(){
 					Hi $first_name, you have successfully completed your CA registration process.<br>
 					Your celestaid is : <b>$celestaid</b><br>
 					Your referral id is: <b>$celestaid</b><br>
+					Please join the WhatsApp Group : <a href='https://chat.whatsapp.com/KiaTa2umQ2wKoDX6pzptXp'>https://chat.whatsapp.com/KiaTa2umQ2wKoDX6pzptXp</a>
 					Your qr code is: <img src='$qrcode'>
 					Or click here to get your qrcode : <a href='$qrcode'>$qrcode</a>
 					</p>
