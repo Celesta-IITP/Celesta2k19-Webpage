@@ -23,9 +23,11 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
             $errors[]="Event doesn't exist.";
             $response['status']=404;
         }else{
-            $sql10 = "SELECT ev_registration FROM events WHERE ev_id=$eventid";
+
+            $sql10 = "SELECT ev_registrations, ev_name FROM events WHERE ev_id='$eventid'";
             $result10=query($sql10);
-            $row10-=fetch_array($result10);
+            $row10=fetch_array($result10);
+            $ev_name=$row10['ev_name'];
             $regis=json_decode($row10['ev_registrations']);
             foreach($members as $memb){
                 if(!validCelestaId($memb)){
@@ -40,10 +42,9 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
         }
 
         if(!empty($errors)){
-            
+
             $response['message']=$errors;
-            echo json_encode($response);
-            redirect("../../../events/success.php");
+            // echo json_encode($response);
         }else{
 
 
@@ -155,6 +156,8 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                     Your Celesta Id is: $mem <br/>
                     Thank you for registering the events. Keep visiting the website to stay updated.
                 ";
+                $email=$mem_emails[$count];
+                $count+=1;
                 send_email($email,$subject,$msg,$header);
             }
 
@@ -172,7 +175,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 }
 
 function validCelestaId($celestaid){
-    $sql="SELECT id FROM users WHERE celestaid='$celestaid'";
+    $sql="SELECT id FROM users WHERE celestaid='$celestaid' and active=1";
     $result=query($sql);
     if(row_count($result)==1){
         return true;
@@ -212,6 +215,7 @@ function idAlreadyRegistered($celestaid,$regis){
         foreach($value as $id){
             if($id==$celestaid){
                 return true;
+                break;
             }
         }
     }
