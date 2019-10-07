@@ -65,6 +65,14 @@
     </div>
 
     <div class="form-group">
+        <label for="exampleFormControlSelect1">Is it a Team Event?</label>
+        <select class="form-control" id="team_event" name="team_event" required>
+            <option>True</option>
+            <option selected="selected">False</option>
+        </select>
+    </div>
+
+    <div class="form-group">
         <label for="event_organizer">Event Date</label>
         <input type="text" class="form-control" id="event_date" name="event_date" placeholder="Date of the event" required>
     </div>
@@ -72,6 +80,11 @@
     <div class="form-group">
         <label for="event_organizer">Event Venue</label>
         <input type="text" class="form-control" id="event_venue" name="event_venue" placeholder="Venue of the event" required>
+    </div>
+
+    <div class="form-group">
+        <label for="event_organizer">Map URL of Venue</label>
+        <input type="text" class="form-control" id="map_url" name="map_url" placeholder="Map url of the venue" >
     </div>
 
     <div class="form-group">

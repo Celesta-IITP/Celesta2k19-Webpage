@@ -271,9 +271,7 @@ function ca_register($first_name, $last_name, $phone, $college, $email, $passwor
 		//CONTENTS OF EMAIL
 		$subject="Activate Celesta Account";
 		$msg="<p>
-			Your Celesta Id is ".$celestaid.". <br/>
-			Your Referral ID is $celestaid<br/>
-			You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
+		You have successfully registered as a Campus Ambassador in Celesta-2k19. Please verify your account to get the details.
 		Please click the link below to activate your Account and login.<br/>
 			<a href='https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code&ca=campus_ambassador_celesta2k19'>https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code&ca=campus_ambassador_celesta2k19</a>
 			</p>
@@ -291,7 +289,7 @@ function ca_register($first_name, $last_name, $phone, $college, $email, $passwor
 			$result=query($sql);
 			confirm($result);
 
-			set_message("<p class='bg-success text-center'>Please check your email or spam folder for activation link.<br><br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> </p>");
+			set_message("<p class='bg-success text-center'>Please check your email or spam folder for activation link. </p>");
 			return true;
 		}else{
 			return false;
@@ -320,13 +318,11 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password,$
 		generateQRCode($celestaid,$first_name,$last_name);
 		// $qrcode="http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/".$celestaid.".png";
 		$qrcode="https://celesta.org.in/backend/user/assets/qrcodes/".$celestaid.".png";
-		// echo"<img src='assets/qrcodes/".$celestaid.".png'/>";
 
 		//CONTENTS OF EMAIL
 		$subject="Activate Celesta Account";
 		$msg="<p>
-			Your Celesta Id is ".$celestaid.". <br/>
-			You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
+		You have successfully created a Celesta Account. Please verify your account to get the details.
 		Please click the link below to activate your Account and login.<br/>
 			<a href='https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code'>https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code</a>
 			</p>
@@ -344,7 +340,7 @@ function register_user($first_name,$last_name,$phone,$college,$email,$password,$
 			$result=query($sql);
 			confirm($result);
 
-			set_message("<p class='bg-success text-center'>Please check your email or spam folder for activation link.<br><br><br>Your Celesta id is $celestaid<br><br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> </p>");
+			set_message("<p class='bg-success text-center'>Please check your email or spam folder for activation link. </p>");
 			return true;
 		}else{
 			return false;
@@ -374,7 +370,7 @@ function activate_user(){
 			echo $email=clean($_GET['email']);
 			echo $validation_code=clean($_GET['code']);
 
-			$sql="SELECT id FROM users WHERE email='".escape($_GET['email'])."' AND validation_code='".escape($_GET['code'])."' ";
+			$sql="SELECT id, celestaid, qrcode, first_name FROM users WHERE email='".escape($_GET['email'])."' AND validation_code='".escape($_GET['code'])."' ";
 			$result=query($sql);
 			confirm($result);
 
@@ -383,6 +379,13 @@ function activate_user(){
 				$result2=query($sql2);
 				confirm($result2);
 				
+				// Fetching details
+				$row=fetch_array($result);
+				$celestaid=$row['celestaid'];
+				$qrcode=$row['qrcode'];
+				$is_ca=false;
+				$first_name=$row['first_name'];
+
 				// To activate ca register table
 				if(isset($_GET['ca'])){
 					$ca =clean($_GET['ca']);
@@ -390,6 +393,7 @@ function activate_user(){
 						$sql1="SELECT id FROM ca_users WHERE email='".escape($_GET['email'])."' AND validation_code='".escape($_GET['code'])."' ";
 						$result1=query($sql1);
 						confirm($result1);
+						$is_ca=true;
 
 						if(row_count($result1)==1){
 							$sql3="UPDATE ca_users SET active = 1, validation_code = 0 WHERE email='".escape($email)."' AND validation_code='".escape($validation_code)."' ";
@@ -398,8 +402,36 @@ function activate_user(){
 						}
 					}
 				}
-				set_message("<p class='bg-success'> Your account has been activated.</p>");
-				redirect("reg.php");
+
+				$subject="Celesta Account Details";
+
+				$header="From: noreply@yourwebsite.com";
+
+				if($is_ca==true){
+					set_message("<p class='bg-success'> Your account has been activated.<br> Your celestaid is <b>$celestaid</b>. Your ca referral id is: <b>$celestaid</b>. <br> Your qr code is <br> <img src='$qrcode'/></p>");
+					$msg="<p>
+					Hi $first_name, you have successfully completed your CA registration process.<br>
+					Your celestaid is : <b>$celestaid</b><br>
+					Your referral id is: <b>$celestaid</b><br>
+					Please join the WhatsApp Group : <a href='https://chat.whatsapp.com/KiaTa2umQ2wKoDX6pzptXp'>https://chat.whatsapp.com/KiaTa2umQ2wKoDX6pzptXp</a>
+					Your qr code is: <img src='$qrcode'>
+					Or click here to get your qrcode : <a href='$qrcode'>$qrcode</a>
+					</p>
+					";
+				}else{
+					set_message("<p class='bg-success'> Your account has been activated.<br> Your celestaid is <b>$celestaid</b>. <br> Your qr code is <br> <img src='$qrcode'/></p>");
+					$msg="<p>
+					Hi $first_name, you have successfully created a Celesta Account.<br>
+					Your celestaid is : <b>$celestaid</b><br>
+					Your qr code is: <img src='$qrcode'>
+					Or click here to get your qrcode : <a href='$qrcode'>$qrcode</a>
+					</p>
+					";
+				}
+				
+				send_email($email,$subject,$msg,$header);
+
+				redirect("display.php");
 				return json_encode("400");//Success
 			}
 			else{
