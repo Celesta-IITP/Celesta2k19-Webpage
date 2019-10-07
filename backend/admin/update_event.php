@@ -90,6 +90,11 @@
     </div>
 
     <div class="form-group">
+        <label for="event_organizer">Map URL of Venue</label>
+        <input type="text" class="form-control" id="map_url" name="map_url" placeholder="Map url of the venue"  value="<?php echo $event['map_url']?>" >
+    </div>
+
+    <div class="form-group">
         <label for="event_organizer">Event registration fee</label>
         <input type="text" class="form-control" id="event_amount" name="event_amount" placeholder="Registration fee for the event"  value="<?php echo $event['ev_amount']?>" >
     </div>
