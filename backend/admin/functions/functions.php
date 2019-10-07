@@ -1089,7 +1089,7 @@ function deleteEvent(){
 
 //Function  to check existence of a singleton team event
 function eventExists($eventid){
-	$sql="SELECT id FROM events WHERE ev_id='$eventid' and is_team_event=0";
+	$sql="SELECT id FROM events WHERE ev_id='$eventid'";
 	$result = query($sql);
 	if(row_count($result)==1){
 		return true;
