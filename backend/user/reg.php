@@ -113,10 +113,10 @@ if (logged_in()) {
                 <div class="col s12 m5 login">
                     <h4 class="center">Log in</h4>
                     <br>
-                    <form id="login_form" name="login_form" method="post">
+                    <form id="login_form" name="login_form" method="post" autocomplete="off">
                         <div class="row">
                             <div class="input-field">
-                                <input type="text" id="celestaid" name="celestaid" class="validate" required="required" placeholder="Celesta ID">
+                                <input type="text" id="celestaid" name="celestaid" class="validate" required="required" autocomplete="off" placeholder="Celesta ID">
                                 <label for="user">
                                     <i class="material-icons">person</i> </label>
                             </div>
