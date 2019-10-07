@@ -3,10 +3,10 @@
 
   
 
-##### Event API: https://celesta.org.in//backend/admin/functions/events_api.php
-##### Admin Panel Link: https://celesta.org.in/backend/admin/login.php
+### Event API: https://celesta.org.in//backend/admin/functions/events_api.php
+### Admin Panel Link: https://celesta.org.in/backend/admin/login.php
 
-##### Participate in an Event:
+### Participate in an Event:
 Link: https://celesta.org.in/backend/admin/register_event.php
 Method: GET
 Parameters: eventid, celestaid, access_token
@@ -18,7 +18,7 @@ Response:
 -404 - Event not found
 * message - Array of Messages
 
-##### Register in a Team Event:
+### Register in a Team Event:
 
 Link: https://celesta.org.in/backend/admin/reg_team_event.php
 Method: GET
