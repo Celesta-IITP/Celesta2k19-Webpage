@@ -1,19 +1,19 @@
 <?php
 include('./init.php');
 
-if($_SERVER['REQUEST_METHOD']=="GET"){
+if($_SERVER['REQUEST_METHOD']=="POST"){
     
     $errors=array();
     $response=array();
     
     // Execute 
-    $eventid=clean($_GET["eventid"]);
-    $celestaid=clean($_GET["celestaid"]);
-    $access_token=clean($_GET["access_token"]);
+    $eventid=clean($_POST["eventid"]);
+    $celestaid=clean($_POST["celestaid"]);
+    $access_token=clean($_POST["access_token"]);
 
     if(eventExists($eventid)){ // Checking for existence of event. Declared in functions.php
 
-        $sql = "SELECT first_name,last_name, phone, events_registered, email FROM users WHERE celestaid='$celestaid' and access_token='$access_token'";
+        $sql = "SELECT first_name,last_name, phone, events_registered, email, qrcode FROM users WHERE celestaid='$celestaid' and access_token='$access_token'";
         $result=query($sql);
         confirm($result);
         // Checking if user is valid or not
@@ -28,6 +28,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
             $row=fetch_array($result);
             $email=$row['email'];
+            $qrcode=$row['qrcode'];
 
             // Check if user has already registered or not
             if(alreadyRegistered($celestaid, $regis)){
@@ -107,10 +108,10 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
 
 // To check if a person has already registered or not
 function alreadyRegistered($celestaid,$regis){
+    if($regis == NULL)
+        return false;
     foreach($regis as $reg){
-        $value[]=$reg ->celestaid;
-    }
-    foreach($value as $id){
+        $id=$reg->celestaid;
         if($id==$celestaid){
             return true;
         }

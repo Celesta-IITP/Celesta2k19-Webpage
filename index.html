@@ -54,6 +54,16 @@
     }
   </style>
   <link rel="stylesheet" href="_compiled/app.css" />
+  <style>
+      .caSpanStyle{
+        font-size: 2.5em;
+      }
+      @media(max-width: 500px){
+        .caSpanStyle{
+          font-size: 2em;
+        }
+      }
+    </style>
 </head>
 
 <body>
@@ -178,6 +188,7 @@
     <div class="barba-container" data-namespace="prism">
       <div class="home-wrapper">
         <div class="landing-brands js-brands">
+
           <div class="brand brand-1" data-brand="Think" data-js-item="1"
             data-bg="assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-1.jpg"
             data-bg-md="assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-1.jpg"
@@ -186,14 +197,12 @@
               <span class="word tx--title-1">About</span>
               <span class="icon x is--inactive"></span>
             </h2>
-
-            <div class="word-intro"></div>
-
+            <div class="word-intro">And Official Theme</div>
             <div aria-hidden class="word-content tx--gray-blue-1">
               <p class="tx--body-lead">
                 Celesta is the annual Techno-Management Fest of IIT Patna. To promote technical and managerial enthusiasm amongst young and bright minds of our nation and to provide a platform to transform their innovative ideas into a meaningful reality.
+                <iframe width="300" height="150" src="https://www.youtube.com/embed/0zq9wqsYZCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </p>
-              <a href="events.html" class="btn btn--dark btn--hollow">Discover</a>
             </div>
           </div>
 
@@ -205,9 +214,7 @@
               <span class="word tx--title-1">Register</span>
               <span class="icon x is--inactive"></span>
             </h2>
-
             <div class="word-intro"></div>
-
             <div aria-hidden class="word-content tx--gray-blue-1">
               <p class="tx--body-lead">
                 Register for Celesta'19
@@ -221,16 +228,15 @@
             data-bg-md="assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-3.jpg"
             data-bg-lg="assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-3.jpg">
             <h2 class="word-wrapper">
-              <span class="word tx--title-1">Theme</span>
+              <span class="word tx--title-1 caSpanStyle">CA Program</span>
               <span class="icon x is--inactive"></span>
             </h2>
-
             <div class="word-intro"></div>
-
             <div aria-hidden class="word-content tx--gray-blue-1">
               <p class="tx--body-lead">
-                <iframe width="300" height="150" src="https://www.youtube.com/embed/0zq9wqsYZCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <a href="./ca/ca.php" target="_blank" class="btn btn--dark btn--hollow">Campus Ambassador Program</a>
               </p>
+              <a href="./backend/user/ca_register.php" target="_blank" class="btn btn--dark btn--hollow">Register for CA</a>
             </div>
           </div>
         </div>
