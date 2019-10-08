@@ -119,10 +119,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             }
 
             if(!empty($member5)){
-                $reg['mem4_celestaid']=$members[5];
-                $reg['mem4_name']=$mem_name[5];
-                $reg['mem4_email']=$mem_emails[5];
-                $reg['mem4_phone']=$mem_phone[5];
+                $reg['mem5_celestaid']=$members[5];
+                $reg['mem5_name']=$mem_name[5];
+                $reg['mem5_email']=$mem_emails[5];
+                $reg['mem5_phone']=$mem_phone[5];
             }
 
             $reg['amount']=0;

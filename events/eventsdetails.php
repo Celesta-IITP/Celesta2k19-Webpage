@@ -1,4 +1,14 @@
 <?php
+include("../backend/user/functions/init.php");
+$loggedIn = logged_in();
+$celestaid = "";
+$access_token = "";
+if (logged_in()) {
+  $celestaid = $_SESSION['celestaid'];
+  $access_token = $_SESSION['access_token'];
+}
+?>
+<?php
 $id = $_GET['id'];
 // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
 $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
@@ -17,17 +27,6 @@ foreach ($data as $d) {
   if ($d['ev_id'] == $id) {
     $event = $d;
   }
-}
-?>
-
-<?php
-include("../backend/user/functions/init.php");
-$loggedIn = logged_in();
-$celestaid = "";
-$access_token = "";
-if (logged_in()) {
-  $celestaid = $_SESSION['celestaid'];
-  $access_token = $_SESSION['access_token'];
 }
 ?>
 
@@ -108,13 +107,13 @@ if (logged_in()) {
                   <h5 style="color: #219999">Amount: <span style="color: #fff">₹<?php echo $event['ev_amount'] ?></span></h5>
                 <?php } ?>
                 <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url'] ?>">Rulebook</a>
-                <?php if ($loggedIn) { ?>
-                  <?php if (!$event['is_team_event']) { ?>
+                <?php if ($loggedIn) {
+                   if (!$event['is_team_event']) { ?>
                     <button class="btn btn-success" style="color: #fff" id="regEvBtn" onclick="regEvFunc('<?php echo $event['ev_id'] ?>', '<?php echo $celestaid ?>', '<?php echo $access_token ?>')"><span class="spinner-border spinner-border-sm spinner" style="display: none"></span> Register Event</button>
-                  <?php } else { ?>
+                  <?php } else {?>
                     <!-- <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button> -->
-                  <?php } ?>
-                <?php } else { ?>
+                  <?php }
+                 } else { ?>
                   <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php">Login to Register</a>
                 <?php } ?>
 
@@ -139,7 +138,7 @@ if (logged_in()) {
         <div class="modal-body">
           <small>
             <b>Notes:</b><br>
-            * Team should consisit of maximum 6 members including team captain.<br>
+            * Team should consist of maximum 6 members including team captain.<br>
             * A team can consist of only captain if there are no other members in the team.<br>
           </small>
           <br>
@@ -225,7 +224,7 @@ if (logged_in()) {
       formData.append("member3", member3);
       formData.append("member4", member4);
       formData.append("member5", member5);
-      let url="http://celesta.org.in/backend/admin/functions/reg_team_event.php";
+      let url="https://celesta.org.in/backend/admin/functions/reg_team_event.php";
       // let url="http://localhost/celesta2k19-webpage/backend/admin/functions/reg_team_event.php";
       let res = await fetch(
         url,
