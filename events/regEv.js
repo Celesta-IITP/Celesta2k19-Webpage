@@ -5,7 +5,7 @@ const regEvFunc = async (eventId, celestaId, accessToken) => {
   formData.append("eventid", eventId);
   formData.append("celestaid", celestaId);
   formData.append("access_token", accessToken);
-  let url="http://celesta.org.in/backend/admin/functions/reg_team_event.php";
+  let url="https://celesta.org.in/backend/admin/functions/reg_team_event.php";
   // let url="http://localhost/celesta2k19-webpage/backend/admin/functions/reg_team_event.php";
   let res = await fetch(
     url,

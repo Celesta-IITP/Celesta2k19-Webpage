@@ -139,7 +139,7 @@ if (logged_in()) {
         <div class="modal-body">
           <small>
             <b>Notes:</b><br>
-            * Team should consisit of maximum 6 members including team captain.<br>
+            * Team should consist of maximum 6 members including team captain.<br>
             * A team can consist of only captain if there are no other members in the team.<br>
           </small>
           <br>
@@ -225,7 +225,7 @@ if (logged_in()) {
       formData.append("member3", member3);
       formData.append("member4", member4);
       formData.append("member5", member5);
-      let url="http://celesta.org.in/backend/admin/functions/reg_team_event.php";
+      let url="https://celesta.org.in/backend/admin/functions/reg_team_event.php";
       // let url="http://localhost/celesta2k19-webpage/backend/admin/functions/reg_team_event.php";
       let res = await fetch(
         url,

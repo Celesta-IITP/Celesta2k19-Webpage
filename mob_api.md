@@ -1,6 +1,6 @@
 # Mobile App API calls
 
-### Link: [https://celesta.org.in/backend/user/functions/functions.php](https://celesta.org.in/backend/user/functions/functions.php)
+### Link: [https://celesta.org.in/backend/user/functions/mob_functions.php](https://celesta.org.in/backend/user/functions/mob_functions.php)
 
 ## Registeration of User
 Method: POST
