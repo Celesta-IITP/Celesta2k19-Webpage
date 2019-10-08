@@ -1,21 +1,33 @@
 <?php
 include('./init.php');
 
-if($_SERVER['REQUEST_METHOD']=="GET"){
+if($_SERVER['REQUEST_METHOD']=="POST"){
     
     $errors=array();
     $response=array();
     
     // Execute 
-    $eventid=clean($_GET["eventid"]);
-    $celestaid=clean($_GET["celestaid"]);
-    $access_token=clean($_GET["access_token"]);
-    $member1=clean($_GET["member1"]);
-    $member2=clean($_GET["member2"]);
-    $member3=clean($_GET["member3"]);
-    $member4=clean($_GET["member4"]);
-    $team_name=clean($_GET['team_name']);
-    $members=array($celestaid, $member1, $member2,$member3,$member4);
+    $eventid=clean($_POST["eventid"]);
+    $celestaid=clean($_POST["celestaid"]);
+    $access_token=clean($_POST["access_token"]);
+    $member1=trim(clean($_POST["member1"]));
+    $member2=trim(clean($_POST["member2"]));
+    $member3=trim(clean($_POST["member3"]));
+    $member4=trim(clean($_POST["member4"]));
+    $member5=trim(clean($_POST["member5"]));
+    $team_name=trim(clean($_POST['team_name']));
+    $members=array();
+    array_push($members,$celestaid);
+    if(!empty($member1))
+        array_push($members,$member1);
+    if(!empty($member2))
+        array_push($members,$member2);
+    if(!empty($member3))
+        array_push($members,$member3);
+    if(!empty($member4))
+        array_push($members,$member4);
+    if(!empty($member5))
+        array_push($members,$member5);
 
     if(verifyCaptain($celestaid,$access_token)){
 
@@ -32,7 +44,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
             foreach($members as $memb){
                 if(!validCelestaId($memb)){
                     $errors[]="$memb celesta id is incorrect. Please entry correct details and try again.";
-                    $response['status']=404;
+                    $response['status']=405;
                 }
                 if(idAlreadyRegistered($memb,$regis)){
                     $errors[]="$memb have Already registered for this event.";
@@ -78,25 +90,40 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
             $reg["cap_name"]=$mem_name[0];
             $reg["cap_phone"]=$mem_phone[0];
 
-            $reg['mem1_celestaid']=$members[1];
-            $reg['mem1_name']=$mem_name[1];
-            $reg['mem1_email']=$mem_emails[1];
-            $reg['mem1_phone']=$mem_phone[1];
+            if(!empty($member1)){
+                $reg['mem1_celestaid']=$members[1];
+                $reg['mem1_name']=$mem_name[1];
+                $reg['mem1_email']=$mem_emails[1];
+                $reg['mem1_phone']=$mem_phone[1];
+            }
 
-            $reg['mem2_celestaid']=$members[2];
-            $reg['mem2_name']=$mem_name[2];
-            $reg['mem2_email']=$mem_emails[2];
-            $reg['mem2_phone']=$mem_phone[2];
+            if(!empty($member2)){
+                $reg['mem2_celestaid']=$members[2];
+                $reg['mem2_name']=$mem_name[2];
+                $reg['mem2_email']=$mem_emails[2];
+                $reg['mem2_phone']=$mem_phone[2];
+            }
 
-            $reg['mem3_celestaid']=$members[3];
-            $reg['mem3_name']=$mem_name[3];
-            $reg['mem3_email']=$mem_emails[3];
-            $reg['mem3_phone']=$mem_phone[3];
+            if(!empty($member3)){
+                $reg['mem3_celestaid']=$members[3];
+                $reg['mem3_name']=$mem_name[3];
+                $reg['mem3_email']=$mem_emails[3];
+                $reg['mem3_phone']=$mem_phone[3];
+            }
 
-            $reg['mem4_celestaid']=$members[4];
-            $reg['mem4_name']=$mem_name[4];
-            $reg['mem4_email']=$mem_emails[4];
-            $reg['mem4_phone']=$mem_phone[4];
+            if(!empty($member4)){
+                $reg['mem4_celestaid']=$members[4];
+                $reg['mem4_name']=$mem_name[4];
+                $reg['mem4_email']=$mem_emails[4];
+                $reg['mem4_phone']=$mem_phone[4];
+            }
+
+            if(!empty($member5)){
+                $reg['mem4_celestaid']=$members[5];
+                $reg['mem4_name']=$mem_name[5];
+                $reg['mem4_email']=$mem_emails[5];
+                $reg['mem4_phone']=$mem_phone[5];
+            }
 
             $reg['amount']=0;
             $reg["time"]=date('Y-m-d H:i:s');
@@ -205,13 +232,21 @@ function isTeamEventExist($eventid){
 }
 
 function idAlreadyRegistered($celestaid,$regis){
+    if($regis == NULL)
+        return false;
     foreach($regis as $reg){
         $value=array();
         $value[]=$reg ->cap_celestaid;
-        $value[]=$reg ->mem1_celestaid;
-        $value[]=$reg ->mem2_celestaid;
-        $value[]=$reg ->mem3_celestaid;
-        $value[]=$reg ->mem4_celestaid;
+        if(isset($reg ->mem1_celestaid))
+            $value[]=$reg ->mem1_celestaid;
+        if(isset($reg ->mem2_celestaid))
+            $value[]=$reg ->mem2_celestaid;
+        if(isset($reg ->mem3_celestaid))
+            $value[]=$reg ->mem3_celestaid;
+        if(isset($reg ->mem4_celestaid))
+            $value[]=$reg ->mem4_celestaid;
+        if(isset($reg ->mem5_celestaid))
+            $value[]=$reg ->mem5_celestaid;
         foreach($value as $id){
             if($id==$celestaid){
                 return true;
