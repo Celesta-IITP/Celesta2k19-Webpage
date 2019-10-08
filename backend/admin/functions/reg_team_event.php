@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             $regis=json_decode($row10['ev_registrations']);
             foreach($members as $memb){
                 if(!validCelestaId($memb)){
-                    $errors[]="$memb celesta id is incorrect. Please entry correct details and try again.";
+                    $errors[]="$memb celesta id is incorrect or account is not active. Please entry correct details and try again.";
                     $response['status']=405;
                 }
                 if(idAlreadyRegistered($memb,$regis)){
@@ -135,6 +135,8 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             // Updating the data into the user table.
             foreach($members as $mem){
                 $sql = "SELECT events_registered from users WHERE celestaid='$mem'";
+                $result=query($sql);
+                $row=fetch_array($result);
                 $ev_registered=json_decode($row["events_registered"]);
                 $add_event=array();
                 $add_event["cap_name"]=$mem_name[0];

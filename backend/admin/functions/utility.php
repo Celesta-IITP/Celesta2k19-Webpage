@@ -3,7 +3,8 @@
 function send_email($email,$subject,$msg,$headers){
 // 	return (mail($email,$subject,$msg,$headers));
 
-	require "PHPMailerAutoload.php";
+	// require "PHPMailerAutoload.php";
+	require_once('PHPMailerAutoload.php');
 
 	$mail = new PHPMailer;
 
