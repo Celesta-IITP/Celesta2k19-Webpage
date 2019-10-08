@@ -111,7 +111,7 @@ foreach ($data as $d) {
                    if (!$event['is_team_event']) { ?>
                     <button class="btn btn-success" style="color: #fff" id="regEvBtn" onclick="regEvFunc('<?php echo $event['ev_id'] ?>', '<?php echo $celestaid ?>', '<?php echo $access_token ?>')"><span class="spinner-border spinner-border-sm spinner" style="display: none"></span> Register Event</button>
                   <?php } else {?>
-                    <!-- <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button> -->
+                    <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button>
                   <?php }
                  } else { ?>
                   <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php">Login to Register</a>
@@ -128,7 +128,7 @@ foreach ($data as $d) {
   </div>
 
   <!-- modal -->
-  <div class="modal" id="regTeamEvModal" style="padding-left: 0px;">
+  <div class="modal fade" id="regTeamEvModal" style="padding-left: 0px;">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -175,7 +175,7 @@ foreach ($data as $d) {
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="modalButton">Close</button>
         </div>
       </div>
     </div>
@@ -212,7 +212,7 @@ foreach ($data as $d) {
       var member3=document.querySelector('#member3').value;
       var member4=document.querySelector('#member4').value;
       var member5=document.querySelector('#member5').value;
-      console.log(celestaid, eventid, access_token, team_name, member1, member2, member3, member4, member5);
+      // console.log(celestaid, eventid, access_token, team_name, member1, member2, member3, member4, member5);
 
       let formData = new FormData();
       formData.append("eventid", eventid);
@@ -332,6 +332,8 @@ foreach ($data as $d) {
       var toastContainer = document.querySelector(".toastContainer");
       toastContainer.innerHTML = htmlData;
       $(".toast").toast();
+      var modalButton=document.querySelector('#modalButton');
+      modalButton.click();
     });
   </script>
 </body>
