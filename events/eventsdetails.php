@@ -100,6 +100,13 @@ if (logged_in()) {
                 <h5 style="color: #219999">Date: <span style="color: #fff"><?php echo $event['ev_date'] ?></span></h5>
                 <h5 style="color: #219999">Start Time: <span style="color: #fff"><?php echo $event['ev_start_time'] ?></span></h5>
                 <h5 style="color: #219999">End Time: <span style="color: #fff"><?php echo $event['ev_end_time'] ?></span></h5>
+                <?php if($event['is_team_event']){ ?>
+                  <h5 style="color: #219999; margin-bottom: 0">Total Amount: <span style="color: #fff">₹<?php echo $event['ev_amount'] ?></span></h5>
+                  <small style="color: #fff">This is the total amount to be paid by the captain only.</small>
+                  <br><br>
+                <?php }else{ ?>
+                  <h5 style="color: #219999">Amount: <span style="color: #fff">₹<?php echo $event['ev_amount'] ?></span></h5>
+                <?php } ?>
                 <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url'] ?>">Rulebook</a>
                 <?php if ($loggedIn) { ?>
                   <?php if (!$event['is_team_event']) { ?>
