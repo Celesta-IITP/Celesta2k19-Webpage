@@ -131,7 +131,7 @@
                             <a class="btn btn-success" style="color: #fff; background: rgb(139,0,139,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">Register Team Event</a>
                           <?php } ?>
                         <?php }else{?>
-                          <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php">Login to Register</a>
+                          <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php?redirecteventsdata=<?php echo $param?>">Login to Register</a>
                         <?php }?>
 
                       </p>
