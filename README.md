@@ -8,8 +8,11 @@
 
 ### Participate in an Event:
 Link: https://celesta.org.in/backend/admin/functions/register_event.php
-Method: GET
+
+Method: POST
+
 Parameters: eventid, celestaid, access_token
+
 Response:
 * status:
 -302 - Already Registered
@@ -21,7 +24,9 @@ Response:
 ### Register in a Team Event:
 
 Link: https://celesta.org.in/backend/admin/functions/reg_team_event.php
+
 Method: POST
+
 Parameters:
 * eventid
 * celestaid (of captain)
