@@ -114,7 +114,7 @@ foreach ($data as $d) {
                     <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button>
                   <?php }
                  } else { ?>
-                  <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php">Login to Register</a>
+                  <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php?redirecteventsdetails=<?php echo $event['ev_id']?>">Login to Register</a>
                 <?php } ?>
 
               </div>

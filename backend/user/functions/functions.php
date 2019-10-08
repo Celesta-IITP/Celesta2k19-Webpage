@@ -468,6 +468,14 @@ function validate_user_login(){
 			return json_encode(array_merge(array("404"),$errors));
 		}else{
 			if(login_user($celestaid,$password,$remember)){
+				if(isset($_GET['redirecteventsdata'])){
+					redirect("../../events/eventsdata.php?data=".$_GET['redirecteventsdata']);
+					return 0;
+				}
+				if(isset($_GET['redirecteventsdetails'])){
+					redirect("../../events/eventsdetails.php?id=".$_GET['redirecteventsdetails']);
+					return 0;
+				}
 				redirect("profile.php");
 				return json_encode(array("400"));//User logged in
 			}else{
