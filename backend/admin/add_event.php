@@ -71,11 +71,6 @@
             <option selected="selected">False</option>
         </select>
     </div>
-    <div class="form-group">
-        <label for="event_organizer">Maximum number of participants?</label>
-        <small>(By default max_participants value is 1. If its a team event then enter total number of participants including team captain.)</small>
-        <input type="number" class="form-control" id="max_participants" name="max_participants" value=1 required>
-    </div>
 
     <div class="form-group">
         <label for="event_organizer">Event Date</label>
