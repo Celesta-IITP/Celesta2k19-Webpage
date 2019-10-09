@@ -957,8 +957,14 @@ function addEvent(){
 			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time', '$ev_venue',$ev_amount,$team_event,'$map_url','$team_members')";
 			
 			$result = query($sql);
-			set_message("<p class='bg-success text-center'>Successfully added the event.<br> Event ID: $event_id</p>");
-			redirect("./events.php");
+			
+			if($result){
+				set_message("<p class='bg-success text-center'>Successfully added the event.<br> Event ID: $event_id</p>");
+				redirect("./events.php");
+			}else{
+				confirm($result);
+			}
+
 
 		}else{
 			echo "Failed";
