@@ -104,17 +104,21 @@ foreach ($data as $d) {
                   <!-- <small style="color: #fff">This is the total amount to be paid by the captain only.</small> -->
                   <br><br>
                 <?php }else{ ?>
-                  <h5 style="color: #219999">Amount: <span style="color: #fff">₹<?php echo $event['ev_amount'] ?></span></h5>
+                  <?php if (!$event['is_team_event']) { ?>
+                  <h5 style="color: #219999">Registration Amount : <span style="color: #fff">₹<?php echo $event['ev_amount'] ?></span></h5>
+                  <?php }else{ ?>
+                    <h5 style="color: #219999">Team Registration Amount : <span style="color: #fff">₹<?php echo $event['ev_amount'] ?></span></h5>
+                  <?php } ?>
                 <?php } ?>
                 <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url'] ?>">Rulebook</a>
                 <?php if ($loggedIn) {
                    if (!$event['is_team_event']) { ?>
-                    <button class="btn btn-success" style="color: #fff" id="regEvBtn" onclick="regEvFunc('<?php echo $event['ev_id'] ?>', '<?php echo $celestaid ?>', '<?php echo $access_token ?>')"><span class="spinner-border spinner-border-sm spinner" style="display: none"></span> Register Event</button>
+                    <!-- <button class="btn btn-success" style="color: #fff" id="regEvBtn" onclick="regEvFunc('<?php echo $event['ev_id'] ?>', '<?php echo $celestaid ?>', '<?php echo $access_token ?>')"><span class="spinner-border spinner-border-sm spinner" style="display: none"></span> Register Event</button> -->
                   <?php } else {?>
-                    <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button>
+                    <!-- <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button> -->
                   <?php }
                  } else { ?>
-                  <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php?redirecteventsdetails=<?php echo $event['ev_id']?>">Login to Register</a>
+                  <!-- <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php?redirecteventsdetails=<?php echo $event['ev_id']?>">Login to Register</a> -->
                 <?php } ?>
 
               </div>
