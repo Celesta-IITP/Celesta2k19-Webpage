@@ -918,7 +918,7 @@ function addEvent(){
 		$event_category=clean($_POST["event_category"]);
 		$event_organizer = clean($_POST["event_organizer"]);
 		$ev_club = clean($_POST["ev_club"]);
-		$event_desc = clean($_POST["event_desc"]);
+		$event_desc = $_POST["event_desc"];
 		$event_date = clean($_POST["event_date"]);
 		$event_start_time = clean($_POST["event_start_time"]);
 		$event_end_time = clean($_POST["event_end_time"]);
@@ -962,7 +962,7 @@ function addEvent(){
 				set_message("<p class='bg-success text-center'>Successfully added the event.<br> Event ID: $event_id</p>");
 				redirect("./events.php");
 			}else{
-				confirm($result);
+				set_message("<p class='bg-danger text-center'>Failed to add.</p>");
 			}
 
 
@@ -1038,7 +1038,7 @@ function updateEvent(){
 		$event_category=clean($_POST["event_category"]);
 		$event_organizer = clean($_POST["event_organizer"]);
 		$ev_club = clean($_POST["ev_club"]);
-		$event_desc = clean($_POST["event_desc"]);
+		$event_desc = $_POST["event_desc"];
 		$event_date = clean($_POST["event_date"]);
 		$event_start_time = clean($_POST["event_start_time"]);
 		$event_end_time = clean($_POST["event_end_time"]);
