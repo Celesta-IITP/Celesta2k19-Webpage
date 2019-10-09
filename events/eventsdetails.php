@@ -94,12 +94,13 @@ foreach ($data as $d) {
                 <h3 style="color: #219999">Name: <span style="color: #fff"><?php echo $event['ev_name'] ?></span></h3>
                 <h5 style="color: #219999">Description: <span style="color: #fff"><?php echo $event['ev_description'] ?></span></h5>
                 <h5 style="color: #219999">Organiser: <span style="color: #fff"><?php echo $event['ev_organiser'] ?></span></h5>
-                <h5 style="color: #219999">Club: <span style="color: #fff"><?php echo $event['ev_club'] ?></span></h5>
                 <h5 style="color: #219999">Organizer's Phone: <span style="color: #fff"><?php echo $event['ev_org_phone'] ?></span></h5>
+                <h5 style="color: #219999">Club: <span style="color: #fff"><?php echo $event['ev_club'] ?></span></h5>
                 <h5 style="color: #219999">Date: <span style="color: #fff"><?php echo $event['ev_date'] ?></span></h5>
                 <h5 style="color: #219999">Start Time: <span style="color: #fff"><?php echo $event['ev_start_time'] ?></span></h5>
                 <h5 style="color: #219999">End Time: <span style="color: #fff"><?php echo $event['ev_end_time'] ?></span></h5>
                 <?php if($event['is_team_event']){ ?>
+                  <h5 style="color: #219999">Maximum Team Strength: <span style="color: #fff"><?php echo $event['team_members'] ?></span></h5>
                   <h5 style="color: #219999; margin-bottom: 0">Team Registration Amount: <span style="color: #fff">₹<?php echo $event['ev_amount'] ?></span></h5>
                 <?php }else{ ?>
                   <h5 style="color: #219999">Registration Amount : <span style="color: #fff">₹<?php echo $event['ev_amount'] ?></span></h5>
@@ -108,12 +109,12 @@ foreach ($data as $d) {
                 <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url'] ?>">Rulebook</a>
                 <?php if ($loggedIn) {
                    if (!$event['is_team_event']) { ?>
-                    <!-- <button class="btn btn-success" style="color: #fff" id="regEvBtn" onclick="regEvFunc('<?php echo $event['ev_id'] ?>', '<?php echo $celestaid ?>', '<?php echo $access_token ?>')"><span class="spinner-border spinner-border-sm spinner" style="display: none"></span> Register Event</button> -->
+                    <button class="btn btn-success" style="color: #fff" id="regEvBtn" onclick="regEvFunc('<?php echo $event['ev_id'] ?>', '<?php echo $celestaid ?>', '<?php echo $access_token ?>')"><span class="spinner-border spinner-border-sm spinner" style="display: none"></span> Register Event</button>
                   <?php } else {?>
-                    <!-- <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button> -->
+                    <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button>
                   <?php }
                  } else { ?>
-                  <!-- <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php?redirecteventsdetails=<?php echo $event['ev_id']?>">Login to Register</a> -->
+                  <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php?redirecteventsdetails=<?php echo $event['ev_id']?>">Login to Register</a>
                 <?php } ?>
 
               </div>
@@ -150,26 +151,13 @@ foreach ($data as $d) {
               <label for="member4">Team Name</label>
               <input type="text" class="form-control" name="team_name" id="team_name" required>
             </div>
-            <div class="form-group">
-              <label for="member1">Celesta Id of member 1</label>
-              <input type="text" class="form-control" name="member1" id="member1">
-            </div>
-            <div class="form-group">
-              <label for="member2">Celesta Id of member 2</label>
-              <input type="text" class="form-control" name="member2" id="member2">
-            </div>
-            <div class="form-group">
-              <label for="member3">Celesta Id of member 3</label>
-              <input type="text" class="form-control" name="member3" id="member3">
-            </div>
-            <div class="form-group">
-              <label for="member4">Celesta Id of member 4</label>
-              <input type="text" class="form-control" name="member4" id="member4">
-            </div>
-            <div class="form-group">
-              <label for="member4">Celesta Id of member 5</label>
-              <input type="text" class="form-control" name="member5" id="member5">
-            </div>
+            <?php $max=$event['team_members']-1; for($i=1;$i<=$max;$i++){ ?>
+              <div class="form-group">
+                <label for="member1">Celesta Id of member <?php echo $i;?></label>
+                <input type="text" class="form-control" name="member<?php echo $i;?>" id="member<?php echo $i;?>">
+              </div>
+            <?php } ?>
+
             <button type="submit" class="btn btn-primary"><span class="spinner-border spinner-border-sm spinner" style="display: none"></span> Register</button>
           </form>
         </div>
@@ -206,11 +194,13 @@ foreach ($data as $d) {
       var eventid="<?php echo $event['ev_id']?>";
       var access_token="<?php echo $access_token?>";
       var team_name=document.querySelector('#team_name').value;
-      var member1=document.querySelector('#member1').value;
-      var member2=document.querySelector('#member2').value;
-      var member3=document.querySelector('#member3').value;
-      var member4=document.querySelector('#member4').value;
-      var member5=document.querySelector('#member5').value;
+      <?php $max=$event['team_members']-1; for($i=1;$i<=$max;$i++){ ?>
+        var member<?php echo $i;?>=document.querySelector('#member<?php echo $i;?>').value;
+      <?php } ?>
+      <?php $max=$event['team_members']-1; for($i=$max+1;$i<=5;$i++){ ?>
+        var member<?php echo $i;?>="";
+      <?php } ?>
+
       // console.log(celestaid, eventid, access_token, team_name, member1, member2, member3, member4, member5);
 
       let formData = new FormData();
