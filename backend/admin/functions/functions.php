@@ -918,7 +918,7 @@ function addEvent(){
 		$event_category=clean($_POST["event_category"]);
 		$event_organizer = clean($_POST["event_organizer"]);
 		$ev_club = clean($_POST["ev_club"]);
-		$event_desc = $_POST["event_desc"];
+		$event_desc = escape($_POST["event_desc"]);
 		$event_date = clean($_POST["event_date"]);
 		$event_start_time = clean($_POST["event_start_time"]);
 		$event_end_time = clean($_POST["event_end_time"]);
@@ -955,7 +955,7 @@ function addEvent(){
 
 			$sql = "INSERT INTO events(ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time,ev_venue, ev_amount,is_team_event,map_url,team_members)";
 			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time', '$ev_venue',$ev_amount,$team_event,'$map_url','$team_members')";
-			
+
 			$result = query($sql);
 			
 			if($result){
@@ -1038,7 +1038,7 @@ function updateEvent(){
 		$event_category=clean($_POST["event_category"]);
 		$event_organizer = clean($_POST["event_organizer"]);
 		$ev_club = clean($_POST["ev_club"]);
-		$event_desc = $_POST["event_desc"];
+		$event_desc = escape($_POST["event_desc"]);
 		$event_date = clean($_POST["event_date"]);
 		$event_start_time = clean($_POST["event_start_time"]);
 		$event_end_time = clean($_POST["event_end_time"]);
@@ -1057,6 +1057,7 @@ function updateEvent(){
 		}
 
 		$sql = "UPDATE events SET ev_name='$event_name', ev_category='$event_category', ev_description='$event_desc', ev_organiser='$event_organizer', ev_club='$ev_club', ev_org_phone='$event_org_phone', ev_date='$event_date', ev_start_time='$event_start_time', ev_end_time='$event_end_time', is_team_event='$team_event', ev_amount='$event_amount', ev_venue='$event_venue', map_url='$map_url', team_members='$team_members' WHERE ev_id='$eventid'";
+
 		$result = query($sql);
 		confirm($result);
 
