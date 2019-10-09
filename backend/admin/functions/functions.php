@@ -926,6 +926,7 @@ function addEvent(){
 		$ev_amount= clean($_POST['event_amount']);
 		$ev_venue=clean($_POST['event_venue']);
 		$team_event=clean($_POST["team_event"]);
+		$max_participants=clean($_POST['max_participants']);
 		$map_url=clean($_POST["map_url"]);
 
 		if($team_event=="False"){
@@ -952,8 +953,8 @@ function addEvent(){
 			$poster_url ="https://celesta.org.in/backend/admin".substr($target_poster_file, 1);
 			$rulebook_url = "https://celesta.org.in/backend/admin".substr($target_rulebook_file, 1);
 
-			$sql = "INSERT INTO events(ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time,ev_venue, ev_amount,is_team_event,map_url)";
-			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time', '$ev_venue',$ev_amount,$team_event,'$map_url')";
+			$sql = "INSERT INTO events(ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time,ev_venue, ev_amount,is_team_event,map_url, max_participants)";
+			$sql .=" VALUES('$event_id','$event_category','$event_name','$event_desc','$event_organizer','$ev_club','$event_org_phone','$poster_url','$rulebook_url','$event_date','$event_start_time','$event_end_time', '$ev_venue',$ev_amount,$team_event,'$map_url', '$max_participants')";
 			
 			$result = query($sql);
 			set_message("<p class='bg-success text-center'>Successfully added the event.<br> Event ID: $event_id</p>");
@@ -971,7 +972,7 @@ function show_events(){
 	if(!registrar_logged_in()){
 		redirect("login.php");
 	}elseif(getPermit()==0 || getPermit()==4){
-		$sql="SELECT ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time FROM events";
+		$sql="SELECT ev_id, ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time, ev_venue, map_url, max_participants, ev_amount, is_team_event FROM events";
 		$result=query($sql);
 		$permit=getPermit();
 
@@ -998,7 +999,7 @@ function getEvent($eventid){
 		return false;
 	}
 
-	$sql="SELECT ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time, ev_venue, ev_amount,is_team_event, map_url FROM events WHERE ev_id='$eventid'";
+	$sql="SELECT ev_category, ev_name, ev_description, ev_organiser, ev_club, ev_org_phone, ev_poster_url, ev_rule_book_url, ev_date, ev_start_time, ev_end_time, ev_venue, ev_amount, is_team_event, map_url, max_participants FROM events WHERE ev_id='$eventid'";
 	$result=query($sql);
 
 
@@ -1041,6 +1042,7 @@ function updateEvent(){
 		$map_url=clean($_POST['map_url']);
 		$event_amount= clean($_POST['event_amount']);
 		$event_venue=clean($_POST['event_venue']);
+		$max_participants=clean($_POST['max_participants']);
 
 		if($team_event=="False"){
 			$team_event=0;
@@ -1048,7 +1050,7 @@ function updateEvent(){
 			$team_event=1;
 		}
 
-		$sql = "UPDATE events SET ev_name='$event_name', ev_category='$event_category', ev_description='$event_desc', ev_organiser='$event_organizer', ev_club='$ev_club', ev_org_phone='$event_org_phone', ev_date='$event_date', ev_start_time='$event_start_time', ev_end_time='$event_end_time', is_team_event='$team_event', ev_amount='$event_amount', ev_venue='$event_venue', map_url='$map_url' WHERE ev_id='$eventid'";
+		$sql = "UPDATE events SET ev_name='$event_name', ev_category='$event_category', ev_description='$event_desc', ev_organiser='$event_organizer', ev_club='$ev_club', ev_org_phone='$event_org_phone', ev_date='$event_date', ev_start_time='$event_start_time', ev_end_time='$event_end_time', is_team_event='$team_event', ev_amount='$event_amount', ev_venue='$event_venue', max_participants='$max_participants', map_url='$map_url' WHERE ev_id='$eventid'";
 		$result = query($sql);
 		confirm($result);
 

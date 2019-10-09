@@ -75,6 +75,12 @@
     </div>
 
     <div class="form-group">
+        <label for="event_organizer">Maximum number of participants?</label>
+        <small>(By default max_participants value is 1. If its a team event then enter total number of participants including team captain.)</small>
+        <input type="number" class="form-control" id="max_participants" name="max_participants" value=<?php echo $event['max_participants']?> required>
+    </div>
+
+    <div class="form-group">
         <label for="event_organizer">Event Description</label>
         <textarea type="text" class="form-control" id="event_desc" name="event_desc" placeholder="Write about the event"rows="3"  ><?php echo $event['ev_description']?></textarea>
     </div>
