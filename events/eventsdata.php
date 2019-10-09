@@ -126,12 +126,12 @@
                         <a class="btn" style="color: #fff; background: rgb(148,0,211,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">More Details</a> 
                         <?php if($loggedIn){?>
                           <?php if (!$e['is_team_event']) { ?>
-                            <a class="btn btn-success" style="color: #fff; background: rgb(139,0,139,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">Register Event</a>
+                            <!-- <a class="btn btn-success" style="color: #fff; background: rgb(139,0,139,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">Register Event</a> -->
                           <?php } else { ?>
-                            <a class="btn btn-success" style="color: #fff; background: rgb(139,0,139,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">Register Team Event</a>
+                            <!-- <a class="btn btn-success" style="color: #fff; background: rgb(139,0,139,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">Register Team Event</a> -->
                           <?php } ?>
                         <?php }else{?>
-                          <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php?redirecteventsdata=<?php echo $param?>">Login to Register</a>
+                          <!-- <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/reg.php?redirecteventsdata=<?php echo $param?>">Login to Register</a> -->
                         <?php }?>
 
                       </p>

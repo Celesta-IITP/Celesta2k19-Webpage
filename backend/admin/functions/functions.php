@@ -1039,6 +1039,8 @@ function updateEvent(){
 		$eventid=clean($_POST["eventid"]);
 		$team_event=clean($_POST["team_event"]);
 		$map_url=clean($_POST['map_url']);
+		$event_amount= clean($_POST['event_amount']);
+		$event_venue=clean($_POST['event_venue']);
 
 		if($team_event=="False"){
 			$team_event=0;
@@ -1046,7 +1048,7 @@ function updateEvent(){
 			$team_event=1;
 		}
 
-		$sql = "UPDATE events SET ev_name='$event_name', ev_category='$event_category', ev_description='$event_desc', ev_organiser='$event_organizer', ev_club='$ev_club', ev_org_phone='$event_org_phone', ev_date='$event_date', ev_start_time='$event_start_time', ev_end_time='$event_end_time', is_team_event=$team_event, map_url='$map_url' WHERE ev_id='$eventid'";
+		$sql = "UPDATE events SET ev_name='$event_name', ev_category='$event_category', ev_description='$event_desc', ev_organiser='$event_organizer', ev_club='$ev_club', ev_org_phone='$event_org_phone', ev_date='$event_date', ev_start_time='$event_start_time', ev_end_time='$event_end_time', is_team_event=$team_event, ev_amount=$event_amount, ev_venue=$event_venue, map_url='$map_url' WHERE ev_id='$eventid'";
 		$result = query($sql);
 		confirm($result);
 
