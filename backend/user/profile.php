@@ -154,7 +154,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php $i=1; foreach($data as $d) { ?>
+                                            <?php $i=1; foreach($data as $d) { 
+                                                if($i<=21){?>
+                                                
                                                 <tr>
                                                     <th scope="row"><?php echo $i++; ?></th>
                                                     <td><?php echo $d['name'] ?></td>
@@ -163,7 +165,8 @@
                                                     <td><?php echo $d['excitons'] ?></td>
                                                     <td><?php echo $d['gravitons'] ?></td>
                                                 </tr>
-                                            <?php } ?>
+                                            <?php }
+                                        } ?>
                                         </tbody>
                                     </table>
                                 </div>
