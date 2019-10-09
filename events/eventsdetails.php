@@ -138,7 +138,6 @@ foreach ($data as $d) {
         <div class="modal-body">
           <small>
             <b>Notes:</b><br>
-            * Team should consist of maximum 6 members including team captain.<br>
             * A team can consist of only captain if there are no other members in the team.<br>
           </small>
           <br>
