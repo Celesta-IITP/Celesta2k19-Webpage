@@ -6,6 +6,9 @@
 ### Event API: https://celesta.org.in/backend/admin/functions/events_api.php
 ### Admin Panel Link: https://celesta.org.in/backend/admin/login.php
 
+### Mobile App API Documentation: https://github.com/Celesta-IITP/Celesta2k19-Webpage/blob/development/mob_api.md
+### Admin APP API Documentation: https://github.com/Celesta-IITP/Celesta2k19-Webpage/blob/development/admin_app.md
+
 ### Participate in an Event:
 Link: https://celesta.org.in/backend/admin/functions/register_event.php
 
