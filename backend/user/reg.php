@@ -130,17 +130,17 @@ if (logged_in()) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="switch col s6">
-                                <label>
-                                    <input type="checkbox" name="remember" id="password">
-                                    <span class="lever"></span>
-                                    Remember Me
-                                </label>
-                            </div>
                             <div class="col s6">
-                                <button type="submit" name="login" id="login" class="btn waves-effect waves-light blue right">Log
+                                <button type="submit" name="login" id="login" class="btn waves-effect waves-light blue left">Log
                                     in</button>
                             </div>
+                            <div class=" col s6">
+                                <label><a href="./resend_activation.php">
+                                    <span class="btn waves-effect waves-light left">
+                                    Resend Activation Link</span></a>
+                                </label>
+                            </div>
+
                         </div>
                     </form>
                 </div>
