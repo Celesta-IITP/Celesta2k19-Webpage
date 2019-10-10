@@ -285,6 +285,8 @@ function updatingUser(){
 						$add_event['team_name']=$team_name;
 						$add_event['cap_name']=$cap_name;
 					}
+
+					updateEventTable($ev_id,$ev_amount,$celestaid);
 				}
 			}
 			$paidEvents[]=$ev_name;
@@ -313,6 +315,27 @@ function updatingUser(){
 	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,bandpass_charge=$bandpass_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge";
 	$sql.="events_registered='$update_user_events_registered' WHERE celestaid='$celestaid'";
 	$result=query($result);
+
+}
+
+function updateEventTable($ev_id,$ev_amount,$celestaid){
+	$sql="SELECT * FROM events WHERE ev_id='$ev_id'";
+	$result=query($sql);
+	$row=fetch_array($result);
+
+	$ev_registrations=json_decode($row['ev_registrations']);
+	$updated_registrations=array();
+	foreach($ev_registrations as $reg){
+		if($reg['celestaid']==$celestaid){
+			$reg['amount']=$ev_amount;
+		}
+		$updated_registrations[]=$reg;
+	}
+
+	$updated_registrations=json_encode($updated_registrations);
+
+	$sql1="UPDATE events set ev_registrations='$ev_registrations' WHERE ev_id='$ev_id'";
+	$result1=query($sql1);
 
 }
 
