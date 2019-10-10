@@ -638,6 +638,15 @@ function getUserCall(){
 	}
 }
 
+// Call update user function
+function validateUserAtDesk(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		if(isset($_POST["validate_user"])){
+			updatingUser();
+		}
+	}
+}
+
 // Function to retrieve data of the user from the entered celestaid
 function getDetails(){
 	$celestaid=escape($_POST['celestaid']);
@@ -658,6 +667,23 @@ function getDetails(){
 		echo "<p class='bg-danger text-center'>$celestaid not found. Please enter correct celestaid.</p>";
 		return false;
 	}
+}
+
+// Get the registration amount of the event
+function getEventAmount($ev_id){
+	$sql="SELECT id, ev_amount from events where ev_id='$ev_id'";
+	$result=query($sql);
+	if(row_count($result)==1){
+		$row=fetch_array($result);
+		return $row['ev_amount'];
+	}else{
+		return -1;
+	}
+}
+
+// Function used to register user at registration desk
+function updatingUser(){
+
 }
 
 /******************************************** End of functions ****************************************************/

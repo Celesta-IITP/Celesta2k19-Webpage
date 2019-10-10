@@ -15,8 +15,10 @@
 <div class="container">
 	<?php include('includes/nav.php') ?>
 	<?php display_message();
-			checkAuthority(); ?>
+			checkAuthority();
+			validateUserAtDesk(); ?>
 	<?php $user = getUserCall() ?>
+	<?php ?>
 </div>	
 
 <div class="container">
@@ -86,16 +88,40 @@
 													echo "checked";} ?> >
 												<span> Male </span> 
 											</label>
-											<label class="radio inline"> 
-												<input type="radio" name="gender" value="f" <?php if($user['gender']=='f'){
+											<label class="checkbox inline"> 
+												<input type="checkbox" name="gender" value="f" <?php if($user['gender']=='f'){
 													echo "checked";}?> >
 												<span>Female </span> 
 											</label>
 										</div>
 									</div> 
-									<div class="form-group">
-													<span>Show all the events here</span>
+									<span><b>Events Registered</b></span>
+									<?php $events = json_decode($user['events_registered']);
+										foreach($events as $event){
+											$ev_id=$event->ev_id;
+											$ev_name=$event->ev_name;
+											$amount=$event ->amount;
+											$team_name=$event ->team_name;
+											$event_amount=getEventAmount($ev_id);
+											$diff=$event_amount-$amount;
+											?>
+											
+									<div class="form-group row">
+										<div class="col-sm-10">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" id="<?php echo $ev_id?>" name='<?php echo $ev_id?>' <?php if($diff<=0){echo "checked";} ?>>
+												<label class="form-check-label" for="registration_charge">
+													<?php echo $ev_name." Pay: ";
+													if($diff>0){
+														echo $diff;
+													}else{
+														echo 0;
+													}?>
+												</label>
+											</div>
+										</div>
 									</div>
+									<?php } ?>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -151,8 +177,8 @@
 											</div>
 										</div>
 									</div>                            
-
-									<input type="submit" class="btnRegister"  value="Register"/>
+									<input type="hidden" name="validate_user" id="validate_user" value="validate_user">
+									<input type="submit" class="btnRegister"  value="Validate User"/>
 								</div>
 							</div>
 						</form>
