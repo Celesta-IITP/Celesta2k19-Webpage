@@ -381,6 +381,7 @@ function new_register(){
 	 		$reg=$_POST['registration_charge'];
 	 		$tshirt=$_POST['tshirt_charge'];
 			$bandpass=$_POST['bandpass_charge'];
+			$referral_id=clean($referral_id);
 
 	 		if($password!=$confirm_password){
 	 			$errors[]="Both the password fields are not equal.";
@@ -388,14 +389,18 @@ function new_register(){
 
 	 		if(email_exists($email)) {
 	 			$errors[]="Email already taken";
-	 		}
+			 }
+
+			if(strlen($referral_id)!=8){
+			 	$referral_id ="CLST1504";
+		 	}
 
 			if(!empty($errors)){
 	 			foreach($errors as $error){
 	 				echo validation_errors($error);
 	 			}
 	 		}else{
-	 			if(new_register_user($first_name,$last_name,$phone,$college,$email,$password,$gender)){
+	 			if(new_register_user($first_name,$last_name,$phone,$college,$email,$password,$gender,$referral_id)){
 	 				redirect("display.php");
 	 			}
 	 			else{
@@ -408,7 +413,7 @@ function new_register(){
 }
 
 //Register the new user into both the database
-function new_register_user($first_name,$last_name,$phone,$college,$email,$password,$gender){
+function new_register_user($first_name,$last_name,$phone,$college,$email,$password,$gender,$referral_id){
 
 	$first_name=escape($first_name);
 	$last_name=escape($last_name);
@@ -480,8 +485,43 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		$result1=query($sql1);
 		confirm($result1);
 
+		update_referral_points($referral_id);
+
 		set_message("<p class='bg-success text-center'>Please check your email to get your qrcode and celesta id. You can login now with the celesta id and the password.<br><br><br>Your Celesta id is $celestaid<br>Amount to pay is Rs. $total_charge<br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
 		return true;
+	}else{
+		return false;
+	}
+}
+
+function update_referral_points($referral_id){
+	if(!refrral_id_exist($referral_id)){
+		$referral_id="CLST1504";
+	}
+	$sql = "SELECT excitons FROM ca_users WHERE celestaid='$referral_id'";
+	$result = query($sql);
+	if(row_count($result)==1){
+		$row=fetch_array($result);
+		$points=$row['excitons'];
+		$points = $points + 10;
+
+		$sql1 = "UPDATE ca_users SET excitons=$points WHERE celestaid='$referral_id'";
+		$result1 = query($sql1);
+		confirm($result1);
+	}
+}
+
+// To check if the user exists or not
+function refrral_id_exist($referral_id){
+	$sql = "SELECT id, active FROM ca_users WHERE celestaid ='".$referral_id."'";
+	$result = query($sql);
+	if(row_count($result)==1){
+		$row=fetch_array($result);
+		if($row['active']==1){
+			return true;
+		}else{
+			return false;
+		}
 	}else{
 		return false;
 	}
