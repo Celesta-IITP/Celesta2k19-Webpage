@@ -621,7 +621,7 @@ function total_register(){
 		redirect("login.php");
 	}else{
 		//echo "Will shortly display the result";
-		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone FROM present_users";
+		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone FROM users WHERE registration_desk=1";
 		$result=query($sql);
 		$permit=getPermit();
 		$count=0;
@@ -678,7 +678,7 @@ function new_register(){
 	 		$gender=($_POST['gender']);
 	 		$reg=$_POST['registration_charge'];
 	 		$tshirt=$_POST['tshirt_charge'];
-			 $bandpass=$_POST['bandpass_charge'];
+			$bandpass=$_POST['bandpass_charge'];
 
 	 		if($password!=$confirm_password){
 	 			$errors[]="Both the password fields are not equal.";
@@ -707,6 +707,7 @@ function new_register(){
 
 //Register the new user into both the database
 function new_register_user($first_name,$last_name,$phone,$college,$email,$password,$gender){
+
 	$first_name=escape($first_name);
 	$last_name=escape($last_name);
 	$phone=escape($phone);
@@ -719,9 +720,8 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$price_reg=100;
 	$price_bandass=200;
 	$price_both=400;
-	
 
-	//Setting price
+	// Setting price
 	$total_charge=0;
 	$registration_charge=0;
 	$bandpass_charge=0;
@@ -743,14 +743,17 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
 	}
 
-	$registrar_name=$_COOKIE['registrar'];
+	$registrar_name=$_SESSION['registrar'];
+	if(isset($_COOKIE['registrar'])){
+		$registrar_name=$_COOKIE['registrar'];
+	}
 	$password=md5($password);
 	$celestaid=getCelestaId();
 	generateQRCode($celestaid,$first_name,$last_name);
 	$qrcode="https://celesta.org.in//backend/user/assets/qrcodes/".$celestaid.".png";
 
 	//CONTENTS OF EMAIL
-	$subject="Activate Celesta Account";
+	$subject="Celesta Account";
 	$msg="<p>
 		Your Celesta Id is ".$celestaid.". Your account has been auto activated.<br/>
 		Total Amount to pay is: Rs. $total_charge<br>
@@ -763,19 +766,19 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	//Added to database if mail is sent successfully
 	if(send_email($email,$subject,$msg,$header)){
 
-		//Inserting into present_users table. Users present in fest
-		$sql="INSERT INTO present_users(first_name ,last_name, phone,college,email,password, celestaid,qrcode,gender,added_by,active, registration_charge, tshirt_charge, bandpass_charge, total_charge) ";
-		$sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,$registration_charge,$tshirt_charge,$bandpass_charge,$total_charge)";
-		$result=query($sql);
-		confirm($result);
+		// //Inserting into present_users table. Users present in fest
+		// $sql="INSERT INTO present_users(first_name ,last_name, phone,college,email,password, celestaid,qrcode,gender,added_by,active, registration_charge, tshirt_charge, bandpass_charge, total_charge) ";
+		// $sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,$registration_charge,$tshirt_charge,$bandpass_charge,$total_charge)";
+		// $result=query($sql);
+		// confirm($result);
 
 		//Inserting into actual database
-		$sql1="INSERT INTO users(first_name,last_name,phone,college,email,password,celestaid,qrcode,gender,added_by,active,validation_code) ";
-		$sql1.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,'0')";
+		$sql1="INSERT INTO users(first_name,last_name,phone,college,email,password,celestaid,qrcode,gender,added_by,active,validation_code,tshirt_charge,bandpass_charge,total_charge,registration_charge,amount_paid,registration_desk) ";
+		$sql1.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,'0',$tshirt_charge,$bandpass_charge,$total_charge,$registration_charge,$total_charge,1)";
 		$result1=query($sql1);
 		confirm($result1);
 
-		set_message("<p class='bg-success text-center'>Please check your email oto get your qrcode and celesta id. You can login now with the celesta id and the password.<br><br><br>Your Celesta id is $celestaid<br>Amount to pay is Rs. $total_charge<br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
+		set_message("<p class='bg-success text-center'>Please check your email to get your qrcode and celesta id. You can login now with the celesta id and the password.<br><br><br>Your Celesta id is $celestaid<br>Amount to pay is Rs. $total_charge<br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
 		return true;
 	}else{
 		return false;

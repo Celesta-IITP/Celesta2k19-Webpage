@@ -151,29 +151,29 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             }
             
 
-            // Update the data in the present users table events_registered columnr
-            foreach($members as $mem){
-                $sql4="SELECT * FROM present_users WHERE celestaid='$mem'";
-                $result4=query($sql4);
-                if(row_count($result4)==1){
+            // // Update the data in the present users table events_registered columnr
+            // foreach($members as $mem){
+            //     $sql4="SELECT * FROM present_users WHERE celestaid='$mem'";
+            //     $result4=query($sql4);
+            //     if(row_count($result4)==1){
                     
-                    $row=fetch_array($result4);
-                    $ev_registered=json_decode($row["events_registered"]);
-                    $add_event=array();
-                    $add_event["cap_name"]=$mem_name[0];
-                    $add_event["team_name"]=$team_name;
-                    $add_event["ev_name"]=$ev_name;
-                    $add_event["ev_id"]=$eventid;
-                    $add_event["amount"]=0;
-                    $ev_registered[]=$add_event;
-                    $ev_registered=json_encode($ev_registered);
+            //         $row=fetch_array($result4);
+            //         $ev_registered=json_decode($row["events_registered"]);
+            //         $add_event=array();
+            //         $add_event["cap_name"]=$mem_name[0];
+            //         $add_event["team_name"]=$team_name;
+            //         $add_event["ev_name"]=$ev_name;
+            //         $add_event["ev_id"]=$eventid;
+            //         $add_event["amount"]=0;
+            //         $ev_registered[]=$add_event;
+            //         $ev_registered=json_encode($ev_registered);
 
 
-                    $sql5="UPDATE present_users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
-                    $result5=query($sql5);
-                }
+            //         $sql5="UPDATE present_users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
+            //         $result5=query($sql5);
+            //     }
 
-            }
+            // }
 
             $subject="Celesta2k19 Events Registration";
 

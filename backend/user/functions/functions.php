@@ -734,13 +734,13 @@ function reset_password(){
 							$result1=query($sql1);
 
 							//Updating in present database also, if the email exists
-							$sql2="SELECT id FROM present_users WHERE email='".escape($email)."' ";
-							$result2=query($sql2);
-							if(row_count($result2)==1){
-								$sql3="UPDATE present_users SET password='".$password."' WHERE email='".escape($email)."' ";
-								$result3=query($sql3);
-							}
-							
+							// $sql2="SELECT id FROM present_users WHERE email='".escape($email)."' ";
+							// $result2=query($sql2);
+							// if(row_count($result2)==1){
+							// 	$sql3="UPDATE present_users SET password='".$password."' WHERE email='".escape($email)."' ";
+							// 	$result3=query($sql3);
+							// }
+
 							set_message("<p class='bg-success text-center'> Your password has been resetted.</p>");
 							redirect("reg.php");
 						}else{
