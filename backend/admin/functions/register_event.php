@@ -67,13 +67,13 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 $result3=query($sql3);
 
                 // Check if user is present in the present user table or not
-                $sql4="SELECT * FROM present_users WHERE celestaid='$celestaid'";
-                $result4=query($sql4);
-                if(row_count($result4)==1){
-                    // Update the data in the present users table events_registered columnr
-                    $sql5="UPDATE present_users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
-                    $result5=query($sql5);
-                }
+                // $sql4="SELECT * FROM present_users WHERE celestaid='$celestaid'";
+                // $result4=query($sql4);
+                // if(row_count($result4)==1){
+                //     // Update the data in the present users table events_registered columnr
+                //     $sql5="UPDATE present_users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
+                //     $result5=query($sql5);
+                // }
 
                 $subject="Celesta2k19 Events Registration";
                 $msg="<p>
