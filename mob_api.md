@@ -17,14 +17,10 @@ Parameters:
 * referral_id (If entered send that else send CLST1504)
 Response:
 	```'status': 200/400```
-	```'message': ["celestaid": "CLST****", "qrcode":"qr_code_url"] or Array of error messages```
+	```'message':Array of error messages```
 
 ## Activate User account
-Method: POST
-Parameters:
-* f : "activate_user" (This parameter must be supplied to hit the activate user api)
-* celestaid
-* validation_code(5 digiit otp)
+```User account is activated via the link send in the email```
 
 Response:
 * status: 201/402
