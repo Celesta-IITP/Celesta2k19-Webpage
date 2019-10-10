@@ -12,14 +12,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $celestaid=clean($_POST['celestaid']);
     $date_time=clean($_POST['date_time']);
 
-    $sql="SELECT checkin_checkout, registration_desk FROM users WHERE celestaid='$celestaid'";
+    $sql="SELECT checkin_checkout, registration_desk FROM users WHERE celestaid='$celestaid' and active=1";
     $result=query($sql);
 
     if(row_count($result)==1){
         $row=fetch_array($result);
         $registration_desk=$row['registration_desk'];
         if($registration_desk!=1){
-            $response['status']='404';
+            $response['status']='203';
             $message[]="Account has not verified at registration desk.";
         }else{
             $checkin_checkout=json_decode($row['checkin_checkout']);
