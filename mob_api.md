@@ -26,6 +26,16 @@ Response:
 * status: 201/402
 * message: Array of messages
 
+## Resend Activation Link
+Method: POST
+Parameters:
+* f: "resend_activation_link"
+* email
+
+Response:
+* status: 200(Successfully send the email)/ 208(Account already activated)/ 404(Email not found)
+* message - Array of messages
+
 ## Login User
 Method: POST
 Parameters: 

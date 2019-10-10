@@ -42,6 +42,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             profile();
         }elseif($_POST['f']=='logout_user'){
             logout_user();
+        }elseif($_POST['f']=="resend_Activation_link"){
+            resendActivationLink();
         }
     }
 }
@@ -211,6 +213,60 @@ function update_referral_points($referral_id){
 		$sql1 = "UPDATE ca_users SET excitons=$points WHERE celestaid='$referral_id'";
 		$result1 = query($sql1);
 		confirm($result1);
+	}
+}
+
+
+// Resend Activation Link
+function resendActivationLink(){
+	if($_SERVER['REQUEST_METHOD']=="POST"){
+		$email=escape($_POST['email']); // Email id of the user
+		$sql="SELECT active,id, validation_code,celestaid FROM users WHERE email='$email'";
+		$result=query($sql);
+		confirm($result);
+
+		$response=array();
+		$message=array();
+
+		if(row_count($result)==1){
+			$row=fetch_array($result);
+			$active=$row['active'];
+
+			if($active==1){
+				$message[]="Account already activated.";
+				$response['status']=208;
+			}else{
+				$celestaid=$row['celestaid'];
+				$validation_code=md5($celestaid.microtime());
+				$sql1="UPDATE users SET validation_code='$validation_code' WHERE email='$email'";
+				$result1=query($sql1);
+				confirm($result1);
+				$activation_link="https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code";
+
+				if(isUserCA($email)){
+					$sql2="UPDATE ca_users SET validation_code='$validation_code' where email='$email'";
+					$result2=query($sql2);
+					$activation_link="https://celesta.org.in/backend/user/activate.php?email=$email&code=$validation_code&ca=campus_ambassador_celesta2k19";
+				}
+
+				$subject="Re-Activation Link";
+				$msg="<p>
+				Please click the link below to activate your celesta account and login.<br/>
+					<a href='$activation_link'>$activation_link</a>
+					</p>
+				";
+				$header="From: noreply@yourwebsite.com";
+				send_email($email,$subject,$msg,$header);
+				$message[]="Successfully resend the verification link";
+				$response['status']=200;
+			}
+		}else{
+			$message[]="Email not found.";
+			$response['status']=404;
+		}
+
+		$response['message']=$message;
+		echo json_encode($response);
 	}
 }
 

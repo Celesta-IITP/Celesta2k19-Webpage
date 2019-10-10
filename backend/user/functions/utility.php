@@ -64,4 +64,15 @@ function celestaid_exists($celestaid){
 	}
 }
 
+// TO check if a user is ca or not
+function isUserCA($email){
+	$sql="SELECT id from ca_users where email='$email'";
+	$result=query($sql);
+	if(row_count($result)==1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 

@@ -788,13 +788,3 @@ function user_details($celestaid){
 	}
 	return $data;
 }
-
-function isUserCA($email){
-	$sql="SELECT id from ca_users where email='$email'";
-	$result=query($sql);
-	if(row_count($result)==1){
-		return true;
-	}else{
-		return false;
-	}
-}
