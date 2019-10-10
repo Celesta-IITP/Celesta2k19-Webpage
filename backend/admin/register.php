@@ -133,6 +133,9 @@
 									<div class="form-group">
 										<input type="text" class="form-control" id="college" name="college" placeholder="Enter Your School/College" value="<?php echo $user['college']?>" required/>
 									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" id="referral" name="referral" placeholder="Referral ID" value="REFERRAL ID: <?php echo $user['referral_id']?>" required readonly/>
+									</div>
 
 									<div class="form-group row">
 										<div class="col-sm-10">
