@@ -140,7 +140,7 @@
 									<div class="form-group row">
 										<div class="col-sm-10">
 											<div class="form-check">
-												<input class="form-check-input" type="checkbox" id="registration_charge" name='registration_charge' checked>
+												<input class="form-check-input" type="checkbox" id="registration_charge" name='registration_charge'>
 												<label class="form-check-label" for="registration_charge">
 													Registration 
 												</label>
@@ -162,7 +162,7 @@
 									<div class="form-group row">
 										<div class="col-sm-10">
 											<div class="form-check">
-												<input class="form-check-input" type="checkbox" id="tshirt_charge" name='tshirt_charge' <?php if($user['tshirt_charge']!=0){ echo "checked";} ?>>
+												<input class="form-check-input" type="checkbox" id="tshirt_charge" name='tshirt_charge'>
 												<label class="form-check-label" for="tshirt_charge">
 													T-Shirt (Rs 300)
 												</label>
