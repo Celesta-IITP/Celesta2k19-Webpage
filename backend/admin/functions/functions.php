@@ -287,7 +287,7 @@ function updatingUser(){
 						$add_event['cap_name']=$cap_name;
 					}
 					$update_user_events_registered[]=$add_event;
-					updateEventTable($ev_id,$ev_amount,$celestaid);
+					updateEventTable($ev_id,$ev_amount,$celestaid,$team_event);
 				}else{
 					$update_user_events_registered[]=$event;
 				}
@@ -312,17 +312,17 @@ function updatingUser(){
 			$msg.="<br>$ev";
 		}
 	}
-	$header="From: hayyoulistentome@gmail.com";
+	$header="From: celesta19@gmail.com";
 
 	send_email($email,$subject,$msg,$header);
 
-	$update_user_events_registered=json_encode($update_user_events_registered);
-	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,bandpass_charge=$bandpass_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered', registration_desk=1 WHERE celestaid='$celestaid'";
-	$result=query($sql);
-	confirm($result);
+	// $update_user_events_registered=json_encode($update_user_events_registered);
+	// $sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,bandpass_charge=$bandpass_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered', registration_desk=1 WHERE celestaid='$celestaid'";
+	// $result=query($sql);
+	// confirm($result);
 }
 
-function updateEventTable($ev_id,$ev_amount,$celestaid){
+function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 	echo "test-5";
 	$sql="SELECT * FROM events WHERE ev_id='$ev_id'";
 	$result=query($sql);
@@ -331,13 +331,120 @@ function updateEventTable($ev_id,$ev_amount,$celestaid){
 	$ev_registrations=json_decode($row['ev_registrations']);
 	$updated_registrations=array();
 	foreach($ev_registrations as $reg){
-		// echo "test-11";
-		// if($reg['celestaid']==$celestaid){
-		// 	$reg['amount']=$ev_amount;
-		// }
-		// print_r($reg);
-		$updated_registrations[]=$reg;
-		// echo "test-12";
+		// If individual event
+		$updt=array();
+		if(empty($team_event)){
+			$get_celestaid=$reg->celestaid;
+			$name=$reg->name;
+			$time=$reg->time;
+			$phone=$reg->phone;
+			$amount=$reg->amount;
+			$updt['time']=$time;
+			$updt['name']=$name;
+			$updt['phone']=$phone;
+			$updt['amount']=$amount;
+
+			if($get_celestaid==$celestaid){
+				$updt['amount']=$ev_amount;
+			}
+
+		}else{
+			$time=$reg->time;
+			$amount=$reg->amount;
+			$cap_name=$reg->cap_name;
+			$cap_phone=$reg->cap_phone;
+			$cap_celestaid=$reg->celestaid;
+			$team_name=$reg->team_name;
+			$cap_email=$reg->cap_email;
+
+			$mem1_name=$reg->mem1_name;
+			$mem1_email=$reg->mem1_email;
+			$mem1_phone=$reg->mem1_phone;
+			$mem1_celestaid=$reg->mem1_celestaid;
+
+			$mem2_name=$reg->mem2_name;
+			$mem2_email=$reg->mem2_email;
+			$mem2_phone=$reg->mem2_phone;
+			$mem2_celestaid=$reg->mem2_celestaid;
+
+			$mem3_name=$reg->mem3_name;
+			$mem3_email=$reg->mem3_email;
+			$mem3_phone=$reg->mem3_phone;
+			$mem3_celestaid=$reg->mem3_celestaid;
+
+			$mem4_name=$reg->mem4_name;
+			$mem4_email=$reg->mem4_email;
+			$mem4_phone=$reg->mem4_phone;
+			$mem4_celestaid=$reg->mem4_celestaid;
+
+			$mem5_name=$reg->mem5_name;
+			$mem5_email=$reg->mem5_email;
+			$mem5_phone=$reg->mem5_phone;
+			$mem5_celestaid=$reg->mem5_celestaid;
+
+			$mem_celestaid=array();
+
+			// Updating datas
+			$updt['cap_name']=$cap_name;
+			$updt['time']=$time;
+			$updt['amount']=$amount;
+			$updt['cap_celestaid']=$cap_celestaid;
+			$updt['team_name']=$team_name;
+			$updt['cap_phone']=$cap_phone;
+			$updt['cap_email']=$cap_email;
+
+			$mem_celestaid[]=$celestaid;
+
+			if(!empty($mem1_celestaid)){
+				$updt['mem1_name']=$mem1_name;
+				$updt['mem1_email']=$mem1_email;
+				$updt['mem1_celestaid']=$mem1_celestaid;
+				$updt['mem1_phone']=$mem1_phone;
+				$mem_celestaid[]=$mem1_celestaid;
+			}
+
+			if(!empty($mem2_celestaid)){
+				$updt['mem2_name']=$mem2_name;
+				$updt['mem2_email']=$mem2_email;
+				$updt['mem2_celestaid']=$mem2_celestaid;
+				$updt['mem2_phone']=$mem2_phone;
+				$mem_celestaid[]=$mem2_celestaid;
+			}
+
+			if(!empty($mem3_celestaid)){
+				$updt['mem3_name']=$mem3_name;
+				$updt['mem3_email']=$mem3_email;
+				$updt['mem3_celestaid']=$mem3_celestaid;
+				$updt['mem3_phone']=$mem3_phone;
+				$mem_celestaid[]=$mem3_celestaid;
+			}
+
+			if(!empty($mem4_celestaid)){
+				$updt['mem4_name']=$mem4_name;
+				$updt['mem4_email']=$mem4_email;
+				$updt['mem4_celestaid']=$mem4_celestaid;
+				$updt['mem4_phone']=$mem4_phone;
+				$mem_celestaid[]=$mem4_celestaid;
+			}
+
+			if(!empty($mem5_celestaid)){
+				$updt['mem5_name']=$mem5_name;
+				$updt['mem5_email']=$mem5_email;
+				$updt['mem5_celestaid']=$mem5_celestaid;
+				$updt['mem5_phone']=$mem5_phone;
+				$mem_celestaid[]=$mem5_celestaid;
+			}
+
+			// If id found or matched
+			if(in_array($celestaid,$mem_celestaid)){
+				$updt['amount']=$ev_amount;
+				foreach($mem_celestaid as $clst){
+					updateOtherUsers($ev_id,$ev_amount,$clst);
+				}
+			}
+		}
+
+		$updated_registrations[]=$updt;
 	}
 	// echo "test-6";
 
@@ -346,9 +453,66 @@ function updateEventTable($ev_id,$ev_amount,$celestaid){
 
 	// Add a case to update all users if its a team event
 
-	// $sql1="UPDATE events set ev_registrations='$updated_registrations' WHERE ev_id='$ev_id'";
-	// $result1=query($sql1);
+	$sql1="UPDATE events set ev_registrations='$updated_registrations' WHERE ev_id='$ev_id'";
+	$result1=query($sql1);
 
+}
+
+function updateOtherUsers($evid,$ev_amount,$celestaid){
+	// To update other users data
+	$sql="SELECT events_registered, email, qrcode FROM users WHERE celestaid='$celestaid'";
+	$result=query($sql);
+	if(row_count($result)==1){
+		$row=fetch_array($result);
+		$events_registered=json_decode($row['events_registered']);
+		$qrcode=$row['qrcode'];
+
+		$updated_registered_events=array();
+
+		foreach($events_registered as $event){
+			$ev_id=$event->ev_id;
+			$amount=$event ->amount;
+			$ev_name=$event ->ev_name;
+			$team_name=$event ->team_name;
+			$cap_name=$event ->cap_name;
+
+			$add_event=array();
+			$add_event['ev_id']=$ev_id;
+			$add_event['amount']=$amount;
+			$add_event['ev_name']=$ev_name;
+
+			if(!empty($cap_name)){
+				$add_event['cap_name']=$cap_name;
+				$add_event['team_name']=$team_name;
+			}
+
+			if($ev_id==$evid){
+				$add_event['amount']=$ev_amount;
+				$say_name=$ev_name;
+			}
+
+			$updated_registered_events[]=$add_event;
+		}
+		$updated_registered_events=json_encode($updated_registered_events);
+		$sql1="UPDATE users SET events_registered='$updated_registered_events' WHERE celestaid='$celestaid'";
+		$result1=query($sql1);
+		confirm($result1);
+		
+		$subject="Celesta Event Registrations Payment";
+		$msg="<p>
+			Your Celesta Id is ".$celestaid.". You have successfully paid for <b> $evid - $say_name </b>.
+			<br>
+			Amount paid is: $ev_amount<br>
+			Paid By: $celestaid<br>
+			You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
+			</p>
+		";
+		$email=$row['email'];
+		$header="From: celesta19@gmail.com";
+
+		send_email($email,$subject,$msg,$header);
+
+	}
 }
 
 /******************************************** End of functions ****************************************************/
