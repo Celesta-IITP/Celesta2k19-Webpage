@@ -410,27 +410,41 @@ function profile(){
         if(row_count($result)==1){
             $row=fetch_array($result);
 
-                $first_name=$row['first_name'];
-                $last_name=$row['last_name'];
-                $email=$row['email'];
-                $qrcode=$row['qrcode'];
-                $celestaid=$row['celestaid'];
-                $events_registered=$row['events_registered'];
-                $events_participated=$row['events_participated'];
-                $phone=$row['phone'];
-    
-                $response['status']='202';// Profile access validated
-                $message['celestaid']=$celestaid;
-                $message['first_name']=$first_name;
-                $message['last_name']=$last_name;
-                $message['email']=$email;
-                $message['phone']=$phone;
-                $message['qrcode']=$qrcode;
-                $message['events_registered']=$events_registered;
-                $message['events_participated']=$events_participated;
-                $message['access_token']=$access_token;
-                $response['message']=$message;
-                echo json_encode($response);
+            $first_name=$row['first_name'];
+            $last_name=$row['last_name'];
+            $email=$row['email'];
+            $qrcode=$row['qrcode'];
+            $celestaid=$row['celestaid'];
+            $events_registered=$row['events_registered'];
+            $events_participated=$row['events_participated'];
+            $phone=$row['phone'];
+
+            $response['status']='202';// Profile access validated
+            $message['celestaid']=$celestaid;
+            $message['first_name']=$first_name;
+            $message['last_name']=$last_name;
+            $message['email']=$email;
+            $message['phone']=$phone;
+            $message['qrcode']=$qrcode;
+            $message['events_registered']=$events_registered;
+            $message['events_participated']=$events_participated;
+            $message['access_token']=$access_token;
+            $message['amount_paid']=$row['amount_paid'];
+            $response['message']=$message;
+
+            $sql1="SELECT ev_id, ev_amount FROM events";
+            $result1=query($sql1);
+            $events=array();
+            if ($result1->num_rows > 0) {
+                while($row1 = $result1->fetch_assoc()) {
+                    $event=array();
+                    $event['ev_id']=$row1['ev_id'];
+                    $event['ev_amount']=$row1['ev_amount'];
+                    $events[]=$event;
+                }
+            }
+            $response['events']=$events;
+            echo json_encode($response);
             
         }else{
             $errors[]="Invalid access token. Unauthorized to access the data.";
