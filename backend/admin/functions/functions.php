@@ -230,7 +230,7 @@ function updatingUser(){
 	$price_reg=100; // Desk registration charge
 	$price_bandass=200;
 	$price_both=400;
-	
+
 	//Setting price
 	$total_charge=0;
 	$registration_charge=0;
@@ -258,6 +258,7 @@ function updatingUser(){
 	$events_registered=json_decode($user['events_registered']);
 	$update_user_events_registered=array();
 	$paidEvents=array();
+
 	if(!empty(events_registered)){
 		foreach($events_registered as $event){
 			$ev_id=$event->ev_id;
@@ -269,13 +270,13 @@ function updatingUser(){
 			$add_event=$event;
 
 			if(isset($_POST[$ev_id])){
-				echo "test-4";
 				$ev_amount=getEventAmount($ev_id);
 				$diff=$ev_amount-$amount;
 				if($diff>0){
 					$total_charge+=$diff;
 					$events_charge+=$diff;
-					echo "test-40";
+
+
 					// Update the events registered array
 					$add_event=array();
 					$add_event["ev_name"]=$ev_name;
@@ -287,7 +288,7 @@ function updatingUser(){
 						$add_event['cap_name']=$cap_name;
 					}
 					$update_user_events_registered[]=$add_event;
-					updateEventTable($ev_id,$ev_amount,$celestaid,$team_event);
+					updateEventTable($ev_id,$ev_amount,$celestaid,$team_name);
 				}else{
 					$update_user_events_registered[]=$event;
 				}
@@ -298,6 +299,7 @@ function updatingUser(){
 		}
 	}
 	// print_r($update_user_events_registered);
+
 	$qrcode=$user['qrcode'];
 	$subject="Celesta Account";
 	$msg="<p>
@@ -316,14 +318,17 @@ function updatingUser(){
 
 	send_email($email,$subject,$msg,$header);
 
-	// $update_user_events_registered=json_encode($update_user_events_registered);
-	// $sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,bandpass_charge=$bandpass_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered', registration_desk=1 WHERE celestaid='$celestaid'";
-	// $result=query($sql);
-	// confirm($result);
+	$update_user_events_registered=json_encode($update_user_events_registered);
+	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,bandpass_charge=$bandpass_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered', registration_desk=1 WHERE celestaid='$celestaid'";
+	$result=query($sql);
+	confirm($result);
+
+	echo "<h3 class='bg-success text-center'>$celestaid successfully registered. Pay amount: Rs. $total_charge </h3>";
+
 }
 
 function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
-	echo "test-5";
+
 	$sql="SELECT * FROM events WHERE ev_id='$ev_id'";
 	$result=query($sql);
 	$row=fetch_array($result);
@@ -332,6 +337,7 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 	$updated_registrations=array();
 	foreach($ev_registrations as $reg){
 		// If individual event
+
 		$updt=array();
 		if(empty($team_event)){
 			$get_celestaid=$reg->celestaid;
@@ -343,6 +349,7 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 			$updt['name']=$name;
 			$updt['phone']=$phone;
 			$updt['amount']=$amount;
+			echo "6-";
 
 			if($get_celestaid==$celestaid){
 				$updt['amount']=$ev_amount;
@@ -383,6 +390,7 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 			$mem5_celestaid=$reg->mem5_celestaid;
 
 			$mem_celestaid=array();
+			echo "7-";
 
 			// Updating datas
 			$updt['cap_name']=$cap_name;
@@ -438,6 +446,7 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 			// If id found or matched
 			if(in_array($celestaid,$mem_celestaid)){
 				$updt['amount']=$ev_amount;
+				echo "8-";
 				foreach($mem_celestaid as $clst){
 					updateOtherUsers($ev_id,$ev_amount,$clst);
 				}
@@ -446,7 +455,6 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 
 		$updated_registrations[]=$updt;
 	}
-	// echo "test-6";
 
 	$updated_registrations=json_encode($updated_registrations);
 	print_r();
@@ -460,9 +468,11 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 
 function updateOtherUsers($evid,$ev_amount,$celestaid){
 	// To update other users data
+
 	$sql="SELECT events_registered, email, qrcode FROM users WHERE celestaid='$celestaid'";
 	$result=query($sql);
 	if(row_count($result)==1){
+
 		$row=fetch_array($result);
 		$events_registered=json_decode($row['events_registered']);
 		$qrcode=$row['qrcode'];
@@ -470,6 +480,7 @@ function updateOtherUsers($evid,$ev_amount,$celestaid){
 		$updated_registered_events=array();
 
 		foreach($events_registered as $event){
+
 			$ev_id=$event->ev_id;
 			$amount=$event ->amount;
 			$ev_name=$event ->ev_name;
@@ -493,11 +504,12 @@ function updateOtherUsers($evid,$ev_amount,$celestaid){
 
 			$updated_registered_events[]=$add_event;
 		}
+
 		$updated_registered_events=json_encode($updated_registered_events);
 		$sql1="UPDATE users SET events_registered='$updated_registered_events' WHERE celestaid='$celestaid'";
 		$result1=query($sql1);
 		confirm($result1);
-		
+
 		$subject="Celesta Event Registrations Payment";
 		$msg="<p>
 			Your Celesta Id is ".$celestaid.". You have successfully paid for <b> $evid - $say_name </b>.
