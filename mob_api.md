@@ -2,7 +2,7 @@
 
 ### Link: [https://celesta.org.in/backend/user/functions/mob_functions.php](https://celesta.org.in/backend/user/functions/mob_functions.php)
 
-## Registeration of User
+## Registration of User
 Method: POST
 Parameters: 
 * f:"register_user"  (This parameter must be supplied along with the value written, to hit the registration api)
@@ -77,14 +77,18 @@ Parameters:
 * access_token
 
 Response: 
-* status: 202/403
-* celestaid
-* first_name
-* last_name
-* email
-* phone
-* qr_code
-* message: Array of Messages
-* events_registered: Events user have registered in JSON encoded form
-* events_participated: Events user have participated
+* status: 202(Data successfully fetched)/403(Invalid access token)
+* message
+    - celestaid
+    - first_name
+    - last_name
+    - email
+    - phone
+    - qr_code
+    - message: Array of Messages
+    - events_registered: Events user have registered in JSON encoded form
+    - events_participated: Events user have participated
+* events (Array of the following objects)
+    - ev_id
+    - ev_amount
 
