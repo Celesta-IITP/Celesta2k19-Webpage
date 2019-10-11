@@ -109,7 +109,7 @@
 									<div class="form-group row">
 										<div class="col-sm-10">
 											<div class="form-check">
-												<input class="form-check-input" type="checkbox" id="<?php echo $ev_id?>" name='<?php echo $ev_id?>' <?php if($diff<=0){echo "checked";} ?>>
+												<input class="form-check-input" type="checkbox" id="<?php echo $ev_id?>" name='<?php echo $ev_id?>' <?php if($diff<=0){echo "checked disabled='disabled'";} ?>>
 												<label class="form-check-label" for="registration_charge">
 													<?php echo $ev_name." Pay: ";
 													if($diff>0){
