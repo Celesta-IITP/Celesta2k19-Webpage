@@ -231,24 +231,30 @@ function updatingUser(){
 	$price_bandass=200;
 	$price_both=400;
 
+	// Get user info
+	$sql0="SELECT * from users where celestaid='$celestaid'";
+	$result0=query($sql0);
+	$row=fetch_array($result0);
+
 	//Setting price
 	$total_charge=0;
-	$registration_charge=0;
-	$bandpass_charge=0;
-	$tshirt_charge=0;
-	$events_charge=0;
+	$amount_paid=$row['amount_paid'];
+	$registration_charge=$row['registration_charge'];
+	$bandpass_charge=$row['bandpass_charge'];
+	$tshirt_charge=$row['tshirt_charge'];
+	$events_charge=$row['events_charge'];
 
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
-		$registration_charge=$price_reg;
+		$registration_charge+=$price_reg;
 	}
 	if(isset($_POST['bandpass_charge'])){
 		$total_charge=$total_charge+$price_bandass;
-		$bandpass_charge=$price_bandass;
+		$bandpass_charge+=$price_bandass;
 	}
 	if(isset($_POST['tshirt_charge'])){
 		$total_charge=$total_charge+$price_tshirt;
-		$tshirt_charge=$price_tshirt;
+		$tshirt_charge+=$price_tshirt;
 	}
 
 	if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
@@ -317,9 +323,10 @@ function updatingUser(){
 	$header="From: celesta19@gmail.com";
 
 	send_email($email,$subject,$msg,$header);
+	$amount_paid+=$total_charge;
 
 	$update_user_events_registered=json_encode($update_user_events_registered);
-	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,bandpass_charge=$bandpass_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered', registration_desk=1 WHERE celestaid='$celestaid'";
+	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,bandpass_charge=$bandpass_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered',amount_paid=$amount_paid, registration_desk=1 WHERE celestaid='$celestaid'";
 	$result=query($sql);
 	confirm($result);
 
