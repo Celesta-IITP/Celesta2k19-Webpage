@@ -89,6 +89,8 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             $reg["cap_celestaid"]=$members[0];
             $reg["cap_name"]=$mem_name[0];
             $reg["cap_phone"]=$mem_phone[0];
+            $reg["cap_email"]=$mem_emails[0];
+            $reg["team_name"]=$team_name;
 
             if(!empty($member1)){
                 $reg['mem1_celestaid']=$members[1];
