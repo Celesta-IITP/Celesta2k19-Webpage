@@ -47,6 +47,9 @@
                         <a class="nav-link" href="../backend/user/reg.php">Login</a>
                     </li>
                 <?php } ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="https://internshala.com/internship/detail/campus-ambassador-programme-at-celesta-iit-patna1570467717">Register via Internshala</a>
+                </li>
             </ul>
         </div>
         <!-- </div> -->
@@ -54,7 +57,6 @@
 
     <!-- Header -->
     <div id="header">
-        <br><br><br><br>
         <h6 style="color:red">
             <!-- IIT Patna's -->
         </h6>
@@ -62,7 +64,6 @@
         <h1 style="color: #fff">Celesta'19</h1><br>
         <h1 style="color: #fff">Campus Ambassador Programme</h1><br>
 
-        <br><br><br><br><br>
         <center>
             <a href="https://drive.google.com/file/d/10-NSUM3Y7D2gg1Eg7lkRsH7IbK8zJ7Nl/view" target="_blank">
                 <div id="FB-Oauth">
@@ -86,7 +87,11 @@
                 <a href="../backend/user/reg.php">
                     <button class="btn btn-success" style="padding: 10px; font-size: 18px">Login</button>
                 </a>
+                <br><br>
             <?php } ?>
+            <a href="https://internshala.com/internship/detail/campus-ambassador-programme-at-celesta-iit-patna1570467717">
+                <button class="btn btn-warning" style="padding: 10px; font-size: 18px">Register via Internshala</button>
+            </a>
         </center>
         <div class="imgClass type1 img1"><img src="./images/img/1.png"></div>
         <div class="imgClass type1 img2"><img src="./images/img/2.png"></div>
