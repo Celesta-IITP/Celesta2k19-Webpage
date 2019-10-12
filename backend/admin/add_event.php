@@ -32,6 +32,14 @@
     </div>
 
     <div class="form-group">
+        <label for="exampleFormControlSelect1">Type of Event</label>
+        <select class="form-control" id="ev_type" name="ev_type" required>
+        <option>School Event</option>
+        <option>College Event</option>
+        </select>
+    </div>
+
+    <div class="form-group">
         <label for="exampleFormControlSelect1">Choose The organizing Club</label></label>
         <select class="form-control" id="ev_club" name="ev_club" required>
         <option>TECH</option>
