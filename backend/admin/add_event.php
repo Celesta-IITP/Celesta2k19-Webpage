@@ -24,18 +24,11 @@
         <label for="exampleFormControlSelect1">Category</label>
         <select class="form-control" id="event_category" name="event_category" required>
         <option>Events</option>
+        <option>Schoolevents</option>
         <option>Workshops</option>
         <option>Exhibitions</option>
         <option>ProNite</option>
         <option>Guest Talks</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">Type of Event</label>
-        <select class="form-control" id="ev_type" name="ev_type" required>
-        <option>School Event</option>
-        <option>College Event</option>
         </select>
     </div>
 
