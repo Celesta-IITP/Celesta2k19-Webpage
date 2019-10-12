@@ -123,7 +123,7 @@ function user_registration(){
         }
         //After check perform the task.
         if(!empty($errors)){
-            $response['status']='400';
+            $response['status']=400;
             $response['message']=$errors;
             echo json_encode($response);
         }else{
@@ -167,12 +167,13 @@ function user_registration(){
                 $message[]="Successfully created the account";
                 // $message['validation_code']=$validation_code;
 
-                $response['status']='200';
+                $response['status']=200;
                 $response['message']=$message;
                 echo json_encode($response);
             }else{
-                $response['status']='400';
-                $response['message']="Failed to send the email for verification";
+                $response['status']=400;
+                $errors[]="Failed to send the email for verification";
+                $response['message']=$errors;
                 echo json_encode($response);
             }
         }//After check else part closing
@@ -328,7 +329,7 @@ function login_user(){
 
             if($active!=1){
                 $errors[]="Your account is not activated. Please activate your account to login.";
-                $response['status']='403';//Login failed
+                $response['status']=403;//Login failed
                 $response['message']=$errors;
                 echo json_encode($response);
             }else{
@@ -347,23 +348,19 @@ function login_user(){
                 $events_participated=$row['events_participated'];
                 $phone=$row['phone'];
     
-                $response['status']='202';//Login validated
-                $message['celestaid']=$celestaid;
-                $message['first_name']=$first_name;
-                $message['last_name']=$last_name;
-                $message['email']=$email;
-                $message['phone']=$phone;
-                $message['qrcode']=$qrcode;
-                $message['events_registered']=$events_registered;
-                $message['events_participated']=$events_participated;
-                $message['access_token']=$access_token;
+                $response['status']=202;//Login validated
+
+                $message['data']=$msg;
                 $response['message']=$message;
+                $response['celestaid']=$celestaid;
+                $response['access_token']=$access_token;
+                $response['first_name']=$first_name;
                 echo json_encode($response);
             }//Else part of active
             
         }else{
             $errors[]="Invalid credentials.";
-            $response['status']='403';//Login failed
+            $response['status']=403;//Login failed
             $response['message']=$errors;
             echo json_encode($response);
         }
@@ -419,7 +416,7 @@ function profile(){
             $events_participated=$row['events_participated'];
             $phone=$row['phone'];
 
-            $response['status']='202';// Profile access validated
+            $response['status']=202;// Profile access validated
             $message['celestaid']=$celestaid;
             $message['first_name']=$first_name;
             $message['last_name']=$last_name;
@@ -448,7 +445,7 @@ function profile(){
             
         }else{
             $errors[]="Invalid access token. Unauthorized to access the data.";
-            $response['status']='403';// Unauthorized access
+            $response['status']=403;// Unauthorized access
             $response['message']=$errors;
             echo json_encode($response);
         }
