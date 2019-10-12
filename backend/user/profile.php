@@ -133,10 +133,9 @@
                                                 <td><?php echo $ev->amount ?></td>
                                                 <td>
                                                     <?php if(1-$ev->amount){ ?>
-                                                        <form action="./payment/payDetailForm.php" method="POST">
+                                                        <form action="./payment/dataFrom.html" method="POST">
                                                             <input type="text" hidden value="<?php echo $ev->ev_id?>" name="event_id">
                                                             <input type="text" hidden value="<?php echo $celestaid?>" name="celesta_id">
-                                                            <!-- <a class="btn btn-success" href="./payment/dataForm.php?eventid=<?php echo $ev->ev_id?>&celestaid=<?php echo $celestaid?>">Pay</a> -->
                                                             <button type="submit" class="btn btn-success">Pay</button>
                                                         </form>
                                                     <?php } else { ?>
