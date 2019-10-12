@@ -47,13 +47,8 @@ Response:
 * status: 202/403
 * celestaid
 * first_name
-* last_name
-* email
-* phone
 * qr_code
 * message: Array of Messages
-* events_registered: Events user have registered in JSON encoded form
-* events_participated: Events user have participated
 * access_token: (Store it safely. It will be required to hit the profile API)
 
 ## Logout User

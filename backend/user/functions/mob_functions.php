@@ -340,21 +340,15 @@ function login_user(){
                 $result1 = query($sql1);
 
                 $first_name=$row['first_name'];
-                $last_name=$row['last_name'];
-                $email=$row['email'];
                 $qrcode=$row['qrcode'];
                 $celestaid=$row['celestaid'];
-                $events_registered=$row['events_registered'];
-                $events_participated=$row['events_participated'];
-                $phone=$row['phone'];
     
                 $response['status']=202;//Login validated
-
-                $message['data']=$msg;
                 $response['message']=$message;
                 $response['celestaid']=$celestaid;
                 $response['access_token']=$access_token;
                 $response['first_name']=$first_name;
+                $response['qrcode']=$qrcode;
                 echo json_encode($response);
             }//Else part of active
             
