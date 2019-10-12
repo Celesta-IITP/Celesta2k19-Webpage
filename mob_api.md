@@ -73,16 +73,16 @@ Parameters:
 
 Response: 
 * status: 202(Data successfully fetched)/403(Invalid access token)
-* message
+* profile
     - celestaid
     - first_name
     - last_name
     - email
     - phone
     - qr_code
-    - message: Array of Messages
     - events_registered: Events user have registered in JSON encoded form
     - events_participated: Events user have participated
+* message: Array of Messages
 * events (Array of the following objects)
     - ev_id
     - ev_amount

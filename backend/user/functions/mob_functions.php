@@ -421,7 +421,7 @@ function profile(){
             $message['events_participated']=$events_participated;
             $message['access_token']=$access_token;
             $message['amount_paid']=$row['amount_paid'];
-            $response['message']=$message;
+            $response['profile']=$message;
 
             $sql1="SELECT ev_id, ev_amount FROM events";
             $result1=query($sql1);
@@ -436,7 +436,7 @@ function profile(){
             }
             $response['events']=$events;
             echo json_encode($response);
-            
+
         }else{
             $errors[]="Invalid access token. Unauthorized to access the data.";
             $response['status']=403;// Unauthorized access
