@@ -27,8 +27,8 @@
         <option>Schoolevents</option>
         <option>Workshops</option>
         <option>Exhibitions</option>
-        <option>ProNite</option>
-        <option>Guest Talks</option>
+        <option>Pronites</option>
+        <option>Guesttalks</option>
         </select>
     </div>
 
