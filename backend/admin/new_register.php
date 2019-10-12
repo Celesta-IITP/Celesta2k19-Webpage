@@ -55,6 +55,9 @@
                             <div class="form-group">
                                 <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password *" value="qwerty123" required />
                             </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="referral_id" name="referral_id" placeholder="Referral ID" />
+                            </div>
                              <div class="form-group">
                                 <div class="maxl">
                                     <label class="radio inline"> 
