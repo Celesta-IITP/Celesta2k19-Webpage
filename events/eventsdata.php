@@ -27,11 +27,27 @@
   $events=array();
   foreach($data as $d){
     if($d['ev_category']==ucfirst($param)){
-      array_push($events, $d);
+      if($d['ev_type']!="School Event"){
+        array_push($events,$d);
+      }
+    }elseif($param=="schoolevents"){
+      if($d['ev_type']=="School Event"){
+        array_push($events,$d);
+      }
     }
   }
   $filters="";
   if($param=="events"){
+    $filters='
+      <li data-filter=".filter-TECH">TECH</li>
+      <li data-filter=".filter-NON-TECH">NON-TECH</li>
+      <li data-filter=".filter-CODING">CODING</li>
+      <li data-filter=".filter-MANAGEMENT">MANAGEMENT</li>
+      <li data-filter=".filter-ROBOTICS">ROBOTICS</li>
+      <li data-filter=".filter-QUIZ">QUIZ</li>
+      <li data-filter=".filter-TREASURE-HUNT">TREASURE-HUNT</li>
+    ';
+  }elseif($param=="schoolevents"){
     $filters='
       <li data-filter=".filter-TECH">TECH</li>
       <li data-filter=".filter-NON-TECH">NON-TECH</li>
