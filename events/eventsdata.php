@@ -3,8 +3,8 @@
     $loggedIn = logged_in();
     $celestaid=""; $access_token="";
     if(logged_in()){
-        $celestaid = $_SESSION['celestaid'];
-        $access_token=$_SESSION['access_token'];
+      $celestaid = $_SESSION['celestaid'];
+      $access_token=$_SESSION['access_token'];
     }
 ?>
 
@@ -17,9 +17,9 @@
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   $curl_response = curl_exec($curl);
   if ($curl_response === false) {
-      $info = curl_getinfo($curl);
-      curl_close($curl);
-      die('error occured during curl exec. Additioanl info: ' . var_export($info));
+    $info = curl_getinfo($curl);
+    curl_close($curl);
+    die('error occured during curl exec. Additioanl info: ' . var_export($info));
   }
   curl_close($curl);
   $data = json_decode($curl_response, true);
@@ -27,13 +27,7 @@
   $events=array();
   foreach($data as $d){
     if($d['ev_category']==ucfirst($param)){
-      if($d['ev_type']!="School Event"){
-        array_push($events,$d);
-      }
-    }elseif($param=="schoolevents"){
-      if($d['ev_type']=="School Event"){
-        array_push($events,$d);
-      }
+      array_push($events,$d);
     }
   }
   $filters="";
