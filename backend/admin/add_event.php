@@ -115,6 +115,11 @@
         <input type="text" class="form-control" id="event_end_time" name="event_end_time" placeholder="Event end time" required>
     </div>
 
+    <div class="form-group">
+        <label for="event_organizer">Event Prize</label>
+        <input type="text" class="form-control" id="ev_prize" name="ev_prize" placeholder="Event prize money">
+    </div>
+
 
     <div class="form-group">
         <label for="exampleFormControlFile1">Event Poster</label>
