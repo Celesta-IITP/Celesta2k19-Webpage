@@ -99,6 +99,7 @@ foreach ($data as $d) {
                 <h5 style="color: #219999">Date: <span style="color: #fff"><?php echo $event['ev_date'] ?></span></h5>
                 <h5 style="color: #219999">Start Time: <span style="color: #fff"><?php echo $event['ev_start_time'] ?></span></h5>
                 <h5 style="color: #219999">End Time: <span style="color: #fff"><?php echo $event['ev_end_time'] ?></span></h5>
+                <h5 style="color: #219999">Event Prize Money:  <span style="color: #fff"><?php echo $event['ev_prize'] ?></span></h5>
                 <?php if($event['is_team_event']){ ?>
                   <h5 style="color: #219999">Maximum Team Strength: <span style="color: #fff"><?php echo $event['team_members'] ?></span></h5>
                   <h5 style="color: #219999; margin-bottom: 0">Team Registration Amount: <span style="color: #fff">₹<?php echo $event['ev_amount'] ?></span></h5>
