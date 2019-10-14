@@ -1053,6 +1053,31 @@ function updateEvent(){
 
 }
 
+// FUnction to show participants of an event
+function showEventParticipants(){
+	$permit=getPermit();
+	if($_SERVER["REQUEST_METHOD"]=="GET"){
+		if($permit==4 || $permit==0){
+			$ev_id=clean($_GET['eventid']);
+			$sql="SELECT id, ev_registrations, is_team_event, ev_name FROM events WHERE ev_id='$ev_id'";
+			$result=query($sql);
+			confirm($result);
+
+			if(row_count($result)==1){
+				$row=fetch_array($result);
+				return $row;
+			}else{
+				return false;
+			}
+
+		}else{
+			redirect("logout.php");
+			return false;
+		}
+	}
+
+}
+
 // Function to delete event
 function deleteEvent(){
 	$eventid=clean($_POST["eventid"]);
