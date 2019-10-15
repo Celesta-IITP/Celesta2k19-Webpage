@@ -31,7 +31,7 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');width:100%;height:100vh">
+		<div class="container-login100" style="background-image: url('images/background.jpg');width:100%;height:100vh">
 
 			<div class="wrap-login100 p-t-30 p-b-50">
                 <span style="color:red; text-align:center">
