@@ -487,7 +487,7 @@ function resendActivationLink(){
 				$response['status']=200;
 				set_message("<p class='bg-success'> Activation link has successfully been sent to your account.</p>");
 				echo json_encode($response);
-				redirect("reg.php");
+				redirect("login.php");
 			}
 		}else{
 			$message[]="Email not found.";
@@ -742,7 +742,7 @@ function reset_password(){
 							// }
 
 							set_message("<p class='bg-success text-center'> Your password has been resetted.</p>");
-							redirect("reg.php");
+							redirect("login.php");
 						}else{
 							echo validation_errors("Failed to reset password. Try again later.");
 						}
