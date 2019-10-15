@@ -44,7 +44,7 @@
                         <a style="color:LavenderBlush;"class="nav-link" href="../backend/user/ca_register.php">Register</a>
                     </li>
                     <li class="nav-item active">
-                        <a style="color:LavenderBlush;"class="nav-link" href="../backend/user/reg.php">Login</a>
+                        <a style="color:LavenderBlush;"class="nav-link" href="../backend/user/login.php">Login</a>
                     </li>
                 <?php } ?>
                 <li class="nav-item active">
@@ -84,7 +84,7 @@
                 <a href="../backend/user/ca_register.php">
                     <button class="btn btn-success" style="padding: 10px; font-size: 18px">Register</button>
                 </a>
-                <a href="../backend/user/reg.php">
+                <a href="../backend/user/login.php">
                     <button class="btn btn-success" style="padding: 10px; font-size: 18px">Login</button>
                 </a>
                 <br><br>

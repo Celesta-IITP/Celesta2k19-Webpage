@@ -12,4 +12,4 @@ if(isset($_COOKIE['celestaid'])){
 	setcookie('qrcode','',time()-86400);
 }
 
-redirect("reg.php");
+redirect("login.php");

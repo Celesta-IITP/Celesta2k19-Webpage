@@ -1,7 +1,7 @@
 <?php 
     include("functions/init.php"); 
     if(!logged_in()){
-        redirect("reg.php");
+        redirect("login.php");
     }
     $celestaid; $imgsrc;
     if(isset($_SESSION['celestaid'])){
