@@ -132,7 +132,11 @@
                                                 <th scope="row"><?php echo $i++; ?></th>
                                                 <td><?php echo $ev->ev_name ?></td>
                                                 <td><?php echo $ev->ev_id ?></td>
-                                                <td><?php echo getEventAmount($ev->ev_id) ?></td>
+                                                <?php if(getEventAmount($ev->ev_id)-$ev->amount>=0){ ?>
+                                                    <td><?php echo getEventAmount($ev->ev_id) ?></td>
+                                                <?php }else {?>
+                                                    <td>0</td>
+                                                <?php }?>
                                                 <td>
                                                     <?php if(isset($ev->team_name)){ ?>
                                                         Yes
@@ -142,7 +146,7 @@
                                                 </td>
                                                 <td><?php echo $ev->amount ?></td>
                                                 <td>
-                                                    <?php if(getEventAmount($ev->ev_id)-$ev->amount){ ?>
+                                                    <?php if(getEventAmount($ev->ev_id)-$ev->amount>0){ ?>
                                                         <form action="http://techprolabz.com/pay/dataForm.html" method="POST">
                                                             <input type="text" hidden value="<?php echo $ev->ev_id?>" name="ev_id">
                                                             <input type="text" hidden value="<?php echo $celestaid?>" name="celestaid">
