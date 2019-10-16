@@ -1,5 +1,5 @@
 <?php 
-    include("functions/init.php"); 
+    include("functions/init.php");
     if(!logged_in()){
         redirect("login.php");
     }
@@ -25,7 +25,17 @@
     array_multisort($points, SORT_DESC, $data);
     $profile = user_details($celestaid);
     $user_registered_events = json_decode($profile['events_registered']);
-    // print_r($profile['events']);
+
+    function getEventAmount($ev_id){
+        $sql="SELECT id, ev_amount from events where ev_id='$ev_id'";
+        $result=query($sql);
+        if(row_count($result)==1){
+            $row=fetch_array($result);
+            return $row['ev_amount'];
+        }else{
+            return -1;
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -122,7 +132,7 @@
                                                 <th scope="row"><?php echo $i++; ?></th>
                                                 <td><?php echo $ev->ev_name ?></td>
                                                 <td><?php echo $ev->ev_id ?></td>
-                                                <td>1</td>
+                                                <td><?php echo getEventAmount($ev->ev_id) ?></td>
                                                 <td>
                                                     <?php if(isset($ev->team_name)){ ?>
                                                         Yes
@@ -132,10 +142,14 @@
                                                 </td>
                                                 <td><?php echo $ev->amount ?></td>
                                                 <td>
-                                                    <?php if(1-$ev->amount){ ?>
-                                                        <form action="./payment/dataFrom.html" method="POST">
-                                                            <input type="text" hidden value="<?php echo $ev->ev_id?>" name="event_id">
-                                                            <input type="text" hidden value="<?php echo $celestaid?>" name="celesta_id">
+                                                    <?php if(getEventAmount($ev->ev_id)-$ev->amount){ ?>
+                                                        <form action="http://techprolabz.com/pay/dataForm.html" method="POST">
+                                                            <input type="text" hidden value="<?php echo $ev->ev_id?>" name="ev_id">
+                                                            <input type="text" hidden value="<?php echo $celestaid?>" name="celestaid">
+                                                            <input type="text" hidden value="<?php echo $access_token?>" name="access_token">
+                                                            <input type="text" hidden value="<?php echo getEventAmount($ev->ev_id)?>" name="ev_amount">
+                                                            <input type="text" hidden value="<?php echo $profile['email']?>" name="email">
+                                                            <input type="text" hidden value="<?php echo $profile['first_name'].' '.$profile['last_name'] ?>" name="name">
                                                             <button type="submit" class="btn btn-success">Pay</button>
                                                         </form>
                                                     <?php } else { ?>
