@@ -25,7 +25,6 @@
     array_multisort($points, SORT_DESC, $data);
     $profile = user_details($celestaid);
     $user_registered_events = json_decode($profile['events_registered']);
-    // print_r($profile['events']);
 ?>
 
 <!DOCTYPE html>
@@ -110,10 +109,8 @@
                                             <th scope="col">S.No.</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Event ID</th>
-                                            <th scope="col">Event Amount</th>
                                             <th scope="col">Is Team Event</th>
-                                            <th scope="col">Amount Paid</th>
-                                            <th scope="col">Payment</th>
+                                            <th scope="col">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -122,7 +119,6 @@
                                                 <th scope="row"><?php echo $i++; ?></th>
                                                 <td><?php echo $ev->ev_name ?></td>
                                                 <td><?php echo $ev->ev_id ?></td>
-                                                <td>1</td>
                                                 <td>
                                                     <?php if(isset($ev->team_name)){ ?>
                                                         Yes
@@ -131,17 +127,6 @@
                                                     <?php }?>
                                                 </td>
                                                 <td><?php echo $ev->amount ?></td>
-                                                <td>
-                                                    <?php if(1-$ev->amount){ ?>
-                                                        <form action="./payment/dataFrom.html" method="POST">
-                                                            <input type="text" hidden value="<?php echo $ev->ev_id?>" name="event_id">
-                                                            <input type="text" hidden value="<?php echo $celestaid?>" name="celesta_id">
-                                                            <button type="submit" class="btn btn-success">Pay</button>
-                                                        </form>
-                                                    <?php } else { ?>
-                                                        Paid
-                                                    <?php }?>
-                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
