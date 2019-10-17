@@ -265,7 +265,7 @@ function updatingUser(){
 	$update_user_events_registered=array();
 	$paidEvents=array();
 
-	if(!empty(events_registered)){
+	if(!empty($events_registered)){
 		foreach($events_registered as $event){
 			$ev_id=$event->ev_id;
 			$amount=$event ->amount;
@@ -356,6 +356,7 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 			$updt['name']=$name;
 			$updt['phone']=$phone;
 			$updt['amount']=$amount;
+			$updt['celestaid']=$celestaid;
 			echo "6-";
 
 			if($get_celestaid==$celestaid){

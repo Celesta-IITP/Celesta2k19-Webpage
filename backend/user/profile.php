@@ -143,7 +143,7 @@
                                                 <td><?php echo $ev->amount ?></td>
                                                 <td>
                                                     <?php if(getEventAmount($ev->ev_id)-$ev->amount){ ?>
-                                                        <form action="./payment/dataFrom.php" method="POST">
+                                                        <form action="http://techprolabz.com/pay/dataFrom.php" method="POST">
                                                             <input type="text" hidden value="<?php echo $ev->ev_id?>" name="ev_id">
                                                             <input type="text" hidden value="<?php echo $celestaid?>" name="celestaid">
                                                             <input type="text" hidden value="<?php echo $access_token?>" name="access_token">
