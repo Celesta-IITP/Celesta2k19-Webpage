@@ -38,8 +38,6 @@
       <li data-filter=".filter-CODING">CODING</li>
       <li data-filter=".filter-MANAGEMENT">MANAGEMENT</li>
       <li data-filter=".filter-ROBOTICS">ROBOTICS</li>
-      <li data-filter=".filter-QUIZ">QUIZ</li>
-      <li data-filter=".filter-TREASURE-HUNT">TREASURE-HUNT</li>
     ';
   }elseif($param=="schoolevents"){
     $filters='
