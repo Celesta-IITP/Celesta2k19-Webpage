@@ -25,10 +25,10 @@
             $ev_id=clean($_GET["ev_id"]);
             $order_status=clean($_GET["order_status"]);
 
-            $user_data=getUserDetails($celestaid,$access_token);
+            $user_data=getUserDetails($celestaid);
             $ev_data=getEventsDetails($ev_id);
 
-            if($user_data==false){
+            if($user_data==false || $user_data["access_token"]!=$access_token){
                 $response['status']=401;
                 $message[]="Unauthorized access";
             }else{
@@ -42,7 +42,7 @@
                             $message[]="Payment Successfully Updated in the user data catalogue.";
                             $response["status"]=200;
                         }else{
-                            updateTeamEvent($celestaid,$user_data,$ev_data,$ev_id,$ev_amount);
+                            updateTeamEvent($celestaid,$ev_data,$ev_id,$ev_amount);
                             $message[]="Payment Successfully Updated in the user data catalogue.";
                             $response["status"]=200;
                         }
@@ -67,7 +67,7 @@
     }
 
 /******************************************** Update Details of Multiple User Team ***********************************/
-    function updateTeamEvent($celestaid,$user_data,$ev_data,$ev_id,$paid_amount){
+    function updateTeamEvent($celestaid,$ev_data,$ev_id,$paid_amount){
         $ev_registrations=json_decode($ev_data["ev_registrations"]);
 
         $subject="Celesta Event Registrations Payment";
@@ -171,9 +171,10 @@
             }
             
             if(in_array($celestaid,$mem_celestaid)){
-                $updt['amount']=$ev_amount;
+                $updt['amount']=$paid_amount;
                 $count=0;
 				foreach($mem_celestaid as $clst){
+                    $user_data=getUserDetails($clst);
                     updateUser($clst,$paid_amount,$ev_id,$user_data);
                     $msg="<p>
                         Your Celesta Id is ".$clst.". You have successfully paid for <b> $ev_id - $ev_name </b>.
@@ -232,11 +233,12 @@
             $reg["celestaid"]=$get_celestaid;
             $reg["name"]=$name;
             $reg["phone"]=$phone;
-            $reg['amount']=$amount;
             $reg["time"]=$time;
 
             if($get_celestaid==$celestaid){
                 $reg['amount']=$paid_amount;
+            }else{
+                $reg['amount']=$amount;
             }
             $regis[]=$reg;
         }
@@ -269,8 +271,7 @@
             $add_event=array();
             $add_event["ev_id"]=$evs_id;
             $add_event["ev_name"]=$ev_name;
-            $add_event["amount"]=$amount;
-
+            
             if(!empty($team_name)){
                 $add_event["team_name"]=$team_name;
                 $add_event["cap_name"]=$cap_name;
@@ -278,6 +279,8 @@
 
             if($evs_id==$ev_id){
                 $add_event["amount"]=$paid_amount;
+            }else{
+                $add_event["amount"]=$amount;
             }
             $events[]=$add_event;
         }
@@ -287,11 +290,10 @@
         confirm($result);
     }
 
-    function getUserDetails($celestaid, $access_token){
-        $sql="SELECT * FROM users WHERE celestaid='$celestaid' and access_token='$access_token'";
+    function getUserDetails($celestaid){
+        $sql="SELECT * FROM users WHERE celestaid='$celestaid'";
         $result=query($sql);
         confirm($result);
-
         if(row_count($result)==1){
             $row=fetch_array($result);
             return $row;
