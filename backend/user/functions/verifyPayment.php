@@ -49,6 +49,8 @@
                             $response["status"]=200;
                         }else{
                             updateTeamEvent($celestaid,$user_data,$ev_data,$ev_id,$ev_amount);
+                            $message[]="Payment Successfully Updated in the user data catalogue.";
+                            $response["status"]=200;
                         }
                         echo "<p class='bg-success text-center'>Payment for event is successful.</p>";
 
@@ -77,6 +79,12 @@
     function updateTeamEvent($celestaid,$user_data,$ev_data,$ev_id,$paid_amount){
         $ev_registrations=json_decode($ev_data["ev_registrations"]);
 
+        $subject="Celesta Event Registrations Payment";
+        $header="From: celesta19@gmail.com";
+        $ev_name=$ev_data['ev_name'];
+        echo "T-17<br>";
+
+        $regis=array();
         foreach($ev_registrations as $reg){
             $time=$reg->time;
 			$amount=$reg->amount;
@@ -111,10 +119,11 @@
 			$mem5_phone=$reg->mem5_phone;
 			$mem5_celestaid=$reg->mem5_celestaid;
 
-			$mem_celestaid=array();
-			echo "7-";
+            $mem_celestaid=array();
+            $mem_email=array();
 
-			// Updating datas
+            // Updating datas
+            $updt=array();
 			$updt['cap_name']=$cap_name;
 			$updt['time']=$time;
 			$updt['amount']=$amount;
@@ -123,14 +132,16 @@
 			$updt['cap_phone']=$cap_phone;
 			$updt['cap_email']=$cap_email;
 
-			$mem_celestaid[]=$celestaid;
+            $mem_celestaid[]=$celestaid;
+            $mem_email[]=$cap_email;
 
 			if(!empty($mem1_celestaid)){
 				$updt['mem1_name']=$mem1_name;
 				$updt['mem1_email']=$mem1_email;
 				$updt['mem1_celestaid']=$mem1_celestaid;
 				$updt['mem1_phone']=$mem1_phone;
-				$mem_celestaid[]=$mem1_celestaid;
+                $mem_celestaid[]=$mem1_celestaid;
+                $mem_email[]=$mem1_email;
 			}
 
 			if(!empty($mem2_celestaid)){
@@ -138,7 +149,8 @@
 				$updt['mem2_email']=$mem2_email;
 				$updt['mem2_celestaid']=$mem2_celestaid;
 				$updt['mem2_phone']=$mem2_phone;
-				$mem_celestaid[]=$mem2_celestaid;
+                $mem_celestaid[]=$mem2_celestaid;
+                $mem_email[]=$mem2_email;
 			}
 
 			if(!empty($mem3_celestaid)){
@@ -146,7 +158,8 @@
 				$updt['mem3_email']=$mem3_email;
 				$updt['mem3_celestaid']=$mem3_celestaid;
 				$updt['mem3_phone']=$mem3_phone;
-				$mem_celestaid[]=$mem3_celestaid;
+                $mem_celestaid[]=$mem3_celestaid;
+                $mem_email[]=$mem3_email;
 			}
 
 			if(!empty($mem4_celestaid)){
@@ -154,7 +167,8 @@
 				$updt['mem4_email']=$mem4_email;
 				$updt['mem4_celestaid']=$mem4_celestaid;
 				$updt['mem4_phone']=$mem4_phone;
-				$mem_celestaid[]=$mem4_celestaid;
+                $mem_celestaid[]=$mem4_celestaid;
+                $mem_email[]=$mem4_email;
 			}
 
 			if(!empty($mem5_celestaid)){
@@ -162,9 +176,36 @@
 				$updt['mem5_email']=$mem5_email;
 				$updt['mem5_celestaid']=$mem5_celestaid;
 				$updt['mem5_phone']=$mem5_phone;
-				$mem_celestaid[]=$mem5_celestaid;
-			}
+                $mem_celestaid[]=$mem5_celestaid;
+                $mem_email[]=$mem5_email;
+            }
+            
+            if(in_array($celestaid,$mem_celestaid)){
+                $updt['amount']=$ev_amount;
+                $count=0;
+				foreach($mem_celestaid as $clst){
+                    echo "T-18<br>";
+                    updateUser($clst,$paid_amount,$ev_id,$user_data);
+                    $msg="<p>
+                        Your Celesta Id is ".$clst.". You have successfully paid for <b> $ev_id - $ev_name </b>.
+                        <br>
+                        Amount paid is: $paid_amount<br>
+                        Paid By: $celestaid<br>
+                        </p>
+                    ";
+                    $email=$mem_email[$count];
+                    $count+=1;
+                    send_email($email,$subject,$msg,$header);
+				}
+            }
+            $regis[]=$updt;
         }
+        echo "T-19<br>";
+        $regis=json_encode($regis);
+        $sql="UPDATE events set ev_registrations='$regis' WHERE ev_id='$ev_id'";
+        $result=query($sql);
+        confirm($result);
+        echo "T-20<br>";
     }
 
 /******************************************** Update Details of Single user team ************************************/
@@ -172,7 +213,7 @@
     // Function to update single member events
     function updateSingleEvent($celestaid,$user_data,$ev_data,$ev_id,$paid_amount){
         echo "T-10<br>";
-        updateUser($celestaid,$paid_amount,$ev_id,$user_data);
+        updateUser($celestaid,$paid_amount,$ev_id,$user_data,$ev_data['ev_name']);
 
         updateSingleEventTable($celestaid,$paid_amount,$ev_id,$ev_data);
 
