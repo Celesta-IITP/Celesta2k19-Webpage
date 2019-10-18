@@ -184,9 +184,7 @@
                     ";
                     $email=$mem_email[$count];
                     $count+=1;
-                    if(send_email($email,$subject,$msg,$header)){
-                        echo "Mailed--1--";
-                    }
+                    send_email($email,$subject,$msg,$header);
 				}
             }
             $regis[]=$updt;
@@ -217,10 +215,7 @@
             </p>
         ";
         $header="From: celesta19@gmail.com";
-        if(send_email($email,$subject,$msg,$header)){
-            echo "Mailed--2---";
-        }
-
+        send_email($email,$subject,$msg,$header);
     }
 
     function updateSingleEventTable($celestaid,$paid_amount,$ev_id,$ev_data){
