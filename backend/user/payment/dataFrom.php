@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <html>
 
 <head>
@@ -16,6 +20,11 @@
 	$name=htmlentities($_POST["name"]);
 	$phone=htmlentities($_POST["phone"]);
 	$email=htmlentities($_POST['email']);
+
+	$_SESSION["cc_celestaid"]=$celestaid;
+	$_SESSION["cc_ev_amount"]=$ev_amount;
+	$_SESSION["cc_access_token"]=$access_token;
+	$_SESSION["cc_ev_id"]=$ev_id;
 	
 ?>
 
@@ -28,10 +37,7 @@
 		</table>
 		<table width="50%" height="100" border='1' align="center">
 			<?php 
-			$_SESSION["cc_celestaid"]=$celestaid;
-			$_SESSION["cc_ev_amount"]=$ev_amount;
-			$_SESSION["cc_access_token"]=$access_token;
-			$_SESSION["cc_ev_id"]=$ev_id;
+
 			?>
 			<tr>
 				<td>Parameter Name:</td>
@@ -63,12 +69,12 @@
 
 			<tr>
 				<td>Redirect URL :</td>
-				<td><input type="text" name="redirect_url" value="http://www.techprolabz.com/ccavResponseHandler.php" readonly />
+				<td><input type="text" name="redirect_url" value="http://www.techprolabz.com/pay/ccavResponseHandler.php" readonly />
 				</td>
 			</tr>
 			<tr>
 				<td>Cancel URL :</td>
-				<td><input type="text" name="cancel_url" value="http://www.techprolabz.com/ccavResponseHandler.php" readonly/>
+				<td><input type="text" name="cancel_url" value="http://www.techprolabz.com/pay/ccavResponseHandler.php" readonly/>
 				</td>
 			</tr>
 			<tr>
