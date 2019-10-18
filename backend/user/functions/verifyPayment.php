@@ -80,7 +80,7 @@
 			$amount=$reg->amount;
 			$cap_name=$reg->cap_name;
 			$cap_phone=$reg->cap_phone;
-			$cap_celestaid=$reg->celestaid;
+			$cap_celestaid=$reg->cap_celestaid;
 			$team_name=$reg->team_name;
 			$cap_email=$reg->cap_email;
 
@@ -122,7 +122,7 @@
 			$updt['cap_phone']=$cap_phone;
 			$updt['cap_email']=$cap_email;
 
-            $mem_celestaid[]=$celestaid;
+            $mem_celestaid[]=$cap_celestaid;
             $mem_email[]=$cap_email;
 
 			if(!empty($mem1_celestaid)){
@@ -169,10 +169,9 @@
                 $mem_celestaid[]=$mem5_celestaid;
                 $mem_email[]=$mem5_email;
             }
-            
+
             if(in_array($celestaid,$mem_celestaid)){
                 $updt['amount']=$paid_amount;
-                $count=0;
 				foreach($mem_celestaid as $clst){
                     $user_data=getUserDetails($clst);
                     updateUser($clst,$paid_amount,$ev_id,$user_data);
@@ -183,15 +182,15 @@
                         Paid By: $celestaid<br>
                         </p>
                     ";
-                    $email=$mem_email[$count];
                     $count+=1;
-                    send_email($email,$subject,$msg,$header);
+                    
+                    send_email($user_data['email'],$subject,$msg,$header);
 				}
             }
             $regis[]=$updt;
         }
         $regis=json_encode($regis);
-        $sql="UPDATE events set ev_registrations='$regis' WHERE ev_id='$ev_id'";
+        $sql="UPDATE events set ev_registrations='$regis' WHERE ev_id='$ev_id'";    
         $result=query($sql);
         confirm($result);
     }
@@ -287,6 +286,7 @@
         $events=json_encode($events);
         $sql="UPDATE  users set events_registered='$events', events_charge=$events_charge, amount_paid=$amount_paid, total_charge=$paid_amount WHERE celestaid='$celestaid'";
         $result=query($sql);
+
         confirm($result);
     }
 
