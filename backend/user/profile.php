@@ -131,7 +131,6 @@
                                             <tr>
                                                 <th scope="row"><?php echo $i++; ?></th>
                                                 <td><?php echo $ev->ev_name ?></td>
-                                                <td><?php echo $ev->ev_id ?></td>
                                                 <td><?php echo 1 ?></td>
                                                 <td>
                                                     <?php if(isset($ev->team_name)){ ?>
