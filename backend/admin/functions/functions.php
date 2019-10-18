@@ -398,7 +398,6 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 			$mem5_celestaid=$reg->mem5_celestaid;
 
 			$mem_celestaid=array();
-			echo "7-";
 
 			// Updating datas
 			$updt['cap_name']=$cap_name;
@@ -454,7 +453,6 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 			// If id found or matched
 			if(in_array($celestaid,$mem_celestaid)){
 				$updt['amount']=$ev_amount;
-				echo "8-";
 				foreach($mem_celestaid as $clst){
 					updateOtherUsers($ev_id,$ev_amount,$clst);
 				}

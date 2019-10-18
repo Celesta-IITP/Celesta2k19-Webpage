@@ -1,12 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Celesta2k19</title>
+	<link rel="stylesheet" href="./../css/bootstrap.css">
+	<link rel="stylesheet" href="./../css/styles.css">
+	<script src="./../js/jquery.js"></script>
+	<script src="./../js/bootstrap.js"></script>
+	<script src="./../js/scripts.js"></script>
+</head>
+<body>
+	<div class="container">
 <?php
     include("./functions.php");
-    // echo "1";
+    echo "T-1<br>";
     if($_SERVER["REQUEST_METHOD"]=="GET"){
-        // echo"2";
-        if(isset($_GET["atm"]) && isset($_GET["access_token"]) && isset($_GET["celestaid"])){
-            // echo "3";
+        if(isset($_GET["atm"]) && isset($_GET["access_token"]) && isset($_GET["celestaid"]) && isset($_GET["order_status"])){
             $response=array();
             $message = array();
+            echo "T-2<br>";
 
             $celestaid=clean($_GET["celestaid"]);
             $access_token=clean($_GET["access_token"]);
@@ -14,6 +26,7 @@
             $ev_amount=clean($_GET["ev_amount"]);
             $ev_id=clean($_GET["ev_id"]);
             $order_status=clean($_GET["order_status"]);
+            echo "T-3<br>";
 
             $user_data=getUserDetails($celestaid,$access_token);
             $ev_data=getEventsDetails($ev_id);
@@ -21,18 +34,136 @@
             if($user_data==false){
                 $response['status']=401;
                 $message[]="Unauthorized access";
+                echo "T-4<br>";
             }else{
                 if($ev_data==false){
                     $response['status']=204;
                     $message[]="Event not found";
+                    echo "T-5<br>";
                 }else{
-                    if($ev_data["is_team_event"]==0){
-                        updateSingleEvent($celestaid,$user_data,$ev_data,$ev_id,$ev_amount);
+                    if($order_status=="Success" && $atm="love_u_atm"){
+                        echo "T-6<br>";
+                        if($ev_data["is_team_event"]==0){
+                            updateSingleEvent($celestaid,$user_data,$ev_data,$ev_id,$ev_amount);
+                            $message[]="Payment Successfully Updated in the user data catalogue.";
+                            $response["status"]=200;
+                        }else{
+                            updateTeamEvent($celestaid,$user_data,$ev_data,$ev_id,$ev_amount);
+                        }
+                        echo "<p class='bg-success text-center'>Payment for event is successful.</p>";
+
+                    }elseif($order_status=="Aborted" && $atm="atm_abort_ho_gaya_payment"){
+                        echo "<p class='bg-danger text-center'>Payment Aborted.</p>";
+                        echo "T-7<br>";
+
+                    }elseif($order_status="Failure" && $atm="atm_fail_ho_gaya_payment"){
+                        echo "T-8<br>";
+                        echo "<p class='bg-danger text-center'>Payment failed.</p>";
+
                     }else{
-                        updateTeamEvent();
+                        // Illegal Access
+                        echo "T-9<br>";
+                        echo "<p class='bg-danger text-center'>Illegal Access.</p>";
                     }
                 }
             }
+
+            $response['message']=$message;
+            echo json_encode($response);
+        }
+    }
+
+/******************************************** Update Details of Multiple User Team ***********************************/
+    function updateTeamEvent($celestaid,$user_data,$ev_data,$ev_id,$paid_amount){
+        $ev_registrations=json_decode($ev_data["ev_registrations"]);
+
+        foreach($ev_registrations as $reg){
+            $time=$reg->time;
+			$amount=$reg->amount;
+			$cap_name=$reg->cap_name;
+			$cap_phone=$reg->cap_phone;
+			$cap_celestaid=$reg->celestaid;
+			$team_name=$reg->team_name;
+			$cap_email=$reg->cap_email;
+
+			$mem1_name=$reg->mem1_name;
+			$mem1_email=$reg->mem1_email;
+			$mem1_phone=$reg->mem1_phone;
+			$mem1_celestaid=$reg->mem1_celestaid;
+
+			$mem2_name=$reg->mem2_name;
+			$mem2_email=$reg->mem2_email;
+			$mem2_phone=$reg->mem2_phone;
+			$mem2_celestaid=$reg->mem2_celestaid;
+
+			$mem3_name=$reg->mem3_name;
+			$mem3_email=$reg->mem3_email;
+			$mem3_phone=$reg->mem3_phone;
+			$mem3_celestaid=$reg->mem3_celestaid;
+
+			$mem4_name=$reg->mem4_name;
+			$mem4_email=$reg->mem4_email;
+			$mem4_phone=$reg->mem4_phone;
+			$mem4_celestaid=$reg->mem4_celestaid;
+
+			$mem5_name=$reg->mem5_name;
+			$mem5_email=$reg->mem5_email;
+			$mem5_phone=$reg->mem5_phone;
+			$mem5_celestaid=$reg->mem5_celestaid;
+
+			$mem_celestaid=array();
+			echo "7-";
+
+			// Updating datas
+			$updt['cap_name']=$cap_name;
+			$updt['time']=$time;
+			$updt['amount']=$amount;
+			$updt['cap_celestaid']=$cap_celestaid;
+			$updt['team_name']=$team_name;
+			$updt['cap_phone']=$cap_phone;
+			$updt['cap_email']=$cap_email;
+
+			$mem_celestaid[]=$celestaid;
+
+			if(!empty($mem1_celestaid)){
+				$updt['mem1_name']=$mem1_name;
+				$updt['mem1_email']=$mem1_email;
+				$updt['mem1_celestaid']=$mem1_celestaid;
+				$updt['mem1_phone']=$mem1_phone;
+				$mem_celestaid[]=$mem1_celestaid;
+			}
+
+			if(!empty($mem2_celestaid)){
+				$updt['mem2_name']=$mem2_name;
+				$updt['mem2_email']=$mem2_email;
+				$updt['mem2_celestaid']=$mem2_celestaid;
+				$updt['mem2_phone']=$mem2_phone;
+				$mem_celestaid[]=$mem2_celestaid;
+			}
+
+			if(!empty($mem3_celestaid)){
+				$updt['mem3_name']=$mem3_name;
+				$updt['mem3_email']=$mem3_email;
+				$updt['mem3_celestaid']=$mem3_celestaid;
+				$updt['mem3_phone']=$mem3_phone;
+				$mem_celestaid[]=$mem3_celestaid;
+			}
+
+			if(!empty($mem4_celestaid)){
+				$updt['mem4_name']=$mem4_name;
+				$updt['mem4_email']=$mem4_email;
+				$updt['mem4_celestaid']=$mem4_celestaid;
+				$updt['mem4_phone']=$mem4_phone;
+				$mem_celestaid[]=$mem4_celestaid;
+			}
+
+			if(!empty($mem5_celestaid)){
+				$updt['mem5_name']=$mem5_name;
+				$updt['mem5_email']=$mem5_email;
+				$updt['mem5_celestaid']=$mem5_celestaid;
+				$updt['mem5_phone']=$mem5_phone;
+				$mem_celestaid[]=$mem5_celestaid;
+			}
         }
     }
 
@@ -40,6 +171,7 @@
 
     // Function to update single member events
     function updateSingleEvent($celestaid,$user_data,$ev_data,$ev_id,$paid_amount){
+        echo "T-10<br>";
         updateUser($celestaid,$paid_amount,$ev_id,$user_data);
 
         updateSingleEventTable($celestaid,$paid_amount,$ev_id,$ev_data);
@@ -57,13 +189,14 @@
         ";
         $header="From: celesta19@gmail.com";
         send_email($email,$subject,$msg,$header);
+        echo "T-11<br>";
 
     }
 
     function updateSingleEventTable($celestaid,$paid_amount,$ev_id,$ev_data){
         $ev_registrations=json_decode($ev_data["ev_registrations"]);
         $regis=array();
-
+        echo "T-14<br>";
         foreach($ev_registrations as $regs){
             $get_celestaid=$regs->celestaid;
             $amount=$regs->amount;
@@ -86,11 +219,17 @@
         $regis=json_encode($regis);
 
         $sql="UPDATE events SET ev_registrations='$ev_registrations' WHERE ev_id='$ev_id'";
+        echo "T-15<br>";
         $result=query($sql);
         confirm($result);
+        echo "T-16<br>";
     }
 
+    /******************************************** End of Update Details of Single user team ************************************/
+
+    /********************************************** Utility Functions *********************************************************/
     function updateUser($celestaid,$paid_amount,$ev_id,$user_data){
+        echo "T-12<br>";
         $events_registered=json_decode($user_data["events_registered"]);
         $email=$user_data["email"];
         $events=array();
@@ -116,13 +255,12 @@
             }
             $events[]=$add_event;
         }
+        echo "T-13<br>";
         $events=json_encode($events);
         $sql="UPDATE  users set events_registered='$events' WHERE celestaid='$celestaid'";
         $result=query($sql);
         confirm($result);
     }
-
-    /******************************************** End of Update Details of Single user team ************************************/
 
     function getUserDetails($celestaid, $access_token){
         $sql="SELECT * FROM users WHERE celestaid='$celestaid' and access_token='$access_token'";
@@ -145,3 +283,9 @@
             return false;
         }
     }
+
+    ?>
+    </div> 
+
+</body>
+</html>
