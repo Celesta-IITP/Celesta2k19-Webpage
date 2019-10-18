@@ -1,10 +1,10 @@
 <?php include('Crypto.php')?>
 <?php
-
+	session_start();
 	error_reporting(0);
 
 	$workingKey='59AE7AF1F238451CEA2E2287BB113A94';		//Working Key should be provided here.
-	$encResponse=$_POST["encResp"];			//This is the response sent by the CCAvenue Server
+	$encResponse=$_POST["encResp"];						//This is the response sent by the CCAvenue Server
 	$rcvdString=decrypt($encResponse,$workingKey);		//Crypto Decryption used as per the specified working key.
 	$order_status="";
 	$decryptValues=explode('&', $rcvdString);
@@ -47,7 +47,11 @@
 	}
 
 	echo "<br><br>";
-
+	?>
+<script type="text/javascript">
+	location.replace("<?php echo $url?>")
+</script>
+	<?php
 	echo "<table cellspacing=4 cellpadding=4>";
 	for($i = 0; $i < $dataSize; $i++)
 	{
@@ -57,5 +61,5 @@
 
 	echo "</table><br>";
 	echo "</center>";
-	redirect(header("Location: $url"));
+	
 ?>
