@@ -25,6 +25,8 @@ session_start();
 	$_SESSION["cc_ev_amount"]=$ev_amount;
 	$_SESSION["cc_access_token"]=$access_token;
 	$_SESSION["cc_ev_id"]=$ev_id;
+
+	echo "Testing celestaid - ".$celestaid;
 	
 ?>
 
