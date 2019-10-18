@@ -18,7 +18,7 @@
 	}
 	$celestaid=$_SESSION["cc_celestaid"];
 	$ev_amount=$_SESSION["cc_ev_amount"];
-	$ev_id=$_SESSION["ev_id"];
+	$ev_id=$_SESSION["cc_ev_id"];
 	$access_token=$_SESSION["cc_access_token"];
 
 	$base_url = "https://payment.celesta.org.in/backend/user/functions/verifyPayment.php?celestaid=$celestaid&ev_amount=$ev_amount&ev_id=$ev_id&access_token=$access_token";
