@@ -8,6 +8,16 @@
 		};
 	</script>
 </head>
+<?php 
+	$celestaid=htmlentities($_POST['celestaid']);
+	$access_token=htmlentities($_POST['access_token']);
+	$ev_id=htmlentities($_POST["ev_id"]);
+	$ev_amount=htmlentities($_POST["ev_amount"]);
+	$name=htmlentities($_POST["name"]);
+	$phone=htmlentities($_POST["phone"]);
+	$email=htmlentities($_POST['email']);
+	
+?>
 
 <body>
 	<form method="POST" name="customerData" action="ccavRequestHandler.php">
@@ -17,6 +27,12 @@
 			</caption>
 		</table>
 		<table width="50%" height="100" border='1' align="center">
+			<?php 
+			$_SESSION["cc_celestaid"]=$celestaid;
+			$_SESSION["cc_ev_amount"]=$ev_amount;
+			$_SESSION["cc_access_token"]=$access_token;
+			$_SESSION["cc_ev_id"]=$ev_id;
+			?>
 			<tr>
 				<td>Parameter Name:</td>
 				<td>Parameter Value:</td>
@@ -26,123 +42,124 @@
 			</tr>
 			<tr>
 				<td>TID :</td>
-				<td><input type="text" name="tid" id="tid" readonly /></td>
+				<td><input type="text" name="tid" id="tid" /></td>
 			</tr>
 			<tr>
 				<td>Merchant Id :</td>
-				<td><input type="text" name="merchant_id" value="221043" /></td>
+				<td><input type="text" name="merchant_id" value="221043" readonly/></td>
 			</tr>
 			<tr>
 				<td>Order Id :</td>
-				<td><input type="text" name="order_id" value="123654789" /></td>
+				<td><input type="text" name="order_id" value="123654789" readonly /></td>
 			</tr>
 			<tr>
 				<td>Amount :</td>
-				<td><input type="text" name="amount" value="10.00" /></td>
+				<td><input type="text" name="amount" value="<?php echo $ev_amount?>" /></td>
 			</tr>
 			<tr>
 				<td>Currency :</td>
-				<td><input type="text" name="currency" value="INR" /></td>
+				<td><input type="text" name="currency" value="INR" readonly/></td>
 			</tr>
+
 			<tr>
 				<td>Redirect URL :</td>
-				<td><input type="text" name="redirect_url" value="http://www.techprolabz.com/ccavResponseHandler.php" />
+				<td><input type="text" name="redirect_url" value="http://www.techprolabz.com/ccavResponseHandler.php" readonly />
 				</td>
 			</tr>
 			<tr>
 				<td>Cancel URL :</td>
-				<td><input type="text" name="cancel_url" value="http://www.techprolabz.com/ccavResponseHandler.php" />
+				<td><input type="text" name="cancel_url" value="http://www.techprolabz.com/ccavResponseHandler.php" readonly/>
 				</td>
 			</tr>
 			<tr>
 				<td>Language :</td>
-				<td><input type="text" name="language" value="EN" /></td>
+				<td><input type="text" name="language" value="EN" readonly /></td>
 			</tr>
 			<tr>
 				<td colspan="2">Billing information(optional):</td>
 			</tr>
 			<tr>
 				<td>Billing Name :</td>
-				<td><input type="text" name="billing_name" value="Charli" /></td>
+				<td><input type="text" name="billing_name" value="<?php echo $name?>" /></td>
 			</tr>
 			<tr>
 				<td>Billing Address :</td>
-				<td><input type="text" name="billing_address" value="Room no 1101, near Railway station Ambad" /></td>
+				<td><input type="text" name="billing_address" value="<?php echo $celestaid?>, Celesta2k19, IIT Patna" readonly/></td>
 			</tr>
 			<tr>
 				<td>Billing City :</td>
-				<td><input type="text" name="billing_city" value="Indore" /></td>
+				<td><input type="text" name="billing_city" value="Patna" readonly /></td>
 			</tr>
 			<tr>
 				<td>Billing State :</td>
-				<td><input type="text" name="billing_state" value="MH" /></td>
+				<td><input type="text" name="billing_state" value="Bihar" readonly /></td>
 			</tr>
 			<tr>
 				<td>Billing Zip :</td>
-				<td><input type="text" name="billing_zip" value="425001" /></td>
+				<td><input type="text" name="billing_zip" value="425001" readonly /></td>
 			</tr>
 			<tr>
 				<td>Billing Country :</td>
-				<td><input type="text" name="billing_country" value="India" /></td>
+				<td><input type="text" name="billing_country" value="India" readonly /></td>
 			</tr>
 			<tr>
 				<td>Billing Tel :</td>
-				<td><input type="text" name="billing_tel" value="9999999999" /></td>
+				<td><input type="text" name="billing_tel" value="<?php echo $phone ?>" readonly /></td>
 			</tr>
 			<tr>
 				<td>Billing Email :</td>
-				<td><input type="text" name="billing_email" value="test@test.com" /></td>
+				<td><input type="text" name="billing_email" value="<?php echo $email?>" /></td>
 			</tr>
 			<tr>
 				<td colspan="2">Shipping information(optional)</td>
 			</tr>
 			<tr>
 				<td>Shipping Name :</td>
-				<td><input type="text" name="delivery_name" value="Chaplin" /></td>
+				<td><input type="text" name="delivery_name" value="Chaplin" readonly /></td>
 			</tr>
 			<tr>
 				<td>Shipping Address :</td>
-				<td><input type="text" name="delivery_address" value="room no.701 near bus stand" /></td>
+				<td><input type="text" name="delivery_address" value="room no.701 near bus stand" readonly/></td>
 			</tr>
 			<tr>
 				<td>shipping City :</td>
-				<td><input type="text" name="delivery_city" value="Hyderabad" /></td>
+				<td><input type="text" name="delivery_city" value="Hyderabad" readonly/></td>
 			</tr>
 			<tr>
 				<td>shipping State :</td>
-				<td><input type="text" name="delivery_state" value="Andhra" /></td>
+				<td><input type="text" name="delivery_state" value="Andhra" readonly /></td>
 			</tr>
 			<tr>
 				<td>shipping Zip :</td>
-				<td><input type="text" name="delivery_zip" value="425001" /></td>
+				<td><input type="text" name="delivery_zip" value="425001" readonly /></td>
 			</tr>
 			<tr>
 				<td>shipping Country :</td>
-				<td><input type="text" name="delivery_country" value="India" /></td>
+				<td><input type="text" name="delivery_country" value="India" readonly/></td>
 			</tr>
 			<tr>
 				<td>Shipping Tel :</td>
-				<td><input type="text" name="delivery_tel" value="5555555555" /></td>
+				<td><input type="text" name="delivery_tel" value="5555555555" readonly /></td>
 			</tr>
 			<tr>
 				<td>Merchant Param1 :</td>
-				<td><input type="text" name="merchant_param1" value="additional Info." /></td>
+				<td><input type="text" name="merchant_param1" value="additional Info." readonly/></td>
 			</tr>
 			<tr>
 				<td>Merchant Param2 :</td>
-				<td><input type="text" name="merchant_param2" value="additional Info." /></td>
+				<td><input type="text" name="merchant_param2" value="additional Info." readonly /></td>
 			</tr>
 			<tr>
 				<td>Merchant Param3 :</td>
-				<td><input type="text" name="merchant_param3" value="additional Info." /></td>
+				<td><input type="text" name="merchant_param3" value="additional Info." readonly/></td>
 			</tr>
 			<tr>
 				<td>Merchant Param4 :</td>
-				<td><input type="text" name="merchant_param4" value="additional Info." /></td>
+				<td><input type="text" name="merchant_param4" value="additional Info." readonly/></td>
 			</tr>
 			<tr>
 				<td>Merchant Param5 :</td>
-				<td><input type="text" name="merchant_param5" value="additional Info." /></td>
+				<td><input type="text" name="merchant_param5" value="additional Info." readonly/></td>
 			</tr>
 
 			<tr>
