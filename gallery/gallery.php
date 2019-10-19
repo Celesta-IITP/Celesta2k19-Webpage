@@ -1,51 +1,7 @@
-<?php 
-    include("../backend/user/functions/init.php"); 
-    $loggedIn = logged_in();
-    $celestaid=""; $access_token="";
-    if(logged_in()){
-      $celestaid = $_SESSION['celestaid'];
-      $access_token=$_SESSION['access_token'];
-    }
-?>
-
 <?php
-  $param=$_GET['data'];
-
-  // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
-  $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
-  $curl = curl_init($service_url);
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-  $curl_response = curl_exec($curl);
-  if ($curl_response === false) {
-    $info = curl_getinfo($curl);
-    curl_close($curl);
-    die('error occured during curl exec. Additioanl info: ' . var_export($info));
-  }
-  curl_close($curl);
-  $data = json_decode($curl_response, true);
-
-  $events=array();
-  foreach($data as $d){
-    if($d['ev_category']==ucfirst($param)){
-      array_push($events,$d);
-    }
-  }
-  $filters="";
-  if($param=="events"){
-    $filters='
-      <li data-filter=".filter-TECH">TECH</li>
-      <li data-filter=".filter-NON-TECH">NON-TECH</li>
-      <li data-filter=".filter-CODING">CODING</li>
-      <li data-filter=".filter-MANAGEMENT">MANAGEMENT</li>
-      <li data-filter=".filter-ROBOTICS">ROBOTICS</li>
-    ';
-  }elseif($param=="schoolevents"){
-    $filters='
-      <li data-filter=".filter-TECH">TECH</li>
-      <li data-filter=".filter-NON-TECH">NON-TECH</li>
-      <li data-filter=".filter-ROBOTICS">ROBOTICS</li>
-    ';
-  }
+    $strJsonFileContents = file_get_contents("gallery.json"); 
+    $array = json_decode($strJsonFileContents, true);
+    $array=$array['img'];
 ?>
 
 <!DOCTYPE html>
@@ -101,48 +57,36 @@
         <section id="gallery" class="section-bg">
           <div class="container">
             <header class="section-header">
-              <h3 class="section-title">Celesta Events</h3>
+              <h3 class="section-title">Celesta gallery</h3>
             </header>
 
             <div class="row">
               <div class="col-lg-12">
-                <ul id="gallery-flters">
+                <!-- <ul id="gallery-flters">
                   <li data-filter="*" class="filter-active">All</li>
-                  <?php echo $filters ?>
-                </ul>
+                  <li data-filter=".filter-clubs">Clubs</li>
+                  <li data-filter=".filter-events">Events</li>
+                </ul> -->
               </div>
             </div>
+            <br><br>
 
             <div class="row gallery-container">
 
-              <?php foreach($events as $e) { ?>
-                <div class="col-lg-4 col-md-6 gallery-item filter-<?php echo $e['ev_club']?>">
-                  <div class="gallery-wrap">
+                <?php foreach($array as $data){ ?>
+                <div class="col-lg-4 col-md-6 gallery-item filter-clubs">
+                    <div class="gallery-wrap">
                     <figure>
-                      <img src="<?php echo $e['ev_poster_url']?>" class="img-fluid" alt="" />
-                      <a href="<?php echo $e['ev_poster_url']?>" data-lightbox="gallery" data-title="Club 1" class="link-preview" title="Preview"><i
-                          class="ion ion-eye"></i></a>
+                        <img src="<?php echo $data['reduced']?>" class="img-fluid" alt="" />
+                        <a href="<?php echo $data['normal']?>" data-lightbox="gallery" data-title="" class="link-preview" title="Preview"><i
+                            class="ion ion-eye"></i></a>
                     </figure>
-
                     <div class="gallery-info">
-                      <h4><?php echo $e['ev_name']?></h4>
-                      <p>
-                        <a class="btn" style="color: #fff; background: rgb(148,0,211,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">More Details</a> 
-                        <?php if($loggedIn){?>
-                          <?php if (!$e['is_team_event']) { ?>
-                            <a class="btn btn-success" style="color: #fff; background: rgb(139,0,139,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">Register Event</a>
-                          <?php } else { ?>
-                            <a class="btn btn-success" style="color: #fff; background: rgb(139,0,139,.8); font-size: 12px" href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">Register Team Event</a>
-                          <?php } ?>
-                        <?php }else{?>
-                          <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/login.php?redirecteventsdata=<?php echo $param?>">Login to Register</a>
-                        <?php }?>
-
-                      </p>
+                        <!-- <h4>Club 1</h4> -->
                     </div>
-                  </div>
+                    </div>
                 </div>
-              <?php } ?>
+                <?php } ?>
 
             </div>
           </div>

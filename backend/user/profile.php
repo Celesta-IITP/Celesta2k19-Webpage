@@ -36,6 +36,7 @@
             return -1;
         }
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -120,10 +121,8 @@
                                             <th scope="col">S.No.</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Event ID</th>
-                                            <th scope="col">Event Amount</th>
                                             <th scope="col">Is Team Event</th>
-                                            <th scope="col">Amount Paid</th>
-                                            <th scope="col">Payment</th>
+                                            <th scope="col">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -135,6 +134,7 @@
                                                     <td><?php $event_amount= getEventAmount($ev->ev_id);
                                                         echo $event_amount;
                                                     ?></td>
+
                                                 <td>
                                                     <?php if(isset($ev->team_name)){ ?>
                                                         Yes
@@ -160,6 +160,7 @@
                                                         Paid
                                                     <?php }?>
                                                 </td>
+
                                             </tr>
                                         <?php } ?>
                                     </tbody>
