@@ -43,9 +43,9 @@ session_start();
 
 			?>
 			<input type="text" name="celestaid" value="<?php echo $celestaid?>" readonly/>
-			<input type="text" name="access_token" value="<?php echo $celestaid?>" readonly/>
-			<input type="text" name="ev_id" value="<?php echo $celestaid?>" readonly/>
-			<input type="text" name="ev_amount" value="<?php echo $celestaid?>" readonly/>
+			<input type="text" name="access_token" value="<?php echo $access_token?>" readonly/>
+			<input type="text" name="ev_id" value="<?php echo $ev_id?>" readonly/>
+			<input type="text" name="ev_amount" value="<?php echo $ev_amount?>" readonly/>
 
 			<tr>
 				<td>Parameter Name:</td>
@@ -307,9 +307,9 @@ session_start();
 <script language="javascript" type="text/javascript" src="json.js"></script>
 <script src="jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-    $("#pay_celesta").trigger('click'); 
-});
+// $(document).ready(function(){
+//     $("#pay_celesta").trigger('click'); 
+// });
 </script>
 <script type="text/javascript">
 	$(function () {
