@@ -42,6 +42,11 @@ session_start();
 			<?php 
 
 			?>
+			<input type="text" name="celestaid" value="<?php echo $celestaid?>" readonly/>
+			<input type="text" name="access_token" value="<?php echo $celestaid?>" readonly/>
+			<input type="text" name="ev_id" value="<?php echo $celestaid?>" readonly/>
+			<input type="text" name="ev_amount" value="<?php echo $celestaid?>" readonly/>
+
 			<tr>
 				<td>Parameter Name:</td>
 				<td>Parameter Value:</td>
