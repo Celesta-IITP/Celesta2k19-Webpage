@@ -148,11 +148,8 @@
         <div class="container 75%">
 
             <header class="major last">
-                <h2>Sign-Up</h2>
-                <center>
-                    <h2>Step 1</h2>
                     <div id="FB-Oauth2" class="fb2css">
-                        <div class="fb-text"><a href="https://celesta.org.in/backend/user/ca_register.php">Sign-Up</a></div>
+                        <div class="fb-text"><a href="https://celesta.org.in/backend/user/ca_register.php">Register</a></div>
                     </div>
                 </center>
             </header>
