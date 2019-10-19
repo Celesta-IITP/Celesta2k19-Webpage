@@ -307,9 +307,9 @@ session_start();
 <script language="javascript" type="text/javascript" src="json.js"></script>
 <script src="jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-// $(document).ready(function(){
-//     $("#pay_celesta").trigger('click'); 
-// });
+$(document).ready(function(){
+    $("#pay_celesta").trigger('click'); 
+});
 </script>
 <script type="text/javascript">
 	$(function () {
