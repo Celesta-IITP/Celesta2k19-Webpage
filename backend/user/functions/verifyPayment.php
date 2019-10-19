@@ -50,13 +50,18 @@
 
                     }elseif($order_status=="Aborted" && $atm="atm_abort_ho_gaya_payment"){
                         echo "<p class='bg-danger text-center'>Payment Aborted.</p>";
+                        $message[]="Payment failed";
+                        $response["status"]=400;
 
                     }elseif($order_status="Failure" && $atm="atm_fail_ho_gaya_payment"){
                         echo "<p class='bg-danger text-center'>Payment failed.</p>";
+                        $message[]="Payment failed";
+                        $response["status"]=400;
 
                     }else{
-                        // Illegal Access
                         echo "<p class='bg-danger text-center'>Illegal Access.</p>";
+                        $message[]="Payment failed";
+                        $response["status"]=400;
                     }
                 }
             }
