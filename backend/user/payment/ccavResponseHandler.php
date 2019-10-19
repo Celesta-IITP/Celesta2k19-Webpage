@@ -16,26 +16,28 @@
 	{
 		$information=explode('=',$decryptValues[$i]);
 		if($i==3){
-			$order_status=$information[1];
+			$order_status=urldecode($information[1]);
 		}
-		if($information[0]=="celestaid"){
-			$celestaid=$information[1];
+		if($information[0]=="merchant_param1"){
+			$celestaid=urldecode($information[1]);
 		}
-		if($information[0]=="access_token"){
-			$access_token=$information[1];
+		if($information[0]=="merchant_param4"){
+			$access_token=urldecode($information[1]);
 		}
-		if($information[0]=="ev_id"){
-			$ev_id=$information[1];
+		if($information[0]=="merchant_param3"){
+			$ev_id=urldecode($information[1]);
 		}
-		if($information[0]=="ev_amount"){
-			$ev_amount=$information[1];
+		if($information[0]=="merchant_param2"){
+			$ev_amount=urldecode($information[1]);
+		}
+		if($information[0]=="billing_tel"){
+			$phone=urldecode($information[1]);
+		}
+		if($information[0]=="billing_name"){
+			$name=urldecode($information[1]);
 		}
 
 	}
-	// $celestaid=$_SESSION["cc_celestaid"];
-	// $ev_amount=$_SESSION["cc_ev_amount"];
-	// $ev_id=$_SESSION["cc_ev_id"];
-	// $access_token=$_SESSION["cc_access_token"];
 
 	$base_url = "https://payment.celesta.org.in/backend/user/functions/verifyPayment.php?celestaid=$celestaid&ev_amount=$ev_amount&ev_id=$ev_id&access_token=$access_token";
 
@@ -63,7 +65,13 @@
 	}
 
 	echo "<br><br>";
-	?>
+
+	// $sql="INSERT into celesta SET(celestaid, ev_id, amount, order_status,phone, name) VALUES('$celestaid','$ev_id',$ev_amount,'$order_status','$phone','$name') ";
+	// $con =mysqli_connect('localhost','atm1504','11312113','celesta2k19');
+	
+	// $result=mysqli_query($con, $sql);
+?>
+
 <script type="text/javascript">
 	location.replace("<?php echo $url?>")
 </script>
