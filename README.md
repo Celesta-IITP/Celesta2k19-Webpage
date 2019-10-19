@@ -67,7 +67,7 @@ Parameters:
 * day1_day2 (Pass this only if this option is selected)
 * day2_day3 (Pass this only if this option is selected)
 
-Respone:
+Response:
 * status:
 -202 - Successfully booked your accommodation for 2 days
 -401 - Unauthorized access
