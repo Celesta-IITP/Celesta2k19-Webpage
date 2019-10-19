@@ -49,3 +49,29 @@ Response:
 -404 - Event does not found
 -405 - members celesta id is incorrect
 * message - Array of Messages
+
+
+### Book Accommodation
+
+Link: https://celesta.org.in/backend/user/functions/rbook_accommodation.php
+
+Method: POST
+
+Parameters:
+* celestaid
+* access_token
+* day1 (Pass this only if this option is selected)
+* day2 (Pass this only if this option is selected)
+* day3 (Pass this only if this option is selected)
+* all_day (Pass this only if this option is selected)
+* day1_day2 (Pass this only if this option is selected)
+* day2_day3 (Pass this only if this option is selected)
+
+Respone:
+* status:
+-202 - 
+-401 - 
+-208 - 
+-404 - 
+* message - Array of informations
+
