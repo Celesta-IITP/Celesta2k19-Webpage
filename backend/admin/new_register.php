@@ -113,18 +113,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="bandpass_charge" name='bandpass_charge'>
-                                        <label class="form-check-label" for="bandpass_charge">
-                                            Band Pass
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>                            
+                            </div>                         
 
                             <input type="submit" class="btnRegister"  value="Register"/>
                         </div>

@@ -169,17 +169,6 @@
 											</div>
 										</div>
 									</div>
-
-									<div class="form-group row">
-										<div class="col-sm-10">
-											<div class="form-check">
-												<input class="form-check-input" type="checkbox" id="bandpass_charge" name='bandpass_charge' <?php if($user['bandpass_charge']!=0){ echo "checked";} ?>>
-												<label class="form-check-label" for="bandpass_charge">
-													Band Pass
-												</label>
-											</div>
-										</div>
-									</div>                            
 									<input type="hidden" name="validate_user" id="validate_user" value="validate_user">
 									<input type="submit" class="btnRegister"  value="Validate User"/>
 								</div>
