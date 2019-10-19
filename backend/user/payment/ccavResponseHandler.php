@@ -25,10 +25,10 @@
 			$access_token=$information[1];
 		}
 		if($information[0]=="ev_id"){
-			$access_token=$information[1];
+			$ev_id=$information[1];
 		}
 		if($information[0]=="ev_amount"){
-			$access_token=$information[1];
+			$ev_amount=$information[1];
 		}
 
 	}
