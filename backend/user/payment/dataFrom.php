@@ -158,19 +158,19 @@ session_start();
 			</tr>
 			<tr>
 				<td>Merchant Param1 :</td>
-				<td><input type="text" name="merchant_param1" value="additional Info." readonly/></td>
+				<td><input type="text" name="merchant_param1" value="<?php echo $celestaid?>" readonly/></td>
 			</tr>
 			<tr>
 				<td>Merchant Param2 :</td>
-				<td><input type="text" name="merchant_param2" value="additional Info." readonly /></td>
+				<td><input type="text" name="merchant_param2" value="<?php echo $ev_amount?>" readonly /></td>
 			</tr>
 			<tr>
 				<td>Merchant Param3 :</td>
-				<td><input type="text" name="merchant_param3" value="additional Info." readonly/></td>
+				<td><input type="text" name="merchant_param3" value="<?php echo $ev_id?>" readonly/></td>
 			</tr>
 			<tr>
 				<td>Merchant Param4 :</td>
-				<td><input type="text" name="merchant_param4" value="additional Info." readonly/></td>
+				<td><input type="text" name="merchant_param4" value="<?php echo $access_token?>" readonly/></td>
 			</tr>
 			<tr>
 				<td>Merchant Param5 :</td>

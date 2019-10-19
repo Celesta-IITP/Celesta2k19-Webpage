@@ -18,16 +18,16 @@
 		if($i==3){
 			$order_status=urldecode($information[1]);
 		}
-		if($information[0]=="celestaid"){
+		if($information[0]=="merchant_param1"){
 			$celestaid=urldecode($information[1]);
 		}
-		if($information[0]=="access_token"){
+		if($information[0]=="merchant_param4"){
 			$access_token=urldecode($information[1]);
 		}
-		if($information[0]=="ev_id"){
+		if($information[0]=="merchant_param3"){
 			$ev_id=urldecode($information[1]);
 		}
-		if($information[0]=="ev_amount"){
+		if($information[0]=="merchant_param2"){
 			$ev_amount=urldecode($information[1]);
 		}
 
