@@ -132,7 +132,9 @@
                                                 <th scope="row"><?php echo $i++; ?></th>
                                                 <td><?php echo $ev->ev_name ?></td>
                                                  <td><?php echo $ev->ev_id ?></td>
-                                                <td><?php echo 1 ?></td>
+                                                    <td><?php $event_amount= getEventAmount($ev->ev_id);
+                                                        echo $event_amount;
+                                                    ?></td>
                                                 <td>
                                                     <?php if(isset($ev->team_name)){ ?>
                                                         Yes
@@ -143,12 +145,12 @@
                                                 <td><?php echo $ev->amount ?></td>
                                                 <td>
                                                 <!-- http://techprolabz.com/pay/dataFrom.php -->
-                                                    <?php if(getEventAmount($ev->ev_id)-$ev->amount){ ?>
+                                                    <?php if($event_amount-($ev->amount)>=0){ ?>
                                                         <form action="http://techprolabz.com/pay/dataFrom.php" method="POST">
                                                             <input type="text" hidden value="<?php echo $ev->ev_id?>" name="ev_id">
                                                             <input type="text" hidden value="<?php echo $celestaid?>" name="celestaid">
                                                             <input type="text" hidden value="<?php echo $access_token?>" name="access_token">
-                                                            <input type="text" hidden value="<?php echo 1?>" name="ev_amount">
+                                                            <input type="text" hidden value="<?php echo $event_amount?>" name="ev_amount">
                                                             <input type="text" hidden value="<?php echo $profile['email']?>" name="email">
                                                             <input type="text" hidden value="<?php echo $profile['phone']?>" name="phone">
                                                             <input type="text" hidden value="<?php echo $profile['first_name'].' '.$profile['last_name'] ?>" name="name">
