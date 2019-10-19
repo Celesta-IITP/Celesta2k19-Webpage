@@ -30,6 +30,7 @@
         <select class="form-control" id="event_category" name="event_category" required>
         <option selected="selected"><?php echo $event['ev_category']?></option>
         <option>Events</option>
+        <option>Ozone</option>
         <option>Schoolevents</option>
         <option>Workshops</option>
         <option>Exhibitions</option>

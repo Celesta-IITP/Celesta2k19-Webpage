@@ -36,6 +36,7 @@
             return -1;
         }
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +124,7 @@
                                             <th scope="col">Event Amount</th>
                                             <th scope="col">Is Team Event</th>
                                             <th scope="col">Amount Paid</th>
-                                            <th scope="col">Payment</th>
+                                            <th>Payment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -135,13 +136,13 @@
                                                     <td><?php $event_amount= getEventAmount($ev->ev_id);
                                                         echo $event_amount;
                                                     ?></td>
-                                                <td>
-                                                    <?php if(isset($ev->team_name)){ ?>
+                                                  <td>
+                                                <?php if(isset($ev->team_name)){ ?>
                                                         Yes
                                                     <?php }else {?>
                                                         No
                                                     <?php }?>
-                                                </td>
+                                                     </td>
                                                 <td><?php echo $ev->amount ?></td>
                                                 <td>
                                                 <!-- http://techprolabz.com/pay/dataFrom.php -->
@@ -160,6 +161,7 @@
                                                         Paid
                                                     <?php }?>
                                                 </td>
+
                                             </tr>
                                         <?php } ?>
                                     </tbody>
