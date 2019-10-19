@@ -69,9 +69,9 @@ Parameters:
 
 Respone:
 * status:
--202 - 
--401 - 
--208 - 
--404 - 
+-202 - Successfully booked your accommodation for 2 days
+-401 - Unauthorized access
+-208 - Celesta id has already booked accommodation
+-404 - Celestaid does not exist
 * message - Array of informations
 
