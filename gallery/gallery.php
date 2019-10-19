@@ -81,9 +81,9 @@
                         <a href="<?php echo $data['normal']?>" data-lightbox="gallery" data-title="" class="link-preview" title="Preview"><i
                             class="ion ion-eye"></i></a>
                     </figure>
-                    <div class="gallery-info">
-                        <!-- <h4>Club 1</h4> -->
-                    </div>
+                    <!-- <div class="gallery-info">
+                        <h4>Club 1</h4>
+                    </div> -->
                     </div>
                 </div>
                 <?php } ?>
