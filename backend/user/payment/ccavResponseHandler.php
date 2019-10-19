@@ -16,19 +16,19 @@
 	{
 		$information=explode('=',$decryptValues[$i]);
 		if($i==3){
-			$order_status=$information[1];
+			$order_status=urldecode($information[1]);
 		}
 		if($information[0]=="celestaid"){
-			$celestaid=$information[1];
+			$celestaid=urldecode($information[1]);
 		}
 		if($information[0]=="access_token"){
-			$access_token=$information[1];
+			$access_token=urldecode($information[1]);
 		}
 		if($information[0]=="ev_id"){
-			$ev_id=$information[1];
+			$ev_id=urldecode($information[1]);
 		}
 		if($information[0]=="ev_amount"){
-			$ev_amount=$information[1];
+			$ev_amount=urldecode($information[1]);
 		}
 
 	}
