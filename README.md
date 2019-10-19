@@ -49,3 +49,29 @@ Response:
 -404 - Event does not found
 -405 - members celesta id is incorrect
 * message - Array of Messages
+
+
+### Book Accommodation
+
+Link: https://celesta.org.in/backend/user/functions/rbook_accommodation.php
+
+Method: POST
+
+Parameters:
+* celestaid
+* access_token
+* day1 (Pass this only if this option is selected)
+* day2 (Pass this only if this option is selected)
+* day3 (Pass this only if this option is selected)
+* all_day (Pass this only if this option is selected)
+* day1_day2 (Pass this only if this option is selected)
+* day2_day3 (Pass this only if this option is selected)
+
+Response:
+* status:
+-202 - Successfully booked your accommodation for 2 days
+-401 - Unauthorized access
+-208 - Celesta id has already booked accommodation
+-404 - Celestaid does not exist
+* message - Array of informations
+
