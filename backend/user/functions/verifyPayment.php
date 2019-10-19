@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Celesta2k19</title>
-	<link rel="stylesheet" href="./../css/bootstrap.css">
-	<link rel="stylesheet" href="./../css/styles.css">
-	<script src="./../js/jquery.js"></script>
-	<script src="./../js/bootstrap.js"></script>
-	<script src="./../js/scripts.js"></script>
-</head>
-<body>
-	<div class="container">
 <?php
     include("./init.php");
     if($_SERVER["REQUEST_METHOD"]=="GET"){
@@ -46,27 +33,23 @@
                             $message[]="Payment Successfully Updated in the user data catalogue.";
                             $response["status"]=200;
                         }
-                        echo "<p class='bg-success text-center'>Payment for event is successful.</p>";
 
                     }elseif($order_status=="Aborted" && $atm="atm_abort_ho_gaya_payment"){
-                        echo "<p class='bg-danger text-center'>Payment Aborted.</p>";
                         $message[]="Payment failed";
                         $response["status"]=400;
 
                     }elseif($order_status="Failure" && $atm="atm_fail_ho_gaya_payment"){
-                        echo "<p class='bg-danger text-center'>Payment failed.</p>";
                         $message[]="Payment failed";
                         $response["status"]=400;
 
                     }else{
-                        echo "<p class='bg-danger text-center'>Illegal Access.</p>";
                         $message[]="Payment failed";
                         $response["status"]=400;
                     }
                 }
             }
-
             $response['message']=$message;
+            header("Location: ../profile.php");
             echo json_encode($response);
         }
     }
@@ -187,7 +170,7 @@
                         Paid By: $celestaid<br>
                         </p>
                     ";
-                    $count+=1;
+                    // $count+=1;
                     
                     send_email($user_data['email'],$subject,$msg,$header);
 				}
@@ -316,8 +299,5 @@
         }else{
             return false;
         }
-    }?>
-    </div> 
-
-</body>
-</html>
+    }
+?>

@@ -110,104 +110,104 @@
 
                     </div>
 
-                    
-                    <div class="container">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-10">
-                                <h2 class="text-center" style="color: #fff">Events Registered</h2>
-                                <table class="table table-hover" style="color: #fff; background: rgba(0,0,0,.5)">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">S.No.</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Event ID</th>
-                                            <th scope="col">Event Amount</th>
-                                            <th scope="col">Is Team Event</th>
-                                            <th scope="col">Amount Paid</th>
-                                            <th>Payment</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i=1; foreach($user_registered_events as $ev) { ?>
-                                            <tr>
-                                                <th scope="row"><?php echo $i++; ?></th>
-                                                <td><?php echo $ev->ev_name ?></td>
-                                                 <td><?php echo $ev->ev_id ?></td>
-                                                    <td><?php $event_amount= getEventAmount($ev->ev_id);
-                                                        echo $event_amount;
-                                                    ?></td>
-                                                  <td>
-                                                <?php if(isset($ev->team_name)){ ?>
-                                                        Yes
-                                                    <?php }else {?>
-                                                        No
-                                                    <?php }?>
-                                                     </td>
-                                                <td><?php echo $ev->amount ?></td>
-                                                <td>
-                                                <!-- http://techprolabz.com/pay/dataFrom.php -->
-                                                    <?php if($event_amount-($ev->amount)>=0){ ?>
-                                                        <form action="http://techprolabz.com/pay/dataFrom.php" method="POST">
-                                                            <input type="text" hidden value="<?php echo $ev->ev_id?>" name="ev_id">
-                                                            <input type="text" hidden value="<?php echo $celestaid?>" name="celestaid">
-                                                            <input type="text" hidden value="<?php echo $access_token?>" name="access_token">
-                                                            <input type="text" hidden value="<?php echo $event_amount?>" name="ev_amount">
-                                                            <input type="text" hidden value="<?php echo $profile['email']?>" name="email">
-                                                            <input type="text" hidden value="<?php echo $profile['phone']?>" name="phone">
-                                                            <input type="text" hidden value="<?php echo $profile['first_name'].' '.$profile['last_name'] ?>" name="name">
-                                                            <button type="submit" class="btn btn-success">Pay</button>
-                                                        </form>
-                                                    <?php } else { ?>
-                                                        Paid
-                                                    <?php }?>
-                                                </td>
-
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <?php if($profile['isCA']) { ?>
-                        <div class="container">
+                    <div style="margin: 0 10px">
+                        <div class="container tableContainer">
                             <div class="row d-flex justify-content-center">
-                                <div class="col-md-10">
-                                    <h2 class="text-center" style="color: #fff">CA Leaderboard</h2>
-                                    <p class="text-center" style="color: #eee; font-size: 12px">Points = 1.5*Excitons + Gravitons</p>
+                                <div class="col-md-10" style="overflow-x: auto; padding: 0">
+                                    <h2 class="text-center" style="color: #fff">Events Registered</h2>
                                     <table class="table table-hover" style="color: #fff; background: rgba(0,0,0,.5)">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Rank</th>
+                                                <th scope="col">S.No.</th>
                                                 <th scope="col">Name</th>
-                                                <th scope="col">CelestaID</th>
-                                                <th scope="col">Points</th>
-                                                <th scope="col">Excitons</th>
-                                                <th scope="col">Gravitons</th>
+                                                <th scope="col">Event ID</th>
+                                                <th scope="col">Event Amount</th>
+                                                <th scope="col">Is Team Event</th>
+                                                <th scope="col">Amount Paid</th>
+                                                <th>Payment</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php $i=1; foreach($data as $d) { 
-                                                if($i<=21){?>
-                                                
+                                            <?php $i=1; foreach($user_registered_events as $ev) { ?>
                                                 <tr>
                                                     <th scope="row"><?php echo $i++; ?></th>
-                                                    <td><?php echo $d['name'] ?></td>
-                                                    <td><?php echo $d['celestaid'] ?></td>
-                                                    <td><?php echo $d['excitons']*1.5 + $d['gravitons'] ?></td>
-                                                    <td><?php echo $d['excitons'] ?></td>
-                                                    <td><?php echo $d['gravitons'] ?></td>
+                                                    <td><?php echo $ev->ev_name ?></td>
+                                                    <td><?php echo $ev->ev_id ?></td>
+                                                        <td><?php $event_amount= getEventAmount($ev->ev_id);
+                                                            echo $event_amount;
+                                                        ?></td>
+                                                    <td>
+                                                    <?php if(isset($ev->team_name)){ ?>
+                                                            Yes
+                                                        <?php }else {?>
+                                                            No
+                                                        <?php }?>
+                                                        </td>
+                                                    <td><?php echo $ev->amount ?></td>
+                                                    <td>
+                                                    <!-- http://techprolabz.com/pay/dataFrom.php -->
+                                                        <?php if($event_amount==0){ ?>
+                                                            <p class="text-primary">Free event<p>
+                                                        <?php } else if($event_amount-($ev->amount)>0){ ?>
+                                                            <form action="http://techprolabz.com/pay/dataFrom.php" method="POST">
+                                                                <input type="text" hidden value="<?php echo $ev->ev_id?>" name="ev_id">
+                                                                <input type="text" hidden value="<?php echo $celestaid?>" name="celestaid">
+                                                                <input type="text" hidden value="<?php echo $access_token?>" name="access_token">
+                                                                <input type="text" hidden value="<?php echo $event_amount?>" name="ev_amount">
+                                                                <input type="text" hidden value="<?php echo $profile['email']?>" name="email">
+                                                                <input type="text" hidden value="<?php echo $profile['phone']?>" name="phone">
+                                                                <input type="text" hidden value="<?php echo $profile['first_name'].' '.$profile['last_name'] ?>" name="name">
+                                                                <button type="submit" class="btn btn-success">Pay</button>
+                                                            </form>
+                                                        <?php } else { ?>
+                                                            <p class="text-success">Paid<p>
+                                                        <?php }?>
+                                                    </td>
+
                                                 </tr>
-                                            <?php }
-                                        } ?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
+
+                        <?php if($profile['isCA']) { ?>
+                            <div class="container tableContainer" style="margin-top: 50px">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-10" style="overflow-x: auto; padding: 0">
+                                        <h2 class="text-center" style="color: #fff">CA Leaderboard</h2>
+                                        <p class="text-center" style="color: #eee; font-size: 12px">Points = 1.5*Excitons + Gravitons</p>
+                                        <table class="table table-hover" style="color: #fff; background: rgba(0,0,0,.5)">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Rank</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">CelestaID</th>
+                                                    <th scope="col">Points</th>
+                                                    <th scope="col">Excitons</th>
+                                                    <th scope="col">Gravitons</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i=1; foreach($data as $d){ 
+                                                    if($i<=21){?>
+                                                    <tr>
+                                                        <th scope="row"><?php echo $i++; ?></th>
+                                                        <td><?php echo $d['name'] ?></td>
+                                                        <td><?php echo $d['celestaid'] ?></td>
+                                                        <td><?php echo $d['excitons']*1.5 + $d['gravitons'] ?></td>
+                                                        <td><?php echo $d['excitons'] ?></td>
+                                                        <td><?php echo $d['gravitons'] ?></td>
+                                                    </tr>
+                                                <?php }} ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>    
 
                 </section>
             </div>
