@@ -16,6 +16,8 @@ html, body {
     transform-origin: top left;
     transition: transform 0.7s cubic-bezier(1, 0.005, 0.24, 1);
     background-color: #f0f0f0;
+  background-image: linear-gradient(to top, #061923 20%, #1D66A2 80%);
+
 }
 .content_inner {
     height: 50%;
@@ -34,6 +36,12 @@ html, body {
     background-color: #f37272;
     border-bottom-right-radius: 100%;
 }
+@media only screen and (max-width : 600px){
+    .menu_toggle{
+        width: 50px;
+        height: 40px;
+}
+
 .menu_toggle:active i {
     opacity: 0.8;
 }
