@@ -228,7 +228,7 @@ function updatingUser(){
 	//Default values
 	$price_tshirt=300;
 	$price_reg=100; // Desk registration charge
-	$price_bandass=200;
+	// $price_bandass=200;
 	$price_both=400;
 
 	// Get user info
@@ -240,7 +240,7 @@ function updatingUser(){
 	$total_charge=0;
 	$amount_paid=$row['amount_paid'];
 	$registration_charge=$row['registration_charge'];
-	$bandpass_charge=$row['bandpass_charge'];
+	// $bandpass_charge=$row['bandpass_charge'];
 	$tshirt_charge=$row['tshirt_charge'];
 	$events_charge=$row['events_charge'];
 
@@ -248,18 +248,23 @@ function updatingUser(){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge+=$price_reg;
 	}
-	if(isset($_POST['bandpass_charge'])){
-		$total_charge=$total_charge+$price_bandass;
-		$bandpass_charge+=$price_bandass;
-	}
+	// if(isset($_POST['bandpass_charge'])){
+	// 	$total_charge=$total_charge+$price_bandass;
+	// 	$bandpass_charge+=$price_bandass;
+	// }
 	if(isset($_POST['tshirt_charge'])){
 		$total_charge=$total_charge+$price_tshirt;
 		$tshirt_charge+=$price_tshirt;
 	}
-
-	if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
-		$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
+	if(isset($_POST['college_stud'])){
+		$college_stud=1;
+	}else{
+		$college_stud=0;
 	}
+
+	// if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
+	// 	$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
+	// }
 	$user=getDetails($celestaid);
 	$events_registered=json_decode($user['events_registered']);
 	$update_user_events_registered=array();
@@ -326,7 +331,7 @@ function updatingUser(){
 	$amount_paid+=$total_charge;
 
 	$update_user_events_registered=json_encode($update_user_events_registered);
-	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,bandpass_charge=$bandpass_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered',amount_paid=$amount_paid, registration_desk=1 WHERE celestaid='$celestaid'";
+	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered',amount_paid=$amount_paid, registration_desk=1, iit_patna=$college_stud WHERE celestaid='$celestaid'";
 	$result=query($sql);
 	confirm($result);
 
@@ -597,8 +602,8 @@ function new_register(){
 	 		$confirm_password=clean($_POST['confirm_password']);
 	 		$gender=($_POST['gender']);
 	 		$reg=$_POST['registration_charge'];
-	 		$tshirt=$_POST['tshirt_charge'];
-			$bandpass=$_POST['bandpass_charge'];
+			 $tshirt=$_POST['tshirt_charge'];
+			// $bandpass=$_POST['bandpass_charge'];
 			$referral_id=clean($referral_id);
 
 	 		if($password!=$confirm_password){
@@ -643,30 +648,36 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	//Default values
 	$price_tshirt=300;
 	$price_reg=100;
-	$price_bandass=200;
+	// $price_bandass=200;
 	$price_both=400;
 
 	// Setting price
 	$total_charge=0;
 	$registration_charge=0;
-	$bandpass_charge=0;
+	// $bandpass_charge=0;
 	$tshirt_charge=0;
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge=$price_reg;
 	}
-	if(isset($_POST['bandpass_charge'])){
-		$total_charge=$total_charge+$price_bandass;
-		$bandpass_charge=$price_bandass;
-	}
+	// if(isset($_POST['bandpass_charge'])){
+	// 	$total_charge=$total_charge+$price_bandass;
+	// 	$bandpass_charge=$price_bandass;
+	// }
 	if(isset($_POST['tshirt_charge'])){
 		$total_charge=$total_charge+$price_tshirt;
 		$tshirt_charge=$price_tshirt;
 	}
 
-	if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
-		$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
+	if(isset($_POST["college_stud"])){
+		$college_stud=1;
+	}else{
+		$college_stud=0;
 	}
+
+	// if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
+	// 	$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
+	// }
 
 	$registrar_name=$_SESSION['registrar'];
 	if(isset($_COOKIE['registrar'])){
@@ -686,20 +697,14 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		
 		</p>
 	";
-	$header="From: hayyoulistentome@gmail.com";
+	$header="From: celesta19iitp@gmail.com";
 	
 	//Added to database if mail is sent successfully
 	if(send_email($email,$subject,$msg,$header)){
 
-		// //Inserting into present_users table. Users present in fest
-		// $sql="INSERT INTO present_users(first_name ,last_name, phone,college,email,password, celestaid,qrcode,gender,added_by,active, registration_charge, tshirt_charge, bandpass_charge, total_charge) ";
-		// $sql.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,$registration_charge,$tshirt_charge,$bandpass_charge,$total_charge)";
-		// $result=query($sql);
-		// confirm($result);
-
 		//Inserting into actual database
-		$sql1="INSERT INTO users(first_name,last_name,phone,college,email,password,celestaid,qrcode,gender,added_by,active,validation_code,tshirt_charge,bandpass_charge,total_charge,registration_charge,amount_paid,registration_desk) ";
-		$sql1.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,'0',$tshirt_charge,$bandpass_charge,$total_charge,$registration_charge,$total_charge,1)";
+		$sql1="INSERT INTO users(first_name,last_name,phone,college,email,password,celestaid,qrcode,gender,added_by,active,validation_code,tshirt_charge,total_charge,registration_charge,amount_paid,registration_desk,iit_patna) ";
+		$sql1.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,'0',$tshirt_charge,$total_charge,$registration_charge,$total_charge,1,$college_stud)";
 		$result1=query($sql1);
 		confirm($result1);
 
