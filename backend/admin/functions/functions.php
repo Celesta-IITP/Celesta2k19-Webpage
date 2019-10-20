@@ -238,7 +238,7 @@ function updatingUser(){
 	$row=fetch_array($result0);
 
 	//Setting price
-	$total_charge=0;
+	$total_charge=$row['total_charge'];
 	$amount_paid=$row['amount_paid'];
 	$registration_charge=$row['registration_charge'];
 	// $bandpass_charge=$row['bandpass_charge'];
@@ -249,14 +249,14 @@ function updatingUser(){
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge+=$price_reg;
+		$amount_paid=$amount_paid+$price_reg;
 	}
 
 	if(isset($_POST['tshirt_charge'])){
 		$total_charge=$total_charge+$price_tshirt;
 		$tshirt_charge+=$price_tshirt;
+		$amount_paid=$amount_paid+$price_tshirt;
 	}
-
-
 
 	if(isset($_POST['college_stud'])){
 		$college_stud=1;
@@ -330,12 +330,12 @@ function updatingUser(){
 	$header="From: celesta19@gmail.com";
 
 	send_email($email,$subject,$msg,$header);
-	$amount_paid+=$total_charge;
 
 	if(isset($_POST['accommodation_charge'])){
 		$total_charge=$total_charge+$price_accommodation;
 		$accommodation_charge=$price_accommodation;
 		$name=$first_name." ".$last_name;
+		$amount_paid=$amount_paid+$price_accommodation;
 		bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
 	}
 
@@ -554,7 +554,7 @@ function total_register(){
 		redirect("login.php");
 	}else{
 		//echo "Will shortly display the result";
-		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone,tshirt_charge,registration_charge,accommodation_charge,amount_paid,events_charge FROM users WHERE registration_desk=1";
+		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone,tshirt_charge,registration_charge,accommodation_charge,amount_paid,events_charge,total_charge FROM users WHERE registration_desk=1";
 		$result=query($sql);
 		$permit=getPermit();
 		$count=0;
@@ -573,7 +573,7 @@ function total_register(){
 						<td>".$row['accommodation_charge']."</td>
 						<td>".$row['registration_charge']."</td>
 						<td>".$row['events_charge']."</td>
-						<td>".$row['amount_paid']."</td>
+						<td>".$row['total_charge']."</td>
 	    			</tr>";
     		}
 		}
@@ -604,7 +604,7 @@ function new_register(){
 	 		$confirm_password=clean($_POST['confirm_password']);
 	 		$gender=($_POST['gender']);
 	 		$reg=$_POST['registration_charge'];
-			 $tshirt=$_POST['tshirt_charge'];
+			$tshirt=$_POST['tshirt_charge'];
 			// $bandpass=$_POST['bandpass_charge'];
 			$referral_id=clean($referral_id);
 
