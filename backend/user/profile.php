@@ -219,41 +219,43 @@ function getEventAmount($ev_id)
     </div>
 
     <!-- toasts -->
-    <div class="toastContainer" style="position: absolute; top: 0; right: 0; margin: 20px; z-index: 99999;">
-        <?php if($_GET['status']==200) { ?>
-            <div class="toast fade show" style="z-index: 999">
-                <div class="toast-header bg-success">
-                    <strong class="mr-auto"><i class="fa fa-globe"></i> Success</strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+    <?php if(isset($_GET['status']) && isset($_GET['msg'])) { ?>
+        <div class="toastContainer" style="position: absolute; top: 0; right: 0; margin: 20px; z-index: 99999;">
+            <?php if($_GET['status']==200) { ?>
+                <div class="toast fade show" style="z-index: 999">
+                    <div class="toast-header bg-success">
+                        <strong class="mr-auto"><i class="fa fa-globe"></i> Success</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                    </div>
+                    <div class="toast-body"><?php echo $_GET['msg'];?></div>
                 </div>
-                <div class="toast-body"><?php echo $_GET['msg'];?></div>
-            </div>
-        <?php } elseif($_GET['status']==400) { ?>
-            <div class="toast fade show" style="z-index: 999">
-                <div class="toast-header bg-danger">
-                    <strong class="mr-auto"><i class="fa fa-globe"></i> Error</strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+            <?php } elseif($_GET['status']==400) { ?>
+                <div class="toast fade show" style="z-index: 999">
+                    <div class="toast-header bg-danger">
+                        <strong class="mr-auto"><i class="fa fa-globe"></i> Error</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                    </div>
+                    <div class="toast-body"><?php echo $_GET['msg'];?></div>
                 </div>
-                <div class="toast-body"><?php echo $_GET['msg'];?></div>
-            </div>
-        <?php } elseif($_GET['status']==204) { ?>
-            <div class="toast fade show" style="z-index: 999">
-                <div class="toast-header bg-danger">
-                    <strong class="mr-auto"><i class="fa fa-globe"></i> Not Found</strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+            <?php } elseif($_GET['status']==204) { ?>
+                <div class="toast fade show" style="z-index: 999">
+                    <div class="toast-header bg-danger">
+                        <strong class="mr-auto"><i class="fa fa-globe"></i> Not Found</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                    </div>
+                    <div class="toast-body"><?php echo $_GET['msg'];?></div>
                 </div>
-                <div class="toast-body"><?php echo $_GET['msg'];?></div>
-            </div>
-        <?php } elseif($_GET['status']==401) { ?>
-            <div class="toast fade show" style="z-index: 999">
-                <div class="toast-header bg-danger">
-                    <strong class="mr-auto"><i class="fa fa-globe"></i> Unauthorized</strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+            <?php } elseif($_GET['status']==401) { ?>
+                <div class="toast fade show" style="z-index: 999">
+                    <div class="toast-header bg-danger">
+                        <strong class="mr-auto"><i class="fa fa-globe"></i> Unauthorized</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                    </div>
+                    <div class="toast-body"><?php echo $_GET['msg'];?></div>
                 </div>
-                <div class="toast-body"><?php echo $_GET['msg'];?></div>
-            </div>
-        <?php } ?>
-    </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="./profile/js/menu-main.js"></script>
