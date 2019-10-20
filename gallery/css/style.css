@@ -197,7 +197,7 @@
     width: 100%;
 }
 
-.alpha-img-container:hover img{
+.alpha-img-container img{
     opacity: 0.3;
 }
 
@@ -210,9 +210,24 @@
   transform: translate(-50%, -50%);
   color: #FFF;
   font-weight: bold;
-  display: none;
+  display: inline;
 }
 
-.alpha-img-container:hover h3{
+.alpha-event p {
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFF;
+    font-weight: bold;
     display: inline;
+}
+
+.alpha-event p a{
+    color: #fff;
+}
+
+.alpha-event p a:hover{
+    color: #0472cc;
 }

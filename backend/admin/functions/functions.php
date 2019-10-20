@@ -223,13 +223,14 @@ function updatingUser(){
 	$email=clean($_POST['email']);
 	$phone=clean($_POST['phone']);
 	$college=clean($_POST['college']);
-	
+	$gender=clean($_POST["gender"]);
 
 	//Default values
 	$price_tshirt=300;
 	$price_reg=100; // Desk registration charge
 	// $price_bandass=200;
 	$price_both=400;
+	$price_accommodation=500;
 
 	// Get user info
 	$sql0="SELECT * from users where celestaid='$celestaid'";
@@ -243,19 +244,20 @@ function updatingUser(){
 	// $bandpass_charge=$row['bandpass_charge'];
 	$tshirt_charge=$row['tshirt_charge'];
 	$events_charge=$row['events_charge'];
+	$accommodation_charge=$row['accommodation_charge'];
 
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge+=$price_reg;
 	}
-	// if(isset($_POST['bandpass_charge'])){
-	// 	$total_charge=$total_charge+$price_bandass;
-	// 	$bandpass_charge+=$price_bandass;
-	// }
+
 	if(isset($_POST['tshirt_charge'])){
 		$total_charge=$total_charge+$price_tshirt;
 		$tshirt_charge+=$price_tshirt;
 	}
+
+
+
 	if(isset($_POST['college_stud'])){
 		$college_stud=1;
 	}else{
@@ -330,8 +332,15 @@ function updatingUser(){
 	send_email($email,$subject,$msg,$header);
 	$amount_paid+=$total_charge;
 
+	if(isset($_POST['accommodation_charge'])){
+		$total_charge=$total_charge+$price_accommodation;
+		$accommodation_charge=$price_accommodation;
+		$name=$first_name." ".$last_name;
+		bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
+	}
+
 	$update_user_events_registered=json_encode($update_user_events_registered);
-	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered',amount_paid=$amount_paid, registration_desk=1, iit_patna=$college_stud WHERE celestaid='$celestaid'";
+	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered',amount_paid=$amount_paid, registration_desk=1, iit_patna=$college_stud, accommodation_charge=$accommodation_charge WHERE celestaid='$celestaid'";
 	$result=query($sql);
 	confirm($result);
 
@@ -545,24 +554,14 @@ function total_register(){
 		redirect("login.php");
 	}else{
 		//echo "Will shortly display the result";
-		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone FROM users WHERE registration_desk=1";
+		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone,tshirt_charge,registration_charge,accommodation_charge,amount_paid,events_charge FROM users WHERE registration_desk=1";
 		$result=query($sql);
 		$permit=getPermit();
 		$count=0;
 
 		while ($row = $result->fetch_assoc()) {
 			$count=$count+1;
-			if($permit==1){
-				echo "<tr>
-						<th scope='row'>".$count."</th>
-	      				<td>".$row['celestaid']."</td>
-	      				<td>".$row['date']."</td>
-	      				<td>".$row['first_name']." ".$row['last_name']."</td>
-	      				<td>".$row['college']."</td>
-	      				<td> Not Authorized</td>
-	      				<td>".$row['qrcode']."</td>
-	    			</tr>";
-    		}elseif($permit==2 || $permit==0){
+			if($permit==2 || $permit==0){
     			echo "<tr>
 						<th scope='row'>".$count."</th>
 	      				<td>".$row['celestaid']."</td>
@@ -570,7 +569,11 @@ function total_register(){
 	      				<td>".$row['first_name']." ".$row['last_name']."</td>
 	      				<td>".$row['college']."</td>
 	      				<td>".$row['phone']."</td>
-	      				<td>".$row['qrcode']."</td>
+						<td>".$row['tshirt_charge']."</td>
+						<td>".$row['accommodation_charge']."</td>
+						<td>".$row['registration_charge']."</td>
+						<td>".$row['events_charge']."</td>
+						<td>".$row['amount_paid']."</td>
 	    			</tr>";
     		}
 		}
@@ -647,7 +650,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	//Default values
 	$price_tshirt=300;
 	$price_reg=100;
-	// $price_bandass=200;
+	$price_accommodation=500;
 	$price_both=400;
 
 	// Setting price
@@ -655,6 +658,8 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$registration_charge=0;
 	// $bandpass_charge=0;
 	$tshirt_charge=0;
+	$accommodation_charge=0;
+
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge=$price_reg;
@@ -672,6 +677,11 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		$college_stud=1;
 	}else{
 		$college_stud=0;
+	}
+
+	if(isset($_POST["accommodation_charge"])){
+		$total_charge=$total_charge+$price_accommodation;
+		$accommodation_charge=$price_accommodation;
 	}
 
 	// if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
@@ -702,19 +712,46 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	if(send_email($email,$subject,$msg,$header)){
 
 		//Inserting into actual database
-		$sql1="INSERT INTO users(first_name,last_name,phone,college,email,password,celestaid,qrcode,gender,added_by,active,validation_code,tshirt_charge,total_charge,registration_charge,amount_paid,registration_desk,iit_patna) ";
-		$sql1.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,'0',$tshirt_charge,$total_charge,$registration_charge,$total_charge,1,$college_stud)";
+		$sql1="INSERT INTO users(first_name,last_name,phone,college,email,password,celestaid,qrcode,gender,added_by,active,validation_code,tshirt_charge,total_charge,registration_charge,amount_paid,registration_desk,iit_patna, accommodation_charge) ";
+		$sql1.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,'0',$tshirt_charge,$total_charge,$registration_charge,$total_charge,1,$college_stud,$accommodation_charge)";
 		$result1=query($sql1);
 		confirm($result1);
 
 		update_referral_points($referral_id);
 
 		set_message("<p class='bg-success text-center'>Please check your email to get your qrcode and celesta id. You can login now with the celesta id and the password.<br><br><br>Your Celesta id is $celestaid<br>Amount to pay is Rs. $total_charge<br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
+		$name=$first_name." ".$last_name;
+		if(isset($_POST["accommodation_charge"])){
+			bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
+		}
+
 		return true;
 	}else{
 		return false;
 	}
 }
+
+function bookAppointment($celestaid,$gender,$name,$phone,$amount_paid,$email,$qrcode){
+	$date=escape(date('Y-m-d H:i:s'));
+	$no_of_days=3;
+	$day1=1;
+	$day2=1;
+	$day3=1;
+
+	$sql="INSERT INTO accommodation(celestaid,names,phone,gender,booking_date,no_of_days,day1,day2,day3,amount_paid,email) VALUES('$celestaid','$name','$phone','$gender','$date',$no_of_days,$day1,$day2,$day3,$amount_paid,'$email')";
+	$result=query($sql);
+	confirm($result);
+
+	$message="<p> Hi $name, you have successfully booked your accommodation for $no_of_days.<br>
+	Amount paid for accommodation is : Rs. $amount_paid <br>
+	Your celestaid is:$celestaid<br>
+	<a href='$qrcode'><img src='$qrcode' alt='Your qr code should be shown here.' style='height:400px;width:400px'/></a>
+	</p>";
+	$subject="Celesta2k19 Accommodation Booking";
+	$headers="From: celesta19iitp@gmail.com";
+	send_email($email,$subject,$message,$headers);
+}
+
 
 function update_referral_points($referral_id){
 	if(!refrral_id_exist($referral_id)){
