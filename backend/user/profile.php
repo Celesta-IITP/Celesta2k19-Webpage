@@ -125,7 +125,7 @@ function getEventAmount($ev_id)
                                                 <th scope="col">Event Amount</th>
                                                 <th scope="col">Is Team Event</th>
                                                 <th scope="col">Amount Paid</th>
-                                                <th>Payment</th>
+                                                <!-- <th>Payment</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -146,25 +146,24 @@ function getEventAmount($ev_id)
                                                         <?php } ?>
                                                     </td>
                                                     <td><?php echo $ev->amount ?></td>
-                                                    <td>
-                                                        <!-- http://techprolabz.com/pay/dataFrom.php -->
+                                                    <!-- <td>
                                                         <?php if ($event_amount == 0) { ?>
-                                                            <p class="text-primary">Free event<p>
-                                                                <?php } else if ($event_amount - ($ev->amount) > 0) { ?>
-                                                                    <form action="http://techprolabz.com/pay/dataFrom.php" method="POST">
-                                                                        <input type="text" hidden value="<?php echo $ev->ev_id ?>" name="ev_id">
-                                                                        <input type="text" hidden value="<?php echo $celestaid ?>" name="celestaid">
-                                                                        <input type="text" hidden value="<?php echo $access_token ?>" name="access_token">
-                                                                        <input type="text" hidden value="<?php echo $event_amount ?>" name="ev_amount">
-                                                                        <input type="text" hidden value="<?php echo $profile['email'] ?>" name="email">
-                                                                        <input type="text" hidden value="<?php echo $profile['phone'] ?>" name="phone">
-                                                                        <input type="text" hidden value="<?php echo $profile['first_name'] . ' ' . $profile['last_name'] ?>" name="name">
-                                                                        <button type="submit" class="btn btn-success">Pay</button>
-                                                                    </form>
-                                                                <?php } else { ?>
-                                                                    <p class="text-success">Paid<p>
-                                                                        <?php } ?>
-                                                    </td>
+                                                            <p class="text-primary">Free event</p>
+                                                        <?php } else if ($event_amount - ($ev->amount) > 0) { ?>
+                                                            <form action="http://techprolabz.com/pay/dataFrom.php" method="POST">
+                                                                <input type="text" hidden value="<?php echo $ev->ev_id ?>" name="ev_id">
+                                                                <input type="text" hidden value="<?php echo $celestaid ?>" name="celestaid">
+                                                                <input type="text" hidden value="<?php echo $access_token ?>" name="access_token">
+                                                                <input type="text" hidden value="<?php echo $event_amount ?>" name="ev_amount">
+                                                                <input type="text" hidden value="<?php echo $profile['email'] ?>" name="email">
+                                                                <input type="text" hidden value="<?php echo $profile['phone'] ?>" name="phone">
+                                                                <input type="text" hidden value="<?php echo $profile['first_name'] . ' ' . $profile['last_name'] ?>" name="name">
+                                                                <button type="submit" class="btn btn-success">Pay</button>
+                                                            </form>
+                                                        <?php } else { ?>
+                                                            <p class="text-success">Paid</p>
+                                                        <?php } ?>
+                                                    </td> -->
 
                                                 </tr>
                                             <?php } ?>
@@ -219,39 +218,39 @@ function getEventAmount($ev_id)
     </div>
 
     <!-- toasts -->
-    <?php if(isset($_GET['status']) && isset($_GET['msg'])) { ?>
+    <?php if (isset($_GET['status']) && isset($_GET['msg'])) { ?>
         <div class="toastContainer" style="position: absolute; top: 0; right: 0; margin: 20px; z-index: 99999;">
-            <?php if($_GET['status']==200) { ?>
+            <?php if ($_GET['status'] == 200) { ?>
                 <div class="toast fade show" style="z-index: 999">
                     <div class="toast-header bg-success">
                         <strong class="mr-auto"><i class="fa fa-globe"></i> Success</strong>
                         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                     </div>
-                    <div class="toast-body"><?php echo $_GET['msg'];?></div>
+                    <div class="toast-body"><?php echo $_GET['msg']; ?></div>
                 </div>
-            <?php } elseif($_GET['status']==400) { ?>
+            <?php } elseif ($_GET['status'] == 400) { ?>
                 <div class="toast fade show" style="z-index: 999">
                     <div class="toast-header bg-danger">
                         <strong class="mr-auto"><i class="fa fa-globe"></i> Error</strong>
                         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                     </div>
-                    <div class="toast-body"><?php echo $_GET['msg'];?></div>
+                    <div class="toast-body"><?php echo $_GET['msg']; ?></div>
                 </div>
-            <?php } elseif($_GET['status']==204) { ?>
+            <?php } elseif ($_GET['status'] == 204) { ?>
                 <div class="toast fade show" style="z-index: 999">
                     <div class="toast-header bg-danger">
                         <strong class="mr-auto"><i class="fa fa-globe"></i> Not Found</strong>
                         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                     </div>
-                    <div class="toast-body"><?php echo $_GET['msg'];?></div>
+                    <div class="toast-body"><?php echo $_GET['msg']; ?></div>
                 </div>
-            <?php } elseif($_GET['status']==401) { ?>
+            <?php } elseif ($_GET['status'] == 401) { ?>
                 <div class="toast fade show" style="z-index: 999">
                     <div class="toast-header bg-danger">
                         <strong class="mr-auto"><i class="fa fa-globe"></i> Unauthorized</strong>
                         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                     </div>
-                    <div class="toast-body"><?php echo $_GET['msg'];?></div>
+                    <div class="toast-body"><?php echo $_GET['msg']; ?></div>
                 </div>
             <?php } ?>
         </div>
