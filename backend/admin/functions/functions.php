@@ -244,25 +244,19 @@ function updatingUser(){
 	// $bandpass_charge=$row['bandpass_charge'];
 	$tshirt_charge=$row['tshirt_charge'];
 	$events_charge=$row['events_charge'];
-	$accommodation_charge=0;
+	$accommodation_charge=$row['accommodation_charge'];
 
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge+=$price_reg;
 	}
-	// if(isset($_POST['bandpass_charge'])){
-	// 	$total_charge=$total_charge+$price_bandass;
-	// 	$bandpass_charge+=$price_bandass;
-	// }
+
 	if(isset($_POST['tshirt_charge'])){
 		$total_charge=$total_charge+$price_tshirt;
 		$tshirt_charge+=$price_tshirt;
 	}
 
-	if(isset($_POST['accommodation_charge'])){
-		$total_charge=$total_charge+$price_accommodation;
-		$accommodation_charge=$price_accommodation;
-	}
+
 
 	if(isset($_POST['college_stud'])){
 		$college_stud=1;
@@ -338,14 +332,15 @@ function updatingUser(){
 	send_email($email,$subject,$msg,$header);
 	$amount_paid+=$total_charge;
 
-	// Book Accommodation
-	if($accommodation_charge>0){
+	if(isset($_POST['accommodation_charge'])){
+		$total_charge=$total_charge+$price_accommodation;
+		$accommodation_charge=$price_accommodation;
 		$name=$first_name." ".$last_name;
 		bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
 	}
 
 	$update_user_events_registered=json_encode($update_user_events_registered);
-	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered',amount_paid=$amount_paid, registration_desk=1, iit_patna=$college_stud WHERE celestaid='$celestaid'";
+	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered',amount_paid=$amount_paid, registration_desk=1, iit_patna=$college_stud, accommodation_charge=$accommodation_charge WHERE celestaid='$celestaid'";
 	$result=query($sql);
 	confirm($result);
 
@@ -718,8 +713,8 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	if(send_email($email,$subject,$msg,$header)){
 
 		//Inserting into actual database
-		$sql1="INSERT INTO users(first_name,last_name,phone,college,email,password,celestaid,qrcode,gender,added_by,active,validation_code,tshirt_charge,total_charge,registration_charge,amount_paid,registration_desk,iit_patna) ";
-		$sql1.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,'0',$tshirt_charge,$total_charge,$registration_charge,$total_charge,1,$college_stud)";
+		$sql1="INSERT INTO users(first_name,last_name,phone,college,email,password,celestaid,qrcode,gender,added_by,active,validation_code,tshirt_charge,total_charge,registration_charge,amount_paid,registration_desk,iit_patna, accommodation_charge) ";
+		$sql1.=" VALUES('$first_name','$last_name','$phone','$college','$email','$password','$celestaid','".$qrcode."','$gender','$registrar_name',1,'0',$tshirt_charge,$total_charge,$registration_charge,$total_charge,1,$college_stud,$accommodation_charge)";
 		$result1=query($sql1);
 		confirm($result1);
 
