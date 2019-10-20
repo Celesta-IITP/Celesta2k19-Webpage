@@ -236,6 +236,22 @@ function getEventAmount($ev_id)
                 </div>
                 <div class="toast-body"><?php echo $_GET['msg'];?></div>
             </div>
+        <?php } elseif($_GET['status']==204) { ?>
+            <div class="toast fade show" style="z-index: 999">
+                <div class="toast-header bg-danger">
+                    <strong class="mr-auto"><i class="fa fa-globe"></i> Not Found</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                </div>
+                <div class="toast-body"><?php echo $_GET['msg'];?></div>
+            </div>
+        <?php } elseif($_GET['status']==401) { ?>
+            <div class="toast fade show" style="z-index: 999">
+                <div class="toast-header bg-danger">
+                    <strong class="mr-auto"><i class="fa fa-globe"></i> Unauthorized</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                </div>
+                <div class="toast-body"><?php echo $_GET['msg'];?></div>
+            </div>
         <?php } ?>
     </div>
 
