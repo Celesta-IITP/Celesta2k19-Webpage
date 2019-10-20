@@ -223,13 +223,14 @@ function updatingUser(){
 	$email=clean($_POST['email']);
 	$phone=clean($_POST['phone']);
 	$college=clean($_POST['college']);
-	
+	$gender=clean($_POST["gender"]);
 
 	//Default values
 	$price_tshirt=300;
 	$price_reg=100; // Desk registration charge
 	// $price_bandass=200;
 	$price_both=400;
+	$price_accommodation=500;
 
 	// Get user info
 	$sql0="SELECT * from users where celestaid='$celestaid'";
@@ -243,6 +244,7 @@ function updatingUser(){
 	// $bandpass_charge=$row['bandpass_charge'];
 	$tshirt_charge=$row['tshirt_charge'];
 	$events_charge=$row['events_charge'];
+	$accommodation_charge=0;
 
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
@@ -256,6 +258,12 @@ function updatingUser(){
 		$total_charge=$total_charge+$price_tshirt;
 		$tshirt_charge+=$price_tshirt;
 	}
+
+	if(isset($_POST['accommodation_charge'])){
+		$total_charge=$total_charge+$price_accommodation;
+		$accommodation_charge=$price_accommodation;
+	}
+
 	if(isset($_POST['college_stud'])){
 		$college_stud=1;
 	}else{
@@ -329,6 +337,14 @@ function updatingUser(){
 
 	send_email($email,$subject,$msg,$header);
 	$amount_paid+=$total_charge;
+
+	// Book Accommodation
+	if(isset($_POST["book_accommodation"])){
+		echo "called";
+		$name=$first_name." ".$last_name;
+		bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
+		echo "executed";
+	}
 
 	$update_user_events_registered=json_encode($update_user_events_registered);
 	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered',amount_paid=$amount_paid, registration_desk=1, iit_patna=$college_stud WHERE celestaid='$celestaid'";
@@ -736,7 +752,7 @@ function bookAppointment($celestaid,$gender,$name,$phone,$amount_paid,$email,$qr
 	$day2=1;
 	$day3=1;
 
-	$sql="INSERT INTO accommodation(celestaid,names,phone,gender,booking_date,no_of_days,day1,day2,day3,amount_paid) VALUES('$celestaid','$name','$phone','$gender','$date',$no_of_days,$day1,$day2,$day3,$amount_paid)";
+	$sql="INSERT INTO accommodation(celestaid,names,phone,gender,booking_date,no_of_days,day1,day2,day3,amount_paid,email) VALUES('$celestaid','$name','$phone','$gender','$date',$no_of_days,$day1,$day2,$day3,$amount_paid,'$email')";
 	echo $sql;
 
 	$result=query($sql);
