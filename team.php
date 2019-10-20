@@ -1,6 +1,16 @@
+<?php 
+    include("./backend/user/functions/init.php");
+    $loggedIn = logged_in();
+    $celestaid=""; $access_token="";
+    if(logged_in()){
+      $celestaid = $_SESSION['celestaid'];
+      $access_token=$_SESSION['access_token'];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="is-loading">
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
   <meta charset="utf-8" />
@@ -21,13 +31,14 @@
   <link rel="icon" type="image/png" sizes="96x96" href="assets/meta-icons/favicon-96x96.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/meta-icons/favicon-16x16.png" />
 
+  <meta name="application-name" content="McBride" />
   <meta name="msapplication-square70x70logo" content="msapplication-square70x70logo.html" />
   <meta name="msapplication-square150x150logo" content="msapplication-square150x150logo.html" />
   <meta name="msapplication-square310x310logo" content="msapplication-square310x310logo.html" />
   <meta name="msapplication-TileColor" content="#0b202b" />
 
-  <title>Celesta 2k19</title>
-  <link rel="canonical" href="index.html" />
+  <title>Celesta'19</title>
+  <link rel="canonical" href="events.php" />
   <meta property="og:locale" content="en_us" />
 
   <link rel="preload" href="assets/fonts/Neutraface2Text-Book.html" as="font" type="font/woff2" crossorigin="" />
@@ -58,16 +69,7 @@
     }
   </style>
   <link rel="stylesheet" href="_compiled/app.css" />
-  <style>
-      .caSpanStyle{
-        font-size: 2.5em;
-      }
-      @media(max-width: 500px){
-        .caSpanStyle{
-          font-size: 2em;
-        }
-      }
-    </style>
+  <link rel="stylesheet" href="gallery/css/style.css" />
 </head>
 
 <body>
@@ -80,7 +82,7 @@
     </div>
 
     <span class="logo-wrapper js-logo">
-      <a href="index.html" class="c-logo">
+      <a href="./" class="c-logo">
         <svg class="c-logo__svg" width="48" height="41" viewBox="0 0 48 41" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
         <img src="logo.png" style="width: 100px; position: relative; transform: translateY(-3px)">
 
@@ -94,7 +96,7 @@
       </div>
     </span>
 
-    <a href="./events.html" class="projects-btn o-media__icon tx--gray-light">
+    <a href="./events.php" class="projects-btn o-media__icon tx--gray-light">
       <span class="tx--caption">Events</span>
       <svg class="icon icon-projects" width="19" height="18" fill="none">
         <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" transform="translate(0 6)" />
@@ -112,27 +114,32 @@
       <nav class="main-nav">
         <ul>
           <li>
-            <a class="main-nav__link tx--title-3 active first" href="index.html" title="Home">Home</a>
+            <a class="main-nav__link tx--title-3 first" href="./" title="Home">Home</a>
           </li>
 
-          <li>
-            <a class="main-nav__link tx--title-3" href="./backend/user/register.php" target="_blank" title="Register">Register</a>
-          </li>
-
-          <li>
-            <a class="main-nav__link tx--title-3" href="./backend/user/login.php" target="_blank" title="Login">Login</a>
-          </li>
+          <?php if(!$loggedIn) { ?>
+            <li>
+                <a class="main-nav__link tx--title-3" href="./backend/user/register.php" target="_blank" title="Register">Register</a>
+            </li>
+            <li>
+                <a class="main-nav__link tx--title-3" href="./backend/user/login.php" target="_blank" title="Login">Login</a>
+            </li>
+          <?php } else { ?>
+            <li>
+                <a class="main-nav__link tx--title-3" href="./backend/user/profile.php" target="_blank" title="Profile">Profile</a>
+            </li>
+          <?php } ?>
 
           <li>
             <a class="main-nav__link tx--title-3" href="./ca/ca.php" target="_blank" title="Gallery">Campus Ambassador</a>
           </li>
 
           <li>
-            <a class="main-nav__link tx--title-3" href="events.html" title="Events">Events</a>
+            <a class="main-nav__link tx--title-3 active" href="events.php" title="Events">Events</a>
           </li>
 
           <li>
-            <a class="main-nav__link tx--title-3" href="sponsors.html" title="Our Sponsors">Our Sponsors</a>
+            <a class="main-nav__link tx--title-3" href="sponsors.php" title="Our Sponsors">Our Sponsors</a>
           </li>
 
           <li>
@@ -140,11 +147,11 @@
           </li>
 
           <li>
-            <a class="main-nav__link tx--title-3" href="team.html" title="Our Team">Our Team</a>
+            <a class="main-nav__link tx--title-3" href="team.php" title="Our Team">Our Team</a>
           </li>
 
           <li>
-            <a class="main-nav__link tx--title-3" href="connect.html" title="Contact Us">Contact Us</a>
+            <a class="main-nav__link tx--title-3" href="connect.php" title="Contact Us">Contact Us</a>
           </li>
 
           <!-- <li>
@@ -184,7 +191,7 @@
 
           <span>
             <li>
-              <a class="main-nav__link" href="developers.html" title="Developers">Core Developers</a>
+              <a class="main-nav__link" href="developers.php" title="Developers">Core Developers</a>
             </li>
             <!-- <li>
                 <a class="no-barba tx--caption" href="#" title="Site Credits" target="_blank">Link</a>
@@ -196,81 +203,109 @@
   </div>
 
   <main id="barba-wrapper" class="main">
-    <div class="barba-container" data-namespace="prism">
-      <div class="home-wrapper">
-        <div class="landing-brands js-brands">
+    <div class="barba-container js-scrollable-page project-list-page" data-namespace="no-prism">
+      <section class="project-list js-scrollable-page">
 
-          <div class="brand brand-1" data-brand="Think" data-js-item="1"
-            data-bg="assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-1.jpg"
-            data-bg-md="assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-1.jpg"
-            data-bg-lg="assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-1.jpg">
-            <h2 class="word-wrapper">
-              <span class="word tx--title-1">About</span>
-              <span class="icon x is--inactive"></span>
-            </h2>
-            <div class="word-intro">And Official Theme</div>
-            <div aria-hidden class="word-content tx--gray-blue-1">
-              <p class="tx--body-lead">
-                Celesta is the annual Techno-Management Fest of IIT Patna. To promote technical and managerial enthusiasm amongst young and bright minds of our nation and to provide a platform to transform their innovative ideas into a meaningful reality.
-                <iframe width="300" height="150" src="https://www.youtube.com/embed/0zq9wqsYZCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </p>
-            </div>
-          </div>
-
-          <div class="brand brand-2" data-brand="Design" data-js-item="2"
-            data-bg="assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-2.jpg"
-            data-bg-md="assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-2.jpg"
-            data-bg-lg="assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-2.jpg">
-            <h2 class="word-wrapper">
-              <span class="word tx--title-1">Register</span>
-              <span class="icon x is--inactive"></span>
-            </h2>
-            <div class="word-intro">And Events Registration</div>
-            <div aria-hidden class="word-content tx--gray-blue-1">
-              <p class="tx--body-lead">
-                Register for Celesta'19
-              </p>
-              <a href="./backend/user/register.php" target="_blank" class="btn btn--dark btn--hollow">Register</a>
-              <a href="./backend/user/login.php" target="_blank" class="btn btn--dark btn--hollow">Login</a>
-              <p>
-                <a href="./events.html" class="btn btn--dark btn--hollow">Register for events</a>
-              </p>
-            </div>
-          </div>
-
-          <div class="brand brand-3" data-brand="Brand" data-js-item="3"
-            data-bg="assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-3.jpg"
-            data-bg-md="assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-3.jpg"
-            data-bg-lg="assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-3.jpg">
-            <h2 class="word-wrapper">
-              <span class="word tx--title-1 caSpanStyle">CA Program</span>
-              <span class="icon x is--inactive"></span>
-            </h2>
-            <div class="word-intro"></div>
-            <div aria-hidden class="word-content tx--gray-blue-1">
-              <p class="tx--body-lead">
-                <a href="./ca/ca.php" target="_blank" class="btn btn--dark btn--hollow">Register for CA</a>
-              </p>
-              <a href="./backend/user/login.php" target="_blank" class="btn btn--dark btn--hollow">CA Login</a>
-            </div>
-          </div>
+        <div class="project-numbers tx--caption-2">
+          <span class="active-project">01</span> -
+          <span class="project-count">07</span>
         </div>
 
-        <div class="brands-bgs">
-          <div class="image poly-1"></div>
-        </div>
+      <div class="scrollable">
+    
+        <section class="alpha-events">
+          <div class="alpha-title">
+            <h2 style="text-align: center;">
+              <a class="project-link is--available is--active" data-js-index="1" href="./events/eventsdata.php?data=events"
+              target="_blank" atl="Hospitality">
+                Events
+              </a>
+            </h2>
+          </div>
 
-        <ul class="viewport-links">
-          <li class="left ">
-            <a href="sponsors.html" title="Our Sponsors" class="tx--caption">Our Sponsors</a>
-          </li>
+          <!--Events Starts Here-->
+          <div class="alpha-container">
 
-          <li class="right mobile-hide">
-            <a href="connect.html" title="Contact Us" class="tx--caption">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+            <article class="alpha-event">
+              <a class="project-link is--available" data-js-index="1" atl="Hospitality">
+                <div class="alpha-img-container">
+                  <img src="assets/images/events/events.jpg" alt="product-1" class="product-img">
+                  <p style="text-align: center;"><span style="font-size: 24px; text-decoration: underline;">Events:</span><br>
+                    <a href="./events/eventsdata.php?data=eventsall" target="_blank"> Open To All ➤</a>
+                    <br>
+                    <a href="./events/eventsdata.php?data=eventscollege" target="_blank"> College Events ➤</a>
+                    <br>
+                    <a href="./events/eventsdata.php?data=eventsschool" target="_blank"> School Events ➤</a>
+                  </p>
+                </div>
+              </a>
+            </article>
+
+            <article class="alpha-event">
+              <a class="project-link is--available" data-js-index="1" href="./events/eventsdata.php?data=ozone"
+                target="_blank" atl="Hospitality">
+                <div class="alpha-img-container">
+                  <img src="assets/images/events/ozone.jpg" alt="product-1" class="product-img">
+                  <h3>ozone</h3>
+                </div>
+              </a>
+            </article>
+
+            <!-- <article class="alpha-event">
+              <a class="project-link is--available" data-js-index="1" href="./events/eventsdata.php?data=schoolevents"
+                target="_blank" atl="Hospitality">
+                <div class="alpha-img-container">
+                  <img src="assets/images/events/schoolevents.jpg" alt="product-1" class="product-img">
+                  <h3>School Events</h3>
+                </div>
+              </a>
+            </article> -->
+
+            <article class="alpha-event">
+              <a class="project-link is--available" data-js-index="1" href="./events/eventsdata.php?data=workshops"
+                target="_blank" atl="Hospitality">
+                <div class="alpha-img-container">
+                  <img src="assets/images/events/workshops.jpg" alt="product-1" class="product-img">
+                  <h3>Workshops</h3>
+                </div>
+              </a>
+            </article>
+
+            <article class="alpha-event">
+              <a class="project-link is--available is--active" data-js-index="1" href="./events/eventsdata.php?data=guesttalks"
+                target="_blank" atl="Hospitality">
+                <div class="alpha-img-container">
+                  <img src="assets/images/events/guesttalks.jpg" alt="product-1" class="product-img">
+                  <h3>Guest Talks</h3>
+                </div>
+              </a>
+            </article>
+
+            <article class="alpha-event">
+              <a class="project-link is--available is--active" data-js-index="1" href="./events/eventsdata.php?data=pronites"
+                target="_blank" atl="Hospitality">
+                <div class="alpha-img-container">
+                  <img src="assets/images/events/pronite.jpg" alt="product-1" class="product-img">
+                  <h3>Pronite</h3>
+                </div>
+              </a>
+            </article>
+
+            <article class="alpha-event">
+              <a class="project-link is--available" data-js-index="1" href="./events/eventsdata.php?data=exhibitions"
+                target="_blank" atl="Hospitality">
+                <div class="alpha-img-container">
+                  <img src="assets/images/events/exhibitions.jpg" alt="product-1" class="product-img">
+                  <h3>Exhibitions</h3>
+                </div>
+              </a>
+            </article>
+
+          </div>
+        </section>
+
+          </div>
+      </section>
   </main>
 
   <div class="site-bg js-site-bg">
@@ -317,5 +352,4 @@
   <script src="_compiled/vendor.js" async></script>
   <script src="_compiled/app.js" async></script>
 </body>
-
 </html>
