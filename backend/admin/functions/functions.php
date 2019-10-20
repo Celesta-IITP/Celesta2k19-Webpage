@@ -339,11 +339,9 @@ function updatingUser(){
 	$amount_paid+=$total_charge;
 
 	// Book Accommodation
-	if(isset($_POST["book_accommodation"])){
-		echo "called";
+	if($accommodation_charge>0){
 		$name=$first_name." ".$last_name;
 		bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
-		echo "executed";
 	}
 
 	$update_user_events_registered=json_encode($update_user_events_registered);
@@ -753,8 +751,6 @@ function bookAppointment($celestaid,$gender,$name,$phone,$amount_paid,$email,$qr
 	$day3=1;
 
 	$sql="INSERT INTO accommodation(celestaid,names,phone,gender,booking_date,no_of_days,day1,day2,day3,amount_paid,email) VALUES('$celestaid','$name','$phone','$gender','$date',$no_of_days,$day1,$day2,$day3,$amount_paid,'$email')";
-	echo $sql;
-
 	$result=query($sql);
 	confirm($result);
 
