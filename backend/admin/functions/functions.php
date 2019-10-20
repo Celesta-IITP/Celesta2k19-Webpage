@@ -648,7 +648,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	//Default values
 	$price_tshirt=300;
 	$price_reg=100;
-	// $price_bandass=200;
+	$price_accommodation=500;
 	$price_both=400;
 
 	// Setting price
@@ -656,6 +656,8 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	$registration_charge=0;
 	// $bandpass_charge=0;
 	$tshirt_charge=0;
+	$accommodation_charge=0;
+
 	if(isset($_POST['registration_charge'])){
 		$total_charge=$total_charge+$price_reg;
 		$registration_charge=$price_reg;
@@ -673,6 +675,11 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		$college_stud=1;
 	}else{
 		$college_stud=0;
+	}
+
+	if(isset($_POST["accommodation_charge"])){
+		$total_charge=$total_charge+$price_accommodation;
+		$accommodation_charge=$price_accommodation;
 	}
 
 	// if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
@@ -711,11 +718,40 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 		update_referral_points($referral_id);
 
 		set_message("<p class='bg-success text-center'>Please check your email to get your qrcode and celesta id. You can login now with the celesta id and the password.<br><br><br>Your Celesta id is $celestaid<br>Amount to pay is Rs. $total_charge<br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
+		$name=$first_name." ".$last_name;
+		if(isset($_POST["accommodation_charge"])){
+			bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
+		}
+
 		return true;
 	}else{
 		return false;
 	}
 }
+
+function bookAppointment($celestaid,$gender,$name,$phone,$amount_paid,$email,$qrcode){
+	$date=escape(date('Y-m-d H:i:s'));
+	$no_of_days=3;
+	$day1=1;
+	$day2=1;
+	$day3=1;
+
+	$sql="INSERT INTO accommodation(celestaid,names,phone,gender,booking_date,no_of_days,day1,day2,day3,amount_paid) VALUES('$celestaid','$name','$phone','$gender','$date',$no_of_days,$day1,$day2,$day3,$amount_paid)";
+	echo $sql;
+
+	$result=query($sql);
+	confirm($result);
+
+	$message="<p> Hi $name, you have successfully booked your accommodation for $no_of_days.<br>
+	Amount paid for accommodation is : Rs. $amount_paid <br>
+	Your celestaid is:$celestaid<br>
+	<a href='$qrcode'><img src='$qrcode' alt='Your qr code should be shown here.' style='height:400px;width:400px'/></a>
+	</p>";
+	$subject="Celesta2k19 Accommodation Booking";
+	$headers="From: celesta19iitp@gmail.com";
+	send_email($email,$subject,$message,$headers);
+}
+
 
 function update_referral_points($referral_id){
 	if(!refrral_id_exist($referral_id)){
