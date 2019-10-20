@@ -560,24 +560,14 @@ function total_register(){
 		redirect("login.php");
 	}else{
 		//echo "Will shortly display the result";
-		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone FROM users WHERE registration_desk=1";
+		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone,tshirt_charge,registration_charge,accommodation_charge,amount_paid,events_charge FROM users WHERE registration_desk=1";
 		$result=query($sql);
 		$permit=getPermit();
 		$count=0;
 
 		while ($row = $result->fetch_assoc()) {
 			$count=$count+1;
-			if($permit==1){
-				echo "<tr>
-						<th scope='row'>".$count."</th>
-	      				<td>".$row['celestaid']."</td>
-	      				<td>".$row['date']."</td>
-	      				<td>".$row['first_name']." ".$row['last_name']."</td>
-	      				<td>".$row['college']."</td>
-	      				<td> Not Authorized</td>
-	      				<td>".$row['qrcode']."</td>
-	    			</tr>";
-    		}elseif($permit==2 || $permit==0){
+			if($permit==2 || $permit==0){
     			echo "<tr>
 						<th scope='row'>".$count."</th>
 	      				<td>".$row['celestaid']."</td>
@@ -585,7 +575,11 @@ function total_register(){
 	      				<td>".$row['first_name']." ".$row['last_name']."</td>
 	      				<td>".$row['college']."</td>
 	      				<td>".$row['phone']."</td>
-	      				<td>".$row['qrcode']."</td>
+						<td>".$row['tshirt_charge']."</td>
+						<td>".$row['accommodation_charge']."</td>
+						<td>".$row['registration_charge']."</td>
+						<td>".$row['events_charge']."</td>
+						<td>".$row['amount_paid']."</td>
 	    			</tr>";
     		}
 		}

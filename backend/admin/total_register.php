@@ -12,12 +12,16 @@
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col">Celesta ID</th>
+				<th scope="col">CelestaID</th>
 				<th scope="col">Date</th>
 				<th scope="col">Name</th>
 			 	<th scope="col">School/College</th>
 			 	<th scope="col">Phone</th>
-				<th scope="col">QR Code</th>
+				<th scope="col">T-Shirt</th>
+				<th scope="col">Accommodation</th>
+				<th scope="col">Registration</th>
+				<th scope="col">Events</th>
+				<th scope="col">Total</th>
 			</tr>
 		</thead>
 		<tbody>
