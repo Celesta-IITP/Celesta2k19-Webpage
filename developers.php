@@ -1,3 +1,13 @@
+<?php 
+    include("./backend/user/functions/init.php");
+    $loggedIn = logged_in();
+    $celestaid=""; $access_token="";
+    if(logged_in()){
+      $celestaid = $_SESSION['celestaid'];
+      $access_token=$_SESSION['access_token'];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="is-loading">
 
@@ -31,7 +41,7 @@
     <title>Celesta'19</title>
     <meta name='description'
         content='We are a passionate group of creative professionals who work across conceptional design, interior design, and architectural design.' />
-    <link rel='canonical' href='sponsors.html' />
+    <link rel='canonical' href='sponsors.php' />
     <meta property='og:locale' content='en_us' />
     <!-- / Sprout SEO Craft CMS plugin -->
 
@@ -77,7 +87,7 @@
         </div>
 
         <span class="logo-wrapper js-logo">
-            <a href="index.html" class="c-logo">
+            <a href="./" class="c-logo">
                 <svg class="c-logo__svg" width="48" height="41" viewBox="0 0 48 41" fill="none"
                     xmlns="http://www.w3.org/2000/svg"></svg>
                 <img src="logo.png" style="width: 100px; position: relative; transform: translateY(-3px)">
@@ -92,7 +102,7 @@
             </div>
         </span>
 
-        <a href="./events.html" class="projects-btn o-media__icon tx--gray-light">
+        <a href="./events.php" class="projects-btn o-media__icon tx--gray-light">
             <span class="tx--caption">Events</span>
             <svg class="icon icon-projects" width="19" height="18" fill="none">
                 <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" transform="translate(0 6)" />
@@ -111,16 +121,21 @@
             <nav class="main-nav">
                 <ul>
                     <li>
-                        <a class="main-nav__link tx--title-3 first" href="index.html" title="Home">Home</a>
+                        <a class="main-nav__link tx--title-3 first" href="./" title="Home">Home</a>
                     </li>
 
-                    <li>
-                        <a class="main-nav__link tx--title-3" href="./backend/user/register.php" target="_blank" title="Register">Register</a>
-                      </li>
-
-                      <li>
-                        <a class="main-nav__link tx--title-3" href="./backend/user/login.php" target="_blank" title="Register">Login</a>
-                      </li>
+                    <?php if(!$loggedIn) { ?>
+                        <li>
+                            <a class="main-nav__link tx--title-3" href="./backend/user/register.php" target="_blank" title="Register">Register</a>
+                        </li>
+                        <li>
+                            <a class="main-nav__link tx--title-3" href="./backend/user/login.php" target="_blank" title="Login">Login</a>
+                        </li>
+                    <?php } else { ?>
+                        <li>
+                            <a class="main-nav__link tx--title-3" href="./backend/user/profile.php" target="_blank" title="Profile">Profile</a>
+                        </li>
+                    <?php } ?>
 
                     <li>
                         <a class="main-nav__link tx--title-3" href="./ca/ca.php" target="_blank" title="Gallery">Campus
@@ -128,11 +143,11 @@
                     </li>
 
                     <li>
-                        <a class="main-nav__link tx--title-3" href="events.html" title="Events.html">Events</a>
+                        <a class="main-nav__link tx--title-3" href="events.php" title="Events">Events</a>
                     </li>
 
                     <li>
-                        <a class="main-nav__link tx--title-3" href="sponsors.html" title="Our Sponsors">Our Sponsors</a>
+                        <a class="main-nav__link tx--title-3" href="sponsors.php" title="Our Sponsors">Our Sponsors</a>
                     </li>
 
                     <li>
@@ -141,11 +156,11 @@
                     </li>
 
                     <li>
-                        <a class="main-nav__link tx--title-3 active" href="team.html" title="Our Team">Our Team</a>
+                        <a class="main-nav__link tx--title-3 active" href="team.php" title="Our Team">Our Team</a>
                     </li>
 
                     <li>
-                        <a class="main-nav__link tx--title-3" href="connect.html" title="Contact Us">Contact Us</a>
+                        <a class="main-nav__link tx--title-3" href="connect.php" title="Contact Us">Contact Us</a>
                     </li>
 
                     <!-- <li>
@@ -188,7 +203,7 @@
 
                     <span>
                         <li>
-                          <a class="main-nav__link" href="developers.html" title="Developers">Core Developers</a>
+                          <a class="main-nav__link" href="developers.php" title="Developers">Core Developers</a>
                         </li>
                         <!-- <li>
                             <a class="no-barba tx--caption" href="#" title="Site Credits" target="_blank">Link</a>
@@ -209,7 +224,7 @@
                     <a href="./backend/user/register.php" target="_blank" title="Register" class="tx--caption">Register</a>
                 </li>
                 <li class="right ">
-                    <a href="connect.html" title="Contact Us" class="tx--caption">Contact Us</a>
+                    <a href="connect.php" title="Contact Us" class="tx--caption">Contact Us</a>
                 </li>
             </ul>
 
