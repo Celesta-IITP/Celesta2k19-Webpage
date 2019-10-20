@@ -88,8 +88,8 @@
 													echo "checked";} ?> >
 												<span> Male </span> 
 											</label>
-											<label class="checkbox inline"> 
-												<input type="checkbox" name="gender" value="f" <?php if($user['gender']=='f'){
+											<label class="radio inline"> 
+												<input type="radio" name="gender" value="f" <?php if($user['gender']=='f'){
 													echo "checked";}?> >
 												<span>Female </span> 
 											</label>
