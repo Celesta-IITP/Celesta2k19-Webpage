@@ -68,7 +68,7 @@
   background-position: center;
   background-size: cover;
   padding: 100px 0 90px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .speaker-block {
