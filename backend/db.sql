@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 19, 2019 at 01:19 PM
+-- Generation Time: Oct 20, 2019 at 08:52 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.7
 
@@ -33,15 +33,16 @@ CREATE TABLE `accommodation` (
   `no_of_days` int(11) NOT NULL,
   `day1` tinyint(1) NOT NULL DEFAULT '0',
   `day2` tinyint(1) NOT NULL DEFAULT '0',
-  `day3` tinyint(1) NOT NULL DEFAULT '0'
+  `day3` tinyint(1) NOT NULL DEFAULT '0',
+  `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `accommodation`
 --
 
-INSERT INTO `accommodation` (`id`, `celestaid`, `names`, `phone`, `amount_paid`, `gender`, `booking_date`, `checkin`, `checkout`, `no_of_days`, `day1`, `day2`, `day3`) VALUES
-(4, 'CLST1504', 'Amartya Mondal', '8967570983', 0, 'f', '2019-10-19 13:17:23', NULL, NULL, 1, 1, 0, 0);
+INSERT INTO `accommodation` (`id`, `celestaid`, `names`, `phone`, `amount_paid`, `gender`, `booking_date`, `checkin`, `checkout`, `no_of_days`, `day1`, `day2`, `day3`, `email`) VALUES
+(4, 'CLST2057', 'Amartya Mondal', '8967570983', 500, 'm', '2019-10-20 08:43:21', NULL, NULL, 3, 1, 1, 1, 'dscappsocietyiitp@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,7 @@ INSERT INTO `admins` (`id`, `permit`, `email`, `first_name`, `second_name`, `pos
 (5, 4, 'event@atm1504.in', 'Amartya', 'Mondal', 'Event Organisers', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e', NULL),
 (1, 0, 'me@atm1504.in', 'Atreyee', 'Mukherjee', 'Super Admin', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e', 'bf4059d977e15f7628d7dbb106944ec1'),
 (4, 3, 'mpr@atm1504.in', 'MPR', 'People', 'MPR', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e', NULL),
-(3, 2, 'reg_cord@atm1504.in', 'Amartya', 'Mondal', 'Registration Coordinator', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e', NULL),
+(3, 2, 'reg@atm1504.in', 'Amartya', 'Mondal', 'Registration Coordinator', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e', NULL),
 (2, 1, 'reg_sub_cord@atm1504.in', 'Amartya', 'Mondal', 'Registration-Sub Coordinator', '8967570983', '21b8acfc474802e2e0bd25a85f5e924e', NULL);
 
 -- --------------------------------------------------------
@@ -102,7 +103,7 @@ CREATE TABLE `ca_users` (
 --
 
 INSERT INTO `ca_users` (`id`, `email`, `first_name`, `last_name`, `password`, `validation_code`, `active`, `phone`, `college`, `celestaid`, `qrcode`, `date`, `gender`, `gravitons`, `candidates`, `excitons`) VALUES
-(2, 'hayyoulistentome@gmail.com', 'Amartya', 'Mondal', '21b8acfc474802e2e0bd25a85f5e924e', '6378e0140437eae0cea61070f8b9303d', 1, '8967570983', 'IIT Patna', 'CLST1504', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5652.png', '2019-08-24 13:06:35', 'm', 30, NULL, 30),
+(2, 'hayyoulistentome@gmail.com', 'Amartya', 'Mondal', '21b8acfc474802e2e0bd25a85f5e924e', '6378e0140437eae0cea61070f8b9303d', 1, '8967570983', 'IIT Patna', 'CLST1504', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5652.png', '2019-08-24 13:06:35', 'm', 30, NULL, 100),
 (3, '8967570983@gmail.com', 'Amartya', 'Mondal', '21b8acfc474802e2e0bd25a85f5e924e', '13bff630177d1e119024ea72339203b6', 1, '8967570983', 'IIT Patna', 'CLST5523', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5523.png', '2019-09-01 13:17:06', 'm', 20, NULL, 70),
 (4, 'dscappsocietyiitp@gmail.com', 'Amartya', 'Mondal', '21b8acfc474802e2e0bd25a85f5e924e', '4d0cee4a483a3798eef834d34dbf84f2', 0, '8967570983', 'IIT Patna', 'CLST8629', 'https://celesta.org.in/backend/user/assets/qrcodes/CLST1416.png', '2019-10-07 06:28:46', 'm', 0, NULL, 50);
 
@@ -186,6 +187,7 @@ CREATE TABLE `users` (
   `registration_charge` float NOT NULL DEFAULT '0',
   `tshirt_charge` float NOT NULL DEFAULT '0',
   `events_charge` float NOT NULL DEFAULT '0',
+  `accommodation_charge` float NOT NULL DEFAULT '0',
   `total_charge` float NOT NULL DEFAULT '0',
   `amount_paid` float NOT NULL DEFAULT '0',
   `checkin_checkout` json DEFAULT NULL,
@@ -196,20 +198,20 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `validation_code`, `active`, `registration_desk`, `phone`, `college`, `celestaid`, `qrcode`, `added_by`, `ca_referral`, `date`, `events_registered`, `events_participated`, `gender`, `referral_id`, `access_token`, `registration_charge`, `tshirt_charge`, `events_charge`, `total_charge`, `amount_paid`, `checkin_checkout`, `iit_patna`) VALUES
-(112, 'Amartya', 'Mondal', 'technicalskills17@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', '0', 1, 1, '8967570983', 'IIT Patna', 'CLST1505', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5847.png', 'admin', NULL, '2019-08-24 13:59:10', '[{\"ev_id\": \"ATM9933\", \"amount\": \"110.5\", \"ev_name\": \"Robowars\", \"cap_name\": \"Amartya Mondal\", \"team_name\": \"atm\"}]', NULL, 'm', 'CLST1504', 'e34b065ada0626aac4d93b355361a865', 0, 0, 2451.5, 0, 2351.5, NULL, 1),
-(117, 'Amartya', 'Mondal', 'hayyoulistentome@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', 'b203900e765c2c25287dd6d8ba3ddced', 1, 1, '8967570983', 'IIT Patna', 'CLST1504', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST4210.png', 'admin', 'CLST1504', '2019-08-27 19:55:21', '[{\"ev_id\": \"ATM9933\", \"amount\": \"110.5\", \"ev_name\": \"Robowars\", \"cap_name\": \"Amartya Mondal\", \"team_name\": \"atm\"}]', NULL, 'f', 'CLST1504', '2adb8f6388c9aedf545b68743a48ea1f', 100, 900, 1346, 0, 2346, NULL, 1),
-(118, 'Amartya', 'Mondal', 'me@atm1504.in', '21b8acfc474802e2e0bd25a85f5e924e', 'c0cdfc5b3e8d40f2f9d6836b982785ba', 1, 0, '8967570983', 'IIT Patna', 'CLST9148', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST9148.png', 'admin', 'CLST1504', '2019-08-31 21:30:42', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, NULL, 0),
-(119, 'Amartya', 'Mondal', 'she@atm1504.in', '4297f44b13955235245b2497399d7a93', 'c7d0bd062af8e70e7d105788eba471ed', 0, 0, '8967570983', 'IIT Patna', 'CLST6586', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST6586.png', 'admin', 'CLST1504', '2019-08-31 21:32:59', NULL, NULL, 'f', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, NULL, 0),
-(120, 'Amartya', 'Mondal', '8967570983@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', '13bff630177d1e119024ea72339203b6', 1, 0, '8967570983', 'IIT Patna', 'CLST5523', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5523.png', 'admin', NULL, '2019-09-01 13:17:06', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, NULL, 0),
-(123, 'Ar', 'M', 'hayyoulistentome1@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 0, '8967570983', 'IIT Patna', 'CLST5262', 'http://localhost:8888/Celesta2k19-Webpage/assets/qrcodes/CLST5262.png', '', NULL, '2019-09-13 10:06:17', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, NULL, 0),
-(124, 'Ar', 'M', 'ewewf@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 0, '8967570983', 'IIT Patna', 'CLST5229', 'http://localhost:8888/Celesta2k19-Webpage/assets/qrcodes/CLST5229.png', '', NULL, '2019-09-13 10:10:28', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, NULL, 0),
-(125, 'Arwewe', 'M', 'wqdee@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 0, '8967570983', 'IIT Patna', 'CLST3396', 'http://localhost:8888/Celesta2k19-Webpage/assets/qrcodes/CLST3396.png', '', NULL, '2019-09-13 10:17:55', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, NULL, 0),
-(126, 'Ar', 'M', 'eweswf@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 0, '8967570983', 'IIT Patna', 'CLST1001', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST1001.png', '', NULL, '2019-09-13 10:19:45', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, NULL, 0),
-(127, 'Arwewe', 'Mqwer', 'technicalskills18@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', 'dab5d4e07fc8fd116fb04fc94c1288ce', 1, 0, '8967570983', 'IIT Patna', 'CLST5830', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5830.png', 'admin', 'CLST1504', '2019-09-13 10:24:51', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, NULL, 0),
-(128, 'Amartya', 'Mondal', 'hayyoulistentome123@gmail.com', '25d55ad283aa400af464c76d713c07ad', '4892feb0deaf9417cb1feb44a785616d', 0, 0, '8967570983', 'IIT Patna', 'CLST7451', 'https://celesta.org.in/backend/user/assets/qrcodes/CLST7451.png', 'admin', 'CLST1504', '2019-10-02 07:14:06', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, NULL, 0),
-(135, 'Amartya', 'Mondal', 'me123@atm1504.in', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 1, '8967570983', 'IIT Patna', 'CLST7331', 'https://celesta.org.in//backend/user/assets/qrcodes/CLST7331.png', '', NULL, '2019-10-10 19:17:11', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 100, 600, 0, 300, 700, NULL, 0),
-(137, 'Amartya', 'Mondal', 'dscappsocietyiitp@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 1, '8967570983', 'IIT Patna', 'CLST6283', 'https://celesta.org.in//backend/user/assets/qrcodes/CLST6283.png', 'me@atm1504.in', NULL, '2019-10-10 22:47:17', '[{\"ev_id\": \"ATM9933\", \"amount\": \"110.5\", \"ev_name\": \"Robowars\", \"cap_name\": \"Amartya Mondal\", \"team_name\": \"atm\"}]', NULL, 'm', 'CLST1504', '0bb5d6366bc24d4565517269353cb15f', 100, 0, 321, 110.5, 321, NULL, 0);
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `validation_code`, `active`, `registration_desk`, `phone`, `college`, `celestaid`, `qrcode`, `added_by`, `ca_referral`, `date`, `events_registered`, `events_participated`, `gender`, `referral_id`, `access_token`, `registration_charge`, `tshirt_charge`, `events_charge`, `accommodation_charge`, `total_charge`, `amount_paid`, `checkin_checkout`, `iit_patna`) VALUES
+(112, 'Amartya', 'Mondal', 'technicalskills17@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', '0', 1, 1, '8967570983', 'IIT Patna', 'CLST1505', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5847.png', 'admin', NULL, '2019-08-24 13:59:10', '[{\"ev_id\": \"ATM9933\", \"amount\": \"110.5\", \"ev_name\": \"Robowars\", \"cap_name\": \"Amartya Mondal\", \"team_name\": \"atm\"}]', NULL, 'm', 'CLST1504', 'e34b065ada0626aac4d93b355361a865', 0, 0, 2451.5, 0, 0, 2351.5, NULL, 1),
+(117, 'Amartya', 'Mondal', 'hayyoulistentome@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', 'b203900e765c2c25287dd6d8ba3ddced', 1, 1, '8967570983', 'IIT Patna', 'CLST1504', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST4210.png', 'admin', 'CLST1504', '2019-08-27 19:55:21', '[{\"ev_id\": \"ATM9933\", \"amount\": \"110.5\", \"ev_name\": \"Robowars\", \"cap_name\": \"Amartya Mondal\", \"team_name\": \"atm\"}]', NULL, 'f', 'CLST1504', '2adb8f6388c9aedf545b68743a48ea1f', 100, 900, 1346, 0, 0, 2346, NULL, 1),
+(118, 'Amartya', 'Mondal', 'me@atm1504.in', '21b8acfc474802e2e0bd25a85f5e924e', 'c0cdfc5b3e8d40f2f9d6836b982785ba', 1, 0, '8967570983', 'IIT Patna', 'CLST9148', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST9148.png', 'admin', 'CLST1504', '2019-08-31 21:30:42', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, 0, NULL, 0),
+(119, 'Amartya', 'Mondal', 'she@atm1504.in', '4297f44b13955235245b2497399d7a93', 'c7d0bd062af8e70e7d105788eba471ed', 0, 0, '8967570983', 'IIT Patna', 'CLST6586', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST6586.png', 'admin', 'CLST1504', '2019-08-31 21:32:59', NULL, NULL, 'f', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, 0, NULL, 0),
+(120, 'Amartya', 'Mondal', '8967570983@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', '13bff630177d1e119024ea72339203b6', 1, 0, '8967570983', 'IIT Patna', 'CLST5523', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5523.png', 'admin', NULL, '2019-09-01 13:17:06', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, 0, NULL, 0),
+(123, 'Ar', 'M', 'hayyoulistentome1@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 0, '8967570983', 'IIT Patna', 'CLST5262', 'http://localhost:8888/Celesta2k19-Webpage/assets/qrcodes/CLST5262.png', '', NULL, '2019-09-13 10:06:17', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, 0, NULL, 0),
+(124, 'Ar', 'M', 'ewewf@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 0, '8967570983', 'IIT Patna', 'CLST5229', 'http://localhost:8888/Celesta2k19-Webpage/assets/qrcodes/CLST5229.png', '', NULL, '2019-09-13 10:10:28', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, 0, NULL, 0),
+(125, 'Arwewe', 'M', 'wqdee@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 0, '8967570983', 'IIT Patna', 'CLST3396', 'http://localhost:8888/Celesta2k19-Webpage/assets/qrcodes/CLST3396.png', '', NULL, '2019-09-13 10:17:55', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, 0, NULL, 0),
+(126, 'Ar', 'M', 'eweswf@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 0, '8967570983', 'IIT Patna', 'CLST1001', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST1001.png', '', NULL, '2019-09-13 10:19:45', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, 0, NULL, 0),
+(127, 'Arwewe', 'Mqwer', 'technicalskills18@gmail.com', '21b8acfc474802e2e0bd25a85f5e924e', 'dab5d4e07fc8fd116fb04fc94c1288ce', 1, 0, '8967570983', 'IIT Patna', 'CLST5830', 'http://localhost:8888/Celesta2k19-Webpage/backend/user/assets/qrcodes/CLST5830.png', 'admin', 'CLST1504', '2019-09-13 10:24:51', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, 0, NULL, 0),
+(128, 'Amartya', 'Mondal', 'hayyoulistentome123@gmail.com', '25d55ad283aa400af464c76d713c07ad', '4892feb0deaf9417cb1feb44a785616d', 0, 0, '8967570983', 'IIT Patna', 'CLST7451', 'https://celesta.org.in/backend/user/assets/qrcodes/CLST7451.png', 'admin', 'CLST1504', '2019-10-02 07:14:06', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 0, 0, 0, 0, 0, 0, NULL, 0),
+(135, 'Amartya', 'Mondal', 'me123@atm1504.in', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 1, '8967570983', 'IIT Patna', 'CLST7331', 'https://celesta.org.in//backend/user/assets/qrcodes/CLST7331.png', '', NULL, '2019-10-10 19:17:11', NULL, NULL, 'm', 'CLST1504', '584a0966c8a2bb57e78f3d8164e2a384', 100, 600, 0, 0, 300, 700, NULL, 0),
+(144, 'Amartya', 'Mondal', 'dscappsocietyiitp@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', '0', 1, 1, '8967570983', '3eer', 'CLST2057', 'https://celesta.org.in//backend/user/assets/qrcodes/CLST2057.png', 'me@atm1504.in', NULL, '2019-10-20 08:43:21', '[]', NULL, 'm', 'CLST1504', NULL, 100, 0, 0, 500, 0, 600, NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -261,7 +263,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accommodation`
 --
 ALTER TABLE `accommodation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `admins`
@@ -285,4 +287,4 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
