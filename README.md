@@ -53,7 +53,7 @@ Response:
 
 ### Book Accommodation
 
-Link: https://celesta.org.in/backend/user/functions/rbook_accommodation.php
+Link: https://celesta.org.in/backend/user/functions/book_accommodation.php
 
 Method: POST
 
