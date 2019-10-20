@@ -23,7 +23,9 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">Category</label>
         <select class="form-control" id="event_category" name="event_category" required>
-        <option>Events</option>
+        <option>Eventsall</option>
+        <option>Eventscollege</option>
+        <option>Eventsschool</option>
         <option>Ozone</option>
         <option>Schoolevents</option>
         <option>Workshops</option>
