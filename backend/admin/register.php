@@ -88,8 +88,8 @@
 													echo "checked";} ?> >
 												<span> Male </span> 
 											</label>
-											<label class="checkbox inline"> 
-												<input type="checkbox" name="gender" value="f" <?php if($user['gender']=='f'){
+											<label class="radio inline"> 
+												<input type="radio" name="gender" value="f" <?php if($user['gender']=='f'){
 													echo "checked";}?> >
 												<span>Female </span> 
 											</label>
@@ -169,6 +169,16 @@
 											</div>
 										</div>
 									</div>
+									<div class="form-group row">
+										<div class="col-sm-10">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" id="accommodation_charge" name='accommodation_charge'>
+												<label class="form-check-label" for="accommodation_charge">
+													Accommodation Charge (Rs 500)
+												</label>
+											</div>
+										</div>
+									</div>  
 									<input type="hidden" name="validate_user" id="validate_user" value="validate_user">
 									<input type="submit" class="btnRegister"  value="Validate User"/>
 								</div>
