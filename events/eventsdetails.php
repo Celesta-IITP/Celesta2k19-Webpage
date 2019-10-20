@@ -73,9 +73,9 @@ foreach ($data as $d) {
       <i class="menu_close fa fa-times fa-lg"></i>
     </span>
     <ul class="menu_items">
-      <li><a href="../index.html"><i class="icon fa fa-home fa-2x"></i> Home</a></li>
-      <li><a href="../events.html"><i class="icon fa fa-heart fa-2x"></i> Events</a></li>
-      <li><a href="../team.html"><i class="icon fa fa-users fa-2x"></i> Team</a></li>
+      <li><a href="../index.php"><i class="icon fa fa-home fa-2x"></i> Home</a></li>
+      <li><a href="../events.php"><i class="icon fa fa-heart fa-2x"></i> Events</a></li>
+      <li><a href="../team.php"><i class="icon fa fa-users fa-2x"></i> Team</a></li>
     </ul>
     <main class="content">
       <div class="content_inner">
