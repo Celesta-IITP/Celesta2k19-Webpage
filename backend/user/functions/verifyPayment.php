@@ -17,11 +17,11 @@
 
             if($user_data==false || $user_data["access_token"]!=$access_token){
                 $response['status']=401;
-                $message[]="Unauthorized access";
+                $message[]="Unauthorized access.";
             }else{
                 if($ev_data==false){
                     $response['status']=204;
-                    $message[]="Event not found";
+                    $message[]="Event not found.";
                 }else{
                     if($order_status=="Success" && $atm="love_u_atm"){
                         if($ev_data["is_team_event"]==0){
@@ -35,22 +35,24 @@
                         }
 
                     }elseif($order_status=="Aborted" && $atm="atm_abort_ho_gaya_payment"){
-                        $message[]="Payment failed";
+                        $message[]="Payment failed.";
                         $response["status"]=400;
 
                     }elseif($order_status="Failure" && $atm="atm_fail_ho_gaya_payment"){
-                        $message[]="Payment failed";
+                        $message[]="Payment failed.";
                         $response["status"]=400;
 
                     }else{
-                        $message[]="Payment failed";
+                        $message[]="Payment failed.";
                         $response["status"]=400;
                     }
                 }
             }
             $response['message']=$message;
-            header("Location: ../profile.php");
-            echo json_encode($response);
+            $message=implode(' ', $message);
+            $status=$response['status'];
+            redirect("./../profile.php?status=$status&msg=$message");
+            // echo json_encode($response);
         }
     }
 

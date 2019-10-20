@@ -62,9 +62,9 @@ function getEventAmount($ev_id)
             <i class="menu_close fa fa-times fa-lg"></i>
         </span>
         <ul class="menu_items">
-            <li><a href="./../../index.html"><i class="icon fa fa-home fa-2x"></i> Home</a></li>
-            <li><a href="./../../events.html"><i class="icon fa fa-heart fa-2x"></i> Events</a></li>
-            <li><a href="./../../team.html"><i class="icon fa fa-users fa-2x"></i> Team</a></li>
+            <li><a href="./../../index.php"><i class="icon fa fa-home fa-2x"></i> Home</a></li>
+            <li><a href="./../../events.php"><i class="icon fa fa-heart fa-2x"></i> Events</a></li>
+            <li><a href="./../../team.php"><i class="icon fa fa-users fa-2x"></i> Team</a></li>
         </ul>
         <main class="content">
             <div class="content_inner">
@@ -232,6 +232,22 @@ function getEventAmount($ev_id)
             <div class="toast fade show" style="z-index: 999">
                 <div class="toast-header bg-danger">
                     <strong class="mr-auto"><i class="fa fa-globe"></i> Error</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                </div>
+                <div class="toast-body"><?php echo $_GET['msg'];?></div>
+            </div>
+        <?php } elseif($_GET['status']==204) { ?>
+            <div class="toast fade show" style="z-index: 999">
+                <div class="toast-header bg-danger">
+                    <strong class="mr-auto"><i class="fa fa-globe"></i> Not Found</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                </div>
+                <div class="toast-body"><?php echo $_GET['msg'];?></div>
+            </div>
+        <?php } elseif($_GET['status']==401) { ?>
+            <div class="toast fade show" style="z-index: 999">
+                <div class="toast-header bg-danger">
+                    <strong class="mr-auto"><i class="fa fa-globe"></i> Unauthorized</strong>
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
                 </div>
                 <div class="toast-body"><?php echo $_GET['msg'];?></div>
