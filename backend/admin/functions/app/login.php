@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $db_pass=$row['password'];
 
         if($db_pass!=$password){
-            $response['status']="401";
+            $response['status']=401;
             $message[]="Password you entered is incorrect. Try again.";
         }else{
             $access_token=md5($email.$password);

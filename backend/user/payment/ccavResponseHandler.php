@@ -39,8 +39,7 @@
 
 	}
 
-	$base_url = "https://payment.celesta.org.in/backend/user/functions/verifyPayment.php?celestaid=$celestaid&ev_amount=$ev_amount&ev_id=$ev_id&access_token=$access_token";
-	// $base_url = "http://localhost/celesta2k19-webpage/backend/user/functions/verifyPayment.php?celestaid=$celestaid&ev_amount=$ev_amount&ev_id=$ev_id&access_token=$access_token";
+	$base_url = "https://celesta.org.in/backend/user/functions/verifyPayment.php?celestaid=$celestaid&ev_amount=$ev_amount&ev_id=$ev_id&access_token=$access_token";
 
 	if($order_status==="Success")
 	{
@@ -86,5 +85,4 @@
 
 	echo "</table><br>";
 	echo "</center>";
-	
 ?>
