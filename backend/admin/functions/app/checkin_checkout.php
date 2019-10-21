@@ -91,8 +91,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         }
 
     }
-
- 
     $response['message']=$message;
     $response['action']=$action;
     echo json_encode($response);
