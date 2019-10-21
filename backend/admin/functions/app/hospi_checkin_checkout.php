@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }else{
         if($permit==0 || $permit==2 || $permit==5){
 
-            $sql="SELECT checkin_checkout, registration_desk FROM users WHERE celestaid='$celestaid' and active=1";
+            $sql="SELECT registration_desk, accommodation_charge FROM users WHERE celestaid='$celestaid' and active=1";
             $result=query($sql);
 
             if(row_count($result)==1){
@@ -32,8 +32,21 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 if($registration_desk!=1){
                     $response['status']='203';
                     $message[]="Account has not been verified at registration desk.";
-                }else{
-                    $checkin_checkout=json_decode($row['checkin_checkout']);
+                }elseif($row['accommodation_charge']==0){
+                    $sql5="SELECT id, amount_paid from accommodation where celestaid='$celestaid'";
+                    $result5=query($sql5);
+                    if(row_count($result5)==1){
+                        $response['status']='204';
+                        $message[]="User has not payed accommodation fee. Please pay first.";
+                    }else{
+                        $response['status']='204';
+                        $message[]="User has not booked accommodation.";
+                    }
+                }
+                else{
+                    $sql1="SELECT checkin_checkout from accommodation where celestaid='$celestaid'";
+                    $row1=query($sql1);
+                    $checkin_checkout=json_decode($row1['checkin_checkout']);
                     if(!empty($checkin_checkout)){
                         $reverse_data=$checkin_checkout;
                         $last_row=end($reverse_data);
@@ -45,7 +58,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                             $checkin_checkout[]=$toadd;
                             
                             $checkin_checkout=json_encode($checkin_checkout);
-                            $sql2="UPDATE users SET checkin_checkout='$checkin_checkout' WHERE celestaid='$celestaid'";
+                            $sql2="UPDATE accommodation SET checkin_checkout='$checkin_checkout' WHERE celestaid='$celestaid'";
                             $result2=query($sql2);
                             $response['status']='200';
                             $message[]="Successfully checked out.";
@@ -57,7 +70,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                             $toadd[]=$date_time;
                             $checkin_checkout[]=$toadd;
                             $checkin_checkout=json_encode($checkin_checkout);
-                            $sql3="UPDATE users SET checkin_checkout='$checkin_checkout' WHERE celestaid='$celestaid'";
+                            $sql3="UPDATE accommodation SET checkin_checkout='$checkin_checkout' WHERE celestaid='$celestaid'";
                             $result3=query($sql3);
                             // confirm($result1);
                             $response['status']='200';
@@ -71,7 +84,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         $toadd[]=$date_time;
                         $checkin_checkout[]=$toadd;
                         $checkin_checkout=json_encode($checkin_checkout);
-                        $sql1="UPDATE users SET checkin_checkout='$checkin_checkout' WHERE celestaid='$celestaid'";
+                        $sql1="UPDATE accommodation SET checkin_checkout='$checkin_checkout' WHERE celestaid='$celestaid'";
                         $result1=query($sql1);
                         $response['status']='200';
                         $message[]="Successfully checked in.";
@@ -89,9 +102,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $response['status']='401';
             $message[]="Admin unauthorized to perform this action.";
         }
-
     }
-
  
     $response['message']=$message;
     $response['action']=$action;
