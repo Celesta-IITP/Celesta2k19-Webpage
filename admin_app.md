@@ -19,7 +19,8 @@
 #### URL: checkin_checkout.php
 #### REQUEST_METHOD: POST
 #### Parameters:
-* access_token
+* access_token (of admins)
+* permit (of admins)
 * celestaid
 * date_time
 #### Response:
