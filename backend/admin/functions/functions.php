@@ -1075,6 +1075,7 @@ function updateEvent(){
 				$poster_url ="https://celesta.org.in/backend/admin".substr($target_poster_file, 1);
 				$sql1= "UPDATE events SET ev_poster_url='$poster_url'  WHERE ev_id='$eventid'";
 				$result1=query($sql1);
+				confirm($result1);
 			}
 		}
 
@@ -1082,10 +1083,11 @@ function updateEvent(){
 			$target_rulebook = "./events/rulebook/";
 			
 			$target_rulebook_file=$target_rulebook."$eventid"."_"."$event_name".".pdf";
-			if(move_uploaded_file($_FILES["event_poster"]["tmp_name"],$target_rulebook_file)){
+			if(move_uploaded_file($_FILES["event_rulebook"]["tmp_name"],$target_rulebook_file)){
 				$rulebook_url ="https://celesta.org.in/backend/admin".substr($target_rulebook_file, 1);
 				$sql1= "UPDATE events SET ev_rule_book_url='$rulebook_url'  WHERE ev_id='$eventid'";
 				$result1=query($sql1);
+				confirm($result1);
 			}
 		}
 		set_message("<p class='bg-success text-center'>Successfully updated the event.<br> Event ID: $eventid</p>");
