@@ -918,21 +918,21 @@ function addEvent(){
 	}
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-		$event_name=clean($_POST["event_name"]);
-		$event_category=clean($_POST["event_category"]);
-		$event_organizer = clean($_POST["event_organizer"]);
-		$ev_club = clean($_POST["ev_club"]);
+		$event_name=escape($_POST["event_name"]);
+		$event_category=escape($_POST["event_category"]);
+		$event_organizer = escape($_POST["event_organizer"]);
+		$ev_club = escape($_POST["ev_club"]);
 		$event_desc = escape($_POST["event_desc"]);
-		$event_date = clean($_POST["event_date"]);
-		$event_start_time = clean($_POST["event_start_time"]);
-		$event_end_time = clean($_POST["event_end_time"]);
-		$event_org_phone = clean($_POST["event_org_phone"]);
-		$ev_amount= clean($_POST['event_amount']);
-		$ev_venue=clean($_POST['event_venue']);
-		$team_event=clean($_POST["team_event"]);
-		$map_url=clean($_POST["map_url"]);
-		$team_members=clean($_POST["team_members"]);
-		$ev_prize=escape($_POST['ev_prize']);
+		$event_date = escape($_POST["event_date"]);
+		$event_start_time = escape($_POST["event_start_time"]);
+		$event_end_time = escape($_POST["event_end_time"]);
+		$event_org_phone = escape($_POST["event_org_phone"]);
+		$ev_amount = escape($_POST['event_amount']);
+		$ev_venue = escape($_POST['event_venue']);
+		$team_event = escape($_POST["team_event"]);
+		$map_url = escape($_POST["map_url"]);
+		$team_members = escape($_POST["team_members"]);
+		$ev_prize = escape($_POST['ev_prize']);
 
 		if($team_event=="False"){
 			$team_event=0;
@@ -1039,21 +1039,21 @@ function updateEventCalls(){
 // Function to update event details
 function updateEvent(){
 
-		$event_name=clean($_POST["event_name"]);
-		$event_category=clean($_POST["event_category"]);
-		$event_organizer = clean($_POST["event_organizer"]);
-		$ev_club = clean($_POST["ev_club"]);
+		$event_name=escape($_POST["event_name"]);
+		$event_category=escape($_POST["event_category"]);
+		$event_organizer = escape($_POST["event_organizer"]);
+		$ev_club = escape($_POST["ev_club"]);
 		$event_desc = escape($_POST["event_desc"]);
-		$event_date = clean($_POST["event_date"]);
-		$event_start_time = clean($_POST["event_start_time"]);
-		$event_end_time = clean($_POST["event_end_time"]);
-		$event_org_phone = clean($_POST["event_org_phone"]);
-		$eventid=clean($_POST["eventid"]);
-		$team_event=clean($_POST["team_event"]);
-		$map_url=clean($_POST['map_url']);
-		$event_amount= clean($_POST['event_amount']);
-		$event_venue=clean($_POST['event_venue']);
-		$team_members=clean($_POST['team_members']);
+		$event_date = escape($_POST["event_date"]);
+		$event_start_time = escape($_POST["event_start_time"]);
+		$event_end_time = escape($_POST["event_end_time"]);
+		$event_org_phone = escape($_POST["event_org_phone"]);
+		$eventid=escape($_POST["eventid"]);
+		$team_event=escape($_POST["team_event"]);
+		$map_url=escape($_POST['map_url']);
+		$event_amount= escape($_POST['event_amount']);
+		$event_venue=escape($_POST['event_venue']);
+		$team_members=escape($_POST['team_members']);
 		$ev_prize=escape($_POST['ev_prize']);
 
 		if($team_event=="False"){
