@@ -125,7 +125,7 @@ function getEventAmount($ev_id)
                                                 <th scope="col">Event Amount</th>
                                                 <th scope="col">Is Team Event</th>
                                                 <th scope="col">Amount Paid</th>
-                                                <!-- <th>Payment</th> -->
+                                                <th>Payment</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -146,7 +146,7 @@ function getEventAmount($ev_id)
                                                         <?php } ?>
                                                     </td>
                                                     <td><?php echo $ev->amount ?></td>
-                                                    <!-- <td>
+                                                    <td>
                                                         <?php if ($event_amount == 0) { ?>
                                                             <p class="text-primary">Free event</p>
                                                         <?php } else if ($event_amount - ($ev->amount) > 0) { ?>
@@ -163,7 +163,7 @@ function getEventAmount($ev_id)
                                                         <?php } else { ?>
                                                             <p class="text-success">Paid</p>
                                                         <?php } ?>
-                                                    </td> -->
+                                                    </td>
 
                                                 </tr>
                                             <?php } ?>
