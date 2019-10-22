@@ -82,7 +82,7 @@
     </div>
 
     <span class="logo-wrapper js-logo">
-      <a href="index.html" class="c-logo">
+      <a href="./" class="c-logo">
         <svg class="c-logo__svg" width="48" height="41" viewBox="0 0 48 41" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
         <img src="logo.png" style="width: 100px; position: relative; transform: translateY(-3px)">
 
