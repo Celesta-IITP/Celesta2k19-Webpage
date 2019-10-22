@@ -172,15 +172,13 @@
                         Paid By: $celestaid<br>
                         </p>
                     ";
-                    // $count+=1;
-                    
                     send_email($user_data['email'],$subject,$msg,$header);
 				}
             }
             $regis[]=$updt;
         }
         $regis=json_encode($regis);
-        $sql="UPDATE events set ev_registrations='$regis' WHERE ev_id='$ev_id'";    
+        $sql="UPDATE events set ev_registrations='$regis' WHERE ev_id='$ev_id'";
         $result=query($sql);
         confirm($result);
     }
@@ -274,7 +272,7 @@
             $events[]=$add_event;
         }
         $events=json_encode($events);
-        $sql="UPDATE  users set events_registered='$events', events_charge=$events_charge, amount_paid=$amount_paid, total_charge=$paid_amount WHERE celestaid='$celestaid'";
+        $sql="UPDATE  users set events_registered='$events', events_charge=$events_charge, amount_paid=$amount_paid WHERE celestaid='$celestaid'";
         $result=query($sql);
 
         confirm($result);
