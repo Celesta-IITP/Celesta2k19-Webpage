@@ -436,6 +436,9 @@
             <picture>
               <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/techprolabz.png" style="transform: scale(2);" />
             </picture>
+            <picture>
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/sybyline.png" style="transform: scale(2);" />
+            </picture>
           </div>
 
           <h1 style="text-align: center" class="tx--aqua-bright">
