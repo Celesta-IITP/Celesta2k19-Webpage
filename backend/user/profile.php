@@ -114,16 +114,13 @@ function getEventAmount($ev_id)
                     <div style="margin: 0 10px">
                         <div class="container tableContainer">
                             <div class="row d-flex justify-content-center">
+                                <h2 class="text-center" style="color: #fff">Events Registered</h2>
                                 <div class="col-md-10" style="overflow-x: auto; padding: 0">
-                                    <h2 class="text-center" style="color: #fff">Events Registered</h2>
                                     <table class="table table-hover" style="color: #fff; background: rgba(0,0,0,.5)">
                                         <thead>
                                             <tr>
-                                                <th scope="col">S.No.</th>
                                                 <th scope="col">Name</th>
-                                                <th scope="col">Event ID</th>
                                                 <th scope="col">Event Amount</th>
-                                                <th scope="col">Is Team Event</th>
                                                 <th scope="col">Amount Paid</th>
                                                 <th>Payment</th>
                                             </tr>
@@ -132,18 +129,10 @@ function getEventAmount($ev_id)
                                             <?php $i = 1;
                                             foreach ($user_registered_events as $ev) { ?>
                                                 <tr>
-                                                    <th scope="row"><?php echo $i++; ?></th>
-                                                    <td><?php echo $ev->ev_name ?></td>
-                                                    <td><?php echo $ev->ev_id ?></td>
+                                                    <th scope="row"><?php echo $ev->ev_name ?></th>
                                                     <td><?php $event_amount = getEventAmount($ev->ev_id);
                                                             echo $event_amount;
-                                                            ?></td>
-                                                    <td>
-                                                        <?php if (isset($ev->team_name)) { ?>
-                                                            Yes
-                                                        <?php } else { ?>
-                                                            No
-                                                        <?php } ?>
+                                                            ?>
                                                     </td>
                                                     <td><?php echo $ev->amount ?></td>
                                                     <td>
@@ -176,8 +165,8 @@ function getEventAmount($ev_id)
                         <?php if ($profile['isCA']) { ?>
                             <div class="container tableContainer" style="margin-top: 50px">
                                 <div class="row d-flex justify-content-center">
+                                    <h2 class="text-center" style="color: #fff">CA Leaderboard</h2>
                                     <div class="col-md-10" style="overflow-x: auto; padding: 0">
-                                        <h2 class="text-center" style="color: #fff">CA Leaderboard</h2>
                                         <p class="text-center" style="color: #eee; font-size: 12px">Points = 1.5*Excitons + Gravitons</p>
                                         <table class="table table-hover" style="color: #fff; background: rgba(0,0,0,.5)">
                                             <thead>
