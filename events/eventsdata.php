@@ -118,11 +118,12 @@
               <?php foreach($events as $e) { ?>
                 <div class="col-lg-4 col-md-6 gallery-item filter-<?php echo $e['ev_club']?>">
                   <div class="gallery-wrap">
+                    <a href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">
                     <figure>
                       <img src="<?php echo $e['ev_poster_url']?>" class="img-fluid" alt="" />
-                      <a href="<?php echo $e['ev_poster_url']?>" data-lightbox="gallery" data-title="Club 1" class="link-preview" title="Preview"><i
-                          class="ion ion-eye"></i></a>
+                      <a href="./eventsdetails.php?id=<?php echo $e['ev_id']?>" data-lightbox="gallery" data-title="Club 1" title="Preview"></a>
                     </figure>
+                    </a>
 
                     <div class="gallery-info">
                       <h4><?php echo $e['ev_name']?></h4>
@@ -137,7 +138,6 @@
                         <?php }else{?>
                           <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/login.php?redirecteventsdata=<?php echo $param?>">Login to Register</a>
                         <?php }?>
-
                       </p>
                     </div>
                   </div>
