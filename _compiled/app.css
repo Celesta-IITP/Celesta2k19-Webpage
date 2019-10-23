@@ -883,14 +883,14 @@ body.has-nav .menu-btn {
 .main-nav li a {
   display: inline-block;
   position: relative;
-  color: #fff;
+  color: #34444d;
   margin-bottom: 0.25em;
   -webkit-transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 .main-nav li a.active,
 .main-nav li a:hover {
-  color: rgb(32, 156, 228);
+  color: #fff;
 }
 .main-nav__link::after,
 .main-nav__link::before {
