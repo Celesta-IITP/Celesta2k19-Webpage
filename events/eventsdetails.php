@@ -11,7 +11,7 @@ if (logged_in()) {
 <?php
 $id = $_GET['id'];
 // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
-$service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
+$service_url = 'http://celesta.org.in/backend/admin/functions/events_api.php';
 $curl = curl_init($service_url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $curl_response = curl_exec($curl);
