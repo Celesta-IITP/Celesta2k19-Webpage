@@ -120,10 +120,12 @@ function registrar_logged_in(){
 function getPermit(){
 	if(isset($_SESSION['permit'])){
 		return $_SESSION['permit'];
+	}else{
+		return false;
 	}
-	if(isset($_COOKIE['permit'])){
-		return $_COOKIE['permit'];
-	}
+	// if(isset($_COOKIE['permit'])){
+	// 	return $_COOKIE['permit'];
+	// }
 }
 
 /********************************************** For naughty Admins only **************************************************/
@@ -590,9 +592,11 @@ function generateQRCode($celestaid,$first_name,$last_name){
 
 //Registers users who donot have celestaid
 function new_register(){
+	$permit=getPermit();
 	if(!registrar_logged_in()){
 		redirect("login.php");
-	}else{
+	}
+	else if($permit==0 or $permit==2){
 		if($_SERVER['REQUEST_METHOD']=='POST'){
 			$errors=[];
 			$first_name=clean($_POST['first_name']);
@@ -634,6 +638,8 @@ function new_register(){
 	 			}
 	 		}
 		}
+	}else{
+		redirect("./logout.php");
 	}
 }
 

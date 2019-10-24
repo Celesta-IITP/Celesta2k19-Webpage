@@ -9,6 +9,11 @@
 		<link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
 <body>
+<?php 
+	if(!registrar_logged_in()){
+		redirect("login.php");
+	}
+?>
 
 
 <!------ Include the above in your HEAD tag ---------->
