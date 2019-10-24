@@ -11,7 +11,6 @@
 </head>
 <body>
 
-
 <!------ Include the above in your HEAD tag ---------->
 <div class="container">
 	<?php include('includes/nav.php') ?>
