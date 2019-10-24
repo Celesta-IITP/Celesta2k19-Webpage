@@ -3740,17 +3740,17 @@ body.has-brand-panel .word-intro {
   margin: 0 auto;
   max-width: 1170px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
 }
 .alpha-img-container {
   position: relative;
   overflow: hidden;
-  max-height: 400px;
+  max-height: 300px;
 }
 .alpha-img-container img{
-    height: 400px;
+    height: 300px;
     width: 100%;
 }
 

@@ -1,34 +1,53 @@
 <?php
-include("../backend/user/functions/init.php");
-$loggedIn = logged_in();
-$celestaid = "";
-$access_token = "";
-if (logged_in()) {
-  $celestaid = $_SESSION['celestaid'];
-  $access_token = $_SESSION['access_token'];
-}
-?>
-<?php
-$id = $_GET['id'];
-// $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
-$service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
-$curl = curl_init($service_url);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-$curl_response = curl_exec($curl);
-if ($curl_response === false) {
-  $info = curl_getinfo($curl);
-  curl_close($curl);
-  die('Error occured during curl exec. Additioanl info: ' . var_export($info));
-}
-curl_close($curl);
-$data = json_decode($curl_response, true);
-$event;
-foreach ($data as $d) {
-  if ($d['ev_id'] == $id) {
-    $event = $d;
+  include("../backend/user/functions/init.php");
+  $loggedIn = logged_in();
+  $celestaid = "";
+  $access_token = "";
+  if (logged_in()) {
+    $celestaid = $_SESSION['celestaid'];
+    $access_token = $_SESSION['access_token'];
   }
-}
+
+
+  $id = $_GET['id'];
+  // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
+  $service_url = 'http://celesta.org.in/backend/admin/functions/events_api.php';
+  $curl = curl_init($service_url);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  $curl_response = curl_exec($curl);
+  if ($curl_response === false) {
+    $info = curl_getinfo($curl);
+    curl_close($curl);
+    die('Error occured during curl exec. Additioanl info: ' . var_export($info));
+  }
+  curl_close($curl);
+  $data = json_decode($curl_response, true);
+  $event;
+  foreach ($data as $d) {
+    if ($d['ev_id'] == $id) {
+      $event = $d;
+    }
+  }
+
+  $current_event=null;
+  $event_amount=$event['ev_amount'];
+  $amount_paid;
+  if(logged_in()){
+    $profile = user_details($celestaid);
+    $user_registered_events = json_decode($profile['events_registered']);
+    foreach($user_registered_events as $e){
+      if($e->ev_id==$event['ev_id']){
+        $current_event=$e;
+      }
+    }
+    if($current_event != null){
+      $amount_paid = $current_event->amount;
+    }
+
+  }
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,9 +129,39 @@ foreach ($data as $d) {
                 <a class="btn btn-success" style="color: #fff" href="<?php echo $event['ev_rule_book_url'] ?>">Rulebook</a>
                 <?php if ($loggedIn) {
                    if (!$event['is_team_event']) { ?>
+                   <?php if($current_event == null) { ?>
                     <button class="btn btn-success" style="color: #fff" id="regEvBtn" onclick="regEvFunc('<?php echo $event['ev_id'] ?>', '<?php echo $celestaid ?>', '<?php echo $access_token ?>')"><span class="spinner-border spinner-border-sm spinner" style="display: none"></span> Register Event</button>
+                   <?php } else { ?>
+                    <?php if ($event_amount - ($amount_paid) > 0) { ?>
+                      <form action="http://techprolabz.com/pay/dataFrom.php" method="POST">
+                          <input type="text" hidden value="<?php echo $ev->ev_id ?>" name="ev_id">
+                          <input type="text" hidden value="<?php echo $celestaid ?>" name="celestaid">
+                          <input type="text" hidden value="<?php echo $access_token ?>" name="access_token">
+                          <input type="text" hidden value="<?php echo $event_amount ?>" name="ev_amount">
+                          <input type="text" hidden value="<?php echo $profile['email'] ?>" name="email">
+                          <input type="text" hidden value="<?php echo $profile['phone'] ?>" name="phone">
+                          <input type="text" hidden value="<?php echo $profile['first_name'] . ' ' . $profile['last_name'] ?>" name="name">
+                          <button type="submit" class="btn btn-primary">Pay Event Fee</button>
+                      </form>
+                    <?php } ?>
+                   <?php } ?>
                   <?php } else {?>
-                    <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button>
+                    <?php if($current_event == null) { ?>
+                      <button class="btn btn-success" style="color: #fff" id="regTeamEvBtn" data-toggle="modal" data-target="#regTeamEvModal">Register Team Event</button>
+                    <?php } else { ?>
+                      <?php if ($event_amount - ($amount_paid) > 0) { ?>
+                        <form action="http://techprolabz.com/pay/dataFrom.php" method="POST">
+                            <input type="text" hidden value="<?php echo $ev->ev_id ?>" name="ev_id">
+                            <input type="text" hidden value="<?php echo $celestaid ?>" name="celestaid">
+                            <input type="text" hidden value="<?php echo $access_token ?>" name="access_token">
+                            <input type="text" hidden value="<?php echo $event_amount ?>" name="ev_amount">
+                            <input type="text" hidden value="<?php echo $profile['email'] ?>" name="email">
+                            <input type="text" hidden value="<?php echo $profile['phone'] ?>" name="phone">
+                            <input type="text" hidden value="<?php echo $profile['first_name'] . ' ' . $profile['last_name'] ?>" name="name">
+                            <button type="submit" class="btn btn-primary" style="margin: 10px 0">Pay Event Fee</button>
+                        </form>
+                      <?php } ?>
+                    <?php } ?>
                   <?php }
                  } else { ?>
                   <a class="btn" style="color: #fff; background: 	rgb(139,0,139,.8); font-size: 12px" href="./../backend/user/login.php?redirecteventsdetails=<?php echo $event['ev_id']?>">Login to Register</a>
@@ -213,7 +262,7 @@ foreach ($data as $d) {
       formData.append("member3", member3);
       formData.append("member4", member4);
       formData.append("member5", member5);
-      let url="https://celesta.org.in/backend/admin/functions/reg_team_event.php";
+      let url="http://celesta.org.in/backend/admin/functions/reg_team_event.php";
       // let url="http://localhost/celesta2k19-webpage/backend/admin/functions/reg_team_event.php";
       let res = await fetch(
         url,
