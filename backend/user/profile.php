@@ -69,11 +69,7 @@ function getEventAmount($ev_id)
         <main class="content">
             <div class="content_inner">
                 <section class="speakers-section" style="background-image: url(https://i.ibb.co/92HJxz2/team-bg.jpg);">
-                    <?php if ($profile['isCA']) { ?>
-                        <button class="btn btn-primary float-right" style="margin-right: 20px;"><a href="./ca_logout.php" style="color: #fff">Logout</a></button>
-                    <?php } else { ?>
                         <button class="btn btn-primary float-right" style="margin-right: 20px;"><a href="./logout.php" style="color: #fff">Logout</a></button>
-                    <?php } ?>
                     <div class="parallax-scene parallax-scene-2 anim-icons">
                         <span data-depth="0.40" class="parallax-layer icon icon-circle-5"></span>
                         <span data-depth="0.99" class="parallax-layer icon icon-circle-5"></span>
