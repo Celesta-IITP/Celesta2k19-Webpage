@@ -116,12 +116,7 @@
 											<div class="form-check">
 												<input class="form-check-input" type="checkbox" id="<?php echo $ev_id?>" name='<?php echo $ev_id?>' <?php if($diff<=0){echo "checked disabled='disabled'";} ?>>
 												<label class="form-check-label" for="registration_charge">
-													<?php echo $ev_name." Pay: ";
-													if($diff>0){
-														echo $diff;
-													}else{
-														echo 0;
-													}?>
+													<?php echo $ev_name."( ".$event_amount." )"." Paid: ".$amount;?>
 												</label>
 											</div>
 										</div>
@@ -145,10 +140,17 @@
 									<div class="form-group row">
 										<div class="col-sm-10">
 											<div class="form-check">
+											<?php if($user['registration_charge']==0 && $user['registration_desk']!=1) {?>
 												<input class="form-check-input" type="checkbox" id="registration_charge" name='registration_charge'>
 												<label class="form-check-label" for="registration_charge">
 													Registration 
 												</label>
+											<?php }elseif($user['registration_charge']!=0  && $user['registration_desk']!=1) {?> 
+												<input class="form-check-input" type="checkbox" id="registration_charge_online" name='registration_charge_online'>
+												<label class="form-check-label" for="registration_charge_online">
+													Register (Amount paid online)
+												</label>
+											<?php }?>
 											</div>
 										</div>
 									</div>
