@@ -1,10 +1,10 @@
 <?php 
-    include("./functions/init.php");
-    include('./functions/book_accomodation.php');
+    // include("./functions/init.php");
+    // include('./functions/book_accomodation.php');
 
-    if (!logged_in()) {
-        redirect("login.php");
-    }
+    // if (!logged_in()) {
+    //     redirect("login.php");
+    // }
     $celestaid=null;
     $access_token=null;
     if (isset($_SESSION['celestaid'])) {
@@ -57,12 +57,12 @@
 				<form class="login100-form validate-form p-b-33 p-t-5" method="POST">
 					<div class="wrap-input100 validate-input" data-validate="Select choice">
                         <select class="input100" type="select" name="pass">
-                            <option value="day1">Day 1</option>
+                            <!-- <option value="day1">Day 1</option>
                             <option value="day2">Day 2</option>
-                            <option value="day3">Day 3</option>
+                            <option value="day3">Day 3</option> -->
                             <option value="all_day">All 3 Days</option>
-                            <option value="day1_day2">Day 1 & 2</option>
-                            <option value="day2_day3">Day 2 & 3</option>
+                            <!-- <option value="day1_day2">Day 1 & 2</option>
+                            <option value="day2_day3">Day 2 & 3</option> -->
                         </select>
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>    
                     </div>

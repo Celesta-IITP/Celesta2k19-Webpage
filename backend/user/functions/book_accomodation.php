@@ -54,7 +54,7 @@
                     $email=$user_data['email'];
 
 
-                    $sql="INSERT INTO accommodation(celestaid,names,phone,gender,booking_date,no_of_days,day1,day2,day3,email) VALUES('$celestaid','$name','$phone','$gender','$date',$no_of_days,$day1,$day2,$day3,$email)";
+                    $sql="INSERT INTO accommodation(celestaid,names,phone,gender,booking_date,no_of_days,day1,day2,day3,email) VALUES('$celestaid','$name','$phone','$gender','$date',$no_of_days,$day1,$day2,$day3,'$email')";
                     $result=query($sql);
                     confirm($result);
                     $message="<p> Hi $name, you have successfully booked your accommodation for $no_of_days.<br>
