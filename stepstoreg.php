@@ -10,39 +10,42 @@
 
 <!DOCTYPE html>
 <html lang="en" class="is-loading">
+
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="google-site-verification" content="CFwZqO_hmY2DPIR13xESIkBHT2_aBi8DzFyv306yz8Q" />
-  <link rel="apple-touch-icon" sizes="57x57" href="assets/meta-icons/apple-icon-57x57.html" />
-  <link rel="apple-touch-icon" sizes="60x60" href="assets/meta-icons/apple-icon-60x60.html" />
-  <link rel="apple-touch-icon" sizes="72x72" href="assets/meta-icons/apple-icon-72x72.html" />
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/meta-icons/apple-icon-76x76.html" />
-  <link rel="apple-touch-icon" sizes="114x114" href="assets/meta-icons/apple-icon-114x114.html" />
-  <link rel="apple-touch-icon" sizes="120x120" href="assets/meta-icons/apple-icon-120x120.html" />
-  <link rel="apple-touch-icon" sizes="144x144" href="assets/meta-icons/apple-icon-144x144.html" />
-  <link rel="apple-touch-icon" sizes="152x152" href="assets/meta-icons/apple-icon-152x152.html" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/meta-icons/apple-icon-180x180.html" />
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/meta-icons/apple-icon-57x57.html">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/meta-icons/apple-icon-60x60.html">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/meta-icons/apple-icon-72x72.html">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/meta-icons/apple-icon-76x76.html">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/meta-icons/apple-icon-114x114.html">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/meta-icons/apple-icon-120x120.html">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/meta-icons/apple-icon-144x144.html">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/meta-icons/apple-icon-152x152.html">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/meta-icons/apple-icon-180x180.html">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/meta-icons/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/meta-icons/favicon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/meta-icons/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/meta-icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/meta-icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/meta-icons/favicon-16x16.png">
 
+  <meta name="application-name" content="McBride" />
   <meta name="msapplication-square70x70logo" content="msapplication-square70x70logo.html" />
   <meta name="msapplication-square150x150logo" content="msapplication-square150x150logo.html" />
   <meta name="msapplication-square310x310logo" content="msapplication-square310x310logo.html" />
   <meta name="msapplication-TileColor" content="#0b202b" />
 
-  <title>Celesta 2k19</title>
-  <link rel="canonical" href="./" />
-  <meta property="og:locale" content="en_us" />
+  <title>Celesta'19</title>
+ <link rel='canonical' href='connect.php' />
+  <meta property='og:locale' content='en_us' />
+  <!-- / Sprout SEO Craft CMS plugin -->
 
-  <link rel="preload" href="assets/fonts/Neutraface2Text-Book.html" as="font" type="font/woff2" crossorigin="" />
-  <link rel="preload" href="assets/fonts/Neutraface2Text-Demi.woff2" as="font" type="font/woff2" crossorigin="" />
-  <link rel="preload" href="assets/fonts/Neutraface2Text-Light.html" as="font" type="font/woff2" crossorigin="" />
+  <link rel="preload" href="assets/fonts/Neutraface2Text-Book.html" as="font" type="font/woff2" crossorigin="">
+  <link rel="preload" href="assets/fonts/Neutraface2Text-Demi.woff2" as="font" type="font/woff2" crossorigin="">
+  <link rel="preload" href="assets/fonts/Neutraface2Text-Light.html" as="font" type="font/woff2" crossorigin="">
 
   <style>
     .nav_more_links{
@@ -51,39 +54,30 @@
     }
     @font-face {
       font-family: "Neutraface Book";
-      src: url("assets/fonts/Neutraface2Text-Book.html") format("woff2"),
-        url("assets/fonts/Neutraface2Text-Book-2.html") format("woff");
+      src: url('assets/fonts/Neutraface2Text-Book.html') format('woff2'),
+        url('assets/fonts/Neutraface2Text-Book-2.html') format('woff');
     }
 
     @font-face {
       font-family: "Neutraface Demi";
-      src: url("assets/fonts/Neutraface2Text-Demi.woff2") format("woff2"),
-        url("assets/fonts/Neutraface2Text-Demi.html") format("woff");
+      src: url('assets/fonts/Neutraface2Text-Demi.woff2') format('woff2'),
+        url('assets/fonts/Neutraface2Text-Demi.html') format('woff');
     }
 
     @font-face {
       font-family: "Neutraface Light";
-      src: url("assets/fonts/Neutraface2Text-Light.html") format("woff2"),
-        url("assets/fonts/Neutraface2Text-Light-2.html") format("woff");
+      src: url('assets/fonts/Neutraface2Text-Light.html') format('woff2'),
+        url('assets/fonts/Neutraface2Text-Light-2.html') format('woff');
     }
   </style>
-  <link rel="stylesheet" href="_compiled/app.css" />
-  <style>
-      .caSpanStyle{
-        font-size: 2.5em;
-      }
-      @media(max-width: 500px){
-        .caSpanStyle{
-          font-size: 2em;
-        }
-      }
-    </style>
+  <link rel="stylesheet" href="_compiled/app.css">
 </head>
 
 <body>
   <a class="sr" href="#barba-wrapper">Skip to Main Content</a>
 
   <header class="site--header js-header">
+
     <div href="#" class="menu-btn js-menu-btn o-media__icon no-barba">
       <span class="icon x is--inactive"></span>
       <span class="tx--caption">Menu</span>
@@ -113,16 +107,17 @@
         <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" transform="translate(8)" />
         <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" transform="translate(3 15)" />
         <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" transform="translate(13 15)" />
-      </svg>
-    </a>
+      </svg> </a>
   </header>
 
+
   <div class="site-nav js-nav">
+
     <div class="nav-container">
       <nav class="main-nav">
         <ul>
           <li>
-            <a class="main-nav__link tx--title-3 active first" href="./" title="Home">Home</a>
+            <a class="main-nav__link tx--title-3 first" href="./" title="Home">Home</a>
           </li>
 
           <?php if(!$loggedIn) { ?>
@@ -137,7 +132,7 @@
                 <a class="main-nav__link tx--title-3" href="./backend/user/profile.php" target="_blank" title="Profile">Profile</a>
             </li>
           <?php } ?>
-          
+
           <li>
             <a class="main-nav__link tx--title-3" href="./ca/ca.php" target="_blank" title="Gallery">Campus Ambassador</a>
           </li>
@@ -163,12 +158,13 @@
           </li>
 
           <li>
-            <a class="main-nav__link tx--title-3" href="stepstoreg.php" title="Steps to Register">Steps to Register</a>
+            <a class="main-nav__link tx--title-3 active" href="stepstoreg.php" title="Steps to Register">Steps to Register</a>
           </li>
 
           <!-- <li>
             <a class="main-nav__link tx--title-3" href="careers.html" title="Careers">Careers</a>
           </li> -->
+
         </ul>
       </nav>
 
@@ -199,6 +195,7 @@
               <a class="no-barba tx--caption" href="https://www.linkedin.com/in/celesta-iit-patna-3722b6166/"
                 title="Linkedin" target="_blank">Linkedin</a>
             </li>
+
           </span>
 
           <span>
@@ -212,85 +209,66 @@
         </ul>
       </nav>
     </div>
+
   </div>
 
+
   <main id="barba-wrapper" class="main">
-    <div class="barba-container" data-namespace="prism">
-      <div class="home-wrapper">
-        <div class="landing-brands js-brands">
+    <div class="barba-container" data-namespace="prismFaded">
 
-          <div class="brand brand-1" data-brand="Think" data-js-item="1"
-            data-bg="assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-1.jpg"
-            data-bg-md="assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-1.jpg"
-            data-bg-lg="assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-1.jpg">
-            <h2 class="word-wrapper">
-              <span class="word tx--title-1">About</span>
-              <span class="icon x is--inactive"></span>
-            </h2>
-            <div class="word-intro">And Official Theme</div>
-            <div aria-hidden class="word-content tx--gray-blue-1">
+      <div class="connect js-connect">
+
+        <div class="offices">
+
+          <div class="office">
+            <h1 class="title tx--title-1a" style="font-size:20px">Steps to Register User</h1>
+            <div class="location">
+              <div class="tx--body-lead location-name" style="text-decoration: underline">
+                Folllow these steps:
+              </div>
               <p class="tx--body-lead">
-                Celesta is the annual Techno-Management Fest of IIT Patna. To promote technical and managerial enthusiasm amongst young and bright minds of our nation and to provide a platform to transform their innovative ideas into a meaningful reality.
-                <iframe width="300" height="150" src="https://www.youtube.com/embed/0zq9wqsYZCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                </ul>
               </p>
             </div>
+            
           </div>
 
-          <div class="brand brand-2" data-brand="Design" data-js-item="2"
-            data-bg="assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-2.jpg"
-            data-bg-md="assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-2.jpg"
-            data-bg-lg="assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-2.jpg">
-            <h2 class="word-wrapper">
-              <span class="word tx--title-1">Register</span>
-              <span class="icon x is--inactive"></span>
-            </h2>
-            <div class="word-intro">And Events Registration</div>
-            <div aria-hidden class="word-content tx--gray-blue-1">
-              <p class="tx--body-lead">
-                Register for Celesta'19
-              </p>
-              <a href="./backend/user/register.php" target="_blank" class="btn btn--dark btn--hollow">Register</a>
-              <a href="./backend/user/login.php" target="_blank" class="btn btn--dark btn--hollow">Login</a>
-              <p>
-                <a href="./events.php" class="btn btn--dark btn--hollow">Register for events</a>
-              </p>
-            </div>
-          </div>
-
-          <div class="brand brand-3" data-brand="Brand" data-js-item="3"
-            data-bg="assets/images/home/_800xAUTO_Fit_center-center_75/img-bd-3.jpg"
-            data-bg-md="assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-3.jpg"
-            data-bg-lg="assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-3.jpg">
-            <h2 class="word-wrapper">
-              <span class="word tx--title-1 caSpanStyle">CA Program</span>
-              <span class="icon x is--inactive"></span>
-            </h2>
-            <div class="word-intro"></div>
-            <div aria-hidden class="word-content tx--gray-blue-1">
-              <p class="tx--body-lead">
-                <a href="./ca/ca.php" target="_blank" class="btn btn--dark btn--hollow">Register for CA</a>
-              </p>
-              <a href="./backend/user/login.php" target="_blank" class="btn btn--dark btn--hollow">CA Login</a>
-            </div>
-          </div>
         </div>
 
-        <div class="brands-bgs">
-          <div class="image poly-1"></div>
+        <div class="offices">
+
+          <div class="office">
+            <h1 class="title tx--title-1a" style="font-size:20px">Steps to Event</h1>
+            <div class="location">
+              <div class="tx--body-lead location-name" style="text-decoration: underline">
+                Folllow these steps:
+              </div>
+              <p class="tx--body-lead">
+                <ul>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                </ul>
+              </p>
+            </div>
+            
+          </div>
+
         </div>
 
-        <ul class="viewport-links">
-          <li class="left ">
-            <a href="sponsors.php" title="Our Sponsors" class="tx--caption">Our Sponsors</a>
-          </li>
-
-          <li class="right mobile-hide">
-            <a href="connect.php" title="Contact Us" class="tx--caption">Contact Us</a>
-          </li>
-        </ul>
       </div>
+
     </div>
   </main>
+
 
   <div class="site-bg js-site-bg">
     <svg class="site-bg__base" width="391" height="443" viewBox="0 0 391 443" fill="none"
@@ -302,6 +280,7 @@
 
     <svg class="site-bg__prism" width="520" height="520" viewBox="0 0 520 520" fill="none"
       xmlns="http://www.w3.org/2000/svg">
+
       <g class="site-bg__prism-paths" fill="url(#prism-gradient)" stroke="url(#prism-stroke)">
         <path opacity="0.1"
           d="M514.866 109.292L438.382 14.8205L350.185 0.444092L288.748 14.7573L211.834 21.9358L127.705 19.2287L60.4896 58.5935L0.649414 171.596L6.45021 361.159L84.8981 469.475L180.303 502.738L312.331 475.688L385.241 432.514L449.25 354.119L494.213 260.279L521.272 162.775L514.866 109.292Z" />
@@ -331,10 +310,13 @@
         </linearGradient>
       </defs>
     </svg>
+
   </div>
 
   <script src="_compiled/vendor.js" async></script>
   <script src="_compiled/app.js" async></script>
 </body>
+
+<!-- Mirrored from mcbridedesign.com/connect by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Aug 2019 12:01:22 GMT -->
 
 </html>

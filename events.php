@@ -154,6 +154,10 @@
             <a class="main-nav__link tx--title-3" href="connect.php" title="Contact Us">Contact Us</a>
           </li>
 
+          <li>
+            <a class="main-nav__link tx--title-3" href="stepstoreg.php" title="Steps to Register">Steps to Register</a>
+          </li>
+
           <!-- <li>
             <a class="main-nav__link tx--title-3" href="careers.html" title="Careers">Careers</a>
           </li> -->
