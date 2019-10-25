@@ -2,10 +2,10 @@
 include('./init.php');
 
 if($_SERVER['REQUEST_METHOD']=="POST"){
-    
+
     $errors=array();
     $response=array();
-    
+
     // Execute 
     $eventid=clean($_POST["eventid"]);
     $celestaid=clean($_POST["celestaid"]);
@@ -58,9 +58,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             $response['message']=$errors;
             // echo json_encode($response);
         }else{
-
-
-
             /** Fetch details of all the members */
             $mem_emails=array();
             $mem_name=array();
@@ -151,31 +148,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 $sql3="UPDATE users SET events_registered='$ev_registered' WHERE celestaid='$mem'";
                 $result3=query($sql3);
             }
-            
-
-            // // Update the data in the present users table events_registered columnr
-            // foreach($members as $mem){
-            //     $sql4="SELECT * FROM present_users WHERE celestaid='$mem'";
-            //     $result4=query($sql4);
-            //     if(row_count($result4)==1){
-                    
-            //         $row=fetch_array($result4);
-            //         $ev_registered=json_decode($row["events_registered"]);
-            //         $add_event=array();
-            //         $add_event["cap_name"]=$mem_name[0];
-            //         $add_event["team_name"]=$team_name;
-            //         $add_event["ev_name"]=$ev_name;
-            //         $add_event["ev_id"]=$eventid;
-            //         $add_event["amount"]=0;
-            //         $ev_registered[]=$add_event;
-            //         $ev_registered=json_encode($ev_registered);
-
-
-            //         $sql5="UPDATE present_users SET events_registered='$ev_registered' WHERE celestaid='$celestaid'";
-            //         $result5=query($sql5);
-            //     }
-
-            // }
 
             $subject="Celesta2k19 Events Registration";
 
@@ -191,7 +163,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 $count+=1;
                 send_email($email,$subject,$msg,$header);
             }
-
 
             $response['status']=202;
             $errors[]="Successfully registered your team.";
@@ -236,6 +207,7 @@ function isTeamEventExist($eventid){
 }
 
 function idAlreadyRegistered($celestaid,$regis){
+    $flag=1;
     if($regis == NULL)
         return false;
     foreach($regis as $reg){
@@ -253,10 +225,15 @@ function idAlreadyRegistered($celestaid,$regis){
             $value[]=$reg ->mem5_celestaid;
         foreach($value as $id){
             if($id==$celestaid){
-                return true;
+                $flag=0;
                 break;
             }
         }
     }
-    return false;
+    if($flag==0){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
