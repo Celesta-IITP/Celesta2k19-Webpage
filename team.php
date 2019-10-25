@@ -555,7 +555,7 @@
                                 <div class="bio">
                                     <div class="bar"></div>
                                     <div class="bio-text">
-                                        <p>Srikar Nayak is the Coordinator for Creatives and Design, Celesta 2019.
+                                        <p>P.V.S.G Krishna Srikar is the Coordinator for Creatives and Design, Celesta 2019.
                                             Currently he
                                             studies Chemical and Biochemical Engineering in his 3rd year in IIT Patna.
                                         </p>
