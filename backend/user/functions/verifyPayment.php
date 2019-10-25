@@ -5,7 +5,7 @@
             $response=array();
             $message = array();
 
-            $celestaid=clean($_GET["celestaid"]);
+            $celestaid=$_GET["celestaid"];
             $access_token=clean($_GET["access_token"]);
             $atm=clean($_GET["atm"]);
             $ev_amount=clean($_GET["ev_amount"]);
