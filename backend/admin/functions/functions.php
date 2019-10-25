@@ -207,12 +207,20 @@ function getDetails($celestaid){
 	$sql="SELECT * FROM users WHERE celestaid='$celestaid'";
 	$result=query($sql);
 	confirm($result);
-
 	if(row_count($result)==1){
 		$row=fetch_array($result);
 
 		if($row['registration_desk']==1){
 			echo "<p class='bg-warning text-center'>$celestaid has already registered in the desk.</p>";
+		}
+		$sql1="SELECT * FROM accommodation WHERE celestaid='$celestaid'";
+		$result1=query($sql1);
+		if(row_count($result1)==1){
+			$row1=fetch_array($result1);
+			$row['accommodation_fee_paid']=$row1['amount_paid'];
+			$row['day1']=$row1['day1'];
+			$row['day2']=$row1['day2'];
+			$row['day3']=$row1['day3'];
 		}
 
 		return $row;
@@ -355,7 +363,27 @@ function updatingUser(){
 		$accommodation_charge=$price_accommodation;
 		$name=$first_name." ".$last_name;
 		$amount_paid=$amount_paid+$price_accommodation;
+
 		bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
+	}
+
+	if(isset($_POST['pay_all_accommodation_charge'])){
+		$sql1="SELECT * FROM accommodation WHERE celestaid='$celestaid'";
+		$result1=query($sql1);
+		$row1=fetch_array($result1);
+		$pay=0;
+		if($row1['day1']==1){
+			$pay+=200;
+		}
+		if($row1['day2']==1){
+			$pay+=200;
+		}
+		if($row1['day3']==1){
+			$pay+=200;
+		}
+		$amount_paid=$amount_paid+$pay;
+		$total_charge=$total_charge+$pay;
+		payAccommodation($celestaid,$pay,$row1['email']);
 	}
 
 	$update_user_events_registered=json_encode($update_user_events_registered);
@@ -365,6 +393,18 @@ function updatingUser(){
 
 	echo "<h3 class='bg-success text-center'>$celestaid successfully registered. Pay amount: Rs. $total_charge </h3>";
 
+}
+
+function payAccommodation($celestaid,$pay,$email){
+	$sql="UPDATE accommodation set amount_paid=$pay where celestaid='$celestaid'";
+	$result=query($sql);
+	confirm($result);
+
+	$message="<p> Hi $celestaid, you have successfully paid your accommodation charge.<br>
+	Amount paid for accommodation is : Rs. $pay <br>";
+	$subject="Celesta2k19 Accommodation Payment";
+	$headers="From: celesta19iitp@gmail.com";
+	send_email($email,$subject,$message,$headers);
 }
 
 function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){

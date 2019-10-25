@@ -110,18 +110,12 @@
 											$event_amount=getEventAmount($ev_id);
 											$diff=$event_amount-$amount;
 											?>
-											
 									<div class="form-group row">
 										<div class="col-sm-10">
 											<div class="form-check">
 												<input class="form-check-input" type="checkbox" id="<?php echo $ev_id?>" name='<?php echo $ev_id?>' <?php if($diff<=0){echo "checked disabled='disabled'";} ?>>
 												<label class="form-check-label" for="registration_charge">
-													<?php echo $ev_name." Pay: ";
-													if($diff>0){
-														echo $diff;
-													}else{
-														echo 0;
-													}?>
+													<?php echo $ev_name."( ".$event_amount." )"." Paid: ".$amount;?>
 												</label>
 											</div>
 										</div>
@@ -145,10 +139,17 @@
 									<div class="form-group row">
 										<div class="col-sm-10">
 											<div class="form-check">
+											<?php if($user['registration_charge']==0 && $user['registration_desk']!=1) {?>
 												<input class="form-check-input" type="checkbox" id="registration_charge" name='registration_charge'>
 												<label class="form-check-label" for="registration_charge">
 													Registration 
 												</label>
+											<?php }elseif($user['registration_charge']!=0  && $user['registration_desk']!=1) {?> 
+												<input class="form-check-input" type="checkbox" id="registration_charge_online" name='registration_charge_online'>
+												<label class="form-check-label" for="registration_charge_online">
+													Register (Amount paid online)
+												</label>
+											<?php }?>
 											</div>
 										</div>
 									</div>
@@ -177,13 +178,52 @@
 									<div class="form-group row">
 										<div class="col-sm-10">
 											<div class="form-check">
+											<?php if(isset($user['accommodation_fee_paid'])){
+														if($user['accommodation_fee_paid']>0){
+															echo " Accommodation fee already Paid for: ";
+															if($user['day1']==1){
+																echo " Day-1, ";
+															}
+															if($user['day2']==1){
+																echo " Day-2, ";
+															}
+															if($user['day3']==1){
+																echo " Day-3 ";
+															}
+														}else{
+															$charge=0;
+															$str= "<p class='bg-warning text-center'>User has booked accommodation for ";
+															if($user['day1']==1){
+																$str.=" Day-1, ";
+																$charge+=200;
+															}
+															if($user['day2']==1){
+																$str.= " Day-2, ";
+																$charge+=200;
+															}
+															if($user['day3']==1){
+																$str.= " Day-3 ";
+																$charge+=200;
+															}
+															$str.="</pay>"
+															?>
+
+														<input class="form-check-input" type="checkbox" id="pay_all_accommodation_charge" name='pay_all_accommodation_charge'>
+														<label class="form-check-label" for="pay_all_accommodation_charge">
+															Pay Accommodation Charge (Rs <?php echo $charge;?>) <?php echo $str; ?> 
+														</label>
+													<?php
+														}
+													}else{?>
 												<input class="form-check-input" type="checkbox" id="accommodation_charge" name='accommodation_charge'>
 												<label class="form-check-label" for="accommodation_charge">
-													Accommodation Charge (Rs 500)
+													Book Accommodation Charge (Rs 500)
 												</label>
+													<?php } ?>
 											</div>
 										</div>
-									</div>  
+									</div>
+
 									<input type="hidden" name="validate_user" id="validate_user" value="validate_user">
 									<input type="submit" class="btnRegister"  value="Validate User"/>
 								</div>
