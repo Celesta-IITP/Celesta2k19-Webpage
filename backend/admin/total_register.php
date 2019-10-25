@@ -17,10 +17,12 @@
 				<th scope="col">Name</th>
 			 	<th scope="col">School/College</th>
 			 	<th scope="col">Phone</th>
-				<th scope="col">T-Shirt</th>
-				<th scope="col">Accommodation</th>
-				<th scope="col">Registration</th>
+				<th scope="col">TShirt</th>
+				<th scope="col">Acco.</th>
+				<th scope="col">Reg.</th>
 				<th scope="col">Events</th>
+				<th scope="col">Cash</th>
+				<th scope="col">Online</th>
 				<th scope="col">Total</th>
 			</tr>
 		</thead>

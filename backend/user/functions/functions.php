@@ -547,7 +547,7 @@ function validate_user_login(){
 //Log in the user
 function login_user($celestaid, $password, $remember){
 
-	$sql = "SELECT password, id, qrcode, active FROM users WHERE celestaid ='".escape($celestaid)."' AND active=1";
+	$sql = "SELECT password, id, qrcode, active, access_token FROM users WHERE celestaid ='".escape($celestaid)."' AND active=1";
 
 	$result=query($sql);
 	if(row_count($result)==1){
@@ -556,8 +556,14 @@ function login_user($celestaid, $password, $remember){
 		$db_password=$row['password'];
 		$qrcode=$row['qrcode'];
 		if(md5($password)==$db_password){
-			$access_token=$celestaid.$password.microtime();
-			$access_token=md5($access_token);
+			if(empty($row['access_token'])){
+				$access_token=$celestaid.$password.microtime();
+				$access_token=md5($access_token);
+				$sql1="UPDATE users SET access_token='$access_token' WHERE celestaid='$celestaid'";
+				$result1 = query($sql1);
+			}else{
+				$access_token=$row['access_token'];
+			}
 
 			$sql1="UPDATE users SET access_token='$access_token' WHERE celestaid='$celestaid'";
 			$result1 = query($sql1);
