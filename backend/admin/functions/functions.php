@@ -148,7 +148,24 @@ function show_users(){
 	}
 }
 
+function show_accos(){
+	$permit=getPermit();
+	if(!registrar_logged_in()){
+		redirect("login.php");
+	}elseif($permit==0 || $permit==2 || $permit==5){
+		$sql="SELECT names, celestaid, phone, email, gender,day1,day2,day3,amount_paid FROM accommodation";
+		$result=query($sql);
+		$permit=getPermit();
 
+		$data=array();
+		while ($row = $result->fetch_assoc()) {
+    		if($permit==2 || $permit==0 || $permit==5){
+				$data[]=$row;
+    		}
+		}
+		return $data;
+	}
+}
 
 /**************************************************** Registration Section *************************************************/
 
@@ -564,6 +581,7 @@ function total_register(){
 		while ($row = $result->fetch_assoc()) {
 			$count=$count+1;
 			if($permit==2 || $permit==0){
+				$online=$row['amount_paid']-$row['total_charge'];
     			echo "<tr>
 						<th scope='row'>".$count."</th>
 	      				<td>".$row['celestaid']."</td>
@@ -576,6 +594,8 @@ function total_register(){
 						<td>".$row['registration_charge']."</td>
 						<td>".$row['events_charge']."</td>
 						<td>".$row['total_charge']."</td>
+						<td>".$online."</td>
+						<td>".$row['amount_paid']."</td>
 	    			</tr>";
     		}
 		}

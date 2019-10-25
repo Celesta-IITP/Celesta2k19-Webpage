@@ -249,67 +249,6 @@ function resendActivationLink(){
 	}
 }
 
-// //Activate the user
-// function activate_user(){
-//     $response=array();
-//     $errors=array();
-//     $message=array();
-//     $email=$_GET['email'];
-//     $celestaid=$_GET['celestaid'];
-//     $got_validation_code=$_GET['validation_code'];
-//     // echo "Reached -".$got_validation_code."<br/>";
-
-//     //fetching validation code from the database for the particular celstaid
-//     $sql="SELECT validation_code,email,qrcode FROM users WHERE celestaid='$celestaid' and email='$email'";
-//     $result=query($sql);
-//     confirm($result);
-
-//     if(row_count($result)==1){
-//         $row=fetch_array($result);
-//         $validation_code=$row['validation_code'];
-//         $qrcode=$row['qrcode'];
-
-//         if($got_validation_code==$got_validation_code){
-//             $sql="UPDATE users SET active=1,validation_code='' WHERE celestaid='$celestaid'";
-//             $result=query($sql);
-//             $confirm($result);
-
-//             #writing the response
-//             $message[]="Your celestaid: $celestaid has been successfully activated.";
-//             $response['status']='201';
-//             $response['message']=$message;
-//             $response['celestaid']=$celestaid;
-//             $response['qrcode']=$qrcode;
-            
-
-//             //Composing the email
-//             $subject="Activated Celesta Account";
-//             $msg="<p>
-//                 Your Celesta Id ".$celestaid." has been succesfully activated. <br/>
-//                 You can now login in the app or web.
-//                 You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
-//                 </p>
-//             ";
-//             $header="From: noreply@yourwebsite.com";
-//             send_email($email,$subject,$msg,$header);
-//             echo json_encode($response);
-
-
-//         }else{
-//             $errors[]="The validation code that you entered is wrong.";
-//             $response['status']='402';
-//             $response['message']=$errors;
-//             echo json_encode($response);
-//         }
-//     }else{
-//         //Will write r=the response code later
-//         $errors[]="Following Celesta ID have not been registered yet.";
-//         $response['status']='402';
-//         $response['message']=$errors;
-//         echo json_encode($response);
-//     }
-// }//User account activation
-
 //Login function
 function login_user(){
     $response=array();
@@ -333,11 +272,15 @@ function login_user(){
                 $response['message']=$errors;
                 echo json_encode($response);
             }else{
-                $access_token=$celestaid.$password.microtime();
-                $access_token=md5($access_token);
+                if(empty($row['access_token'])){
+                    $access_token=$celestaid.$password.microtime();
+                    $access_token=md5($access_token);
 
-                $sql1="UPDATE users SET access_token='$access_token' WHERE celestaid='$celestaid'";
-                $result1 = query($sql1);
+                    $sql1="UPDATE users SET access_token='$access_token' WHERE celestaid='$celestaid'";
+                    $result1 = query($sql1);
+                }else{
+                    $access_token=$row['access_token'];
+                }
 
                 $first_name=$row['first_name'];
                 $qrcode=$row['qrcode'];

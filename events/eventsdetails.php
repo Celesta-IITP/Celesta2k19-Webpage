@@ -8,10 +8,9 @@
     $access_token = $_SESSION['access_token'];
   }
 
-
   $id = $_GET['id'];
   // $service_url = 'http://localhost/celesta2k19-webpage/backend/admin/functions/events_api.php';
-  $service_url = 'http://celesta.org.in/backend/admin/functions/events_api.php';
+  $service_url = 'https://celesta.org.in/backend/admin/functions/events_api.php';
   $curl = curl_init($service_url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   $curl_response = curl_exec($curl);
@@ -262,7 +261,7 @@
       formData.append("member3", member3);
       formData.append("member4", member4);
       formData.append("member5", member5);
-      let url="http://celesta.org.in/backend/admin/functions/reg_team_event.php";
+      let url="https://celesta.org.in/backend/admin/functions/reg_team_event.php";
       // let url="http://localhost/celesta2k19-webpage/backend/admin/functions/reg_team_event.php";
       let res = await fetch(
         url,
