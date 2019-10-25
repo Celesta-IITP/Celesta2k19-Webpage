@@ -34,6 +34,14 @@
       </li>
        <?php }?>
 
+    <?php 
+      if($permit==0 || $permit==2 || $permit==5){?>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="acco.php">Accommodations</a>
+        </li>
+       <?php }?>
+
     <?php if($permit==4 || $permit==0){?>
       <li class="nav-item">
         <a class="nav-link" href="events.php">Events</a>
