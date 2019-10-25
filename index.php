@@ -250,9 +250,10 @@
                 Register for Celesta'19
               </p>
               <a href="./backend/user/register.php" target="_blank" class="btn btn--dark btn--hollow">Register</a>
-              <a href="./backend/user/login.php" target="_blank" class="btn btn--dark btn--hollow">Login</a>
+              <a href="./stepstoreg.php" class="btn btn--dark btn--hollow">Steps to Register</a>
               <p>
                 <a href="./events.php" class="btn btn--dark btn--hollow">Register for events</a>
+              
               </p>
             </div>
           </div>
