@@ -228,11 +228,12 @@
               </div>
               <p class="tx--body-lead">
                 <ul>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Open the user registration from navbar.</li>
+                    <li>Fill the required details.</li>
+                    <li>On successful registration, we will send you a mail in your registered email to verify and activate your account.</li>
+                    <li>After account activation you will receive your Celesta-ID which is of the form (Eg. CLST1234).</li>
+                    <li>You are requested to remember your Celesta-ID.</li>
+                    <li>Now you can login using your Celesta-ID and start registering for events.</li>
                 </ul>
               </p>
             </div>
@@ -251,11 +252,14 @@
               </div>
               <p class="tx--body-lead">
                 <ul>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, provident.  Minus harum quuo quos a consequuntur?</li>
+                    <li>Go to the events page from navbar</li>
+                    <li>Select events category (Eg. Events, Workshops, Pronites, etc).</li>
+                    <li>Go to more details of particular event to register for that particular event.</li>
+                    <li>Some events are solo while some are team events. In case of team events, there has to be a team captain and others are team members where maximum number of members in a team is mentioned on the event details page.</li>
+                    <li>In a team event a team can have at most the maximum number of members. (Eg. If maximum number of members=6, then a team can have only 1 or only 4 members also.)</li>
+                    <li>The price of the event is mentioned there in the events details page. Also many events are free where no payment is required.</li>
+                    <li>Go to your profile page from navbar to see all your registered events and their payment details.</li>
+                    <li>Payment can be done offline too in the registration desk on the respective event date.</li>
                 </ul>
               </p>
             </div>
