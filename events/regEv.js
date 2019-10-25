@@ -33,6 +33,7 @@ const regEvFunc = async (eventId, celestaId, accessToken) => {
     });
   }
   else if (res.status === 202) {
+    location.reload();
     res.message.forEach(mes => {
       htmlData += `
           <div class="toast fade show" style="z-index: 999">
