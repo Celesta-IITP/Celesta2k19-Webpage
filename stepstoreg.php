@@ -245,7 +245,7 @@
         <div class="offices">
 
           <div class="office">
-            <h1 class="title tx--title-1a" style="font-size:20px">Steps to Event</h1>
+            <h1 class="title tx--title-1a" style="font-size:20px">Steps to register for Events</h1>
             <div class="location">
               <div class="tx--body-lead location-name" style="text-decoration: underline">
                 Folllow these steps:
