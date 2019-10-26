@@ -1,5 +1,5 @@
 <?php
-    include("./init.php");
+    include('./init.php');
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $response=array();
         $message=array();
@@ -53,10 +53,10 @@
                     $qrcode=$user_data['qrcode'];
                     $email=$user_data['email'];
 
-
-                    $sql="INSERT INTO accommodation(celestaid,names,phone,gender,booking_date,no_of_days,day1,day2,day3,email) VALUES('$celestaid','$name','$phone','$gender','$date',$no_of_days,$day1,$day2,$day3,'$email')";
+                    $sql="INSERT INTO accommodation(celestaid,names,phone,gender,booking_date,no_of_days,day1,day2,day3,email) VALUES('$celestaid','$name','$phone','$gender','$date','$no_of_days','$day1','$day2','$day3','$email')";
                     $result=query($sql);
                     confirm($result);
+
                     $message="<p> Hi $name, you have successfully booked your accommodation for $no_of_days.<br>
                         Your celestaid is:$celestaid<br>
                         <a href='$qrcode'><img src='$qrcode' alt='Your qr code should be shown here.' style='height:400px;width:400px'/></a>
@@ -71,7 +71,8 @@
             }
         }
         $response['message']=$message;
-        print_r(json_encode($response));
+        // print_r(json_encode($response));
+        echo json_encode($response);
     }
 
     // Function to get user info
