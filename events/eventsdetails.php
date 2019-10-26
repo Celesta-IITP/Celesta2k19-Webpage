@@ -188,11 +188,12 @@
           <small>
             <b>Notes:</b><br>
             * A team can consist of only captain if there are no other members in the team.<br>
+            * Celesta-ID of team members is required if there are team members.<br>
           </small>
           <br>
           <form id="regTeamEvForm">
           <div class="form-group">
-              <label for="member1">Celesta Id Of Team Captain</label>
+              <label for="member1">Celesta Id Of Team Captain (Member 1)</label>
               <input type="text" class="form-control" name="celestaid" id="celestaid" value="<?php echo $celestaid?>" disabled>
             </div>
             <div class="form-group">
@@ -201,7 +202,7 @@
             </div>
             <?php $max=$event['team_members']-1; for($i=1;$i<=$max;$i++){ ?>
               <div class="form-group">
-                <label for="member1">Celesta Id of member <?php echo $i;?></label>
+                <label for="member1">Celesta Id of member <?php echo $i+1;?></label>
                 <input type="text" class="form-control" name="member<?php echo $i;?>" id="member<?php echo $i;?>">
               </div>
             <?php } ?>
@@ -272,7 +273,6 @@
       );
       res = await res.json();
       spinner.style.display = "none";
-      console.log(res);
 
       let htmlData = "";
       if (res.status === 302) {
