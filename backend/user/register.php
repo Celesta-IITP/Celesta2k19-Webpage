@@ -66,7 +66,7 @@ if (logged_in()) {
                                     </label>
                                 </div>
                                 <div class="input-field col s12 m6">
-                                    <input type="text" id="referral_id" name="referral_id" class="validate" placeholder="Referral ID">
+                                    <input type="text" id="referral_id" name="referral_id" class="validate" placeholder="Referral ID (Not compulsory field.)">
                                     <label for="referral_id">
                                         <i class="material-icons">person</i>
                                     </label>
