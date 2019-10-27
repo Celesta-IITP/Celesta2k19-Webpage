@@ -12,8 +12,8 @@
 ?>
 
 <?php
-  $service_url = 'http://localhost/celesta2k19-webpage/user/functions/book_accomodation.php';
-//   $service_url = 'https://celesta.org.in/backend/user/functions/book_accomodation.php';
+//   $service_url = 'http://localhost/celesta2k19-webpage/user/functions/book_accomodation.php';
+  $service_url = 'https://celesta.org.in/backend/user/functions/book_accomodation.php';
   $curl = curl_init($service_url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   $curl_response = curl_exec($curl);
