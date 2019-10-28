@@ -231,7 +231,7 @@
               </div>
               <p class="tx--body-lead">
                 Indian Institute of Technology Patna <br>
-                Bihta Patna-801106 (Bihar)<br><br>
+                Bihta Patna-801103 (Bihar)<br><br>
                 Aman Deep :- 9931059201<br>
                 Priyansh Singh Rao :- 8058501770<br>
                 Roushan Kumar :- 9610098566<br>
