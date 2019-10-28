@@ -12,7 +12,7 @@
 ?>
 
 <?php
-//   $service_url = 'http://localhost/celesta2k19-webpage/user/functions/book_accomodation.php';
+//   $service_url = 'http://localhost:8888/celesta2k19-webpage/user/functions/book_accomodation.php';
   $service_url = 'https://celesta.org.in/backend/user/functions/book_accomodation.php';
   $curl = curl_init($service_url);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -20,7 +20,7 @@
   if ($curl_response === false) {
     $info = curl_getinfo($curl);
     curl_close($curl);
-    die('error occured during curl exec. Additioanl info: ' . var_export($info));
+    die('error occurred during curl exec. Additional info: ' . var_export($info));
   }
   curl_close($curl);
   $data = json_decode($curl_response, true);
@@ -141,8 +141,8 @@
 			formData.append("day2_day3", daySelect);
 		}
 		
-		// let url="https://celesta.org.in/backend/user/functions/book_accomodation.php";
-		let url="http://localhost/celesta2k19-webpage/backend/user/functions/book_accomodation.php";
+		let url="https://celesta.org.in/backend/user/functions/book_accomodation.php";
+		// let url="http://localhost:8888/celesta2k19-webpage/backend/user/functions/book_accomodation.php";
 		let res = await fetch(
 			url,
 			{

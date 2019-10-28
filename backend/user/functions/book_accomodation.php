@@ -57,16 +57,15 @@
                     $result=query($sql);
                     confirm($result);
 
-                    $message="<p> Hi $name, you have successfully booked your accommodation for $no_of_days.<br>
+                    $mssg="<p> Hi $name, you have successfully booked your accommodation for $no_of_days days.<br>
                         Your celestaid is:$celestaid<br>
                         <a href='$qrcode'><img src='$qrcode' alt='Your qr code should be shown here.' style='height:400px;width:400px'/></a>
                     </p>";
                     $subject="Celesta2k19 Accommodation Booking";
                     $headers="From: celesta19iitp@gmail.com";
-                    send_email($email,$subject,$message,$headers);
-
+                    send_email($email,$subject,$mssg,$headers);
                     $response['status']=202;
-                    $message[]="Successfully booked your accommodation for $no_of_days";
+                    $message[]="Successfully booked your accommodation for $no_of_days days.";
                 }
             }
         }
