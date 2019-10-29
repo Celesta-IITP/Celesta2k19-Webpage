@@ -73,7 +73,7 @@
         }
     </style>
     <link rel="stylesheet" href="_compiled/app.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"> -->
 </head>
 
 <body>
@@ -221,6 +221,8 @@
 
     <main id="barba-wrapper" class="main">
         <div class="barba-container" data-namespace="prismFaded" data-prismstroke="true">
+            <!-- font awesome link for hot reload -->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
 
             <ul class="viewport-links">
 
