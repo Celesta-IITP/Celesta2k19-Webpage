@@ -100,6 +100,7 @@ function getEventAmount($ev_id)
                                         <?php if ($profile['isCA']) { ?>
                                             <button class="btn btn-success">Excitons: <?php echo $profile['ca']['excitons'] ?></button> <button class="btn btn-success">Gravitons: <?php echo $profile['ca']['gravitons'] ?></button>
                                         <?php } ?>
+                                        <a href="./accommodation.php" class="btn btn-warning" style="margin-top: 10px">Book Accomodation</a>
                                     </div>
                                 </div>
                             </div>
