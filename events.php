@@ -286,6 +286,16 @@
             </article>
 
             <article class="alpha-event">
+              <a class="project-link is--available" data-js-index="1" href="./events/eventsdata.php?data=seminars"
+                target="_blank" atl="Hospitality">
+                <div class="alpha-img-container">
+                  <img src="assets/images/events/seminars.jpg" alt="product-1" class="product-img">
+                  <h3>Seminars</h3>
+                </div>
+              </a>
+            </article>
+
+            <article class="alpha-event">
               <a class="project-link is--available is--active" data-js-index="1" href="./events/eventsdata.php?data=pronites"
                 target="_blank" atl="Hospitality">
                 <div class="alpha-img-container">
