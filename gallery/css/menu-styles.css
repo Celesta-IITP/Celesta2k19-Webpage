@@ -31,7 +31,7 @@ html, body {
     cursor: pointer;
     width: 100px;
     height: 80px;
-    background-color: #f37272;
+    background-color: #0c79a0;
     border-bottom-right-radius: 100%;
 }
 .menu_toggle:active i {
