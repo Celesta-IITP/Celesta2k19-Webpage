@@ -66,6 +66,13 @@
 
   <link rel="stylesheet" href="./css/menu-styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+  <style>
+   .sec_head h3{
+     color:white;
+   }
+  </style>
+
 </head>
 
 <body>
@@ -100,7 +107,7 @@
       <div class="content_inner">
         <section id="gallery" class="section-bg">
           <div class="container">
-            <header class="section-header">
+            <header class="section-header sec_head">
               <h3 class="section-title">Celesta Events</h3>
             </header>
 
