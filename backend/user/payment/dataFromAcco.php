@@ -16,10 +16,18 @@ session_start();
 <?php 
 	$celestaid=htmlentities($_POST['celestaid']);
 	$access_token=htmlentities($_POST['access_token']);
-	$acco_amount=htmlentities($_POST['acco_amount']);
+	$ev_id=htmlentities($_POST["ev_id"]);
+	$ev_amount=htmlentities($_POST["ev_amount"]);
 	$name=htmlentities($_POST["name"]);
 	$phone=htmlentities($_POST["phone"]);
 	$email=htmlentities($_POST['email']);
+
+	$_SESSION["cc_celestaid"]=$celestaid;
+	$_SESSION["cc_ev_amount"]=$ev_amount;
+	$_SESSION["cc_access_token"]=$access_token;
+	$_SESSION["cc_ev_id"]=$ev_id;
+
+	echo "Testing celestaid - ".$celestaid;
 	
 ?>
 
@@ -36,6 +44,8 @@ session_start();
 			?>
 			<input type="text" name="celestaid" value="<?php echo $celestaid?>" readonly/>
 			<input type="text" name="access_token" value="<?php echo $access_token?>" readonly/>
+			<input type="text" name="ev_id" value="<?php echo $ev_id?>" readonly/>
+			<input type="text" name="ev_amount" value="<?php echo $ev_amount?>" readonly/>
 
 			<tr>
 				<td>Parameter Name:</td>
@@ -67,13 +77,13 @@ session_start();
 
 			<tr>
 				<td>Redirect URL :</td>
-				<td><input type="text" name="redirect_url" value="http://www.techprolabz.com/pay/ccavResponseHandlerAcco.php" readonly />
+				<td><input type="text" name="redirect_url" value="http://www.techprolabz.com/pay/ccavResponseHandler.php" readonly />
 				</td>
 			</tr>
 			<tr>
 				<td>Cancel URL :</td>
 				<!-- http://www.techprolabz.com/pay/ccavResponseHandler.php -->
-				<td><input type="text" name="cancel_url" value="http://www.techprolabz.com/pay/ccavResponseHandlerAcco.php" readonly/>
+				<td><input type="text" name="cancel_url" value="http://www.techprolabz.com/pay/ccavResponseHandler.php" readonly/>
 				</td>
 			</tr>
 			<tr>
@@ -152,11 +162,11 @@ session_start();
 			</tr>
 			<tr>
 				<td>Merchant Param2 :</td>
-				<td><input type="text" name="merchant_param2" value="<?php echo $acco_amount?>" readonly /></td>
+				<td><input type="text" name="merchant_param2" value="<?php echo $ev_amount?>" readonly /></td>
 			</tr>
 			<tr>
 				<td>Merchant Param3 :</td>
-				<td><input type="text" name="merchant_param3" value="qwerty" readonly/></td>
+				<td><input type="text" name="merchant_param3" value="<?php echo $ev_id?>" readonly/></td>
 			</tr>
 			<tr>
 				<td>Merchant Param4 :</td>
