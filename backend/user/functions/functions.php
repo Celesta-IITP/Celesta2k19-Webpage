@@ -570,6 +570,7 @@ function login_user($celestaid, $password, $remember){
 			$_SESSION['celestaid']=$celestaid;	//Storing the celesta id in a session
 			$_SESSION['qrcode']=$qrcode;
 			$_SESSION['access_token']=$access_token;
+			$_SESSION['userID']=$celestaid;
 
 			if($remember=="on"){
 				 setcookie('celestaid',$celestaid, time() + 86400);
