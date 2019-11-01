@@ -533,6 +533,9 @@ function validate_user_login(){
 					redirect("../../events/eventsdetails.php?id=".$_GET['redirecteventsdetails']);
 					return 0;
 				}
+				if (isset($_GET['fromNjath'])){
+					redirect("../../njath");
+				}
 				redirect("profile.php");
 				return json_encode(array("400"));//User logged in
 			}else{
