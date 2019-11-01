@@ -534,7 +534,9 @@ function validate_user_login(){
 					return 0;
 				}
 				if (isset($_GET['fromNjath'])){
-					redirect("../../njath/index.php");
+					// redirect("../../njath/index.php");
+					header("Location: https://celesta.org.in/njath/");
+					return 0;
 				}
 				redirect("profile.php");
 				return json_encode(array("400"));//User logged in
