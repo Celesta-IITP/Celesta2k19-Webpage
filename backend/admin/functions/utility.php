@@ -44,6 +44,46 @@ function send_email($email,$subject,$msg,$headers){
 }
 
 
+function send_bulk_email($data_emails,$subject,$msg,$headers){
+	// 	return (mail($email,$subject,$msg,$headers));
+	
+		// require "PHPMailerAutoload.php";
+		require_once('PHPMailerAutoload.php');
+	
+		$mail = new PHPMailer;
+	
+		//$mail->SMTPDebug = 4;                               // Enable verbose debug output
+	
+		$mail->isSMTP();                                      // Set mailer to use SMTP
+		$mail->Host = 'tls://smtp.gmail.com';  // Specify main and backup SMTP servers
+		$mail->SMTPAuth = true;                               // Enable SMTP authentication
+		$mail->Username = "celesta19iitp@gmail.com";                 // SMTP username
+		$mail->Password = "celesta19@iitp.ac.in";  
+		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+		$mail->Port = 587;                                    // TCP port to connect to
+	
+		$mail->setFrom('celesta19iitp@gmail.com', 'Celesta2k19');
+		$mail->addAddress('ashyadavash@gmail.com');     // Add a recipient
+		$mail->addReplyTo('celesta19iitp@gmail.com', 'Information');
+		foreach($data_emails as $email) {
+			$mail->addBCC($email);
+		}
+	
+		// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+		// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+		$mail->isHTML(true);                                  // Set email format to HTML
+	
+		$mail->Subject = $subject;
+		$mail->Body    = $msg;
+		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+	
+		if(!$mail->send()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 //Function to generate random celestaID
 function getCelestaId(){
 	$exist=true;
