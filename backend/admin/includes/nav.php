@@ -49,6 +49,9 @@
       <li class="nav-item">
         <a class="nav-link" href="add_event.php">Add Event</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="send_bulk_mail.php">Mail</a>
+      </li>
      <?php }?>
 
       <?php

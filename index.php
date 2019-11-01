@@ -263,15 +263,14 @@
             data-bg-md="assets/images/home/_1000xAUTO_Fit_center-center_75/img-bd-3.jpg"
             data-bg-lg="assets/images/home/_1400xAUTO_Fit_center-center_75/img-bd-3.jpg">
             <h2 class="word-wrapper">
-              <span class="word tx--title-1 caSpanStyle">CA Program</span>
+              <span class="word tx--title-1 caSpanStyle">NJATH</span>
               <span class="icon x is--inactive"></span>
             </h2>
-            <div class="word-intro"></div>
+            <div class="word-intro">Not Just Another Treasure Hunt</div>
             <div aria-hidden class="word-content tx--gray-blue-1">
               <p class="tx--body-lead">
-                <a href="./ca/ca.php" target="_blank" class="btn btn--dark btn--hollow">Register for CA</a>
+                <a href="https://celesta.org.in/njath" target="_blank" class="btn btn--dark btn--hollow">NJATH</a>
               </p>
-              <a href="./backend/user/login.php" target="_blank" class="btn btn--dark btn--hollow">CA Login</a>
             </div>
           </div>
         </div>
