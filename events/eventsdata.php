@@ -90,6 +90,25 @@
   </div>
 
 
+  <a href="https://celesta.org.in/njath" class="njath">NJATH is live now</a>
+   <style>
+     .njath{
+       position: absolute;
+       bottom: 10px;
+       right: 10px;
+       z-index: 9999;
+       background: #32489D;
+       color: #fff;
+       padding: 10px;
+       border: 5px solid #fff;
+       border-radius: 10px;
+       box-shadow: 0px 5px 10px rgba(0,0,0,.5);
+     }
+     .njath:hover{
+       color: #fff;
+     }
+   </style>
+
   <!--==========================
       Gallery Section
     ============================-->
