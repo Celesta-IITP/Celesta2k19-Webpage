@@ -534,7 +534,7 @@ function validate_user_login(){
 					return 0;
 				}
 				if (isset($_GET['fromNjath'])){
-					redirect("../../njath/");
+					redirect("../../njath/index.php");
 				}
 				redirect("profile.php");
 				return json_encode(array("400"));//User logged in
