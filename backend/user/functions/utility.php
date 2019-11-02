@@ -10,19 +10,21 @@ function send_email($email,$subject,$msg,$headers){
 	//$mail->SMTPDebug = 4;                               // Enable verbose debug output
 
 	$mail->isSMTP();                                      // Set mailer to use SMTP
-	$mail->Host = 'tls://smtp.gmail.com';  // Specify main and backup SMTP servers
+	$mail->Host = 'tls://mail.celesta.org.in';  // Specify main and backup SMTP servers
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = "atmcelesta2k19@gmail.com";                 // SMTP username
-	$mail->Password ="celesta@2k19";
+	// $mail->Username = "atmcelesta2k19@gmail.com";                 // SMTP username
+	// $mail->Password ="celesta@2k19";
 	// $mail->Username = "celesta2k19@gmail.com";                 // SMTP username
 	// $mail->Password = "celesta19@iitp.ac.in"; 
+	$mail->Username = "curator@celesta.org.in";                 // SMTP username
+	$mail->Password = "celesta19@iitp.ac.in"; 
 	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 	$mail->Port = 587;                                    // TCP port to connect to
 
-	$mail->setFrom('celesta19iitp@gmail.com', 'Celesta2k19');
+	$mail->setFrom('curator@celesta.org.in', 'Celesta2k19');
 	$mail->addAddress($email);     // Add a recipient
 	//$mail->addAddress('ellen@example.com');               // Name is optional
-	$mail->addReplyTo('celesta19iitp@gmail.com', 'Information');
+	$mail->addReplyTo('curator@celesta.org.in', 'Information');
 	//$mail->addCC('cc@example.com');
 	//$mail->addBCC('bcc@example.com');
 
