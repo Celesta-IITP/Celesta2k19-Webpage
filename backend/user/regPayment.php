@@ -1,12 +1,6 @@
 <?php include("functions/init.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php
-if (logged_in()) {
-    redirect("profile.php");
-}
-?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,14 +22,18 @@ if (logged_in()) {
                     <br>
                     <div>
                         <div style="display: flex; justify-content: center; laign-items: center">
-                            <img src="https://www.qr-code-generator.com/wp-content/themes/qr/new_structure/markets/core_market_full/generator/dist/generator/assets/images/websiteQRCode_noFrame.png" width="25%" height="25%" alt="">
+                            <img src="../../assets/images/pay/regPayment.jpeg" width="300px" height="300px" alt="">
+                        </div>
+                        <br>
+                        <div style="display: flex; justify-content: center; laign-items: center">
+                            <img src="../../assets/images/pay/pay.jpeg" width="300px" height="100px" alt="">
                         </div>
                         <div>
                             <h5>Note:</h5>
                             <ol>
-                                <li>efhjwefvhjw</li>
-                                <li>efhjwefvhjw</li>
-                                <li>efhjwefvhjw</li>
+                                <li>Scan the QR Code above to pay ₹150 (Registration Fee).</li>
+                                <li>Keep the transaction ID and the screenshot of payment with you.</li>
+                                <li>Fill the Google-form for transaction verification. <button style="background: rgb(255,193,7)"><a href="https://forms.gle/hQXhDu3VG2iyjQ576" target="_blank" style="color: #fff">Google Form</a></button></li>
                             </ol>
                         </div>
                     </div>

@@ -101,6 +101,7 @@ function getEventAmount($ev_id)
                                             <button class="btn btn-success">Excitons: <?php echo $profile['ca']['excitons'] ?></button> <button class="btn btn-success">Gravitons: <?php echo $profile['ca']['gravitons'] ?></button>
                                         <?php } ?>
                                         <a href="./accommodation.php" class="btn btn-warning" style="margin-top: 10px">Book Accomodation</a>
+                                        <a href="./regPayment.php" class="btn btn-warning" style="margin-top: 10px">Pay registration fee</a>
                                     </div>
                                 </div>
                             </div>
