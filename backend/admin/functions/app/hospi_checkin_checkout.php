@@ -90,7 +90,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                         $message[]="Successfully checked in.";
                         $action="Checked In";
                     }
-                    $message[]=$last_row;
+                    $response['last_action']=$last_row;
                 }//End of main working part
 
 
