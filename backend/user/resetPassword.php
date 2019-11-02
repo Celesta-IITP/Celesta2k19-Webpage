@@ -98,8 +98,8 @@
         formData.append("email", email);
         formData.append("validation_code", validation_code);
         
-		// let url="https://celesta.org.in/backend/user/functions/resetPassword.php";
-		let url="http://localhost/celesta2k19-webpage/backend/user/functions/resetPassword.php";
+		let url="https://celesta.org.in/backend/user/functions/resetPassword.php";
+		// let url="http://localhost/celesta2k19-webpage/backend/user/functions/resetPassword.php";
 		let res = await fetch(
 			url,
 			{
