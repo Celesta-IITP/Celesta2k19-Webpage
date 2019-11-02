@@ -1,16 +1,3 @@
-<?php 
-    include("./functions/init.php");
-
-    $loggedIn = logged_in();
-    $celestaid=""; $access_token="";
-    if($loggedIn){
-      $celestaid = $_SESSION['celestaid'];
-      $access_token=$_SESSION['access_token'];
-    } else {
-		redirect('./login.php');
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,31 +27,24 @@
 					<!--  -->
                 </span>
 				<span class="login100-form-title p-b-41">
-                    Accommodation Portal
+                    Reset Password
 				</span>
-				<form class="login100-form validate-form p-b-33 p-t-5" id="accoForm">
-					<div class="wrap-input100 validate-input" data-validate="Select choice">
-                        <select class="input100" type="select" name="daySelect" id="daySelect">
-                            <!-- <option value="day1">Day 1</option>
-                            <option value="day2">Day 2</option>
-                            <option value="day3">Day 3</option> -->
-                            <option value="all_day">All 3 Days</option>
-                            <!-- <option value="day1_day2">Day 1 & 2</option>
-                            <option value="day2_day3">Day 2 & 3</option> -->
-                        </select>
-						<span class="focus-input100" data-placeholder="&#xe82a;"></span>    
+				<form class="login100-form validate-form p-b-33 p-t-5" id="resetPwdForm">
+                    <div class="wrap-input100 validate-input" data-validate="Enter new password">
+						<input class="input100" type="password" name="password" id="password" placeholder="Password" required>
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
                     </div>
-                    
-                    <input type="hidden" value="<?php echo $celestaid?>" name="celestaid" id="celestaid">
-                    <input type="hidden" value="<?php echo $access_token?>" name="access_token" id="access_token">
-
+                    <div class="wrap-input100 validate-input" data-validate="Confirm new password">
+						<input class="input100" type="password" name="password1" id="password1" placeholder="Confirm password" required>
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+					</div>
 					<div class="container-login100-form-btn m-t-32">
 						<button class="login100-form-btn" type="submit">
-							Book Accommodation &nbsp;&nbsp;<span class="spinner-border spinner-border-sm spinner" style="display: none"></span>
+							Submit &nbsp;&nbsp;<span class="spinner-border spinner-border-sm spinner" style="display: none"></span>
                         </button>
                     </div>
                     <div class="m-t-10 text-center">
-                        <a href="./profile.php" style="color:hover: red">
+                        <a href="./login.php" style="color:hover: red">
                             Cancel
                         </a>
 					</div>
@@ -92,37 +72,34 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 	<script>
-		var accoForm = document.querySelector('#accoForm');
-		accoForm.addEventListener('submit', async (e) => {
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+		var resetPwdForm = document.querySelector('#resetPwdForm');
+		resetPwdForm.addEventListener('submit', async (e) => {
 		e.preventDefault();
 		let spinner = document.querySelector(".spinner");
       	spinner.style.display = "inline-block";
-		var celestaid=document.querySelector('#celestaid').value;
-		var access_token=document.querySelector('#access_token').value;
-		var daySelect=document.querySelector('#daySelect').value;
+		var password=document.querySelector('#password').value;
+        var password1=document.querySelector('#password1').value;
+        var email = getParameterByName('email');
+        var validation_code = getParameterByName('code');
 
 		let formData = new FormData();
-		formData.append("celestaid", celestaid);
-		formData.append("access_token", access_token);
-
-		// formData.append(daySelect, daySelect);
-
-		if(daySelect==="day1"){
-			formData.append("day1", daySelect);
-		} else if(daySelect==="day2"){
-			formData.append("day2", daySelect);
-		} else if(daySelect==="day3"){
-			formData.append("day3", daySelect);
-		} else if(daySelect==="all_day"){
-			formData.append("all_day", daySelect);
-		} else if(daySelect==="day1_day2"){
-			formData.append("day1_day2", daySelect);
-		} else if(daySelect==="day2_day3"){
-			formData.append("day2_day3", daySelect);
-		}
-		
-		let url="https://celesta.org.in/backend/user/functions/book_accomodation.php";
-		// let url="http://localhost:8888/celesta2k19-webpage/backend/user/functions/book_accomodation.php";
+		formData.append("password", password);
+        formData.append("password1", password1);
+        formData.append("email", email);
+        formData.append("validation_code", validation_code);
+        
+		// let url="https://celesta.org.in/backend/user/functions/resetPassword.php";
+		let url="http://localhost/celesta2k19-webpage/backend/user/functions/resetPassword.php";
 		let res = await fetch(
 			url,
 			{
@@ -134,7 +111,7 @@
 		spinner.style.display = "none";
 		let htmlData='';
 		var responses=document.querySelector('#responses');
-		if(res.status === 404){
+		if(res.status === 300){
 			res.message.forEach((msg) => {
 				htmlData+=`
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -146,7 +123,7 @@
 				`;
 			})
 		}
-		else if(res.status === 401){
+		else if(res.status === 500){
 			res.message.forEach((msg) => {
 				htmlData+=`
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -158,19 +135,7 @@
 				`;
 			})
 		}
-		else if(res.status === 208){
-			res.message.forEach((msg) => {
-				htmlData+=`
-				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					 ${msg}
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				`;
-			})
-		}
-		else if(res.status === 202){
+		else if(res.status === 200){
 			res.message.forEach((msg) => {
 				htmlData+=`
 				<div class="alert alert-success alert-dismissible fade show" role="alert">

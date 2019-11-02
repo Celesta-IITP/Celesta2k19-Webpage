@@ -54,9 +54,10 @@ if (logged_in()) {
                                     <span class="btn waves-effect waves-light left">Resend Activation Link</span></a>
                                 </label>
                             </div>
-
+                            <br>
                         </div>
                     </form>
+                    <h5 class="center" style="margin-top:50px"><a href="./forgotPassword.php">Forgot Password?</a></h5>
                     <h5 class="center" style="margin-top:50px">Dont have an account ? <a href="./register.php">Sign Up</a></h5>
                 </div>
             </div>
