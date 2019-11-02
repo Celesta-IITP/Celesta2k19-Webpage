@@ -38,6 +38,16 @@
     <meta name="msapplication-square310x310logo" content="msapplication-square310x310logo.html" />
     <meta name="msapplication-TileColor" content="#0b202b" />
 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151382188-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-151382188-1');
+  </script>
+
     <title>Celesta'19</title>
     <meta name='description'
         content='We are a passionate group of creative professionals who work across conceptional design, interior design, and architectural design.' />
