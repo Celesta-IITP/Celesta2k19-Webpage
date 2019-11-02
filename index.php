@@ -227,6 +227,31 @@
   <main id="barba-wrapper" class="main">
     <div class="barba-container" data-namespace="prism">
       <div class="home-wrapper">
+        <!-- payment -->
+        <a href="./backend/user/regPayment.php" target="_blank" class="njath">Registration Pay Portal</a>
+        <style>
+          .njath{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 9999;
+            background: rgb(51, 153, 255);
+            color: #fff;
+            padding: 10px;
+            border: 5px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(255,255,255,.5);
+          }
+          .njath:hover{
+            color: #fff;
+          }
+          @media(max-width: 500px){
+            .njath{
+              display: none;
+            }
+          }
+        </style>
+   
         <div class="landing-brands js-brands">
 
           <div class="brand brand-1" data-brand="Think" data-js-item="1"
@@ -260,7 +285,7 @@
                 Register for Celesta'19
               </p>
               <a href="./backend/user/register.php" target="_blank" class="btn btn--dark btn--hollow">Register</a>
-              <a href="./stepstoreg.php" class="btn btn--dark btn--hollow">Steps to Register</a>
+              <a href="./backend/user/regPayment.php" target="_blank" class="btn btn--dark btn--hollow">Pay registration fee</a>
               <p>
                 <a href="./events.php" class="btn btn--dark btn--hollow">Register for events</a>
               
