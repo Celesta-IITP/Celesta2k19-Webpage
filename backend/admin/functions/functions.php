@@ -254,7 +254,7 @@ function updatingUser(){
 
 	//Default values
 	$price_tshirt=300;
-	$price_reg=100; // Desk registration charge
+	$price_reg=150; // Desk registration charge
 	// $price_bandass=200;
 	$price_both=400;
 	$price_accommodation=500;
@@ -715,7 +715,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 
 	//Default values
 	$price_tshirt=300;
-	$price_reg=100;
+	$price_reg=150;
 	$price_accommodation=500;
 	$price_both=400;
 
