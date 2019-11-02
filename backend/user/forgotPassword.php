@@ -1,16 +1,3 @@
-<?php 
-    include("./functions/init.php");
-
-    $loggedIn = logged_in();
-    $celestaid=""; $access_token="";
-    if($loggedIn){
-      $celestaid = $_SESSION['celestaid'];
-      $access_token=$_SESSION['access_token'];
-    } else {
-		redirect('./login.php');
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,31 +27,20 @@
 					<!--  -->
                 </span>
 				<span class="login100-form-title p-b-41">
-                    Accommodation Portal
+                    Forgot Password
 				</span>
-				<form class="login100-form validate-form p-b-33 p-t-5" id="accoForm">
-					<div class="wrap-input100 validate-input" data-validate="Select choice">
-                        <select class="input100" type="select" name="daySelect" id="daySelect">
-                            <!-- <option value="day1">Day 1</option>
-                            <option value="day2">Day 2</option>
-                            <option value="day3">Day 3</option> -->
-                            <option value="all_day">All 3 Days</option>
-                            <!-- <option value="day1_day2">Day 1 & 2</option>
-                            <option value="day2_day3">Day 2 & 3</option> -->
-                        </select>
-						<span class="focus-input100" data-placeholder="&#xe82a;"></span>    
-                    </div>
-                    
-                    <input type="hidden" value="<?php echo $celestaid?>" name="celestaid" id="celestaid">
-                    <input type="hidden" value="<?php echo $access_token?>" name="access_token" id="access_token">
-
+				<form class="login100-form validate-form p-b-33 p-t-5" id="forgotPwdForm">
+                    <div class="wrap-input100 validate-input" data-validate = "Enter email id">
+						<input class="input100" type="text" name="email" id="email" placeholder="Email ID" required>
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div>
 					<div class="container-login100-form-btn m-t-32">
 						<button class="login100-form-btn" type="submit">
-							Book Accommodation &nbsp;&nbsp;<span class="spinner-border spinner-border-sm spinner" style="display: none"></span>
+							Continue &nbsp;&nbsp;<span class="spinner-border spinner-border-sm spinner" style="display: none"></span>
                         </button>
                     </div>
                     <div class="m-t-10 text-center">
-                        <a href="./profile.php" style="color:hover: red">
+                        <a href="./login.php" style="color:hover: red">
                             Cancel
                         </a>
 					</div>
@@ -92,37 +68,18 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 	<script>
-		var accoForm = document.querySelector('#accoForm');
-		accoForm.addEventListener('submit', async (e) => {
+		var forgotPwdForm = document.querySelector('#forgotPwdForm');
+		forgotPwdForm.addEventListener('submit', async (e) => {
 		e.preventDefault();
 		let spinner = document.querySelector(".spinner");
       	spinner.style.display = "inline-block";
-		var celestaid=document.querySelector('#celestaid').value;
-		var access_token=document.querySelector('#access_token').value;
-		var daySelect=document.querySelector('#daySelect').value;
+		var email=document.querySelector('#email').value;
 
 		let formData = new FormData();
-		formData.append("celestaid", celestaid);
-		formData.append("access_token", access_token);
+		formData.append("email", email);
 
-		// formData.append(daySelect, daySelect);
-
-		if(daySelect==="day1"){
-			formData.append("day1", daySelect);
-		} else if(daySelect==="day2"){
-			formData.append("day2", daySelect);
-		} else if(daySelect==="day3"){
-			formData.append("day3", daySelect);
-		} else if(daySelect==="all_day"){
-			formData.append("all_day", daySelect);
-		} else if(daySelect==="day1_day2"){
-			formData.append("day1_day2", daySelect);
-		} else if(daySelect==="day2_day3"){
-			formData.append("day2_day3", daySelect);
-		}
-		
-		let url="https://celesta.org.in/backend/user/functions/book_accomodation.php";
-		// let url="http://localhost:8888/celesta2k19-webpage/backend/user/functions/book_accomodation.php";
+		let url="https://celesta.org.in/backend/user/functions/forgotPassword.php";
+		// let url="http://localhost/celesta2k19-webpage/backend/user/functions/forgotPassword.php";
 		let res = await fetch(
 			url,
 			{
@@ -146,7 +103,7 @@
 				`;
 			})
 		}
-		else if(res.status === 401){
+		else if(res.status === 500){
 			res.message.forEach((msg) => {
 				htmlData+=`
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -158,19 +115,7 @@
 				`;
 			})
 		}
-		else if(res.status === 208){
-			res.message.forEach((msg) => {
-				htmlData+=`
-				<div class="alert alert-warning alert-dismissible fade show" role="alert">
-					 ${msg}
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				`;
-			})
-		}
-		else if(res.status === 202){
+		else if(res.status === 200){
 			res.message.forEach((msg) => {
 				htmlData+=`
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
