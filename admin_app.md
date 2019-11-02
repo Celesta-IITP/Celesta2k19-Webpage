@@ -27,6 +27,7 @@
 * status: 200(Checked out/Checked in)/ 203(Account not verified at desk)/ 404(Celestaid not found)
 * message: Array of messages
 * action: Checkin/Checkout
+* last_action: Details of previous action
 
 ### Checkin Checkout of users for accommodation at hostel
 #### URL: hospi_checkin_checkout.php
@@ -40,3 +41,4 @@
 * status: 200(Checked out/Checked in)/ 203(Account not verified at desk)/ 204(Not payed accommodation fee or user has not booked accommodation) /404(Celestaid not found)/ 401(Invalid user)
 * message: Array of messages
 * action: Checkin/Checkout
+* last_action: Details of previous action
