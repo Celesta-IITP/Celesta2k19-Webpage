@@ -43,6 +43,15 @@
     content='We are a passionate group of creative professionals who work across conceptional design, interior design, and architectural design.' />
   <link rel='canonical' href='sponsors.php' />
   <meta property='og:locale' content='en_us' />
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151382188-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-151382188-1');
+  </script>
   <!-- / Sprout SEO Craft CMS plugin -->
 
   <link rel="preload" href="assets/fonts/Neutraface2Text-Book.html" as="font" type="font/woff2" crossorigin="">

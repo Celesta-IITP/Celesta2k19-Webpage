@@ -32,6 +32,16 @@
   <link rel="icon" type="image/png" sizes="96x96" href="assets/meta-icons/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/meta-icons/favicon-16x16.png">
 
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151382188-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-151382188-1');
+  </script>
+
   <meta name="application-name" content="McBride" />
   <meta name="msapplication-square70x70logo" content="msapplication-square70x70logo.html" />
   <meta name="msapplication-square150x150logo" content="msapplication-square150x150logo.html" />
