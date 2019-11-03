@@ -72,13 +72,13 @@ session_start();
 
 			<tr>
 				<td>Redirect URL :</td>
-				<td><input type="text" name="redirect_url" value="http://www.techprolabz.com/pay/ccavResponseHandler.php" readonly />
+				<td><input type="text" name="redirect_url" value="http://www.techprolabz.com/pay/ccavResponseHandlerAcco.php" readonly />
 				</td>
 			</tr>
 			<tr>
 				<td>Cancel URL :</td>
-				<!-- http://www.techprolabz.com/pay/ccavResponseHandler.php -->
-				<td><input type="text" name="cancel_url" value="http://www.techprolabz.com/pay/ccavResponseHandler.php" readonly/>
+				<!-- http://www.techprolabz.com/pay/ccavResponseHandlerAcco.php -->
+				<td><input type="text" name="cancel_url" value="http://www.techprolabz.com/pay/ccavResponseHandlerAcco.php" readonly/>
 				</td>
 			</tr>
 			<tr>
