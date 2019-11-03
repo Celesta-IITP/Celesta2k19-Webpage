@@ -11,6 +11,7 @@ if (isset($_SESSION['celestaid'])) {
     $access_token = $_SESSION['access_token'];
 }
 
+// ca leaderboard
 $cadata = ca_leaderboard();
 $data = array();
 foreach ($cadata as $cd) {
@@ -24,8 +25,13 @@ foreach ($cadata as $cd) {
 }
 $points = array_column($data, 'points');
 array_multisort($points, SORT_DESC, $data);
+
+// user details
 $profile = user_details($celestaid);
 $user_registered_events = json_decode($profile['events_registered']);
+
+// accomodation stuff
+$userInAcco=userExistsInAccommodation($celestaid);
 
 function getEventAmount($ev_id)
 {
@@ -36,6 +42,18 @@ function getEventAmount($ev_id)
         return $row['ev_amount'];
     } else {
         return -1;
+    }
+}
+// TO check if a user is present in accomodation table or not
+function userExistsInAccommodation($celestaid){
+    $sql="SELECT id, amount_paid from accommodation WHERE celestaid='$celestaid'";
+    $result=query($sql);
+    confirm($result);
+    if(row_count($result)==1){
+        $row=fetch_array($result);
+        return $row;
+    }else{
+        return false;
     }
 }
 
@@ -100,8 +118,24 @@ function getEventAmount($ev_id)
                                         <?php if ($profile['isCA']) { ?>
                                             <button class="btn btn-success">Excitons: <?php echo $profile['ca']['excitons'] ?></button> <button class="btn btn-success">Gravitons: <?php echo $profile['ca']['gravitons'] ?></button>
                                         <?php } ?>
-                                        <a href="./accommodation.php" class="btn btn-warning" style="margin-top: 10px">Book Accomodation</a>
                                         <a href="./regPayment.php" class="btn btn-warning" style="margin-top: 10px">Pay registration fee</a>
+                                        <?php if($userInAcco==false) { ?>
+                                            <a href="./accommodation.php" class="btn btn-warning" style="margin-top: 10px">Book Accomodation</a>
+                                        <?php } else { ?>
+                                            <?php if($userInAcco['amount_paid']==0) { ?>
+                                                <form action="http://techprolabz.com/pay/dataFromAcco.php" method="POST">
+                                                    <input type="text" hidden value="<?php echo $celestaid ?>" name="celestaid">
+                                                    <input type="text" hidden value="<?php echo $access_token ?>" name="access_token">
+                                                    <input type="text" hidden value=600 name="acco_amount">
+                                                    <input type="text" hidden value="<?php echo $profile['email'] ?>" name="email">
+                                                    <input type="text" hidden value="<?php echo $profile['phone'] ?>" name="phone">
+                                                    <input type="text" hidden value="<?php echo $profile['first_name'] . ' ' . $profile['last_name'] ?>" name="name">
+                                                    <button type="submit" class="btn btn-warning" style="margin-top: 10px">Pay Accomodation Fee</button>
+                                                </form>
+                                            <?php } else { ?>
+                                                <button class="btn btn-success" style="margin-top: 10px" disabled>Accomodation amount paid</button>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

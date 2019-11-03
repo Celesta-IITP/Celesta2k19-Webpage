@@ -22,7 +22,7 @@
 			$access_token=urldecode($information[1]);
 		}
 		if($information[0]=="merchant_param2"){
-			$ev_amount=urldecode($information[1]);
+			$acco_amount=urldecode($information[1]);
 		}
 		if($information[0]=="billing_tel"){
 			$phone=urldecode($information[1]);
