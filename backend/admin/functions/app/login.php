@@ -32,6 +32,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
             $response['access_token']=$access_token;
             $response['permit']=$permit;
+            $response['email']=$email;
             $response['status']=200;
             $response['position']=$position;
             $message[]="Successfully logged in";
