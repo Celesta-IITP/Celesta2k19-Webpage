@@ -43,6 +43,8 @@
 * action: Checkin/Checkout
 * last_action: Details of previous action
 
+
+### To get the list of all the events
 #### URL: eventsDetail.php
 #### REQUEST_METHOD: POST
 #### Parameters:
@@ -57,3 +59,49 @@
     - "ev_id": "ATM3781",
     - "is_team_event": "1"
 })
+
+### To get details of all the registered users of an event
+#### URL: eventUsers.php
+#### REQUEST_METHOD: POST
+#### Parameters:
+* access_token (of admins)
+* permit (of admins)
+* ev_id
+
+#### Response:
+* status: 200(Successfully sent data)/ 401(Invalid user or unauthorized)
+* message: Message String
+* is_team_event: 0(Not team event)/ 1(It is a team event)
+* registered_users : Array of (Objects{
+    - "name": "Robo Wars",
+    - "time": "2019-10-11 12:51:22",
+    - "phone": "111111111",
+    - "amount": 1500,
+    - "celestaid": "CLST5404"
+})
+* team_details : Array of (Objects{
+    - "time": "2019-10-17 17:22:31",
+    - "amount": "1500",
+    - "cap_name": "",
+    - "cap_email": "",
+    - "cap_phone": "",
+    - "mem1_name": "",
+    - "mem2_name": "",
+    - "mem3_name": "",
+    - "mem4_name": "",
+    - "team_name": "",
+    - "mem1_email": "",
+    - "mem1_phone": "",
+    - "mem2_email": "",
+    - "mem2_phone": "",
+    - "mem3_email": "",
+    - "mem3_phone": "",
+    - "mem4_email": "",
+    - "mem4_phone": "",
+    - "cap_celestaid": "",
+    - "mem1_celestaid": "",
+    - "mem2_celestaid": "",
+    - "mem3_celestaid": "",
+    - "mem4_celestaid": ""
+})
+```Note: For team events parse team_details. For non team events parse registered users.```
