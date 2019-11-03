@@ -7,6 +7,7 @@ $message=array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $access_token=clean($_POST['access_token']);
     $permit=clean($_POST['permit']);
+    $ev_id=clean($_POST['ev_id']);
 
     $sql2="SELECT id,permit FROM admins where access_token='$access_token'";
     $result2=query($sql2);
@@ -16,14 +17,19 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $message="Admin not found.";
     }else{
         if($permit==0 || $permit==4){
-            $sql="SELECT ev_name, ev_id, is_team_event FROM events";
+            $sql="SELECT ev_name, is_team_event, ev_registrations FROM events where ev_id='$ev_id'";
             $result=query($sql);
-            $event=[];
-            while ($row = $result->fetch_assoc()) {
-                $events[]=$row;
-            }
+            $row=fetch_array($result);
+
             $response['status']=200;
-            $response['events']=$events;
+            $response['ev_id']=$ev_id;
+            $response['ev_name']=$row['ev_name'];
+            $response['is_team_event']=$row['is_team_event'];
+            if($row['is_team_event']==1){
+                $response['team_details']=json_decode($row['ev_registrations']);
+            }else{
+                $response['registered_users']=json_decode($row['ev_registrations']);
+            }
             $message="Successfully fetched events data.";
         }else{
             $response['status']=401;
