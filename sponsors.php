@@ -238,7 +238,7 @@
 
       <section id="company" class="company-section js-company">
 
-        <p class="company-intro__text">Our Sponsors (2019)</p>
+        <p class="company-intro__text">Our Sponsors</p>
         <!-- <br><br><br><br><br>
         <div class="company-intro">
           <picture class="company-intro__image poly-3">
@@ -421,7 +421,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/technobytes.png" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/techobyte.png" />
             </picture>
           </div>
 
