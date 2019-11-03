@@ -238,7 +238,7 @@
 
       <section id="company" class="company-section js-company">
 
-        <p class="company-intro__text">Our Sponsors (2019)</p>
+        <p class="company-intro__text">Our Sponsors</p>
         <!-- <br><br><br><br><br>
         <div class="company-intro">
           <picture class="company-intro__image poly-3">
