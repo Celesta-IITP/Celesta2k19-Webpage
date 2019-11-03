@@ -12,8 +12,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $result2=query($sql2);
     $row2=fetch_array($sql2);
     if(row_count($result2)!=1){
-        $response['status']='401';
-        $message="Invalid user.";
+        $response['status']=401;
+        $message="Admin not found.";
     }else{
         if($permit==0 || $permit==4){
             $sql="SELECT ev_name, ev_id, is_team_event FROM events";
@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $response['events']=$events;
         $message="Successfully fetched events data.";
         }else{
-            $response['status']='401';
+            $response['status']=401;
             $message="Admin unauthorized to perform this action.";
         }
     }

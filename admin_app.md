@@ -24,7 +24,7 @@
 * celestaid
 * date_time
 #### Response:
-* status: 200(Checked out/Checked in)/ 203(Account not verified at desk)/ 404(Celestaid not found)
+* status: '200'(Checked out/Checked in)/ '203'(Account not verified at desk)/ '404'(Celestaid not found)/ '401'(Admin unauthorized to perform this action.)
 * message: Array of messages
 * action: Checkin/Checkout
 * last_action: Details of previous action
@@ -38,7 +38,22 @@
 * celestaid
 * date_time
 #### Response:
-* status: 200(Checked out/Checked in)/ 203(Account not verified at desk)/ 204(Not payed accommodation fee or user has not booked accommodation) /404(Celestaid not found)/ 401(Invalid user)
+* status: '200'(Checked out/Checked in)/ '203'(Account not verified at desk)/ '204'(Not payed accommodation fee or user has not booked accommodation) /'404'(Celestaid not found)/ '401'(Invalid user)
 * message: Array of messages
 * action: Checkin/Checkout
 * last_action: Details of previous action
+
+#### URL: eventsDetail.php
+#### REQUEST_METHOD: POST
+#### Parameters:
+* access_token (of admins)
+* permit (of admins)
+
+#### Response:
+* status: 200(Successfully sent data)/ 401(Invalid user or unauthorized)
+* message: Message String
+* events : Array of (Objects{
+    - "ev_name": "Robo Wars",
+    - "ev_id": "ATM3781",
+    - "is_team_event": "1"
+})
