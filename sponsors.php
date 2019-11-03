@@ -366,7 +366,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/AmalfiGrand.jpeg" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/AmalfiGrand.png" style="height:70px" />
             </picture>
           </div>
 
