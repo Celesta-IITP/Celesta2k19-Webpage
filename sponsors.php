@@ -238,7 +238,7 @@
 
       <section id="company" class="company-section js-company">
 
-        <p class="company-intro__text">Our Sponsors (2018)</p>
+        <p class="company-intro__text">Our Sponsors (2019)</p>
         <!-- <br><br><br><br><br>
         <div class="company-intro">
           <picture class="company-intro__image poly-3">
@@ -305,7 +305,10 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/bihartourism.jpg" width="60%" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/beltron.png" width="60%" />
+            </picture>
+            <picture>
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ruban.png" width="60%" />
             </picture>
           </div>
 
@@ -320,6 +323,12 @@
             <picture>
               <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/icetl.png" />
             </picture>
+            <picture>
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/engconvo.png" />
+            </picture>
+            <picture>
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/quadnation.png" />
+            </picture>
           </div>
 
           <h1 style="text-align: center" class="tx--aqua-bright">
@@ -331,7 +340,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/coca.png" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/coca.png" style="height:80px" />
             </picture>
           </div>
 
@@ -344,23 +353,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/codingninjas.png" />
-            </picture>
-            <picture>
               <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hackerearth_new.png" />
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
-            Health Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ruban.png" />
             </picture>
           </div>
 
@@ -373,7 +366,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/GargeeHotels.jpeg" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/AmalfiGrand.jpeg" />
             </picture>
           </div>
 
@@ -391,51 +384,6 @@
           </div>
 
           <h1 style="text-align: center" class="tx--aqua-bright">
-            Radio Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/radiomirchi.jpeg" />
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
-            Food Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/jainfoodstall.jpeg" />
-            </picture>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/chicken.jpeg" />
-            </picture>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/pizzahut.jpeg" />
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
-            Training Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/certstore.png" />
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
             Implementation Partner
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
@@ -444,26 +392,10 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/youthindiafoundation.png" />
-            </picture>
-            <picture>
               <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/techprolabz.png" style="transform: scale(2);" />
             </picture>
             <picture>
               <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/sybyline.png" style="transform: scale(2);" />
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
-            Web and SMS Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/asap.png" />
             </picture>
           </div>
 
@@ -476,7 +408,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/awestruck.jpeg" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/layyon.png" style="height:80px" />
             </picture>
           </div>
 
@@ -489,12 +421,12 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/whataftercollege.png" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/technobytes.png" />
             </picture>
           </div>
 
           <h1 style="text-align: center" class="tx--aqua-bright">
-            Blogger OutReach Partner
+            Key Partner
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
             </svg>
@@ -502,12 +434,12 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/blogadda2.png" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hero.png" />
             </picture>
           </div>
 
           <h1 style="text-align: center" class="tx--aqua-bright">
-            Magazine Partner
+            Strategic Partner
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
             </svg>
@@ -515,7 +447,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/scientificindia.png" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/startupbihar.png" />
             </picture>
           </div>
 
@@ -528,22 +460,10 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/festpav.png" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/patnaites.png" style="height:80px" />
             </picture>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ntdindia.jpg" />
-            </picture>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/The-Bihar-News.png" />
-            </picture>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/thecollegefever.png" />
-            </picture>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/igniteengineers.png" />
-            </picture>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/knowafest.png" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ABJ.png" />
             </picture>
           </div>
 
@@ -556,20 +476,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/" />
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
-            Voice Opinion Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/opentalk.png" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/eventom.png" />
             </picture>
           </div>
 
@@ -582,25 +489,12 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/thesouledstore.png" />
+              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/thesouledstore.png" style="height:80px" />
             </picture>
           </div>
 
           <h1 style="text-align: center" class="tx--aqua-bright">
-            Online Learning Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/learncodeonline.png" />
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
-            Official Savings Partner
+            Online Savings Partner
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
             </svg>
