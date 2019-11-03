@@ -13,8 +13,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $date_time=clean($_POST['date_time']);
     $access_token=clean($_POST['access_token']);
     $permit=clean($_POST['permit']);
+    $admin=clean($_POST['email']);
 
-    $sql2="SELECT id,permit FROM admins where access_token='$access_token'";
+    $sql2="SELECT id,permit FROM admins where access_token='$access_token' and email='$admin'";
     $result2=query($sql2);
     $row2=fetch_array($sql2);
     if(row_count($result2)!=1){
