@@ -23,6 +23,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $result=query($sql);
             if(row_count($result)==1){
                 $row=fetch_array($result);
+
                 $response['name']=$row['first_name']." ".$row['last_name'];
                 $response['email']=$row['email'];
                 $response['registration_desk']=$row['registration_desk'];
@@ -33,6 +34,36 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 $response['accommodation_charge']=$row['accommodation_charge'];
                 $response['events_registered']=json_decode($row['events_registered']);
 
+                $accommodation=0;
+
+                // Check accommodation table
+                // 0: Not registered for accommodation
+                // 1: Accommodation booked and amount paid
+                // 2: Accommodation booked but amount not paid
+                $sql1="SELECT id, amount_paid FROM accommodation where celestaid='$celestaid'";
+                $result1=query($sql1);
+                if(row_count($result1)==1){
+                    $row1=fetch_array($result1);
+                    if($row1['amount_paid']==600){
+                        $accommodation=1;
+                    }else{
+                        $accommodation=2;
+                    }
+                }
+                $sql4="SELECT ev_id, ev_amount FROM events";
+                $result4=query($sql4);
+                $events=array();
+                if ($result4->num_rows > 0) {
+                    while($row4 = $result4->fetch_assoc()) {
+                        $event=array();
+                        $event['ev_id']=$row4['ev_id'];
+                        $event['ev_amount']=$row4['ev_amount'];
+                        $events[]=$event;
+                    }
+                }
+                $response['events']=$events;
+
+                $response['accommodation']=$accommodation;
                 $response['status']=200;
                 $message="Successfully sent the user details";
             }else{

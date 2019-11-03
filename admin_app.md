@@ -14,6 +14,7 @@
 * status : 200(OK) / 204(User not found) / 405(Method not found)
 * message ---- Array of messages
 * position - Position of the user
+* email
 
 ### Checkin Checkout of users
 #### URL: checkin_checkout.php
@@ -23,6 +24,7 @@
 * permit (of admins)
 * celestaid
 * date_time
+* email
 #### Response:
 * status: '200'(Checked out/Checked in)/ '203'(Account not verified at desk)/ '404'(Celestaid not found)/ '401'(Admin unauthorized to perform this action.)
 * message: Array of messages
@@ -37,6 +39,7 @@
 * permit (of admins)
 * celestaid
 * date_time
+* email
 #### Response:
 * status: '200'(Checked out/Checked in)/ '203'(Account not verified at desk)/ '204'(Not payed accommodation fee or user has not booked accommodation) /'404'(Celestaid not found)/ '401'(Invalid user)
 * message: Array of messages
@@ -50,6 +53,7 @@
 #### Parameters:
 * access_token (of admins)
 * permit (of admins)
+* email
 
 #### Response:
 * status: 200(Successfully sent data)/ 401(Invalid user or unauthorized)
@@ -67,6 +71,7 @@
 * access_token (of admins)
 * permit (of admins)
 * ev_id
+* email
 
 #### Response:
 * status: 200(Successfully sent data)/ 401(Invalid user or unauthorized)
@@ -104,4 +109,36 @@
     - "mem3_celestaid": "",
     - "mem4_celestaid": ""
 })
+
 ```Note: For team events parse team_details. For non team events parse registered users.```
+
+
+### To get the details of an user
+#### URL: getDetails.php
+#### REQUEST_METHOD: POST
+#### Parameters:
+* access_token (of admins)
+* permit (of admins)
+* email
+
+#### Response:
+* status: 200(Successfully sent data)/ 401(Invalid user or unauthorized)
+* message: ""
+* accommodation: 0(Not booked accommodation)/1(Accommodation booked and paid)/2(Accommodation booked but not paid)
+* iit_patna: 0 (Not college student)/1 (IIT Patna student)
+* amount_paid: 100
+* college: ""
+* phone: ""
+* registration_desk: 0 (Account not verified at registration desk)/1(Account verified at registration desk)
+* events_registered : Array of (Objects{
+    - "ev_id": "ATM9933",
+    - "amount": "110.5",
+    - "ev_name": "Robowars",
+    - "cap_name": "Amartya Mondal",
+    - "team_name": "atm",
+    - "ev_name"
+})
+* events: Array of (Objects of{
+    - "ev_id": "ATM3781",
+    - "ev_amount": "1500"
+})
