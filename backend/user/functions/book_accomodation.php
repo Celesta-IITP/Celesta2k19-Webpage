@@ -76,7 +76,7 @@
 
     // Function to get user info
     function userInfo($celestaid){
-        $sql="SELECT access_token, gender, first_name, last_name, phone,email, qrcode, email FROM users where celestaid='$celestaid'";
+        $sql="SELECT access_token, gender, first_name, last_name, phone,email, qrcode FROM users where celestaid='$celestaid'";
         $result=query($sql);
         confirm($result);
         if(row_count($result)==1){
