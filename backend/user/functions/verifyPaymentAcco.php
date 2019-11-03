@@ -12,7 +12,6 @@
             $order_status=clean($_GET["order_status"]);
 
             $user_data=getUserDetails($celestaid);
-            $acco_data=getAccoDetails($celestaid);
 
             if($user_data==false || $user_data["access_token"]!=$access_token){
                 $response['status']=401;
@@ -36,8 +35,8 @@
                     $response["status"]=400;
                 }
             }
-            $message=implode(' ', $message);
             $response['message']=$message;
+            $message=implode(' ', $message);
             $status=$response['status'];
             redirect("./../profile.php?status=$status&msg=$message");
             // echo json_encode($response);
