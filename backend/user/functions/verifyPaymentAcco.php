@@ -39,8 +39,8 @@
             $message=implode(' ', $message);
             $response['message']=$message;
             $status=$response['status'];
-            // redirect("./../profile.php?status=$status&msg=$message");
-            echo json_encode($response);
+            redirect("./../profile.php?status=$status&msg=$message");
+            // echo json_encode($response);
         }
     }
 
