@@ -305,10 +305,14 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/beltron.png" width="60%" />
+              <a href="http://www.bsedc.bihar.gov.in/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/beltron.png" width="60%" />
+              </a>
             </picture>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ruban.png" width="60%" />
+              <a href="http://www.rubanpatliputrahospital.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ruban.png" width="60%" />
+              </a>
             </picture>
           </div>
 
@@ -321,13 +325,19 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/icetl.png" />
+              <a href="http://icetl.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/icetl.png" />
+              </a>
             </picture>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/engconvo.png" />
+              <a href="https://www.engconvo.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/engconvo.png" />
+              </a>
             </picture>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/quadnation.png" />
+              <a href="https://quadnationdrone.business.site/?utm_source=gmb&utm_medium=referral">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/quadnation.png" />
+              </a>
             </picture>
           </div>
 
@@ -340,7 +350,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/coca.png" style="height:80px" />
+              <a href="https://www.coca-colaindia.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/coca.png" style="height:80px" />
+              </a>
             </picture>
           </div>
 
@@ -353,7 +365,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hackerearth_new.png" />
+              <a href="https://www.hackerearth.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hackerearth_new.png" />
+              </a>
             </picture>
           </div>
 
@@ -366,7 +380,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/AmalfiGrand.jpeg" />
+              <a href="http://www.amalfigrand.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/AmalfiGrand.png" style="height:70px" />
+              </a>
             </picture>
           </div>
 
@@ -379,7 +395,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/zebronics2.png" />
+              <a href="https://zebronics.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/zebronics2.png" />
+              </a>
             </picture>
           </div>
 
@@ -392,10 +410,14 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/techprolabz.png" style="transform: scale(2);" />
+              <a href="http://www.techprolabz.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/techprolabz.png" style="transform: scale(2);" />
+              </a>
             </picture>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/sybyline.png" style="transform: scale(2);" />
+              <a href="http://sybytech.com/?fbclid=IwAR1Yk3rLW8pPPHm-YQz_isoJZyWsBAjA6U5f-7dvMJj69VpKI6PASytOFz4">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/sybyline.png" style="transform: scale(2);" />
+              </a>
             </picture>
           </div>
 
@@ -408,7 +430,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/layyon.png" style="height:80px" />
+              <a href="http://www.layyon.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/layyon.png" style="height:80px" />
+              </a>
             </picture>
           </div>
 
@@ -421,7 +445,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/techobyte.png" />
+              <a href="https://techobytes.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/techobyte.png" />
+              </a>
             </picture>
           </div>
 
@@ -434,7 +460,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hero.png" />
+              <a href="https://www.heromotocorp.com/en-in/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hero.png" />
+              </a>
             </picture>
           </div>
 
@@ -447,7 +475,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/startupbihar.png" />
+              <a href="http://www.startup.bihar.gov.in/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/startupbihar.png" />
+              </a>
             </picture>
           </div>
 
@@ -460,10 +490,14 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/patnaites.png" style="height:80px" />
+              <a href="http://patnaites.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/patnaites.png" style="height:80px" />
+              </a>
             </picture>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ABJ.png" />
+              <a href="https://www.facebook.com/AmazingBiharJharkhand/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ABJ.png" />
+              </a>
             </picture>
           </div>
 
@@ -476,7 +510,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/eventom.png" />
+              <a href="https://www.facebook.com/eventom.in/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/eventom.png" />
+              </a>
             </picture>
           </div>
 
@@ -489,7 +525,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/thesouledstore.png" style="height:80px" />
+              <a href="https://www.thesouledstore.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/thesouledstore.png" style="height:80px" />
+              </a>
             </picture>
           </div>
 
@@ -502,7 +540,9 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/grabon.png" />
+              <a href="https://www.grabon.in/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/grabon.png" />
+              </a>
             </picture>
           </div>
 
