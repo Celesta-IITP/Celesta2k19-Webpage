@@ -419,6 +419,11 @@
                 <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/sybyline.png" style="transform: scale(2);" />
               </a>
             </picture>
+            <picture>
+              <a href="https://www.facebook.com/Eduquis-Technology-114371789937992/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/eduquistechnology.png" style="transform: scale(2);" />
+              </a>
+            </picture>
           </div>
 
           <h1 style="text-align: center" class="tx--aqua-bright">
@@ -510,7 +515,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <a href="https://www.facebook.com/eventom.in/">
+              <a href="https://eventomindia.jimdofree.com/">
                 <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/eventom.png" />
               </a>
             </picture>
@@ -546,6 +551,35 @@
             </picture>
           </div>
 
+          <h1 style="text-align: center" class="tx--aqua-bright">
+            Privilege Partner
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </h1>
+          <div class="slider  index-1"
+            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
+            <picture>
+              <a href="https://www.swiggy.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/swiggy.png" width="60%" />
+              </a>
+            </picture>
+          </div>
+
+          <h1 style="text-align: center" class="tx--aqua-bright">
+            Advisory Partner
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </h1>
+          <div class="slider  index-1"
+            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
+            <picture>
+              <a href="https://eventomindia.jimdofree.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/eventom.png" width="60%" />
+              </a>
+            </picture>
+          </div>
 
         </div>
 
