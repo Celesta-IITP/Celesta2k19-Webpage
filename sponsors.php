@@ -342,6 +342,51 @@
           </div>
 
           <h1 style="text-align: center" class="tx--aqua-bright">
+            Workshop Partner
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </h1>
+          <div class="slider  index-1"
+            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
+            <picture>
+              <a href="https://techobytes.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/techobyte.png" />
+              </a>
+            </picture>
+          </div>
+
+          <h1 style="text-align: center" class="tx--aqua-bright">
+            Key Partner
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </h1>
+          <div class="slider  index-1"
+            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
+            <picture>
+              <a href="https://www.heromotocorp.com/en-in/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hero.png" />
+              </a>
+            </picture>
+          </div>
+
+          <h1 style="text-align: center" class="tx--aqua-bright">
+            Strategic Partner
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </h1>
+          <div class="slider  index-1"
+            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
+            <picture>
+              <a href="http://www.startup.bihar.gov.in/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/startupbihar.png" />
+              </a>
+            </picture>
+          </div>
+
+          <h1 style="text-align: center" class="tx--aqua-bright">
             Beverage Partner
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
@@ -432,51 +477,6 @@
             <picture>
               <a href="http://www.layyon.com/">
                 <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/layyon.png" style="height:80px" />
-              </a>
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
-            Workshop Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <a href="https://techobytes.com/">
-                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/techobyte.png" />
-              </a>
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
-            Key Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <a href="https://www.heromotocorp.com/en-in/">
-                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hero.png" />
-              </a>
-            </picture>
-          </div>
-
-          <h1 style="text-align: center" class="tx--aqua-bright">
-            Strategic Partner
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
-            </svg>
-          </h1>
-          <div class="slider  index-1"
-            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
-            <picture>
-              <a href="http://www.startup.bihar.gov.in/">
-                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/startupbihar.png" />
               </a>
             </picture>
           </div>
