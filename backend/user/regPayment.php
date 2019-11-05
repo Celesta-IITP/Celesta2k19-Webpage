@@ -33,7 +33,7 @@
                             <ol>
                                 <li>Scan the QR Code above to pay ₹150 (Registration Fee).</li>
                                 <li>Keep the transaction ID and the screenshot of payment with you.</li>
-                                <li>Fill the Google-form for transaction verification. <button style="background: rgb(255,193,7)"><a href="https://forms.gle/hQXhDu3VG2iyjQ576" target="_blank" style="color: #fff">Google Form</a></button></li>
+                                <li>Fill the Google-form for transaction verification. <a href="https://forms.gle/hQXhDu3VG2iyjQ576" target="_blank" style="background: rgb(255,193,7)"><button style="background: rgb(255,193,7); color: #fff">Google Form</button></a></li>
                             </ol>
                         </div>
                     </div>
