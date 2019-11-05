@@ -451,7 +451,7 @@
             </picture>
             <picture>
               <a href="https://www.facebook.com/Eduquis-Technology-114371789937992/">
-                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/eduquistechnology.png" style="height:70px;width:70px" />
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/eduquis.png" style="height:70px;width:70px" />
               </a>
             </picture>
           </div>
