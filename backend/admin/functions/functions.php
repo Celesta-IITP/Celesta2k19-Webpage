@@ -244,13 +244,13 @@ function getEventAmount($ev_id){
 
 // Function used to register user at registration desk
 function updatingUser(){
-	$first_name=clean($_POST['first_name']);
-	$last_name=clean($_POST['last_name']);
-	$celestaid=clean($_POST['celestaid']);
-	$email=clean($_POST['email']);
-	$phone=clean($_POST['phone']);
-	$college=clean($_POST['college']);
-	$gender=clean($_POST["gender"]);
+	$first_name=escape($_POST['first_name']);
+	$last_name=escape($_POST['last_name']);
+	$celestaid=escape($_POST['celestaid']);
+	$email=escape($_POST['email']);
+	$phone=escape($_POST['phone']);
+	$college=escape($_POST['college']);
+	$gender=escape($_POST["gender"]);
 
 	//Default values
 	$price_tshirt=300;
@@ -659,14 +659,14 @@ function new_register(){
 	else if($permit==0 or $permit==2){
 		if($_SERVER['REQUEST_METHOD']=='POST'){
 			$errors=[];
-			$first_name=clean($_POST['first_name']);
-	 		$last_name=clean($_POST['last_name']);
-	 		$phone=clean($_POST['phone']);
-	 		$college=clean($_POST['college']);
-	 		$email=clean($_POST['email']);
-	 		$password=clean($_POST['password']);
-	 		$confirm_password=clean($_POST['confirm_password']);
-	 		$gender=($_POST['gender']);
+			$first_name=escape($_POST['first_name']);
+	 		$last_name=escape($_POST['last_name']);
+	 		$phone=escape($_POST['phone']);
+	 		$college=escape($_POST['college']);
+	 		$email=escape($_POST['email']);
+	 		$password=escape($_POST['password']);
+	 		$confirm_password=escape($_POST['confirm_password']);
+	 		$gender=escape($_POST['gender']);
 	 		$reg=$_POST['registration_charge'];
 			$tshirt=$_POST['tshirt_charge'];
 			// $bandpass=$_POST['bandpass_charge'];
