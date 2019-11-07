@@ -6,7 +6,7 @@ $message=array();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $access_token=clean($_POST['access_token']);
-    $permit=clean($_POST['permit']);
+    // $permit=clean($_POST['permit']);
     $celestaid=clean($_POST['celestaid']);
     $admin=clean($_POST['email']);
 
@@ -18,6 +18,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $response['status']=401;
         $message="Admin not found.";
     }else{
+        $permit=$row2['permit'];
         if($permit==0 || $permit==4 || $permit==2 || $permit==5 || $permit==3){
             $sql="SELECT id, first_name, last_name, email, registration_desk, phone, college, amount_paid, iit_patna, accommodation_charge, events_registered FROM users WHERE celestaid='$celestaid'";
             $result=query($sql);
