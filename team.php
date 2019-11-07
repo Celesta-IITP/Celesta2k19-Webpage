@@ -218,6 +218,12 @@
                         <li>
                             <a class="main-nav__link" href="developers.php" title="Developers">Core Developers</a>
                         </li>
+                        <li>
+                        <a class="main-nav__link" href="https://play.google.com/store/apps/details?id=in.org.celesta.iitp" title="Celesta App">Download Celesta App</a>
+                        </li>
+                        <li>
+                        <a class="main-nav__link" href="privacy_policy.html" target="_blank" title="Celesta App">Celesta App's Privacy Policy</a>
+                        </li>
                         <!-- <li>
                             <a class="no-barba tx--caption" href="#" title="Site Credits" target="_blank">Link</a>
                         </li> -->

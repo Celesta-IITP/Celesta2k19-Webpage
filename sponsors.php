@@ -242,7 +242,7 @@
             <div class="col-lg-12">
               <h1 class="text-center" style="color: #fff">Food <span style="color: #f00">Partner</span></h1>
               <div class="container d-flex justify-content-center align-items-center parent">
-                <img src="assets/images/sponsors/.png" width="20%" style="margin: 20px" data-tilt id="1111" onClick="clickk('')">
+                <img src="assets/images/sponsors/14empire.png" width="15%" style="margin: 20px" data-tilt id="1111" onClick="clickk('https://www.facebook.com/tantaliseyourtastebud')">
               </div>
             </div>
           </div>
