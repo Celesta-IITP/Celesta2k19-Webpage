@@ -12,16 +12,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $celestaid=clean($_POST['celestaid']);
     $date_time=clean($_POST['date_time']);
     $access_token=clean($_POST['access_token']);
-    $permit=clean($_POST['permit']);
+    // $permit=clean($_POST['permit']);
     $admin=clean($_POST['email']);
 
-    $sql2="SELECT id,permit FROM admins where access_token='$access_token' and email='$admin'";
+    $sql2="SELECT id, permit FROM admins where access_token='$access_token' and email='$admin'";
     $result2=query($sql2);
     $row2=fetch_array($sql2);
     if(row_count($result2)!=1){
         $response['status']='401';
         $message[]="Invalid user.";
     }else{
+        $permit=$row2['permit'];
         if($permit==0 || $permit==2 || $permit==5){
 
             $sql="SELECT checkin_checkout, registration_desk FROM users WHERE celestaid='$celestaid' and active=1";

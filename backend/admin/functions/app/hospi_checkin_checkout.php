@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $celestaid=clean($_POST['celestaid']);
     $date_time=clean($_POST['date_time']);
     $access_token=clean($_POST['access_token']);
-    $permit=clean($_POST['permit']);
+    // $permit=clean($_POST['permit']);
     $admin=clean($_POST['email']);
 
     $sql2="SELECT id,permit FROM admins where access_token='$access_token' and email='$admin'";
@@ -22,6 +22,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $response['status']='401';
         $message[]="Invalid user.";
     }else{
+        $permit=$row2['permit'];
         if($permit==0 || $permit==2 || $permit==5){
 
             $sql="SELECT registration_desk, accommodation_charge FROM users WHERE celestaid='$celestaid' and active=1";
