@@ -157,7 +157,7 @@
                     </li>
 
                     <li>
-                        <a class="main-nav__link tx--title-3" href="sponsors.php" title="Our Sponsors">Our Sponsors</a>
+                        <a class="main-nav__link tx--title-3" href="sponsors.php" target="_blank" title="Our Sponsors">Our Sponsors</a>
                     </li>
 
                     <li>
