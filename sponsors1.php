@@ -553,7 +553,7 @@
           <div class="slider  index-1"
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
-              <a href="http://patnaites.com/">
+              <a href="https://www.redfmindia.in/patna">
                 <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/redfm.png" style="height:80px" />
               </a>
             </picture>
