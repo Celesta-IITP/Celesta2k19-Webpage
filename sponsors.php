@@ -306,12 +306,12 @@
             data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
             <picture>
               <a href="http://www.bsedc.bihar.gov.in/">
-                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/beltron.png" width="60%" />
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/beltron.png" width="100%" />
               </a>
             </picture>
             <picture>
               <a href="http://www.rubanpatliputrahospital.com/">
-                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ruban.png" width="60%" />
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ruban.png" width="100%" />
               </a>
             </picture>
           </div>
