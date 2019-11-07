@@ -335,8 +335,16 @@
               </a>
             </picture>
             <picture>
-              <a href="https://quadnationdrone.business.site/?utm_source=gmb&utm_medium=referral">
-                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/quadnation.png" style="height:70px" />
+              <a href="https://www.onlinesbi.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/sbi.png" style="height:70px" />
+              </a>
+            </picture><picture>
+              <a href="https://www.axisbank.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/axis.png" style="height:70px" />
+              </a>
+            </picture><picture>
+              <a href="https://www.ntpc.co.in/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ntpc.png" />
               </a>
             </picture>
           </div>
