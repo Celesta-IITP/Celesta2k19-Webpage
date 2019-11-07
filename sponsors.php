@@ -338,14 +338,6 @@
               <a href="https://www.onlinesbi.com/">
                 <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/sbi.png" style="height:70px" />
               </a>
-            </picture><picture>
-              <a href="https://www.axisbank.com/">
-                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/axis.png" style="height:70px" />
-              </a>
-            </picture><picture>
-              <a href="https://www.ntpc.co.in/">
-                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ntpc.png" />
-              </a>
             </picture>
           </div>
 
@@ -375,6 +367,25 @@
             <picture>
               <a href="https://www.heromotocorp.com/en-in/">
                 <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hero.png" />
+              </a>
+            </picture>
+          </div>
+
+          <h1 style="text-align: center" class="tx--aqua-bright">
+            Power Sponsor
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </h1>
+          <div class="slider  index-1"
+            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
+            <picture>
+              <a href="https://www.axisbank.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/axis.png" style="height:70px" />
+              </a>
+            </picture><picture>
+              <a href="https://www.ntpc.co.in/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/ntpc.png" />
               </a>
             </picture>
           </div>
@@ -465,6 +476,21 @@
           </div>
 
           <h1 style="text-align: center" class="tx--aqua-bright">
+            Media Partner
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </h1>
+          <div class="slider  index-1"
+            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
+            <picture>
+              <a href="https://www.hindustantimes.com/">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/hindustantimes.png"/>
+              </a>
+            </picture>
+          </div>
+
+          <h1 style="text-align: center" class="tx--aqua-bright">
             Beverage Partner
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
@@ -475,6 +501,21 @@
             <picture>
               <a href="https://www.coca-colaindia.com/">
                 <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/coca.png" style="height:80px" />
+              </a>
+            </picture>
+          </div>
+
+          <h1 style="text-align: center" class="tx--aqua-bright">
+            Radio Partner
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </h1>
+          <div class="slider  index-1"
+            data-flickity-options='{ "initialIndex": 0, "lazyLoad": 4, "wrapAround": false, &quot;pageDots&quot;: false, &quot;autoPlay&quot;: 4000, &quot;prevNextButtons&quot;: false }'>
+            <picture>
+              <a href="https://www.redfmindia.in/delhi">
+                <img class="carousel-cell-image" data-flickity-lazyload-src="assets/images/sponsors/redfm.png" />
               </a>
             </picture>
           </div>
