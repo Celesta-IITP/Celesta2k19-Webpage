@@ -6,7 +6,7 @@ $message=array();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $access_token=clean($_POST['access_token']);
-    $permit=clean($_POST['permit']);
+    // $permit=clean($_POST['permit']);
     $ev_id=clean($_POST['ev_id']);
     $admin=clean($_POST['email']);
 
@@ -17,6 +17,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $response['status']=401;
         $message="Admin not found.";
     }else{
+        $permit=$row2['permit'];
         if($permit==0 || $permit==4){
             $sql="SELECT ev_name, is_team_event, ev_registrations FROM events where ev_id='$ev_id'";
             $result=query($sql);
