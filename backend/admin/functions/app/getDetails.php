@@ -45,7 +45,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 $result1=query($sql1);
                 if(row_count($result1)==1){
                     $row1=fetch_array($result1);
-                    if($row1['amount_paid']==600){
+                    if($row1['amount_paid']>0){
                         $accommodation=1;
                     }else{
                         $accommodation=2;
