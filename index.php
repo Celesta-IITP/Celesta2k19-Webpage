@@ -323,7 +323,7 @@
 
         <ul class="viewport-links">
           <li class="left ">
-            <a href="sponsors.php" title="Our Sponsors" class="tx--caption">Our Sponsors</a>
+            <a href="sponsors.php" target="_blank" title="Our Sponsors" class="tx--caption">Our Sponsors</a>
           </li>
 
           <li class="right mobile-hide">
