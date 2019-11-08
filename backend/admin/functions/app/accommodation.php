@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }else{
         $permit=$row2['permit'];
         if($permit==0 || $permit==5 || $permit==2){
-            $sql="SELECT id, names, phone, amount_paid, gender FROM accommodation";
+            $sql="SELECT id, names, phone, amount_paid, gender, celestaid FROM accommodation";
             $result=query($sql);
             $users=array();
             while ($row = $result->fetch_assoc()) {

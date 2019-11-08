@@ -157,7 +157,8 @@
     - "names": "Testing",
     - "phone": "8967570983",
     - "amount_paid": "400",
-    - "gender": "m"
+    - "gender": "m",
+    - "celestaid: "CLST1504"
 }))
 
 * status : 200(OK) / 401(Admin not found / Admin unauthorized to do it)
