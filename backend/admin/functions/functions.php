@@ -258,6 +258,7 @@ function updatingUser(){
 	// $price_bandass=200;
 	$price_both=400;
 	$price_accommodation=500;
+	$paying=0;
 
 	// Get user info
 	$sql0="SELECT * from users where celestaid='$celestaid'";
@@ -273,16 +274,96 @@ function updatingUser(){
 	$events_charge=$row['events_charge'];
 	$accommodation_charge=$row['accommodation_charge'];
 
-	if(isset($_POST['registration_charge'])){
-		$total_charge=$total_charge+$price_reg;
-		$registration_charge+=$price_reg;
-		$amount_paid=$amount_paid+$price_reg;
-	}
+	if((isset($_POST['registration_charge']) && isset($_POST['tshirt_charge'])) && (isset($_POST['accommodation_charge']) or isset($_POST['pay_all_accommodation_charge']))){
+		$total_charge+=850;
+		$paying+=850;
+		$amount_paid+=850;
+		$registration_charge=100;
+		$tshirt_charge=250;
+		$accommodation_charge=500;
+		if(isset($_POST['accommodation_charge'])){
+			// $total_charge=$total_charge+$price_accommodation;
+			// $accommodation_charge=$price_accommodation;
+			$name=$first_name." ".$last_name;
+			// $amount_paid=$amount_paid+$price_accommodation;
+			// $paying+=$price_accommodation;
 
-	if(isset($_POST['tshirt_charge'])){
-		$total_charge=$total_charge+$price_tshirt;
-		$tshirt_charge+=$price_tshirt;
-		$amount_paid=$amount_paid+$price_tshirt;
+			bookAppointment($celestaid,$gender,$name,$phone,500,$email,$qrcode);
+		}
+
+		if(isset($_POST['pay_all_accommodation_charge'])){
+			$sql1="SELECT * FROM accommodation WHERE celestaid='$celestaid'";
+			$result1=query($sql1);
+			$row1=fetch_array($result1);
+			$pay=0;
+			if($row1['day1']==1){
+				$pay+=200;
+			}
+			if($row1['day2']==1){
+				$pay+=200;
+			}
+			if($row1['day3']==1){
+				$pay+=200;
+			}
+			// $amount_paid=$amount_paid+$pay;
+			// $total_charge=$total_charge+$pay;
+			// $accommodation_charge=$pay;
+			// $paying+=$pay;
+
+			payAccommodation($celestaid,500,$row1['email']);
+		}
+
+	}elseif(isset($_POST['registration_charge']) && isset($_POST['tshirt_charge'])){
+		$total_charge+=350;
+		$paying+=350;
+		$amount_paid+=350;
+		$registration_charge=100;
+		$tshirt_charge=250;
+	}else{
+		if(isset($_POST['registration_charge'])){
+			$total_charge=$total_charge+$price_reg;
+			$registration_charge+=$price_reg;
+			$amount_paid=$amount_paid+$price_reg;
+			$paying+=$price_reg;
+		}
+
+		if(isset($_POST['tshirt_charge'])){
+			$total_charge=$total_charge+$price_tshirt;
+			$tshirt_charge+=$price_tshirt;
+			$amount_paid=$amount_paid+$price_tshirt;
+			$paying+=$price_tshirt;
+		}
+		if(isset($_POST['accommodation_charge'])){
+			$total_charge=$total_charge+$price_accommodation;
+			$accommodation_charge=$price_accommodation;
+			$name=$first_name." ".$last_name;
+			$amount_paid=$amount_paid+$price_accommodation;
+			$paying+=$price_accommodation;
+
+			bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
+		}
+
+		if(isset($_POST['pay_all_accommodation_charge'])){
+			$sql1="SELECT * FROM accommodation WHERE celestaid='$celestaid'";
+			$result1=query($sql1);
+			$row1=fetch_array($result1);
+			$pay=0;
+			if($row1['day1']==1){
+				$pay+=200;
+			}
+			if($row1['day2']==1){
+				$pay+=200;
+			}
+			if($row1['day3']==1){
+				$pay+=200;
+			}
+			$amount_paid=$amount_paid+$pay;
+			$total_charge=$total_charge+$pay;
+			$accommodation_charge=$pay;
+			$paying+=$pay;
+
+			payAccommodation($celestaid,$pay,$row1['email']);
+		}
 	}
 
 	if(isset($_POST['college_stud'])){
@@ -315,7 +396,7 @@ function updatingUser(){
 				if($diff>0){
 					$total_charge+=$diff;
 					$events_charge+=$diff;
-
+					$paying+=$diff;
 
 					// Update the events registered array
 					$add_event=array();
@@ -344,7 +425,7 @@ function updatingUser(){
 	$subject="Celesta Account";
 	$msg="<p>
 		Your Celesta Id is ".$celestaid.".<br>
-		Total Amount to pay is: Rs. $total_charge<br>
+		Total Amount to pay is: Rs. $paying<br>
 		You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
 		</p>
 	";
@@ -358,40 +439,12 @@ function updatingUser(){
 
 	send_email($email,$subject,$msg,$header);
 
-	if(isset($_POST['accommodation_charge'])){
-		$total_charge=$total_charge+$price_accommodation;
-		$accommodation_charge=$price_accommodation;
-		$name=$first_name." ".$last_name;
-		$amount_paid=$amount_paid+$price_accommodation;
-
-		bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
-	}
-
-	if(isset($_POST['pay_all_accommodation_charge'])){
-		$sql1="SELECT * FROM accommodation WHERE celestaid='$celestaid'";
-		$result1=query($sql1);
-		$row1=fetch_array($result1);
-		$pay=0;
-		if($row1['day1']==1){
-			$pay+=200;
-		}
-		if($row1['day2']==1){
-			$pay+=200;
-		}
-		if($row1['day3']==1){
-			$pay+=200;
-		}
-		$amount_paid=$amount_paid+$pay;
-		$total_charge=$total_charge+$pay;
-		payAccommodation($celestaid,$pay,$row1['email']);
-	}
-
 	$update_user_events_registered=json_encode($update_user_events_registered);
 	$sql="UPDATE users set first_name='$first_name', last_name='$last_name',phone='$phone',college='$college',total_charge=$total_charge,tshirt_charge=$tshirt_charge,events_charge=$events_charge,registration_charge=$registration_charge, events_registered='$update_user_events_registered',amount_paid=$amount_paid, registration_desk=1, iit_patna=$college_stud, accommodation_charge=$accommodation_charge WHERE celestaid='$celestaid'";
 	$result=query($sql);
 	confirm($result);
 
-	echo "<h3 class='bg-success text-center'>$celestaid successfully registered. Pay amount: Rs. $total_charge </h3>";
+	echo "<h3 class='bg-success text-center'>$celestaid successfully registered. Pay amount: Rs. $paying </h3>";
 
 }
 
@@ -722,38 +775,10 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	// Setting price
 	$total_charge=0;
 	$registration_charge=0;
-	// $bandpass_charge=0;
+	$paying=0;
 	$tshirt_charge=0;
 	$accommodation_charge=0;
-
-	if(isset($_POST['registration_charge'])){
-		$total_charge=$total_charge+$price_reg;
-		$registration_charge=$price_reg;
-	}
-	// if(isset($_POST['bandpass_charge'])){
-	// 	$total_charge=$total_charge+$price_bandass;
-	// 	$bandpass_charge=$price_bandass;
-	// }
-	if(isset($_POST['tshirt_charge'])){
-		$total_charge=$total_charge+$price_tshirt;
-		$tshirt_charge=$price_tshirt;
-	}
-
-	if(isset($_POST["college_stud"])){
-		$college_stud=1;
-	}else{
-		$college_stud=0;
-	}
-
-	if(isset($_POST["accommodation_charge"])){
-		$total_charge=$total_charge+$price_accommodation;
-		$accommodation_charge=$price_accommodation;
-	}
-
-	// if((isset($_POST['bandpass_charge'])) && isset($_POST['tshirt_charge'])){
-	// 	$total_charge=$total_charge-$price_bandass-$price_tshirt+$price_both;
-	// }
-
+	
 	$registrar_name=$_SESSION['registrar'];
 	if(isset($_COOKIE['registrar'])){
 		$registrar_name=$_COOKIE['registrar'];
@@ -763,11 +788,110 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	generateQRCode($celestaid,$first_name,$last_name);
 	$qrcode="https://celesta.org.in//backend/user/assets/qrcodes/".$celestaid.".png";
 
+if((isset($_POST['registration_charge']) && isset($_POST['tshirt_charge'])) && (isset($_POST['accommodation_charge']) or isset($_POST['pay_all_accommodation_charge']))){
+		$total_charge+=850;
+		$paying+=850;
+		$amount_paid+=850;
+		$registration_charge=100;
+		$tshirt_charge=250;
+		$accommodation_charge=500;
+		if(isset($_POST['accommodation_charge'])){
+			// $total_charge=$total_charge+$price_accommodation;
+			// $accommodation_charge=$price_accommodation;
+			$name=$first_name." ".$last_name;
+			// $amount_paid=$amount_paid+$price_accommodation;
+			// $paying+=$price_accommodation;
+
+			bookAppointment($celestaid,$gender,$name,$phone,500,$email,$qrcode);
+		}
+
+		if(isset($_POST['pay_all_accommodation_charge'])){
+			$sql1="SELECT * FROM accommodation WHERE celestaid='$celestaid'";
+			$result1=query($sql1);
+			$row1=fetch_array($result1);
+			$pay=0;
+			if($row1['day1']==1){
+				$pay+=200;
+			}
+			if($row1['day2']==1){
+				$pay+=200;
+			}
+			if($row1['day3']==1){
+				$pay+=200;
+			}
+			// $amount_paid=$amount_paid+$pay;
+			// $total_charge=$total_charge+$pay;
+			// $accommodation_charge=$pay;
+			// $paying+=$pay;
+			$pay=500;
+
+			payAccommodation($celestaid,$pay,$row1['email']);
+		}
+
+	}elseif(isset($_POST['registration_charge']) && isset($_POST['tshirt_charge'])){
+		$total_charge+=350;
+		$paying+=350;
+		$amount_paid+=350;
+		$registration_charge=100;
+		$tshirt_charge=250;
+	}else{
+		if(isset($_POST['registration_charge'])){
+			$total_charge=$total_charge+$price_reg;
+			$registration_charge+=$price_reg;
+			$amount_paid=$amount_paid+$price_reg;
+			$paying+=$price_reg;
+		}
+
+		if(isset($_POST['tshirt_charge'])){
+			$total_charge=$total_charge+$price_tshirt;
+			$tshirt_charge+=$price_tshirt;
+			$amount_paid=$amount_paid+$price_tshirt;
+			$paying+=$price_tshirt;
+		}
+		if(isset($_POST['accommodation_charge'])){
+			$total_charge=$total_charge+$price_accommodation;
+			$accommodation_charge=$price_accommodation;
+			$name=$first_name." ".$last_name;
+			$amount_paid=$amount_paid+$price_accommodation;
+			$paying+=$price_accommodation;
+
+			bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
+		}
+
+		if(isset($_POST['pay_all_accommodation_charge'])){
+			$sql1="SELECT * FROM accommodation WHERE celestaid='$celestaid'";
+			$result1=query($sql1);
+			$row1=fetch_array($result1);
+			$pay=0;
+			if($row1['day1']==1){
+				$pay+=200;
+			}
+			if($row1['day2']==1){
+				$pay+=200;
+			}
+			if($row1['day3']==1){
+				$pay+=200;
+			}
+			$amount_paid=$amount_paid+$pay;
+			$total_charge=$total_charge+$pay;
+			$accommodation_charge=$pay;
+			$paying+=$pay;
+
+			payAccommodation($celestaid,$pay,$row1['email']);
+		}
+	}
+
+	if(isset($_POST['college_stud'])){
+		$college_stud=1;
+	}else{
+		$college_stud=0;
+	}
+
 	//CONTENTS OF EMAIL
 	$subject="Celesta Account";
 	$msg="<p>
 		Your Celesta Id is ".$celestaid.". Your account has been auto activated.<br/>
-		Total Amount to pay is: Rs. $total_charge<br>
+		Total Amount to pay is: Rs. $paying<br>
 		You qr code is <img src='$qrcode'/> <a href='$qrcode'>click here</a><br/>
 		
 		</p>
@@ -785,11 +909,11 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 
 		update_referral_points($referral_id);
 
-		set_message("<p class='bg-success text-center'>Please check your email to get your qrcode and celesta id. You can login now with the celesta id and the password.<br><br><br>Your Celesta id is $celestaid<br>Amount to pay is Rs. $total_charge<br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
-		$name=$first_name." ".$last_name;
-		if(isset($_POST["accommodation_charge"])){
-			bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
-		}
+		set_message("<p class='bg-success text-center'>Please check your email to get your qrcode and celesta id. You can login now with the celesta id and the password.<br><br><br>Your Celesta id is $celestaid<br>Amount to pay is Rs. $paying <br> <img src='$qrcode' alt='QR Code cannot be displayed.'/> <br><br></p>");
+		// $name=$first_name." ".$last_name;
+		// // if(isset($_POST["accommodation_charge"])){
+		// // 	bookAppointment($celestaid,$gender,$name,$phone,$price_accommodation,$email,$qrcode);
+		// // }
 
 		return true;
 	}else{
