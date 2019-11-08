@@ -257,7 +257,7 @@ function updatingUser(){
 	$price_reg=150; // Desk registration charge
 	// $price_bandass=200;
 	$price_both=400;
-	$price_accommodation=500;
+	$price_accommodation=600;
 	$paying=0;
 
 	// Get user info
@@ -288,7 +288,7 @@ function updatingUser(){
 			// $amount_paid=$amount_paid+$price_accommodation;
 			// $paying+=$price_accommodation;
 
-			bookAppointment($celestaid,$gender,$name,$phone,500,$email,$qrcode);
+			bookAppointment($celestaid,$gender,$name,$phone,$accommodation_charge,$email,$qrcode);
 		}
 
 		if(isset($_POST['pay_all_accommodation_charge'])){
@@ -310,7 +310,7 @@ function updatingUser(){
 			// $accommodation_charge=$pay;
 			// $paying+=$pay;
 
-			payAccommodation($celestaid,500,$row1['email']);
+			payAccommodation($celestaid,$accommodation_charge,$row1['email']);
 		}
 
 	}elseif(isset($_POST['registration_charge']) && isset($_POST['tshirt_charge'])){
@@ -333,6 +333,7 @@ function updatingUser(){
 			$amount_paid=$amount_paid+$price_tshirt;
 			$paying+=$price_tshirt;
 		}
+
 		if(isset($_POST['accommodation_charge'])){
 			$total_charge=$total_charge+$price_accommodation;
 			$accommodation_charge=$price_accommodation;
