@@ -29,6 +29,11 @@
   <link rel="stylesheet" href="./events/css/menu-styles.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    img{
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -265,6 +270,15 @@
             </div>
           </div>
           <br><br>
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="text-center" style="color: #fff" data-tilt>Travel <span style="color: #f00">Partner</span></h1>
+              <div class="container d-flex justify-content-center align-items-center parent">
+                <img src="assets/images/sponsors/millionairesrental.png" width="20%" style="margin: 20px" data-tilt onClick="clickk('https://www.facebook.com/millionairesrentals/')">
+              </div>
+            </div>
+          </div>
+          <br><br>
 
         </div>
 
@@ -281,6 +295,7 @@
   <!-- #gallery -->
 
   <script>
+    
     function clickk(data){
       window.location.assign(data);
     }
