@@ -770,7 +770,7 @@ function new_register_user($first_name,$last_name,$phone,$college,$email,$passwo
 	//Default values
 	$price_tshirt=300;
 	$price_reg=150;
-	$price_accommodation=500;
+	$price_accommodation=600;
 	$price_both=400;
 
 	// Setting price
