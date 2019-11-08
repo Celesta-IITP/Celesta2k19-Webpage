@@ -669,7 +669,7 @@ function total_register(){
 		redirect("login.php");
 	}else{
 		//echo "Will shortly display the result";
-		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone,tshirt_charge,registration_charge,accommodation_charge,amount_paid,events_charge,total_charge FROM users WHERE registration_desk=1";
+		$sql="SELECT first_name, last_name, college, date, celestaid, qrcode, phone,tshirt_charge,registration_charge,accommodation_charge,amount_paid,events_charge,total_charge, checkin_checkout FROM users WHERE registration_desk=1";
 		$result=query($sql);
 		$permit=getPermit();
 		$count=0;
@@ -678,7 +678,7 @@ function total_register(){
 			$count=$count+1;
 			if($permit==2 || $permit==0){
 				$online=$row['amount_paid']-$row['total_charge'];
-    			echo "<tr>
+    			$str= "<tr>
 						<th scope='row'>".$count."</th>
 	      				<td>".$row['celestaid']."</td>
 	      				<td>".$row['date']."</td>
@@ -692,8 +692,15 @@ function total_register(){
 						<td>".$row['total_charge']."</td>
 						<td>".$online."</td>
 						<td>".$row['amount_paid']."</td>
-						<td><a href='".$row['qrcode']."'><i class='fas fa-eye' style='font-size:24px'></i></a></td>
-	    			</tr>";
+						<td><a href='".$row['qrcode']."'><i class='fas fa-eye' style='font-size:24px'></i></a></td><td>";
+				$checkin_checkout=json_decode($row['checkin_checkout']);
+				if(empty($checkin_checkout)){
+					$last_row="";
+				}else{
+					$last_row=end($checkin_checkout);
+				}
+				$str.="$last_row[0] $last_row[1]</td></tr>";
+				echo $str;
     		}
 		}
 

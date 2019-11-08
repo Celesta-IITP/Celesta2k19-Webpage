@@ -25,6 +25,7 @@
 				<th scope="col">Online</th>
 				<th scope="col">Total</th>
 				<th scope="col">QR-Code</th>
+				<th scope="col">Checkin/Checkout</th>
 			</tr>
 		</thead>
 		<tbody>
