@@ -96,6 +96,8 @@ function login_registrar(){
 				 redirect("total_register.php");
 			 }elseif($permit==4){
 				 return redirect("./events.php");
+			 }elseif($permit==5){
+				 return redirect("./acco.php");
 			 }
 			 else{
 				 echo "Logged in - ".$permit;
