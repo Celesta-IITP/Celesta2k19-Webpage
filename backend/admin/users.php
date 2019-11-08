@@ -2,7 +2,7 @@
 <?php include('includes/nav.php') ?>
 
 <?php 
-	if(getPermit()==0){
+	if(getPermit()==0 || getPermit()==2){
         $users=array_reverse(show_users());
 	}else{
 		redirect("./logout.php");
