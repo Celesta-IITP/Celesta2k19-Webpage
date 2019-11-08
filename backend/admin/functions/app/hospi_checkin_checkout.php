@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 else{
                     $sql1="SELECT checkin_checkout from accommodation where celestaid='$celestaid'";
                     $result1=query($sql1);
-                    $row1=query($result1);
+                    $row1=fetch_array($result1);
                     $checkin_checkout=json_decode($row1['checkin_checkout']);
                     if(!empty($checkin_checkout)){
                         $reverse_data=$checkin_checkout;
