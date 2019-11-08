@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $row2=fetch_array($sql2);
     if(row_count($result2)!=1){
         $response['status']='401';
-        $message[]="Invalid user.";
+        $message[]="Invalid admin.";
     }else{
         $permit=$row2['permit'];
         if($permit==0 || $permit==2 || $permit==5){
@@ -47,7 +47,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 }
                 else{
                     $sql1="SELECT checkin_checkout from accommodation where celestaid='$celestaid'";
-                    $row1=query($sql1);
+                    $result1=query($sql1);
+                    $row1=query($result1);
                     $checkin_checkout=json_decode($row1['checkin_checkout']);
                     if(!empty($checkin_checkout)){
                         $reverse_data=$checkin_checkout;
