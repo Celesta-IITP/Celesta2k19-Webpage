@@ -142,3 +142,23 @@
     - "ev_id": "ATM3781",
     - "ev_amount": "1500"
 })
+
+### To get the list of people opted accommodation.
+#### URL: accommodation.php
+#### REQUEST_METHOD: POST
+#### Parameters:
+* access_token (of admins)
+* permit (of admins)
+* email
+
+#### Response
+* users : Array of (Objects of ({
+    - "id": "5",
+    - "names": "Testing",
+    - "phone": "8967570983",
+    - "amount_paid": "400",
+    - "gender": "m"
+}))
+
+* status : 200(OK) / 401(Admin not found / Admin unauthorized to do it)
+* message: String of status
