@@ -215,6 +215,12 @@
             <li>
               <a class="main-nav__link" href="developers.php" title="Developers">Core Developers</a>
             </li>
+            <li>
+              <a class="main-nav__link" href="./celestaapp" target="_blank" title="Celesta App">Download Celesta App</a>
+            </li>
+            <li>
+              <a class="main-nav__link" href="app_privacy_policy.html" target="_blank" title="Celesta App">Celesta App's Privacy Policy</a>
+            </li>
             <!-- <li>
                 <a class="no-barba tx--caption" href="#" title="Site Credits" target="_blank">Link</a>
             </li> -->

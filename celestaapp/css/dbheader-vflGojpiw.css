@@ -1,0 +1,473 @@
+#account-header {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  float: right;
+  font-size: 13px;
+}
+#account-header .account-header__avatar {
+  margin-top: -3px;
+}
+#account-header.show-account-photo .sub-nav .clickable,
+#account-header.show-account-photo .account-dropdown .clickable {
+  cursor: pointer;
+}
+#account-header.show-account-photo .sub-nav .name-container .name,
+#account-header.show-account-photo .account-dropdown .name-container .name {
+  line-height: 18px;
+  word-wrap: break-word;
+  width: 100%;
+}
+#account-header p {
+  font-size: 13px;
+}
+#account-header .nav {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+#account-header .nav li {
+  display: inline-block;
+  vertical-align: middle;
+  list-style: none;
+  position: relative;
+  margin-left: 10px;
+}
+@media (max-width: 767px) {
+  #account-header .nav li {
+    margin-left: 0;
+  }
+}
+#account-header .nav li.top-level-nav-item {
+  padding-left: 20px;
+}
+#account-header .nav li.top-level-nav-item--align-baseline {
+  margin-top: 3px;
+}
+#account-header .nav li .header-nav-link {
+  background-color: transparent;
+  display: inline-block;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+#account-header .nav li .header-nav-link img.link-img {
+  opacity: 0.25;
+  vertical-align: middle;
+  background-color: #fff;
+  margin: -1px 0 0 5px;
+  padding-right: 0px;
+  background-repeat: no-repeat;
+}
+#account-header .nav li .header-nav-link--space {
+  margin-top: -3px;
+}
+#account-header .nav li .header-nav-link--bold {
+  vertical-align: top;
+  padding-left: 3px;
+  font-weight: 700;
+}
+.tabbing #account-header .sprite-button:focus {
+  margin: -4px;
+  padding: 4px;
+}
+#header-account-menu .bubble-dropdown {
+  padding: 20px;
+  left: auto !important;
+  right: 0px;
+  min-width: 165px;
+  max-width: 195px;
+}
+#login-hover-cont {
+  width: 210px;
+}
+#login-hover-cont .create-account {
+  clear: both;
+  margin: 20px -20px 0 -20px;
+  padding: 5px;
+  text-align: center;
+}
+#account-header .bubble-dropdown-target:hover {
+  text-decoration: underline;
+}
+#account-header li.active .sub-nav {
+  display: block;
+}
+#account-header .sub-nav {
+  display: none;
+  position: absolute;
+  right: 2px;
+  top: 100%;
+  margin-top: 12px;
+  z-index: 1;
+  padding-bottom: 12px;
+}
+#account-header .sub-nav .title,
+#account-header .bubble-dropdown .title {
+  width: 100%;
+  font-size: 14px;
+  color: #000;
+  margin: -7px 0 10px;
+}
+#account-header .sub-nav ul,
+#account-header .bubble-dropdown ul {
+  margin: 0;
+  padding: 0;
+}
+#account-header .sub-nav ul a:hover,
+#account-header .bubble-dropdown ul a:hover {
+  text-decoration: none;
+}
+#account-header .sub-nav ul .role-title,
+#account-header .bubble-dropdown ul .role-title {
+  vertical-align: top;
+}
+#account-header .sub-nav ul .subheader-text,
+#account-header .bubble-dropdown ul .subheader-text {
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 2px;
+}
+#account-header .sub-nav ul .subheader-text--red,
+#account-header .bubble-dropdown ul .subheader-text--red {
+  color: #dd3b38;
+}
+#account-header .sub-nav ul .email,
+#account-header .bubble-dropdown ul .email {
+  margin-bottom: 6px;
+}
+#account-header .sub-nav ul li,
+#account-header .bubble-dropdown ul li {
+  margin: 0 -20px;
+  display: block;
+  float: none;
+}
+#account-header .sub-nav ul li.user-list-item,
+#account-header .bubble-dropdown ul li.user-list-item {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 0;
+  padding: 6px 20px;
+}
+#account-header .sub-nav ul li.user-list-item a,
+#account-header .bubble-dropdown ul li.user-list-item a {
+  padding: 0px;
+}
+#account-header .sub-nav ul li.user-list-item a:hover,
+#account-header .bubble-dropdown ul li.user-list-item a:hover {
+  background: #fff;
+}
+#account-header .sub-nav ul li.user-list-item .button-as-link,
+#account-header .bubble-dropdown ul li.user-list-item .button-as-link {
+  font-size: 12px;
+}
+#account-header .sub-nav ul li.divider,
+#account-header .bubble-dropdown ul li.divider {
+  border-top: 1px solid #edf1f5;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+#account-header .sub-nav ul li .sign-in-user-list,
+#account-header .bubble-dropdown ul li .sign-in-user-list {
+  float: right;
+  position: relative;
+  top: -40px;
+  right: 10px;
+  box-shadow: -10px 0px 15px 5px #ffffff;
+}
+#account-header .sub-nav ul li a,
+#account-header .bubble-dropdown ul li a {
+  padding: 5px 20px;
+}
+#account-header .sub-nav ul li a.standalone,
+#account-header .bubble-dropdown ul li a.standalone {
+  display: block;
+  zoom: 1;
+  min-width: 165px;
+}
+#account-header .sub-nav ul li a.standalone img,
+#account-header .bubble-dropdown ul li a.standalone img {
+  margin-right: 10px;
+  margin-bottom: -3px;
+}
+#account-header .sub-nav ul li a:hover,
+#account-header .bubble-dropdown ul li a:hover {
+  background-color: #e3f2ff;
+  cursor: pointer;
+  text-decoration: none;
+}
+#account-header .sub-nav ul .quota_graph_container,
+#account-header .bubble-dropdown ul .quota_graph_container {
+  margin: 16px 0 12px 0;
+  border-top: 1px solid #ddd;
+  background: #eee;
+  height: 5px;
+  width: 165px;
+}
+#account-header .sub-nav ul .quota_graph_container .quota_graph_bar,
+#account-header .bubble-dropdown ul .quota_graph_container .quota_graph_bar {
+  margin-top: -1px;
+  background: #69b5f2;
+  border: 1px solid #5d9fd5;
+  height: 4px;
+}
+#account-header .sub-nav ul .quota_graph_container .quota_graph_bar.over,
+#account-header
+  .bubble-dropdown
+  ul
+  .quota_graph_container
+  .quota_graph_bar.over {
+  border-color: #c00;
+  background: #e00;
+}
+#account-header .sub-nav ul .quota_graph_container--tight,
+#account-header .bubble-dropdown ul .quota_graph_container--tight {
+  margin-top: 12px;
+}
+#account-header .account-dropdown ul li.exp-dropdown-upsell a {
+  background-color: #fffdec;
+}
+#account-header .account-dropdown ul li.exp-dropdown-upsell a:hover {
+  background-color: #fffdec;
+}
+#account-header .account-dropdown ul li.exp-dropdown-upsell-v2 a {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  font-weight: 700;
+}
+#member-requests span.freshbubble,
+#main-nav span.freshbubble#inbox-count,
+.header-nav-link span.freshbubble {
+  display: none;
+}
+#member-requests span.freshbubble.show,
+#main-nav span.freshbubble#inbox-count.show,
+.header-nav-link span.freshbubble.show {
+  display: inline-block;
+  vertical-align: middle;
+}
+.header-section {
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  box-sizing: border-box;
+  font-size: 0;
+  text-align: center;
+}
+@media only screen and (max-width: 990px) {
+  .header-section {
+    height: 80px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .header-section {
+    height: 60px;
+  }
+}
+.header-section--shadow {
+  box-shadow: 0 1px 1px #e8e8e8;
+}
+.header-section--small {
+  height: 76px;
+}
+.header-section--small .header-section__wrap {
+  padding-bottom: 19px;
+  padding-top: 19px;
+}
+.header-section--small.dropbox-logo--business .header-section__wrap {
+  padding-bottom: 19px;
+  padding-top: 19px;
+}
+.header-section--logo-left {
+  text-align: left;
+}
+.header-section--logo-right {
+  text-align: right;
+}
+.header-section__wrap {
+  max-width: 990px;
+  position: relative;
+  padding: 31px 15px;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 990px) {
+  .header-section__wrap {
+    padding: 21px 0;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .header-section__wrap {
+    padding: 11px 0;
+  }
+}
+.header-section .button-small {
+  vertical-align: middle;
+}
+.header-section__logo {
+  display: inline-block;
+}
+.header-section__link-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  max-width: 400px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  line-height: 75px;
+}
+.header-section__link-container--left {
+  padding-left: 25px;
+  right: auto;
+  text-align: left;
+}
+@media (min-width: 991px) {
+  .header-section__link-container--left {
+    padding-left: 0;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .header-section__link-container--left {
+    display: none;
+  }
+}
+.header-section__link-container--right {
+  padding-right: 25px;
+  left: auto;
+  text-align: right;
+}
+@media (min-width: 991px) {
+  .header-section__link-container--right {
+    padding-right: 0;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .header-section__link-container--right {
+    display: none;
+  }
+}
+.header-section__link {
+  font-size: 14px;
+  font-weight: 300;
+}
+.header-section__link a {
+  color: #007ee5;
+}
+.header-section__copy {
+  font-size: 14px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.header-section__copy p {
+  margin: 0;
+}
+.header-section .dropbox-logo {
+  height: 36px;
+  width: 172px;
+  max-width: none;
+  position: relative;
+  display: block;
+  z-index: 2;
+  margin: 0 auto;
+  font-size: 0;
+  text-align: left;
+}
+@media only screen and (max-width: 767px) {
+  .header-section .dropbox-logo {
+    width: 116px;
+  }
+}
+.header-section .dropbox-logo__type {
+  background: url("../fonts/dropbox_wordmark_2016-vflOn6jm5.svg") no-repeat
+    center center;
+  background-size: 100% auto;
+  z-index: 3;
+  width: 120px;
+  height: 31px;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+  transition: transform 300ms ease-in-out 0s, opacity 300ms ease-in-out 0s;
+}
+@media only screen and (max-width: 767px) {
+  .header-section .dropbox-logo__type {
+    margin-left: 5px;
+    width: 80px;
+  }
+}
+.header-section .dropbox-logo__glyph {
+  background: url("../../logo.png") no-repeat center
+    center;
+  background-size: 100% auto;
+  height: 36px;
+  width: 36px;
+  z-index: 4;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 300ms ease-in-out 0s;
+}
+@media only screen and (max-width: 767px) {
+  .header-section .dropbox-logo__glyph {
+    width: 30px;
+  }
+}
+.header-section .dropbox-logo.fade-out .dropbox-logo__glyph {
+  transform: translateX(68px);
+}
+@media only screen and (max-width: 767px) {
+  .header-section .dropbox-logo.fade-out .dropbox-logo__glyph {
+    transform: translateX(43px);
+  }
+}
+.header-section .dropbox-logo.fade-out .dropbox-logo__type {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+.header-section .dropbox-logo--business .dropbox-logo {
+  width: 270px;
+}
+.header-section .dropbox-logo--business .dropbox-logo__type {
+  background-image: url("../fonts/dropbox_business_wordmark-vflqDExNw.svg");
+  width: 220px;
+}
+.header-section .dropbox-logo--business .fade-out .dropbox-logo__glyph {
+  transform: translateX(125px);
+}
+.header-section .dropbox-logo--enterprise .dropbox-logo__type {
+  background: url("../fonts/dropbox_enterprise_wordmark-vflC8qiGh.svg");
+}
+.rebrand-m1 .header-section .dropbox-logo__type {
+  background: url("../fonts/dropbox_wordmark_m1-vflrUsFrF.svg") no-repeat center
+    center;
+}
+.rebrand-m1 .header-section .dropbox-logo__glyph {
+  background: url("../../logo.png") no-repeat center center;
+}
+#account-header {
+  float: none;
+  line-height: 1.2em;
+  text-align: left;
+}
+@media only screen and (max-width: 767px) {
+  #account-header .name {
+    display: none;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #notification-feed-nav-link {
+    display: none;
+  }
+}
