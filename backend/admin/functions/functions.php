@@ -140,7 +140,7 @@ function show_users(){
 
 		$data=array();
 		while ($row = $result->fetch_assoc()) {
-    		if($permit==3 || $permit==0){
+    		if($permit==3 || $permit==0 || $permit==2){
 				$data[]=$row;
     		}
 		}
@@ -689,6 +689,7 @@ function total_register(){
 						<td>".$row['total_charge']."</td>
 						<td>".$online."</td>
 						<td>".$row['amount_paid']."</td>
+						<td><a href='".$row['qrcode']."'><i class='fas fa-eye' style='font-size:24px'></i></a></td>
 	    			</tr>";
     		}
 		}
