@@ -133,7 +133,7 @@
             <div class="row gallery-container">
 
               <?php foreach($events as $e) { ?>
-                <div class="col-lg-4 col-md-6 gallery-item filter-<?php echo $e['ev_club']?>">
+                <div class="col-lg-4 col-md-6 gallery-item filter-<?php echo $e['ev_club']?>" data-tilt>
                   <div class="gallery-wrap">
                     <a href="./eventsdetails.php?id=<?php echo $e['ev_id']?>">
                     <figure>
@@ -168,10 +168,13 @@
     </main>
 </div>
 
+  <!-- tilt js -->
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="../_compiled/tilt.jquery.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="./js/menu-main.js"></script>
   <!-- #gallery -->
-
 
   <!--gallery JavaScript Libraries -->
   <script src="./lib/jquery/jquery.min.js"></script>
