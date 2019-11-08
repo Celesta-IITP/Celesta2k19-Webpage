@@ -217,7 +217,7 @@
 													}else{?>
 												<input class="form-check-input" type="checkbox" id="accommodation_charge" name='accommodation_charge'>
 												<label class="form-check-label" for="accommodation_charge">
-													Book Accommodation Charge (Rs 500)
+													Book Accommodation Charge (Rs 600)
 												</label>
 													<?php } ?>
 											</div>
