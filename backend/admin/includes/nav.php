@@ -21,7 +21,7 @@
       </li>
       <?php }?>
 
-      <?php if($permit==0){ ?>
+      <?php if($permit==0 || $permit==2){ ?>
         <li class="nav-item">
           <a class="nav-link" href="users.php">All Users</a>
         </li>
