@@ -315,13 +315,14 @@ function updatingUser(){
 			payAccommodation($celestaid,$accommodation_charge,$row1['email']);
 		}
 
-	}elseif(isset($_POST['registration_charge']) && isset($_POST['tshirt_charge'])){
-		$total_charge+=350;
-		$paying+=350;
-		$amount_paid+=350;
-		$registration_charge=100;
-		$tshirt_charge=250;
-	}else{
+	 //}
+	 // elseif(isset($_POST['registration_charge']) && isset($_POST['tshirt_charge'])){
+	// 	$total_charge+=350;
+	// 	$paying+=350;
+	// 	$amount_paid+=350;
+	// 	$registration_charge=100;
+	// 	$tshirt_charge=250;
+	 }else{
 		if(isset($_POST['registration_charge'])){
 			$total_charge=$total_charge+$price_reg;
 			$registration_charge+=$price_reg;
