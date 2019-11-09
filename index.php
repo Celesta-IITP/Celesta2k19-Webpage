@@ -232,6 +232,9 @@
 
   <main id="barba-wrapper" class="main">
     <div class="barba-container" data-namespace="prism">
+      <!-- font awesome link for hot reload -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+
       <div class="home-wrapper">
         <!-- payment -->
         <a href="./backend/user/regPayment.php" target="_blank" class="njath">Registration Pay Portal</a>
@@ -255,6 +258,67 @@
             .njath{
               display: none;
             }
+          }
+        </style>
+
+        <!--  -->
+        <div class="box-blur">
+        </div>
+        <div class="box-content">
+          <span class="cross"><i class="fas fa-times fa-3x"></i></span>
+          <div class="content">
+            <p>This to inform all the participants that the IIT Patna campus is absolutely safe and has its own team of security personals from BVG who’ll take it upon themselves to make your travel safe. Moreover, the buses that are being run for participants are reserved buses for Celesta participants only.
+              <br><h2 style="font-weight: bold">We assure your security and safety in the best way possible.</h2><br>
+              Please contact anyone from the Registration team or Hospitality team as soon as you reach the campus for your queries and support.</p>
+          </div>
+        </div>
+
+        <style>
+          .box-blur{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            filter: blur(1000px);
+            -webkit-filter: blur(1000px);
+            z-index: 9999;
+          }
+          .box-content{
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50% , -50%) skew(-5deg);
+            width: 50%;
+            background: rgba(0,0,0,.75);
+            border-radius: 20px;
+            box-shadow: 0px 5px 10px rgba(0,0,0,.8);
+            z-index: 9999;
+          }
+          .cross{
+            position: absolute;
+            top: calc(0% - 20px);
+            right: calc(0% - 10px);
+            cursor: pointer;
+          }
+          .content{
+            padding: 10px;
+            margin: 10px;
+            height: 300px;
+            overflow-y: scroll;
+          }
+          @media(max-width: 500px){
+            .box-content{
+              width: 75%;
+              transform: translate(-50% , -50%) skew(-0deg);
+            }
+            .content{
+            height: 400px;
+            overflow-y: scroll;
+          }
           }
         </style>
    
@@ -377,6 +441,19 @@
 
   <script src="_compiled/vendor.js" async></script>
   <script src="_compiled/app.js" async></script>
+
+  <!-- dialog box scripts -->
+  <script>
+    var boxBlur=document.querySelector('.box-blur');
+    var boxContent=document.querySelector('.box-content');
+    boxBlur.style.display="block";
+    boxContent.style.display="block";
+    var cross=document.querySelector('.cross');
+    cross.addEventListener('click', () => {
+      boxBlur.style.display="none";
+      boxContent.style.display="none";
+    })
+  </script>
 </body>
 
 </html>
