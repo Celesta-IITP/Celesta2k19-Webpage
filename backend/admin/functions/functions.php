@@ -498,7 +498,7 @@ function updateEventTable($ev_id,$ev_amount,$celestaid,$team_event){
 			$amount=$reg->amount;
 			$cap_name=$reg->cap_name;
 			$cap_phone=$reg->cap_phone;
-			$cap_celestaid=$reg->celestaid;
+			$cap_celestaid=$reg->cap_celestaid;
 			$team_name=$reg->team_name;
 			$cap_email=$reg->cap_email;
 
