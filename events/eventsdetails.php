@@ -124,6 +124,7 @@
                 <h5 style="color: #219999">Organizer's Phone: <span style="color: #fff"><?php echo $event['ev_org_phone'] ?></span></h5>
                 <h5 style="color: #219999">Club: <span style="color: #fff"><?php echo $event['ev_club'] ?></span></h5>
                 <h5 style="color: #219999">Date: <span style="color: #fff"><?php echo $event['ev_date'] ?></span></h5>
+                <h5 style="color: #219999">Venue: <span style="color: #fff"><?php echo $event['ev_venue'] ?></span></h5>
                 <h5 style="color: #219999">Start Time: <span style="color: #fff"><?php echo $event['ev_start_time'] ?></span></h5>
                 <h5 style="color: #219999">End Time: <span style="color: #fff"><?php echo $event['ev_end_time'] ?></span></h5>
                 <h5 style="color: #219999">Event Prize Money:  <span style="color: #fff"><?php echo $event['ev_prize'] ?></span></h5>
