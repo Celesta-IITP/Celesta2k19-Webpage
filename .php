@@ -205,6 +205,9 @@
             <li>
               <a class="main-nav__link" href="app_privacy_policy.html" target="_blank" title="Celesta App">Celesta App's Privacy Policy</a>
             </li>
+            <li>
+              <a class="main-nav__link" href="./assets/images/locations/busroutes.jpeg" target="_blank" title="Bus Routes">Bus Routes</a>
+            </li>
             <!-- <li>
                 <a class="no-barba tx--caption" href="#" title="Site Credits" target="_blank">Link</a>
             </li> -->
