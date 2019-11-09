@@ -213,13 +213,16 @@
 
           <span>
             <li>
-              <a class="main-nav__link" href="developers.php" title="Developers">Core Developers</a>
+              <a class="main-nav__link" href="developers.php" title="Core Developers">Core Developers</a>
             </li>
             <li>
-              <a class="main-nav__link" href="./celestaapp" target="_blank" title="Celesta App">Download Celesta App</a>
+              <a class="main-nav__link" href="./celestaapp" target="_blank" title="Download Celesta App">Download Celesta App</a>
             </li>
             <li>
-              <a class="main-nav__link" href="app_privacy_policy.html" target="_blank" title="Celesta App">Celesta App's Privacy Policy</a>
+              <a class="main-nav__link" href="app_privacy_policy.html" target="_blank" title="Celesta App's Privacy Policy">Celesta App's Privacy Policy</a>
+            </li>
+            <li>
+              <a class="main-nav__link" href="./assets/images/locations/busroutes.jpeg" target="_blank" title="Bus Routes">Bus Routes</a>
             </li>
             <!-- <li>
                 <a class="no-barba tx--caption" href="#" title="Site Credits" target="_blank">Link</a>
