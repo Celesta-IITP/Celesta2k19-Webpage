@@ -266,6 +266,7 @@
               <h1 class="text-center" style="color: #fff" data-tilt>Media <span style="color: #f00">Partner</span></h1>
               <div class="container d-flex justify-content-center align-items-center parent">
                 <img src="assets/images/sponsors/hindustantimes.png" width="20%" style="margin: 20px" data-tilt onClick="clickk('https://www.hindustantimes.com/')">
+                <img src="assets/images/sponsors/timesofindia.png" width="20%" style="margin: 20px" data-tilt onClick="clickk('https://www.timesofindia.com/')">
               </div>
             </div>
           </div>
