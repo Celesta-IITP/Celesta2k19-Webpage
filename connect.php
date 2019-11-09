@@ -218,6 +218,9 @@
             <li>
               <a class="main-nav__link" href="app_privacy_policy.html" target="_blank" title="Celesta App">Celesta App's Privacy Policy</a>
             </li>
+            <li>
+              <a class="main-nav__link" href="./assets/images/locations/busroutes.jpeg" target="_blank" title="Bus Routes">Bus Routes</a>
+            </li>
             <!-- <li>
                 <a class="no-barba tx--caption" href="#" title="Site Credits" target="_blank">Link</a>
             </li> -->
@@ -260,6 +263,13 @@
               <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14399.37835508978!2d84.8434447170254!3d25.54355318850096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398d567a193702ff%3A0xc9c527c7faec3056!2sIIT+Patna+Administration+Block!5e0!3m2!1sen!2sin!4v1539177184721"
                 target="_blank" class="location-cta o-media__icon tx--aqua-bright">
                 <span class="tx--callout">Get Directions</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+              </a>
+              <a href="./assets/images/locations/busroutes.jpeg"
+                target="_blank" class="location-cta o-media__icon tx--aqua-bright">
+                <span class="tx--callout">Bus Routes</span>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9 17L14 11.5L9 6" stroke="currentColor" stroke-width="2"></path>
                 </svg>
@@ -313,7 +323,7 @@
         </div>
 
         <footer class="connect-footer">
-          <div class="column newsletter">
+          <!-- <div class="column newsletter">
             <h4 class="tx--body-lead label">Stay Updated</h4>
 
             <div class="signup-field">
@@ -328,11 +338,11 @@
                   d="M11.2071 0.792908L19.9142 9.50001L11.2071 18.2071L9.79289 16.7929L16.0858 10.5H0V8.50001H16.0858L9.79289 2.20712L11.2071 0.792908Z"
                   fill="#ECF2F7" />
             </div>
-          </div>
+          </div> -->
 
           <div class="column">
             <h4 class="tx--body-lead label">Media</h4>
-            <p>data</p>
+            <!-- <p>data</p> -->
           </div>
 
           <div class="column social">
